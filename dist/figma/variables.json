@@ -5278,7 +5278,7 @@
     {
      "name": "field/padding-x",
      "type": "FLOAT",
-     "description": "Горизонтальный отступ.",
+     "description": "Горизонтальный отступ поля.",
      "scopes": [
       "GAP"
      ],
@@ -5287,15 +5287,15 @@
       "WEB": "var(--viewport-field-padding-x)"
      },
      "valuesByMode": {
-      "s": 16,
-      "m": 16,
-      "l": 16
+      "s": 10,
+      "m": 10,
+      "l": 10
      }
     },
     {
      "name": "field/gap",
      "type": "FLOAT",
-     "description": "Шаг между иконками и текстом в поле.",
+     "description": "Шаг между слотами и текстом: 0, отступ даёт text-padding-x.",
      "scopes": [
       "GAP"
      ],
@@ -5304,9 +5304,9 @@
       "WEB": "var(--viewport-field-gap)"
      },
      "valuesByMode": {
-      "s": 8,
-      "m": 8,
-      "l": 8
+      "s": 0,
+      "m": 0,
+      "l": 0
      }
     },
     {
@@ -5392,6 +5392,40 @@
       "s": 343,
       "m": 343,
       "l": 343
+     }
+    },
+    {
+     "name": "field/text-padding-x",
+     "type": "FLOAT",
+     "description": "Боковой отступ текстового блока — чтобы текст не слипался с иконками и кнопками.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-field-text-padding-x)"
+     },
+     "valuesByMode": {
+      "s": 6,
+      "m": 6,
+      "l": 6
+     }
+    },
+    {
+     "name": "field/label-gap",
+     "type": "FLOAT",
+     "description": "Шаг между поднятым лейблом и значением.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-field-label-gap)"
+     },
+     "valuesByMode": {
+      "s": 4,
+      "m": 4,
+      "l": 4
      }
     },
     {

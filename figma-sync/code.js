@@ -522,7 +522,7 @@ async function buildComponents(index) {
     if (name === "chevron") vec("M 7 10 L 12 15 L 17 10");
     if (name === "chevron-right") vec("M 10 7 L 15 12 L 10 17");
     if (name === "calendar") { const r = figma.createRectangle(); r.resize(16, 15); r.x = 4; r.y = 5; r.cornerRadius = 3; stroke(r); f.appendChild(r); vec("M 4 10 L 20 10 M 8 3 L 8 7 M 16 3 L 16 7"); }
-    if (name === "clear") { const c = figma.createEllipse(); c.resize(20, 20); c.x = 2; c.y = 2; if (v) c.fills = [paint(v)]; f.appendChild(c); const x = vec("M 9 9 L 15 15 M 15 9 L 9 15", 2); const w = T("ground/ground-2"); if (w) x.strokes = [paint(w)]; }
+    if (name === "clear") vec("M 7 7 L 17 17 M 17 7 L 7 17");
     if (name === "minus") vec("M 6 12 L 18 12");
     if (name === "plus") vec("M 6 12 L 18 12 M 12 6 L 12 18");
     f.children.forEach((n) => (n.constraints = { horizontal: "SCALE", vertical: "SCALE" }));
@@ -558,6 +558,8 @@ async function buildComponents(index) {
       if (opt.leading) lead.appendChild(opt.leading());
       const col = frame("text", "VERTICAL"); col.primaryAxisAlignItems = "CENTER";
       box.appendChild(col); col.layoutSizingHorizontal = "FILL";
+      ["paddingLeft", "paddingRight"].forEach((p) => bind(col, p, VP("field/text-padding-x")));
+      bind(col, "itemSpacing", VP("field/label-gap"));
       const raised = state !== "empty";
       const label = text(opt.label, raised ? 13 : 16, false, state === "error" ? "content/status-negative/primary" : (raised ? "content/neutral/secondary" : "content/neutral/tertiary"));
       label.fontName = { family: "Inter", style: "Medium" }; label.name = "label"; bind(label, "fontSize", VP(raised ? "field/label-size" : "field/value-size"));
@@ -605,7 +607,7 @@ async function buildComponents(index) {
         g.appendChild(fieldButton(icon("minus", "content/neutral/primary"), "minus"));
         g.appendChild(fieldButton(icon("plus", "content/neutral/primary"), "plus"));
         return g; } }],
-    ["Field/search", { label: "Найти", value: "Пицца", leading: () => icon("search", "content/neutral/secondary"), trailing: () => icon("clear", "content/neutral/tertiary"), description: "Поиск: слева лупа, справа — очистить." }],
+    ["Field/search", { label: "Найти", value: "Пицца", leading: () => icon("search", "content/neutral/secondary"), trailing: () => icon("clear", "content/neutral/secondary"), description: "Поиск: слева лупа, справа контурный крестик — очистить." }],
     ["Field/select", { label: "Город", value: "Москва", trailing: () => fieldButton(icon("chevron", "content/neutral/primary"), "open"), description: "Выбор из списка: справа белая кнопка с шевроном." }],
     ["Field/phone", { label: "Телефон", value: "900 000-00-00", leading: () => { const t = text("+7", 16, false, "content/neutral/primary"); t.fontName = { family: "Inter", style: "Medium" }; return fieldButton(t, "country"); }, description: "Телефон: код страны в белой кнопке слева." }],
     ["Field/date", { label: "Дата доставки", value: "12 ноября", trailing: () => fieldButton(icon("calendar", "content/neutral/primary"), "calendar"), description: "Дата: справа белая кнопка с календарём." }],

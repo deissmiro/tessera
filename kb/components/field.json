@@ -62,17 +62,19 @@
   "layout": {
     "height": "viewport/field/height",
     "radius": "viewport/field/radius",
-    "padding-x": "viewport/field/padding-x",
-    "gap": "viewport/field/gap",
+    "padding-x": "viewport/field/padding-x (10)",
+    "gap": "viewport/field/gap (0)",
     "label": "viewport/field/label-size (поднятый) / value-size (empty)",
     "value": "viewport/field/value-size",
     "hint": "viewport/field/hint-size, отступ viewport/field/hint-gap",
-    "width": "viewport/field/width"
+    "width": "viewport/field/width",
+    "text-padding": "viewport/field/text-padding-x (6) — боковой отступ текстового блока",
+    "label-gap": "viewport/field/label-gap (4) — между лейблом и значением"
   },
   "fields": {
     "Field/password": "trailing — белая кнопка с глазом",
     "Field/number": "trailing — белые кнопки − и +",
-    "Field/search": "leading — лупа, trailing — очистить",
+    "Field/search": "leading — лупа, trailing — контурный крестик «очистить»",
     "Field/select": "trailing — белая кнопка с шевроном",
     "Field/phone": "leading — белая кнопка с кодом страны (+7)",
     "Field/date": "trailing — белая кнопка с календарём"
