@@ -176,60 +176,66 @@ async function buildCheckPage(data, index) {
 async function buildComponents(index) {
   await figma.loadFontAsync({ family: "Inter", style: "Regular" });
   await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
-  const cols = await figma.variables.getLocalVariableCollectionsAsync();
-  const col = (part) => cols.find((c) => c.name.includes(part));
-  const V = (coll, name) => {
+  var cols = await figma.variables.getLocalVariableCollectionsAsync();
+  var col = (part) => cols.find((c) => c.name.includes(part));
+  var V = (coll, name) => {
     const v = index[`${col(coll).name}::${name}`];
     if (!v) say(`⚠ нет переменной ${coll}::${name}`);
     return v;
   };
-  const T = (n) => V("Theme", n), VP = (n) => V("Viewport", n), N = (n) => V("Numbers", n);
-  const bind = (node, field, v) => { if (v) node.setBoundVariable(field, v); };
-  const paint = (v) => figma.variables.setBoundVariableForPaint({ type: "SOLID", color: { r: 0.5, g: 0.5, b: 0.5 } }, "color", v);
-  const fill = (node, themeName) => { const v = T(themeName); if (v) node.fills = [paint(v)]; };
-  const frame = (name, dir) => {
+  var T = (n) => V("Theme", n), VP = (n) => V("Viewport", n), N = (n) => V("Numbers", n);
+  var bind = (node, field, v) => { if (v) node.setBoundVariable(field, v); };
+  var paint = (v) => figma.variables.setBoundVariableForPaint({ type: "SOLID", color: { r: 0.5, g: 0.5, b: 0.5 } }, "color", v);
+  var fill = (node, themeName) => { const v = T(themeName); if (v) node.fills = [paint(v)]; };
+  var frame = (name, dir) => {
     const f = figma.createFrame(); f.name = name; f.fills = [];
     if (dir) { f.layoutMode = dir; f.primaryAxisSizingMode = "AUTO"; f.counterAxisSizingMode = "AUTO"; }
     return f;
   };
-  const text = (chars, size, bold, color) => {
+  var text = (chars, size, bold, color) => {
     const t = figma.createText();
     t.fontName = { family: "Inter", style: bold ? "Semi Bold" : "Regular" };
     t.characters = chars; t.fontSize = size; fill(t, color);
     return t;
   };
-  const pad = (node, v) => ["paddingLeft", "paddingRight", "paddingTop", "paddingBottom"].forEach((p) => bind(node, p, v));
-  const radius = (node, corners, v) => corners.forEach((c) => bind(node, c + "Radius", v));
-  const ALL = ["topLeft", "topRight", "bottomLeft", "bottomRight"];
+  var pad = (node, v) => ["paddingLeft", "paddingRight", "paddingTop", "paddingBottom"].forEach((p) => bind(node, p, v));
+  var radius = (node, corners, v) => corners.forEach((c) => bind(node, c + "Radius", v));
+  var ALL = ["topLeft", "topRight", "bottomLeft", "bottomRight"];
 
-  const NAME = "Tessera · Components";
-  let page = figma.root.children.find((p) => p.name === NAME);
+  var NAME = "Tessera · Components";
+  var page = figma.root.children.find((p) => p.name === NAME);
   if (page) { await page.loadAsync(); page.children.forEach((n) => n.remove()); } else { page = figma.createPage(); page.name = NAME; }
   await figma.setCurrentPageAsync(page);
 
   // ================= Контролы =================
-  const STATES = ["default", "hover", "pressed", "disabled"];
-  const stateOpacity = { hover: "opacity/10", pressed: "opacity/20" };
-  let cursorY = 0;
-  const place = (set, title) => {
+  var STATES = ["default", "hover", "pressed", "disabled"];
+  var stateOpacity = { hover: "opacity/10", pressed: "opacity/20" };
+  var cursorY = 0;
+  var failures = [];
+  var fail = (name, e) => {
+    failures.push(name);
+    say(`✗ ${name}: ${(e && e.message) || e}`);
+    try { const t = text(`✗ ${name}: ${(e && e.message) || e}`, 20, true, "content/status-negative/primary"); t.y = cursorY; page.appendChild(t); cursorY += 60; } catch (_) {}
+  };
+  var place = (set, title) => {
     const h = text(title, 32, true, "content/neutral/primary"); h.y = cursorY; page.appendChild(h);
     set.x = 0; set.y = cursorY + 56; cursorY = set.y + set.height + 160;
   };
-  const makeSlot = (comp, name, parent, key) => {
+  var makeSlot = (comp, name, parent, key) => {
     const sl = comp.createSlot(); sl.name = name; sl.fills = [];
     sl.layoutMode = "HORIZONTAL"; sl.primaryAxisSizingMode = "AUTO"; sl.counterAxisSizingMode = "AUTO";
     sl.counterAxisAlignItems = "CENTER";
     try { parent.appendChild(sl); } catch (e) { say(`⚠ слот ${name}: ${e.message}`); }
     return sl;
   };
-  const stateLayer = (comp, state, colorName) => {
+  var stateLayer = (comp, state, colorName) => {
     if (!stateOpacity[state]) return;
     const r = figma.createRectangle(); r.name = "state"; fill(r, colorName);
     comp.appendChild(r); r.layoutPositioning = "ABSOLUTE"; r.x = 0; r.y = 0; r.resize(comp.width, comp.height);
     r.constraints = { horizontal: "STRETCH", vertical: "STRETCH" };
     bind(r, "opacity", N(stateOpacity[state]));
   };
-  const combine = (comps, name, description) => {
+  var combine = (comps, name, description) => {
     const set = figma.combineAsVariants(comps, page);
     set.name = name; set.description = description;
     return set;
@@ -237,19 +243,20 @@ async function buildComponents(index) {
 
   // ---- Button: смысл × контраст × размер × состояние
 
-  const labelColor = (m, c) => m === "inverse" ? "content/inverse/primary"
+  var labelColor = (m, c) => m === "inverse" ? "content/inverse/primary"
     : m === "static-light" ? "content/static-dark/primary"
     : m === "static-dark" ? "content/static-light/primary"
     : c === "deep" ? `content/${m}/on-deep` : `content/${m}/primary`;
+  try {
   // Набор на группу смысла × размер: Button/accent/large. Внутри варианты scheme (uno/duo…) × contrast × state.
-  const GROUPS = [["neutral", [null]], ["accent", ["uno", "duo"]], ["status", ["positive", "negative"]],
+  var GROUPS = [["neutral", [null]], ["accent", ["uno", "duo"]], ["status", ["positive", "negative"]],
                   ["brand", ["uno", "duo"]], ["static", ["light", "dark"]], ["inverse", [null]]];
-  const meaningOf = (g, sc) => (sc ? `${g}-${sc}` : g);
-  const SIZES = { s: "small", m: "medium", l: "large" };
-  const buttonSets = {};
-  let btnTotal = 0;
-  const btnHeader = text("Button", 32, true, "content/neutral/primary"); btnHeader.y = cursorY; page.appendChild(btnHeader);
-  let rowY = cursorY + 56;
+  var meaningOf = (g, sc) => (sc ? `${g}-${sc}` : g);
+  var SIZES = { s: "small", m: "medium", l: "large" };
+  var buttonSets = {};
+  var btnTotal = 0;
+  var btnHeader = text("Button", 32, true, "content/neutral/primary"); btnHeader.y = cursorY; page.appendChild(btnHeader);
+  var rowY = cursorY + 56;
   for (const [g, schemes] of GROUPS) {
     let x = 0, rowH = 0;
     for (const size of ["s", "m", "l"]) {
@@ -298,6 +305,8 @@ async function buildComponents(index) {
   cursorY = rowY + 80;
   say(`✓ Button: ${Object.keys(buttonSets).length} наборов (группа × размер), ${btnTotal} вариантов`);
 
+  } catch (e) { fail("Button", e); }
+  try {
   // ---- Checkbox и Radio
   function selector(kind, value, state) {
     const comp = figma.createComponent();
@@ -358,8 +367,10 @@ async function buildComponents(index) {
     say(`✓ ${title}: ${comps.length} вариантов`);
   }
 
+  } catch (e) { fail("Checkbox и Radio", e); }
+  try {
   // ---- Chip
-  const chipComps = [], chipLabels = [], chipSlots = [];
+  var chipComps = [], chipLabels = [], chipSlots = [];
   ["false", "true"].forEach((sel, r) => STATES.forEach((state, c) => {
     const ch = figma.createComponent(); ch.name = `selected=${sel}, state=${state}`;
     ch.layoutMode = "HORIZONTAL"; ch.primaryAxisSizingMode = "AUTO"; ch.counterAxisSizingMode = "FIXED";
@@ -380,18 +391,20 @@ async function buildComponents(index) {
     ch.x = c * 160; ch.y = r * 60;
     chipComps.push(ch); chipLabels.push(label); chipSlots.push([lead, trail]);
   }));
-  const chipSet = combine(chipComps, "Chip", "Чипс: фильтр или выбор. Выбранный — чёрный (background/neutral-deep). Контракт: kb/components/chip.json.");
-  const chLk = chipSet.addComponentProperty("label", "TEXT", "Чипс");
-  const chLead = chipSet.addComponentProperty("leading", "BOOLEAN", false);
-  const chTrail = chipSet.addComponentProperty("trailing", "BOOLEAN", false);
+  var chipSet = combine(chipComps, "Chip", "Чипс: фильтр или выбор. Выбранный — чёрный (background/neutral-deep). Контракт: kb/components/chip.json.");
+  var chLk = chipSet.addComponentProperty("label", "TEXT", "Чипс");
+  var chLead = chipSet.addComponentProperty("leading", "BOOLEAN", false);
+  var chTrail = chipSet.addComponentProperty("trailing", "BOOLEAN", false);
   chipLabels.forEach((l) => (l.componentPropertyReferences = { characters: chLk }));
   chipSlots.forEach(([l, t]) => { try { l.componentPropertyReferences = { visible: chLead }; t.componentPropertyReferences = { visible: chTrail }; } catch (e) {} });
   place(chipSet, "Chip");
   say(`✓ Chip: ${chipComps.length} вариантов`);
 
 
+  } catch (e) { fail("Chip", e); }
+  try {
   // ---- RichIcon: набор на смысл × размер, варианты contrast × shape
-  const glyph = (sizeVar, colorName) => {
+  var glyph = (sizeVar, colorName) => {
     const box = figma.createFrame(); box.name = "icon"; box.fills = []; box.resize(20, 20);
     bind(box, "width", VP(sizeVar)); bind(box, "height", VP(sizeVar));
     const v = figma.createVector(); v.name = "glyph";
@@ -400,43 +413,33 @@ async function buildComponents(index) {
     v.x = 0; v.y = 0; v.constraints = { horizontal: "SCALE", vertical: "SCALE" };
     return box;
   };
-  const riHeader = text("RichIcon", 32, true, "content/neutral/primary"); riHeader.y = cursorY; page.appendChild(riHeader);
-  let riY = cursorY + 56, riCount = 0;
-  for (const [g, schemes] of GROUPS) {
-    let x = 0, rowH = 0;
-    for (const size of ["s", "m", "l"]) {
-      const comps = [];
-      let r = 0;
-      for (const sc of schemes) {
-        const m = meaningOf(g, sc);
-        for (const c of (g === "inverse" ? ["deep"] : ["pale", "deep"])) {
-          ["circle", "square"].forEach((shape, ci) => {
-            const comp = figma.createComponent(); comp.name = (sc ? `scheme=${sc}, ` : "") + `contrast=${c}, shape=${shape}`;
-            comp.layoutMode = "HORIZONTAL"; comp.primaryAxisSizingMode = "FIXED"; comp.counterAxisSizingMode = "FIXED";
-            comp.primaryAxisAlignItems = "CENTER"; comp.counterAxisAlignItems = "CENTER"; comp.clipsContent = true;
-            comp.resize(40, 40);
-            bind(comp, "width", VP(`rich-icon/${size}/size`)); bind(comp, "height", VP(`rich-icon/${size}/size`));
-            fill(comp, g === "inverse" ? "background/inverse" : `background/${m}-${c}`);
-            if (shape === "circle") comp.cornerRadius = 999; else radius(comp, ALL, VP(`rich-icon/${size}/radius`));
-            const sl = makeSlot(comp, "icon", comp);
-            sl.appendChild(glyph(`rich-icon/${size}/icon`, labelColor(m, c)));
-            comp.x = ci * 72; comp.y = r * 72; comps.push(comp);
-          });
-          r++;
-        }
-      }
-      const set = combine(comps, `RichIcon/${g}/${SIZES[size]}`, `Иконка в подложке ${g}, ${SIZES[size]}. Варианты: ` + (schemes[0] ? "scheme × " : "") + "contrast × shape. Слот icon. Контракт: kb/components/rich-icon.json.");
-      set.x = x; set.y = riY; x += set.width + 60; rowH = Math.max(rowH, set.height);
-      riCount += comps.length;
-    }
-    riY += rowH + 60;
-  }
-  cursorY = riY + 100;
-  say(`✓ RichIcon: ${GROUPS.length * 3} наборов, ${riCount} вариантов`);
+  // Один компонент RichIcon: варианты size × shape. Цвет — по умолчанию нейтральный, меняется заливкой и цветом иконки.
+  var riHeader = text("RichIcon", 32, true, "content/neutral/primary"); riHeader.y = cursorY; page.appendChild(riHeader);
+  var riComps = [];
+  var SHAPES = ["circle", "rounded", "square"];
+  ["s", "m", "l"].forEach((size, r) => SHAPES.forEach((shape, ci) => {
+    const comp = figma.createComponent(); comp.name = `size=${SIZES[size]}, shape=${shape}`;
+    comp.layoutMode = "HORIZONTAL"; comp.primaryAxisSizingMode = "FIXED"; comp.counterAxisSizingMode = "FIXED";
+    comp.primaryAxisAlignItems = "CENTER"; comp.counterAxisAlignItems = "CENTER"; comp.clipsContent = true;
+    comp.resize(40, 40);
+    bind(comp, "width", VP(`rich-icon/${size}/size`)); bind(comp, "height", VP(`rich-icon/${size}/size`));
+    fill(comp, "background/neutral-soft");
+    if (shape === "circle") comp.cornerRadius = 999;
+    else if (shape === "rounded") radius(comp, ALL, VP(`rich-icon/${size}/radius`));
+    else comp.cornerRadius = 0;
+    const sl = makeSlot(comp, "icon", comp);
+    sl.appendChild(glyph(`rich-icon/${size}/icon`, "content/neutral/primary"));
+    comp.x = ci * 80; comp.y = r * 80; riComps.push(comp);
+  }));
+  var riSet = combine(riComps, "RichIcon", "Иконка в подложке. Варианты: size (small 32 / medium 40 / large 48) × shape (circle, rounded, square). Цвет по умолчанию нейтральный (background/neutral-soft + content/neutral/primary) — меняйте заливку и цвет иконки на любой из Theme. Слот icon. Контракт: kb/components/rich-icon.json.");
+  riSet.x = 0; riSet.y = cursorY + 56; cursorY = riSet.y + riSet.height + 160;
+  say(`✓ RichIcon: ${riComps.length} вариантов (size × shape)`);
 
+  } catch (e) { fail("RichIcon", e); }
+  try {
   // ---- Navbar: наборы default и large, варианты surface
-  const navHeader = text("Navbar", 32, true, "content/neutral/primary"); navHeader.y = cursorY; page.appendChild(navHeader);
-  let navY = cursorY + 56;
+  var navHeader = text("Navbar", 32, true, "content/neutral/primary"); navHeader.y = cursorY; page.appendChild(navHeader);
+  var navY = cursorY + 56;
   for (const kind of ["default", "large"]) {
     const comps = [], dividers = [];
     ["ground", "island", "transparent"].forEach((surface, r) => {
@@ -485,6 +488,8 @@ async function buildComponents(index) {
   cursorY = navY + 100;
   say("✓ Navbar: наборы default и large × surface ground / island / transparent");
 
+  } catch (e) { fail("Navbar", e); }
+  try {
   // Демо Navbar на трёх брейкпоинтах
   {
     const vpCol = col("Viewport");
@@ -502,9 +507,11 @@ async function buildComponents(index) {
   }
 
 
+  } catch (e) { fail("Navbar · демо", e); }
+  try {
   // ================= Поля ввода =================
   // Иконки 24×24 из примитивов (позже — библиотека иконок).
-  const icon = (name, colorName) => {
+  var icon = (name, colorName) => {
     const f = figma.createFrame(); f.name = `icon/${name}`; f.fills = []; f.resize(24, 24);
     const v = T(colorName);
     const stroke = (node, w = 2) => { node.fills = []; if (v) node.strokes = [paint(v)]; node.strokeWeight = w; node.strokeCap = "ROUND"; node.strokeJoin = "ROUND"; };
@@ -521,9 +528,9 @@ async function buildComponents(index) {
   };
 
   // ---- Input: универсальное поле. Плавающий лейбл, серая заливка, без обводки.
-  const FIELD_STATES = ["empty", "focus", "filled", "error", "disabled"];
-  const inputParts = [];
-  const inputComps = FIELD_STATES.map((state, i) => {
+  var FIELD_STATES = ["empty", "focus", "filled", "error", "disabled"];
+  var inputParts = [];
+  var inputComps = FIELD_STATES.map((state, i) => {
     const comp = figma.createComponent(); comp.name = `state=${state}`;
     comp.layoutMode = "VERTICAL"; comp.primaryAxisSizingMode = "AUTO"; comp.counterAxisSizingMode = "FIXED";
     comp.resize(343, 56); bind(comp, "width", VP("field/width")); comp.fills = [];
@@ -558,9 +565,9 @@ async function buildComponents(index) {
     inputParts.push({ label, value, hint, lead, trail });
     return comp;
   });
-  const inputSet = combine(inputComps, "Input",
+  var inputSet = combine(inputComps, "Input",
     "Универсальное поле ввода: серая заливка, плавающий лейбл, слоты leading / trailing, подсказка снизу. Состояния: empty, focus, filled, error, disabled. На его основе собраны все Field/*. Контракт: kb/components/input.json.");
-  const ik = {
+  var ik = {
     label: inputSet.addComponentProperty("label", "TEXT", "Лейбл"),
     value: inputSet.addComponentProperty("value", "TEXT", "Значение"),
     hint: inputSet.addComponentProperty("hint", "TEXT", "Подсказка"),
@@ -574,18 +581,20 @@ async function buildComponents(index) {
     hint.componentPropertyReferences = { characters: ik.hint, visible: ik.hasHint };
     try { lead.componentPropertyReferences = { visible: ik.leading }; trail.componentPropertyReferences = { visible: ik.trailing }; } catch (e) { say(`⚠ слоты Input: ${e.message}`); }
   });
-  const inHeader = text("Input и поля", 32, true, "content/neutral/primary"); inHeader.y = cursorY; page.appendChild(inHeader);
+  var inHeader = text("Input и поля", 32, true, "content/neutral/primary"); inHeader.y = cursorY; page.appendChild(inHeader);
   inputSet.x = 0; inputSet.y = cursorY + 56;
-  let fieldY = inputSet.y + inputSet.height + 80;
+  var fieldY = inputSet.y + inputSet.height + 80;
   say("✓ Input: 5 состояний, свойства label / value / hint / hasHint / leading / trailing");
 
+  } catch (e) { fail("Input", e); }
+  try {
   // ---- Field/*: наборы на базе инстансов Input. Меняете Input — меняются все поля.
-  const putInSlot = (inst, slotName, node) => {
+  var putInSlot = (inst, slotName, node) => {
     const sl = inst.findOne((n) => n.type === "SLOT" && n.name === slotName);
     if (!sl) { say(`⚠ нет слота ${slotName}`); return; }
     try { sl.appendChild(node); } catch (e) { say(`⚠ не удалось положить в слот ${slotName}: ${e.message}`); }
   };
-  const FIELDS = [
+  var FIELDS = [
     { name: "password", label: "Пароль", value: "••••••••", trailing: () => icon("eye", "content/neutral/secondary"), hint: "Минимум 8 символов" },
     { name: "number", label: "Количество", value: "2", trailing: () => {
         const g = frame("stepper", "HORIZONTAL"); g.itemSpacing = 8;
@@ -621,9 +630,10 @@ async function buildComponents(index) {
   }
   cursorY = fieldY + 100;
   say(`✓ Field: ${FIELDS.map((f) => f.name).join(", ")}`);
+  } catch (e) { fail("Field", e); }
   // ================= /Поля ввода =================
 
-  const buttonInstance = (meaning, contrast, size, label) => {
+  var buttonInstance = (meaning, contrast, size, label) => {
     const [g, sc] = meaning.includes("-") ? meaning.split("-") : [meaning, null];
     const { set, labelKey } = buttonSets[`${g}/${size}`];
     const name = (sc ? `scheme=${sc}, ` : "") + `contrast=${contrast}, state=default`;
@@ -681,13 +691,21 @@ async function buildComponents(index) {
     const footer = slot("footer", "VERTICAL", panel); bind(footer, "itemSpacing", VP("window/footer-gap"));
     footer.layoutSizingHorizontal = "FILL";
     for (const [label, m, c] of [["Продолжить", "accent-uno", "deep"], ["Отмена", "neutral", "pale"]]) {
-      const b = buttonInstance(m, c, "l", label);
+      let b;
+      try { b = buttonInstance(m, c, "l", label); }
+      catch (e) { // если кнопки не собрались — заглушка, чтобы окно всё равно появилось
+        b = frame(`button · ${label}`, "HORIZONTAL"); b.primaryAxisAlignItems = "CENTER"; b.counterAxisAlignItems = "CENTER"; b.cornerRadius = 14;
+        fill(b, c === "deep" ? `background/${m}-deep` : `background/${m}-pale`);
+        b.appendChild(text(label, 16, true, c === "deep" ? `content/${m}/on-deep` : `content/${m}/primary`));
+        b.counterAxisSizingMode = "FIXED"; b.resize(100, 56);
+      }
       footer.appendChild(b); b.layoutSizingHorizontal = "FILL";
     }
     return { panel };
   }
 
-  const variants = [];
+  try {
+  var variants = [];
   for (const type of ["dialog", "bottom-sheet", "side-sheet", "adaptive"]) {
     const root = figma.createComponent(); root.name = `type=${type}`; root.fills = [];
     root.layoutMode = type === "side-sheet" ? "HORIZONTAL" : "VERTICAL";
@@ -726,15 +744,15 @@ async function buildComponents(index) {
     variants.push({ root, scrim, blocker });
   }
 
-  const set = figma.combineAsVariants(variants.map((v) => v.root), page);
+  var set = figma.combineAsVariants(variants.map((v) => v.root), page);
   set.x = 0; set.y = cursorY + 56;
   set.name = "Window";
-  const wh = text("Window", 32, true, "content/neutral/primary"); wh.y = cursorY; page.appendChild(wh);
+  var wh = text("Window", 32, true, "content/neutral/primary"); wh.y = cursorY; page.appendChild(wh);
   set.layoutMode = "HORIZONTAL"; set.itemSpacing = 80; set.paddingLeft = set.paddingRight = set.paddingTop = set.paddingBottom = 80;
   set.primaryAxisSizingMode = "AUTO"; set.counterAxisSizingMode = "AUTO";
   set.description = "Окно поверх страницы: dialog, bottom-sheet, side-sheet, adaptive (шит на s, диалог на m/l). modal — блокирует страницу, scrim — затемнение. Размеры и поведение — мод коллекции Viewport. Слоты: header-left, header-center, header-right, content, footer. Контракт: kb/components/window.json.";
-  const modalKey = set.addComponentProperty("modal", "BOOLEAN", true);
-  const scrimKey = set.addComponentProperty("scrim", "BOOLEAN", true);
+  var modalKey = set.addComponentProperty("modal", "BOOLEAN", true);
+  var scrimKey = set.addComponentProperty("scrim", "BOOLEAN", true);
   for (const v of variants) {
     v.blocker.componentPropertyReferences = { visible: modalKey };
     v.scrim.componentPropertyReferences = { visible: scrimKey };
@@ -742,8 +760,8 @@ async function buildComponents(index) {
   say("✓ компонент Window: 4 вида, свойства modal / scrim, слоты header-left / header-center / header-right / content / footer");
 
   // Демо: каждый вид на трёх брейкпоинтах — инстансы с явным модом Viewport.
-  const vpCol = col("Viewport");
-  const grid = frame("Window · брейкпоинты", "VERTICAL"); grid.itemSpacing = 80;
+  var vpCol = col("Viewport");
+  var grid = frame("Window · брейкпоинты", "VERTICAL"); grid.itemSpacing = 80;
   grid.paddingLeft = grid.paddingRight = grid.paddingTop = grid.paddingBottom = 80;
   for (const comp of set.children) {
     const row = frame(comp.name, "HORIZONTAL"); row.itemSpacing = 80; row.counterAxisAlignItems = "MIN";
@@ -761,6 +779,8 @@ async function buildComponents(index) {
   page.appendChild(grid); grid.y = set.y + set.height + 200; fill(grid, "ground/ground-1");
   figma.viewport.scrollAndZoomIntoView(page.children);
   say("✓ демо: 4 вида × 3 брейкпоинта на странице «Tessera · Components»");
+  } catch (e) { fail("Window", e); }
+  if (failures.length) say(`Не собралось: ${failures.join(", ")}. Остальное собрано.`);
 }
 
 const URL_KEY = "tessera.sourceUrl";
@@ -780,22 +800,9 @@ async function fetchVariables(url) {
   return res.json();
 }
 
-async function headless(checkPage, components) {
-  const url = await figma.clientStorage.getAsync(URL_KEY);
-  if (!url) { figma.notify("Сначала укажите ссылку на variables.json в «Настройки и загрузка файла…»"); figma.closePlugin(); return; }
-  try {
-    const out = await run(await fetchVariables(url), checkPage, components);
-    const n = out.split("\n").find((l) => l.startsWith("⚠"));
-    figma.closePlugin(n ? `Tessera обновлена, но ${n}` : "Tessera обновлена из репозитория ✓");
-  } catch (e) { console.error(e); figma.closePlugin("✗ " + (e.message || e) + (log.length ? " · последний шаг: " + log[log.length - 1] : "")); }
-}
-
-if (figma.command === "update") headless(false);
-else if (figma.command === "update-check") headless(true);
-else if (figma.command === "update-components") headless(false, true);
-else {
-  figma.showUI(__html__, { width: 360, height: 440 });
-  figma.clientStorage.getAsync(URL_KEY).then((url) => figma.ui.postMessage({ url: url || "" }));
+function openUI(initialLog) {
+  figma.showUI(__html__, { width: 360, height: 480 });
+  figma.clientStorage.getAsync(URL_KEY).then((url) => figma.ui.postMessage({ url: url || "", log: initialLog || "" }));
   figma.ui.onmessage = async (msg) => {
     try {
       if (msg.type === "save-url") { await figma.clientStorage.setAsync(URL_KEY, msg.url); figma.ui.postMessage({ log: "Ссылка сохранена." }); return; }
@@ -805,6 +812,22 @@ else {
         return;
       }
       if (msg.type === "sync") figma.ui.postMessage({ log: await run(msg.variables, msg.checkPage, msg.components) });
-    } catch (e) { figma.ui.postMessage({ log: "✗ " + (e.message || e) }); }
+    } catch (e) { figma.ui.postMessage({ log: "✗ " + (e.message || e) + (log.length ? "\n" + log.join("\n") : "") }); }
   };
 }
+
+async function headless(checkPage, components) {
+  const url = await figma.clientStorage.getAsync(URL_KEY);
+  if (!url) { figma.notify("Сначала укажите ссылку на variables.json в «Настройки и загрузка файла…»"); figma.closePlugin(); return; }
+  try {
+    const out = await run(await fetchVariables(url), checkPage, components);
+    if (components) { openUI(out); return; }
+    const n = out.split("\n").find((l) => l.startsWith("⚠"));
+    figma.closePlugin(n ? `Tessera обновлена, но ${n}` : "Tessera обновлена из репозитория ✓");
+  } catch (e) { console.error(e); openUI("✗ " + (e.message || e) + (log.length ? "\n" + log.join("\n") : "")); }
+}
+
+if (figma.command === "update") headless(false);
+else if (figma.command === "update-check") headless(true);
+else if (figma.command === "update-components") headless(false, true);
+else openUI("");

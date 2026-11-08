@@ -1,64 +1,41 @@
 {
   "name": "rich-icon",
-  "figmaName": "RichIcon/<group>/<small|medium|large>",
-  "summary": "Иконка в цветной подложке: в списках, карточках, пустых состояниях. Устроена как кнопка: отдельный набор на смысл × размер, внутри варианты contrast × shape.",
-  "structure": "Как у кнопки: набор на группу смысла × размер, варианты scheme × contrast × shape.",
+  "figmaName": "RichIcon",
+  "summary": "Иконка в подложке: в списках, карточках, пустых состояниях. Один компонент, варианты size × shape. Цветовых вариантов нет: по умолчанию нейтральная, цвет меняется заливкой подложки и цветом иконки из Theme.",
   "props": {
-    "meaning": {
-      "kind": "set",
-      "values": [
-        "neutral",
-        "accent-uno",
-        "accent-duo",
-        "status-positive",
-        "status-negative",
-        "brand-uno",
-        "brand-duo",
-        "static-light",
-        "static-dark",
-        "inverse"
-      ]
-    },
     "size": {
-      "kind": "set",
+      "kind": "variant",
       "values": [
         "small",
         "medium",
         "large"
       ],
+      "default": "medium",
       "description": "Подложка 32 / 40 / 48, иконка 16 / 20 / 24."
-    },
-    "contrast": {
-      "kind": "variant",
-      "values": [
-        "pale",
-        "deep"
-      ],
-      "default": "pale",
-      "description": "pale — тихая цветная подложка, deep — насыщенная."
     },
     "shape": {
       "kind": "variant",
       "values": [
         "circle",
+        "rounded",
         "square"
       ],
-      "default": "circle"
+      "default": "circle",
+      "description": "circle — круг, rounded — скруглённый квадрат (viewport/rich-icon/<size>/radius), square — без скругления."
     }
   },
   "slots": {
     "icon": {
-      "kind": "figma-slot",
-      "description": "Иконка. Цвет иконки задаётся её слоем: pale → content/<meaning>/primary, deep → content/<meaning>/on-deep."
+      "kind": "figma-slot"
     }
   },
   "colors": {
-    "fill": "background/<meaning>-<contrast> (inverse → background/inverse)",
-    "icon": "как подпись кнопки того же смысла и контраста"
+    "default": "background/neutral-soft + content/neutral/primary",
+    "override": "любая пара background/<смысл>-<контраст> + content/<смысл>/primary или on-deep"
   },
   "layout": {
     "size": "viewport/rich-icon/<size>/size",
     "icon": "viewport/rich-icon/<size>/icon",
-    "radius": "square → viewport/rich-icon/<size>/radius, circle → полный"
+    "radius": "viewport/rich-icon/<size>/radius"
   }
 }
