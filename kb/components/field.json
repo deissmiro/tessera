@@ -52,12 +52,12 @@
     }
   },
   "colors": {
-    "field": "preset/field/fill (default — background/neutral-soft, overlay — ground/ground-2)",
     "error-stroke": "background/status-negative-deep",
     "label": "empty → content/neutral/tertiary; поднятый → content/neutral/secondary; error → content/status-negative/primary",
     "value": "content/neutral/primary",
     "hint": "content/neutral/secondary; error → content/status-negative/primary",
-    "button": "preset/field/button (default — белая, overlay — серая)"
+    "button": "Кнопки в полях — инстансы Button/static (scheme light, contrast pale, size small): белые; только иконка — hasIcon + icon, hasLabel = нет; у +7 — подпись.",
+    "field": "preset/field/fill"
   },
   "layout": {
     "height": "viewport/field/height",
@@ -72,12 +72,12 @@
     "label-gap": "viewport/field/label-gap (4) — между лейблом и значением"
   },
   "fields": {
-    "Field/password": "trailing — белая кнопка с глазом",
-    "Field/number": "trailing — белые кнопки − и +",
-    "Field/search": "leading — лупа, trailing — контурный крестик «очистить»",
-    "Field/select": "trailing — белая кнопка с шевроном",
-    "Field/phone": "leading — белая кнопка с кодом страны (+7)",
-    "Field/date": "trailing — белая кнопка с календарём"
+    "Field/password": "trailing — Button (иконка eye)",
+    "Field/number": "trailing — две Button (minus, plus)",
+    "Field/search": "leading — Icon/search, trailing — Icon/close",
+    "Field/select": "trailing — Button (иконка chevron-down)",
+    "Field/phone": "leading — Button с подписью «+7»",
+    "Field/date": "trailing — Button (иконка calendar)"
   },
   "planned": [
     "Field/textarea — многострочное",

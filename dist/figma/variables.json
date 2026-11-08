@@ -6837,27 +6837,6 @@
      }
     },
     {
-     "name": "field/button",
-     "type": "COLOR",
-     "description": "Кнопка внутри поля: на сером поле — белая, на белом поле — серая.",
-     "scopes": [
-      "FRAME_FILL",
-      "SHAPE_FILL"
-     ],
-     "hiddenFromPublishing": false,
-     "codeSyntax": {
-      "WEB": "var(--preset-field-button)"
-     },
-     "valuesByMode": {
-      "default": {
-       "$alias": "2 · Theme::ground/ground-2"
-      },
-      "overlay": {
-       "$alias": "2 · Theme::background/neutral-soft"
-      }
-     }
-    },
-    {
      "name": "chip/fill",
      "type": "COLOR",
      "description": "Заливка невыбранного чипса.",

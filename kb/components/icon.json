@@ -1,0 +1,27 @@
+{
+  "name": "icon",
+  "figmaName": "Icon/<name>",
+  "summary": "Библиотека иконок: каждый Icon/<имя> — компонент 24×24 с одним вектором glyph (обводка 2, скруглённые концы). Цвет — переопределение обводки glyph у инстанса; при замене иконки через instance swap цвет сохраняется. Используются в Button (свойство icon), полях, Cell, Date picker и т. д.",
+  "icons": [
+    "plus",
+    "minus",
+    "close",
+    "check",
+    "chevron-down",
+    "chevron-up",
+    "chevron-left",
+    "chevron-right",
+    "arrow-left",
+    "search",
+    "eye",
+    "calendar",
+    "info",
+    "alert",
+    "more",
+    "heart",
+    "cart",
+    "user",
+    "home"
+  ],
+  "add": "Новая иконка — путь в ICON_PATHS в плагине (одна обводка в сетке 24×24)."
+}

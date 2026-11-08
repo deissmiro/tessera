@@ -253,6 +253,62 @@ async function buildComponents(index) {
     return set;
   };
 
+  // ================= Icon: библиотека иконок =================
+  // Каждая иконка — компонент Icon/<имя>, 24×24, один вектор «glyph» с обводкой 2.
+  // Цвет задаётся переопределением обводки glyph у инстанса — при замене иконки он сохраняется.
+  var circ = (cx, cy, r) => { const k = 0.5523 * r; return `M ${cx - r} ${cy} C ${cx - r} ${cy - k} ${cx - k} ${cy - r} ${cx} ${cy - r} C ${cx + k} ${cy - r} ${cx + r} ${cy - k} ${cx + r} ${cy} C ${cx + r} ${cy + k} ${cx + k} ${cy + r} ${cx} ${cy + r} C ${cx - k} ${cy + r} ${cx - r} ${cy + k} ${cx - r} ${cy} Z`; };
+  var ICON_PATHS = {
+    plus: "M 6 12 L 18 12 M 12 6 L 12 18",
+    minus: "M 6 12 L 18 12",
+    close: "M 7 7 L 17 17 M 17 7 L 7 17",
+    check: "M 6 12.5 L 10 16.5 L 18 8",
+    "chevron-down": "M 7 10 L 12 15 L 17 10",
+    "chevron-up": "M 7 14 L 12 9 L 17 14",
+    "chevron-left": "M 14 7 L 9 12 L 14 17",
+    "chevron-right": "M 10 7 L 15 12 L 10 17",
+    "arrow-left": "M 19 12 L 5 12 M 11 6 L 5 12 L 11 18",
+    search: circ(10.5, 10.5, 6.5) + " M 15.5 15.5 L 20 20",
+    eye: "M 2.5 12 C 5 7 8.5 5 12 5 C 15.5 5 19 7 21.5 12 C 19 17 15.5 19 12 19 C 8.5 19 5 17 2.5 12 Z " + circ(12, 12, 3),
+    calendar: "M 5 5 L 19 5 L 19 20 L 5 20 Z M 5 10 L 19 10 M 8 3 L 8 7 M 16 3 L 16 7",
+    info: circ(12, 12, 9) + " M 12 11 L 12 16 M 12 8 L 12 8.01",
+    alert: "M 12 7 L 12 13 M 12 17 L 12 17.01",
+    more: "M 6 12 L 6 12.01 M 12 12 L 12 12.01 M 18 12 L 18 12.01",
+    heart: "M 12 20 C 12 20 3.5 14.5 3.5 9 C 3.5 6.2 5.6 4.5 8 4.5 C 9.7 4.5 11.1 5.4 12 6.8 C 12.9 5.4 14.3 4.5 16 4.5 C 18.4 4.5 20.5 6.2 20.5 9 C 20.5 14.5 12 20 12 20 Z",
+    cart: "M 3 4 L 6 4 L 8 15 L 18 15 L 20 7 L 7 7 " + circ(9, 19, 1) + " " + circ(17, 19, 1),
+    user: circ(12, 8, 4) + " M 4 20 C 4 16.5 7.5 14 12 14 C 16.5 14 20 16.5 20 20",
+    home: "M 4 11 L 12 4 L 20 11 L 20 20 L 4 20 Z",
+  };
+  var ICONS = {};
+  try {
+    const iconHeader = text("Icon", 32, true, "content/neutral/primary"); iconHeader.y = cursorY; page.appendChild(iconHeader);
+    let ix = 0;
+    for (const [name, d] of Object.entries(ICON_PATHS)) {
+      const c = figma.createComponent(); c.name = `Icon/${name}`; c.resize(24, 24); c.fills = [];
+      const g = figma.createVector(); g.name = "glyph"; g.vectorPaths = [{ windingRule: "NONE", data: d }];
+      g.fills = []; const v = T("content/neutral/primary"); if (v) g.strokes = [paint(v)];
+      g.strokeWeight = 2; g.strokeCap = "ROUND"; g.strokeJoin = "ROUND";
+      c.appendChild(g); g.constraints = { horizontal: "SCALE", vertical: "SCALE" };
+      c.description = `Иконка ${name}. Цвет — обводка слоя glyph у инстанса.`;
+      c.x = ix; c.y = cursorY + 56; ix += 48;
+      ICONS[name] = c;
+    }
+    cursorY += 56 + 24 + 120;
+    say(`✓ Icon: ${Object.keys(ICONS).length} иконок`);
+  } catch (e) { fail("Icon", e); }
+  var ICON_ALIAS = { chevron: "chevron-down", clear: "close" };
+  // Инстанс иконки нужного цвета; если библиотеки нет — пустой фрейм 24×24.
+  var icon = (name, colorName, size) => {
+    const comp = ICONS[ICON_ALIAS[name] || name];
+    let n;
+    if (comp) {
+      n = comp.createInstance();
+      const g = n.findOne((x) => x.name === "glyph"); const v = T(colorName);
+      if (g && v) g.strokes = [paint(v)];
+    } else { n = figma.createFrame(); n.fills = []; n.resize(24, 24); }
+    if (size) n.resize(size, size);
+    return n;
+  };
+
   // ---- Button: смысл × контраст × размер × состояние
 
   var labelColor = (m, c) => m === "inverse" ? "content/inverse/primary"
@@ -272,7 +328,7 @@ async function buildComponents(index) {
   for (const [g, schemes] of GROUPS) {
     let x = 0, rowH = 0;
     for (const size of ["s", "m", "l"]) {
-      const comps = [], labels = [], slots = [];
+      const comps = [], labels = [], slots = [], icons = [];
       let r = 0;
       for (const sc of schemes) {
         const m = meaningOf(g, sc);
@@ -289,6 +345,7 @@ async function buildComponents(index) {
             radius(b, ALL, VP(`control/${size}/radius`));
             const lc = labelColor(m, c);
             const lead = makeSlot(b, "leading", b);
+            const ic = icon("plus", lc, { s: 16, m: 20, l: 24 }[size]); ic.name = "icon"; b.appendChild(ic);
             const label = text("Кнопка", 15, true, lc); label.name = "label"; b.appendChild(label);
             bind(label, "fontSize", VP(`control/${size}/font-size`));
             const trail = makeSlot(b, "trailing", b);
@@ -296,21 +353,27 @@ async function buildComponents(index) {
             if (state === "disabled") bind(b, "opacity", N("opacity/40"));
             skeletonOverlay(b);
             b.x = ci * 150; b.y = r * 76;
-            comps.push(b); labels.push(label); slots.push([lead, trail]);
+            comps.push(b); labels.push(label); slots.push([lead, trail]); icons.push(ic);
           });
           r++;
         }
       }
       const set = combine(comps, `Button/${g}/${SIZES[size]}`,
         `Кнопка ${g}, ${SIZES[size]}. Варианты: ` + (schemes[0] ? `scheme (${schemes.join(" / ")}) × ` : "") +
-        "contrast (pale — второстепенная, deep — главная) × state. Контракт: kb/components/button.json.");
+        "contrast (pale — второстепенная, deep — главная) × state. Свойства: label, hasLabel, hasIcon, icon (иконка из Icon/*), слоты leading / trailing. Только иконка: hasIcon = да, hasLabel = нет. Контракт: kb/components/button.json.");
       const lk = set.addComponentProperty("label", "TEXT", "Кнопка");
+      const hl = set.addComponentProperty("hasLabel", "BOOLEAN", true);
+      const hi = set.addComponentProperty("hasIcon", "BOOLEAN", false);
+      let ik = null;
+      try { if (ICONS.plus) ik = set.addComponentProperty("icon", "INSTANCE_SWAP", ICONS.plus.id, { preferredValues: Object.values(ICONS).map((c) => ({ type: "COMPONENT", key: c.key })) }); }
+      catch (e) { try { ik = set.addComponentProperty("icon", "INSTANCE_SWAP", ICONS.plus.id); } catch (e2) { say(`⚠ icon swap: ${e2.message}`); } }
       const ld = set.addComponentProperty("leading", "BOOLEAN", false);
       const tr = set.addComponentProperty("trailing", "BOOLEAN", false);
-      labels.forEach((l) => (l.componentPropertyReferences = { characters: lk }));
+      labels.forEach((l) => (l.componentPropertyReferences = { characters: lk, visible: hl }));
+      icons.forEach((ic) => (ic.componentPropertyReferences = ik ? { visible: hi, mainComponent: ik } : { visible: hi }));
       slots.forEach(([l, t]) => { try { l.componentPropertyReferences = { visible: ld }; t.componentPropertyReferences = { visible: tr }; } catch (e) { say(`⚠ слоты кнопки: ${e.message}`); } });
       set.x = x; set.y = rowY; x += set.width + 80; rowH = Math.max(rowH, set.height);
-      buttonSets[`${g}/${size}`] = { set, labelKey: lk };
+      buttonSets[`${g}/${size}`] = { set, labelKey: lk, hasLabelKey: hl, hasIconKey: hi, iconKey: ik };
       btnTotal += comps.length;
     }
     rowY += rowH + 80;
@@ -319,7 +382,22 @@ async function buildComponents(index) {
   say(`✓ Button: ${Object.keys(buttonSets).length} наборов (группа × размер), ${btnTotal} вариантов`);
 
   } catch (e) { fail("Button", e); }
-  try {
+  var buttonInstance = (meaning, contrast, size, label, opt) => {
+    const [g, sc] = meaning.includes("-") ? meaning.split("-") : [meaning, null];
+    const bs = buttonSets[`${g}/${size}`];
+    const name = (sc ? `scheme=${sc}, ` : "") + `contrast=${contrast}, state=default`;
+    const inst = bs.set.children.find((c) => c.name === name).createInstance();
+    const props = { [bs.labelKey]: label };
+    if (opt && opt.icon) {
+      props[bs.hasIconKey] = true;
+      const ic = ICONS[ICON_ALIAS[opt.icon] || opt.icon];
+      if (bs.iconKey && ic) props[bs.iconKey] = ic.id;
+      if (opt.iconOnly) props[bs.hasLabelKey] = false;
+    }
+    inst.setProperties(props);
+    if (opt && opt.iconOnly) { inst.paddingLeft = inst.paddingRight = { s: 8, m: 12, l: 16 }[size]; }
+    return inst;
+  };  try {
   // ---- Checkbox и Radio
   function selector(kind, value, state) {
     const comp = figma.createComponent();
@@ -506,34 +584,11 @@ async function buildComponents(index) {
   } catch (e) { fail("Navbar", e); }
   try {
   // ================= Поля ввода =================
-  // Иконки 24×24 из примитивов (позже — библиотека иконок).
-  var icon = (name, colorName) => {
-    const f = figma.createFrame(); f.name = `icon/${name}`; f.fills = []; f.resize(24, 24);
-    const v = T(colorName);
-    const stroke = (node, w = 2) => { node.fills = []; if (v) node.strokes = [paint(v)]; node.strokeWeight = w; };
-    const vec = (d, w) => { const n = figma.createVector(); n.vectorPaths = [{ windingRule: "NONE", data: d }]; stroke(n, w); n.strokeCap = "ROUND"; n.strokeJoin = "ROUND"; f.appendChild(n); return n; };
-    if (name === "search") { const e = figma.createEllipse(); e.resize(13, 13); e.x = 4; e.y = 4; stroke(e); f.appendChild(e); vec("M 15 15 L 20 20"); }
-    if (name === "eye") { vec("M 2.5 12 C 5 7 8.5 5 12 5 C 15.5 5 19 7 21.5 12 C 19 17 15.5 19 12 19 C 8.5 19 5 17 2.5 12 Z"); const d = figma.createEllipse(); d.resize(6, 6); d.x = 9; d.y = 9; stroke(d); f.appendChild(d); }
-    if (name === "chevron") vec("M 7 10 L 12 15 L 17 10");
-    if (name === "chevron-right") vec("M 10 7 L 15 12 L 10 17");
-    if (name === "chevron-left") vec("M 14 7 L 9 12 L 14 17");
-    if (name === "check") vec("M 6 12.5 L 10 16.5 L 18 8");
-    if (name === "alert") vec("M 12 7 L 12 13 M 12 17 L 12 17.01");
-    if (name === "info") { const e = figma.createEllipse(); e.resize(18, 18); e.x = 3; e.y = 3; stroke(e); f.appendChild(e); vec("M 12 11 L 12 16 M 12 8 L 12 8.01"); }
-    if (name === "calendar") { const r = figma.createRectangle(); r.resize(16, 15); r.x = 4; r.y = 5; r.cornerRadius = 3; stroke(r); f.appendChild(r); vec("M 4 10 L 20 10 M 8 3 L 8 7 M 16 3 L 16 7"); }
-    if (name === "clear") vec("M 7 7 L 17 17 M 17 7 L 7 17");
-    if (name === "minus") vec("M 6 12 L 18 12");
-    if (name === "plus") vec("M 6 12 L 18 12 M 12 6 L 12 18");
-    f.children.forEach((n) => (n.constraints = { horizontal: "SCALE", vertical: "SCALE" }));
-    return f;
-  };
-
-  // Белая кнопка внутри поля: иконка или короткий текст (+7).
-  var fieldButton = (content, name) => {
-    const b = frame(name || "button", "HORIZONTAL"); b.primaryAxisAlignItems = "CENTER"; b.counterAxisAlignItems = "CENTER";
-    b.counterAxisSizingMode = "FIXED"; b.resize(36, 36); b.cornerRadius = 10; b.paddingLeft = b.paddingRight = 6;
-    fillP(b, "field/button"); b.appendChild(content);
-    return b;
+  // Кнопка внутри поля — инстанс Button/static (light, pale, small): белая на сером поле.
+  var fieldBtn = (iconName, label) => {
+    try {
+      return iconName ? buttonInstance("static-light", "pale", "s", "", { icon: iconName, iconOnly: true }) : buttonInstance("static-light", "pale", "s", label);
+    } catch (e) { say(`⚠ кнопка в поле: ${e.message}`); return iconName ? icon(iconName, "content/neutral/primary") : text(label, 16, true, "content/neutral/primary"); }
   };
 
   // Одно поле = отдельный набор компонентов (state × 5). Содержимое слотов кладётся прямо в компонент.
@@ -601,16 +656,16 @@ async function buildComponents(index) {
   var fieldY = cursorY + 56;
   var FIELDS = [
     ["Field", { label: "Лейбл", value: "Значение", description: "Поле ввода: серая заливка, плавающий лейбл, пустые слоты leading / trailing, подсказка. Состояния: empty, focus, filled, error (красная обводка и лейбл), disabled. Контракт: kb/components/field.json." }],
-    ["Field/password", { label: "Пароль", value: "••••••••", hint: "Минимум 8 символов", trailing: () => fieldButton(icon("eye", "content/neutral/primary"), "show"), description: "Пароль: значение точками, справа белая кнопка «показать»." }],
+    ["Field/password", { label: "Пароль", value: "••••••••", hint: "Минимум 8 символов", trailing: () => fieldBtn("eye"), description: "Пароль: значение точками, справа кнопка-иконка «показать» (Button/static light pale small)." }],
     ["Field/number", { label: "Количество", value: "2", description: "Число: справа белые кнопки − и +.", trailing: () => {
         const g = frame("stepper", "HORIZONTAL"); g.itemSpacing = 6;
-        g.appendChild(fieldButton(icon("minus", "content/neutral/primary"), "minus"));
-        g.appendChild(fieldButton(icon("plus", "content/neutral/primary"), "plus"));
+        g.appendChild(fieldBtn("minus"));
+        g.appendChild(fieldBtn("plus"));
         return g; } }],
     ["Field/search", { label: "Найти", value: "Пицца", leading: () => icon("search", "content/neutral/secondary"), trailing: () => icon("clear", "content/neutral/secondary"), description: "Поиск: слева лупа, справа контурный крестик — очистить." }],
-    ["Field/select", { label: "Город", value: "Москва", trailing: () => fieldButton(icon("chevron", "content/neutral/primary"), "open"), description: "Выбор из списка: справа белая кнопка с шевроном." }],
-    ["Field/phone", { label: "Телефон", value: "900 000-00-00", leading: () => { const t = text("+7", 16, false, "content/neutral/primary"); t.fontName = { family: "Inter", style: "Medium" }; return fieldButton(t, "country"); }, description: "Телефон: код страны в белой кнопке слева." }],
-    ["Field/date", { label: "Дата доставки", value: "12 ноября", trailing: () => fieldButton(icon("calendar", "content/neutral/primary"), "calendar"), description: "Дата: справа белая кнопка с календарём." }],
+    ["Field/select", { label: "Город", value: "Москва", trailing: () => fieldBtn("chevron-down"), description: "Выбор из списка: справа кнопка-иконка с шевроном (Button)." }],
+    ["Field/phone", { label: "Телефон", value: "900 000-00-00", leading: () => fieldBtn(null, "+7"), description: "Телефон: код страны в кнопке слева (Button)." }],
+    ["Field/date", { label: "Дата доставки", value: "12 ноября", trailing: () => fieldBtn("calendar"), description: "Дата: справа кнопка-иконка с календарём (Button)." }],
   ];
   var builtFields = [];
   for (const [name, opt] of FIELDS) {
@@ -1269,14 +1324,8 @@ async function buildComponents(index) {
   } catch (e) { fail("Поля", e); }
   // ================= /Поля ввода =================
 
-  var buttonInstance = (meaning, contrast, size, label) => {
-    const [g, sc] = meaning.includes("-") ? meaning.split("-") : [meaning, null];
-    const { set, labelKey } = buttonSets[`${g}/${size}`];
-    const name = (sc ? `scheme=${sc}, ` : "") + `contrast=${contrast}, state=default`;
-    const inst = set.children.find((c) => c.name === name).createInstance();
-    inst.setProperties({ [labelKey]: label });
-    return inst;
-  };
+
+
   // ================= /Контролы =================
 
   function panelFor(type, root) {

@@ -2,7 +2,7 @@
   "preset": {
     "$description": "Пресеты — адаптация компонентов к поверхности, на которой они лежат. default — на странице и островах (ground), overlay — на цветном фоне. Мод ставится на фрейм.",
     "field": {
-      "$description": "Field, Field/*, Textarea.",
+      "$description": "Field, Field/*, Textarea, Code input, Stepper.",
       "fill": {
         "$type": "color",
         "$modes": {
@@ -10,14 +10,6 @@
           "overlay": "{theme.ground.ground-2}"
         },
         "$description": "Заливка поля: на ground — серая, на цветном фоне — белая."
-      },
-      "button": {
-        "$type": "color",
-        "$modes": {
-          "default": "{theme.ground.ground-2}",
-          "overlay": "{theme.background.neutral-soft}"
-        },
-        "$description": "Кнопка внутри поля: на сером поле — белая, на белом поле — серая."
       }
     },
     "chip": {

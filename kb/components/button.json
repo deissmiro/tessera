@@ -69,6 +69,20 @@
       "kind": "boolean",
       "default": false,
       "controls": "slot trailing"
+    },
+    "hasLabel": {
+      "kind": "boolean",
+      "default": true
+    },
+    "hasIcon": {
+      "kind": "boolean",
+      "default": false
+    },
+    "icon": {
+      "kind": "instance-swap",
+      "values": "Icon/*",
+      "default": "Icon/plus",
+      "description": "Иконка из библиотеки. Только иконка: hasIcon = да, hasLabel = нет."
     }
   },
   "slots": {

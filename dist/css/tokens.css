@@ -860,7 +860,6 @@
 
 :root, [data-preset="default"] {
   --preset-field-fill: var(--theme-background-neutral-soft);
-  --preset-field-button: var(--theme-ground-ground-2);
   --preset-chip-fill: var(--theme-background-neutral-pale);
   --preset-chip-border: var(--theme-border-neutral-soft);
   --preset-segment-track: var(--theme-background-neutral-soft);
@@ -869,7 +868,6 @@
 
 [data-preset="overlay"] {
   --preset-field-fill: var(--theme-ground-ground-2);
-  --preset-field-button: var(--theme-background-neutral-soft);
   --preset-chip-fill: var(--theme-ground-ground-2);
   --preset-chip-border: var(--theme-ground-ground-2);
   --preset-segment-track: var(--theme-ground-ground-2);
