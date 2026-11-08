@@ -180,6 +180,16 @@
   --viewport-rich-icon-l-size: 48px;
   --viewport-rich-icon-l-icon: 24px;
   --viewport-rich-icon-l-radius: 12px;
+  --viewport-field-height: 56px;
+  --viewport-field-radius: 16px;
+  --viewport-field-padding-x: 16px;
+  --viewport-field-gap: 8px;
+  --viewport-field-label-size: 13px;
+  --viewport-field-value-size: 16px;
+  --viewport-field-hint-size: 13px;
+  --viewport-field-hint-gap: 6px;
+  --viewport-field-focus-ring: 2px;
+  --viewport-field-width: 343px;
 }
 
 :root, [data-brand="tessera"] {
@@ -509,6 +519,16 @@
     --viewport-rich-icon-l-size: 48px;
     --viewport-rich-icon-l-icon: 24px;
     --viewport-rich-icon-l-radius: 12px;
+    --viewport-field-height: 56px;
+    --viewport-field-radius: 16px;
+    --viewport-field-padding-x: 16px;
+    --viewport-field-gap: 8px;
+    --viewport-field-label-size: 13px;
+    --viewport-field-value-size: 16px;
+    --viewport-field-hint-size: 13px;
+    --viewport-field-hint-gap: 6px;
+    --viewport-field-focus-ring: 2px;
+    --viewport-field-width: 343px;
   }
 }
 
@@ -567,5 +587,15 @@
     --viewport-rich-icon-l-size: 48px;
     --viewport-rich-icon-l-icon: 24px;
     --viewport-rich-icon-l-radius: 12px;
+    --viewport-field-height: 56px;
+    --viewport-field-radius: 16px;
+    --viewport-field-padding-x: 16px;
+    --viewport-field-gap: 8px;
+    --viewport-field-label-size: 13px;
+    --viewport-field-value-size: 16px;
+    --viewport-field-hint-size: 13px;
+    --viewport-field-hint-gap: 6px;
+    --viewport-field-focus-ring: 2px;
+    --viewport-field-width: 343px;
   }
 }

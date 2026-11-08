@@ -5172,6 +5172,176 @@
       "m": 12,
       "l": 12
      }
+    },
+    {
+     "name": "field/height",
+     "type": "FLOAT",
+     "description": "Высота поля.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-field-height)"
+     },
+     "valuesByMode": {
+      "s": 56,
+      "m": 56,
+      "l": 56
+     }
+    },
+    {
+     "name": "field/radius",
+     "type": "FLOAT",
+     "description": "Скругление поля.",
+     "scopes": [
+      "CORNER_RADIUS"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-field-radius)"
+     },
+     "valuesByMode": {
+      "s": 16,
+      "m": 16,
+      "l": 16
+     }
+    },
+    {
+     "name": "field/padding-x",
+     "type": "FLOAT",
+     "description": "Горизонтальный отступ.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-field-padding-x)"
+     },
+     "valuesByMode": {
+      "s": 16,
+      "m": 16,
+      "l": 16
+     }
+    },
+    {
+     "name": "field/gap",
+     "type": "FLOAT",
+     "description": "Шаг между иконками и текстом в поле.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-field-gap)"
+     },
+     "valuesByMode": {
+      "s": 8,
+      "m": 8,
+      "l": 8
+     }
+    },
+    {
+     "name": "field/label-size",
+     "type": "FLOAT",
+     "description": "Кегль поднятого лейбла.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-field-label-size)"
+     },
+     "valuesByMode": {
+      "s": 13,
+      "m": 13,
+      "l": 13
+     }
+    },
+    {
+     "name": "field/value-size",
+     "type": "FLOAT",
+     "description": "Кегль значения и лейбла-плейсхолдера.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-field-value-size)"
+     },
+     "valuesByMode": {
+      "s": 16,
+      "m": 16,
+      "l": 16
+     }
+    },
+    {
+     "name": "field/hint-size",
+     "type": "FLOAT",
+     "description": "Кегль подсказки под полем.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-field-hint-size)"
+     },
+     "valuesByMode": {
+      "s": 13,
+      "m": 13,
+      "l": 13
+     }
+    },
+    {
+     "name": "field/hint-gap",
+     "type": "FLOAT",
+     "description": "Шаг от поля до подсказки.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-field-hint-gap)"
+     },
+     "valuesByMode": {
+      "s": 6,
+      "m": 6,
+      "l": 6
+     }
+    },
+    {
+     "name": "field/focus-ring",
+     "type": "FLOAT",
+     "description": "Толщина обводки в фокусе.",
+     "scopes": [
+      "STROKE_FLOAT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-field-focus-ring)"
+     },
+     "valuesByMode": {
+      "s": 2,
+      "m": 2,
+      "l": 2
+     }
+    },
+    {
+     "name": "field/width",
+     "type": "FLOAT",
+     "description": "Ширина поля по умолчанию.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-field-width)"
+     },
+     "valuesByMode": {
+      "s": 343,
+      "m": 343,
+      "l": 343
+     }
     }
    ]
   }

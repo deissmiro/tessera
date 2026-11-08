@@ -1,24 +1,31 @@
 {
   "name": "button",
-  "figmaName": "Button/<meaning>/<small|medium|large>",
+  "figmaName": "Button/<group>/<small|medium|large>",
   "summary": "Кнопка. Устроена как цвета: смысл × контраст. Смысл — какой цвет (accent-uno, neutral, brand-uno…), контраст — насколько громкая (pale — второстепенная, deep — главная).",
   "props": {
     "meaning": {
-      "kind": "set",
-      "values": [
-        "neutral",
-        "accent-uno",
-        "accent-duo",
-        "status-positive",
-        "status-negative",
-        "brand-uno",
-        "brand-duo",
-        "static-light",
-        "static-dark",
-        "inverse"
-      ],
-      "default": "accent-uno",
-      "description": "Смысл кнопки — как у цветов. inverse есть только в одном контрасте (deep)."
+      "kind": "set+variant",
+      "values": {
+        "neutral": [],
+        "accent": [
+          "uno",
+          "duo"
+        ],
+        "status": [
+          "positive",
+          "negative"
+        ],
+        "brand": [
+          "uno",
+          "duo"
+        ],
+        "static": [
+          "light",
+          "dark"
+        ],
+        "inverse": []
+      },
+      "description": "Группа — набор, схема — вариант scheme."
     },
     "contrast": {
       "kind": "variant",
@@ -94,5 +101,5 @@
     "Подпись обязательна; кнопка только с иконкой — отдельный вид позже (icon-button) с aria-label.",
     "Минимальная зона нажатия 44 — у s добавляйте поля вокруг."
   ],
-  "structure": "Отдельный набор компонентов на каждое сочетание смысл × размер: Button/accent-uno/large, Button/neutral/small… Внутри набора варианты contrast × state. Так в ассетах кнопки ищутся по смыслу и размеру, а настройки — в свойствах."
+  "structure": "Набор на группу смысла × размер: Button/accent/large, Button/status/small, Button/neutral/medium… Внутри варианты scheme (uno/duo, positive/negative, light/dark; у neutral и inverse нет) × contrast (pale/deep) × state."
 }

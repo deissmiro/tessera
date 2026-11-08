@@ -236,59 +236,67 @@ async function buildComponents(index) {
   };
 
   // ---- Button: смысл × контраст × размер × состояние
-  const MEANINGS = ["neutral", "accent-uno", "accent-duo", "status-positive", "status-negative", "brand-uno", "brand-duo", "static-light", "static-dark", "inverse"];
+
   const labelColor = (m, c) => m === "inverse" ? "content/inverse/primary"
     : m === "static-light" ? "content/static-dark/primary"
     : m === "static-dark" ? "content/static-light/primary"
     : c === "deep" ? `content/${m}/on-deep` : `content/${m}/primary`;
-  // Отдельный набор на каждое сочетание смысл × размер: Button/accent-uno/large.
-  // Внутри набора варианты: contrast × state.
+  // Набор на группу смысла × размер: Button/accent/large. Внутри варианты scheme (uno/duo…) × contrast × state.
+  const GROUPS = [["neutral", [null]], ["accent", ["uno", "duo"]], ["status", ["positive", "negative"]],
+                  ["brand", ["uno", "duo"]], ["static", ["light", "dark"]], ["inverse", [null]]];
+  const meaningOf = (g, sc) => (sc ? `${g}-${sc}` : g);
   const SIZES = { s: "small", m: "medium", l: "large" };
   const buttonSets = {};
   let btnTotal = 0;
-  const btnRowStart = cursorY;
   const btnHeader = text("Button", 32, true, "content/neutral/primary"); btnHeader.y = cursorY; page.appendChild(btnHeader);
   let rowY = cursorY + 56;
-  for (const m of MEANINGS) {
+  for (const [g, schemes] of GROUPS) {
     let x = 0, rowH = 0;
     for (const size of ["s", "m", "l"]) {
       const comps = [], labels = [], slots = [];
-      const contrasts = m === "inverse" ? ["deep"] : ["pale", "deep"];
-      contrasts.forEach((c, r) => STATES.forEach((state, ci) => {
-        const b = figma.createComponent();
-        b.name = `contrast=${c}, state=${state}`;
-        b.layoutMode = "HORIZONTAL"; b.primaryAxisSizingMode = "AUTO"; b.counterAxisSizingMode = "FIXED";
-        b.primaryAxisAlignItems = "CENTER"; b.counterAxisAlignItems = "CENTER"; b.clipsContent = true;
-        fill(b, m === "inverse" ? "background/inverse" : `background/${m}-${c}`);
-        b.resize(120, 44); bind(b, "height", VP(`control/${size}/height`));
-        ["paddingLeft", "paddingRight"].forEach((p) => bind(b, p, VP(`control/${size}/padding-x`)));
-        bind(b, "itemSpacing", VP(`control/${size}/gap`));
-        radius(b, ALL, VP(`control/${size}/radius`));
-        const lc = labelColor(m, c);
-        const lead = makeSlot(b, "leading", b);
-        const label = text("Кнопка", 15, true, lc); label.name = "label"; b.appendChild(label);
-        bind(label, "fontSize", VP(`control/${size}/font-size`));
-        const trail = makeSlot(b, "trailing", b);
-        stateLayer(b, state, lc);
-        if (state === "disabled") bind(b, "opacity", N("opacity/40"));
-        b.x = ci * 150; b.y = r * 76;
-        comps.push(b); labels.push(label); slots.push([lead, trail]);
-      }));
-      const set = combine(comps, `Button/${m}/${SIZES[size]}`,
-        `Кнопка ${m}, размер ${SIZES[size]}. Варианты: contrast (pale — второстепенная, deep — главная) × state. Контракт: kb/components/button.json.`);
+      let r = 0;
+      for (const sc of schemes) {
+        const m = meaningOf(g, sc);
+        for (const c of (g === "inverse" ? ["deep"] : ["pale", "deep"])) {
+          STATES.forEach((state, ci) => {
+            const b = figma.createComponent();
+            b.name = (sc ? `scheme=${sc}, ` : "") + `contrast=${c}, state=${state}`;
+            b.layoutMode = "HORIZONTAL"; b.primaryAxisSizingMode = "AUTO"; b.counterAxisSizingMode = "FIXED";
+            b.primaryAxisAlignItems = "CENTER"; b.counterAxisAlignItems = "CENTER"; b.clipsContent = true;
+            fill(b, g === "inverse" ? "background/inverse" : `background/${m}-${c}`);
+            b.resize(120, 44); bind(b, "height", VP(`control/${size}/height`));
+            ["paddingLeft", "paddingRight"].forEach((p) => bind(b, p, VP(`control/${size}/padding-x`)));
+            bind(b, "itemSpacing", VP(`control/${size}/gap`));
+            radius(b, ALL, VP(`control/${size}/radius`));
+            const lc = labelColor(m, c);
+            const lead = makeSlot(b, "leading", b);
+            const label = text("Кнопка", 15, true, lc); label.name = "label"; b.appendChild(label);
+            bind(label, "fontSize", VP(`control/${size}/font-size`));
+            const trail = makeSlot(b, "trailing", b);
+            stateLayer(b, state, lc);
+            if (state === "disabled") bind(b, "opacity", N("opacity/40"));
+            b.x = ci * 150; b.y = r * 76;
+            comps.push(b); labels.push(label); slots.push([lead, trail]);
+          });
+          r++;
+        }
+      }
+      const set = combine(comps, `Button/${g}/${SIZES[size]}`,
+        `Кнопка ${g}, ${SIZES[size]}. Варианты: ` + (schemes[0] ? `scheme (${schemes.join(" / ")}) × ` : "") +
+        "contrast (pale — второстепенная, deep — главная) × state. Контракт: kb/components/button.json.");
       const lk = set.addComponentProperty("label", "TEXT", "Кнопка");
       const ld = set.addComponentProperty("leading", "BOOLEAN", false);
       const tr = set.addComponentProperty("trailing", "BOOLEAN", false);
       labels.forEach((l) => (l.componentPropertyReferences = { characters: lk }));
       slots.forEach(([l, t]) => { try { l.componentPropertyReferences = { visible: ld }; t.componentPropertyReferences = { visible: tr }; } catch (e) { say(`⚠ слоты кнопки: ${e.message}`); } });
       set.x = x; set.y = rowY; x += set.width + 80; rowH = Math.max(rowH, set.height);
-      buttonSets[`${m}/${size}`] = { set, labelKey: lk };
+      buttonSets[`${g}/${size}`] = { set, labelKey: lk };
       btnTotal += comps.length;
     }
     rowY += rowH + 80;
   }
   cursorY = rowY + 80;
-  say(`✓ Button: ${Object.keys(buttonSets).length} наборов (смысл × размер), ${btnTotal} вариантов`);
+  say(`✓ Button: ${Object.keys(buttonSets).length} наборов (группа × размер), ${btnTotal} вариантов`);
 
   // ---- Checkbox и Radio
   function selector(kind, value, state) {
@@ -394,30 +402,37 @@ async function buildComponents(index) {
   };
   const riHeader = text("RichIcon", 32, true, "content/neutral/primary"); riHeader.y = cursorY; page.appendChild(riHeader);
   let riY = cursorY + 56, riCount = 0;
-  for (const m of MEANINGS) {
+  for (const [g, schemes] of GROUPS) {
     let x = 0, rowH = 0;
     for (const size of ["s", "m", "l"]) {
       const comps = [];
-      (m === "inverse" ? ["deep"] : ["pale", "deep"]).forEach((c, r) => ["circle", "square"].forEach((shape, ci) => {
-        const comp = figma.createComponent(); comp.name = `contrast=${c}, shape=${shape}`;
-        comp.layoutMode = "HORIZONTAL"; comp.primaryAxisSizingMode = "FIXED"; comp.counterAxisSizingMode = "FIXED";
-        comp.primaryAxisAlignItems = "CENTER"; comp.counterAxisAlignItems = "CENTER"; comp.clipsContent = true;
-        comp.resize(40, 40);
-        bind(comp, "width", VP(`rich-icon/${size}/size`)); bind(comp, "height", VP(`rich-icon/${size}/size`));
-        fill(comp, m === "inverse" ? "background/inverse" : `background/${m}-${c}`);
-        if (shape === "circle") comp.cornerRadius = 999; else radius(comp, ALL, VP(`rich-icon/${size}/radius`));
-        const sl = makeSlot(comp, "icon", comp);
-        sl.appendChild(glyph(`rich-icon/${size}/icon`, labelColor(m, c)));
-        comp.x = ci * 72; comp.y = r * 72; comps.push(comp);
-      }));
-      const set = combine(comps, `RichIcon/${m}/${SIZES[size]}`, `Иконка в подложке ${m}, ${SIZES[size]}. Варианты: contrast × shape. Слот icon. Контракт: kb/components/rich-icon.json.`);
+      let r = 0;
+      for (const sc of schemes) {
+        const m = meaningOf(g, sc);
+        for (const c of (g === "inverse" ? ["deep"] : ["pale", "deep"])) {
+          ["circle", "square"].forEach((shape, ci) => {
+            const comp = figma.createComponent(); comp.name = (sc ? `scheme=${sc}, ` : "") + `contrast=${c}, shape=${shape}`;
+            comp.layoutMode = "HORIZONTAL"; comp.primaryAxisSizingMode = "FIXED"; comp.counterAxisSizingMode = "FIXED";
+            comp.primaryAxisAlignItems = "CENTER"; comp.counterAxisAlignItems = "CENTER"; comp.clipsContent = true;
+            comp.resize(40, 40);
+            bind(comp, "width", VP(`rich-icon/${size}/size`)); bind(comp, "height", VP(`rich-icon/${size}/size`));
+            fill(comp, g === "inverse" ? "background/inverse" : `background/${m}-${c}`);
+            if (shape === "circle") comp.cornerRadius = 999; else radius(comp, ALL, VP(`rich-icon/${size}/radius`));
+            const sl = makeSlot(comp, "icon", comp);
+            sl.appendChild(glyph(`rich-icon/${size}/icon`, labelColor(m, c)));
+            comp.x = ci * 72; comp.y = r * 72; comps.push(comp);
+          });
+          r++;
+        }
+      }
+      const set = combine(comps, `RichIcon/${g}/${SIZES[size]}`, `Иконка в подложке ${g}, ${SIZES[size]}. Варианты: ` + (schemes[0] ? "scheme × " : "") + "contrast × shape. Слот icon. Контракт: kb/components/rich-icon.json.");
       set.x = x; set.y = riY; x += set.width + 60; rowH = Math.max(rowH, set.height);
       riCount += comps.length;
     }
     riY += rowH + 60;
   }
   cursorY = riY + 100;
-  say(`✓ RichIcon: ${MEANINGS.length * 3} наборов, ${riCount} вариантов`);
+  say(`✓ RichIcon: ${GROUPS.length * 3} наборов, ${riCount} вариантов`);
 
   // ---- Navbar: наборы default и large, варианты surface
   const navHeader = text("Navbar", 32, true, "content/neutral/primary"); navHeader.y = cursorY; page.appendChild(navHeader);
@@ -486,10 +501,133 @@ async function buildComponents(index) {
     page.appendChild(demo); demo.x = 0; demo.y = cursorY; cursorY = demo.y + demo.height + 160;
   }
 
+
+  // ================= Поля ввода =================
+  // Иконки 24×24 из примитивов (позже — библиотека иконок).
+  const icon = (name, colorName) => {
+    const f = figma.createFrame(); f.name = `icon/${name}`; f.fills = []; f.resize(24, 24);
+    const v = T(colorName);
+    const stroke = (node, w = 2) => { node.fills = []; if (v) node.strokes = [paint(v)]; node.strokeWeight = w; node.strokeCap = "ROUND"; node.strokeJoin = "ROUND"; };
+    const vec = (d, w) => { const n = figma.createVector(); n.vectorPaths = [{ windingRule: "NONE", data: d }]; stroke(n, w); f.appendChild(n); n.x = 0; n.y = 0; return n; };
+    if (name === "search") { const e = figma.createEllipse(); e.resize(13, 13); e.x = 4; e.y = 4; stroke(e); f.appendChild(e); vec("M 15 15 L 20 20"); }
+    if (name === "eye") { vec("M 2.5 12 C 5 7 8.5 5 12 5 C 15.5 5 19 7 21.5 12 C 19 17 15.5 19 12 19 C 8.5 19 5 17 2.5 12 Z"); const d = figma.createEllipse(); d.resize(6, 6); d.x = 9; d.y = 9; stroke(d); f.appendChild(d); }
+    if (name === "chevron") vec("M 7 10 L 12 15 L 17 10");
+    if (name === "calendar") { const r = figma.createRectangle(); r.resize(16, 15); r.x = 4; r.y = 5; r.cornerRadius = 3; stroke(r); f.appendChild(r); vec("M 4 10 L 20 10 M 8 3 L 8 7 M 16 3 L 16 7"); }
+    if (name === "clear") { const c = figma.createEllipse(); c.resize(20, 20); c.x = 2; c.y = 2; if (v) c.fills = [paint(v)]; f.appendChild(c); const x = vec("M 9 9 L 15 15 M 15 9 L 9 15", 2); const w = T("ground/ground-2"); if (w) x.strokes = [paint(w)]; }
+    if (name === "minus") vec("M 6 12 L 18 12");
+    if (name === "plus") vec("M 6 12 L 18 12 M 12 6 L 12 18");
+    f.children.forEach((n) => (n.constraints = { horizontal: "SCALE", vertical: "SCALE" }));
+    return f;
+  };
+
+  // ---- Input: универсальное поле. Плавающий лейбл, серая заливка, без обводки.
+  const FIELD_STATES = ["empty", "focus", "filled", "error", "disabled"];
+  const inputParts = [];
+  const inputComps = FIELD_STATES.map((state, i) => {
+    const comp = figma.createComponent(); comp.name = `state=${state}`;
+    comp.layoutMode = "VERTICAL"; comp.primaryAxisSizingMode = "AUTO"; comp.counterAxisSizingMode = "FIXED";
+    comp.resize(343, 56); bind(comp, "width", VP("field/width")); comp.fills = [];
+    bind(comp, "itemSpacing", VP("field/hint-gap"));
+    const box = frame("field", "HORIZONTAL"); box.counterAxisAlignItems = "CENTER";
+    box.counterAxisSizingMode = "FIXED"; box.resize(343, 56); bind(box, "height", VP("field/height"));
+    ["paddingLeft", "paddingRight"].forEach((p) => bind(box, p, VP("field/padding-x")));
+    bind(box, "itemSpacing", VP("field/gap")); radius(box, ALL, VP("field/radius"));
+    fill(box, state === "error" ? "background/status-negative-pale" : "background/neutral-soft");
+    if (state === "focus") { const v = T("content/neutral/primary"); if (v) { box.strokes = [paint(v)]; box.strokeAlign = "INSIDE"; bind(box, "strokeWeight", VP("field/focus-ring")); } }
+    comp.appendChild(box); box.layoutSizingHorizontal = "FILL";
+    const lead = makeSlot(comp, "leading", box);
+    const col = frame("text", "VERTICAL"); col.itemSpacing = 0; col.primaryAxisAlignItems = "CENTER";
+    box.appendChild(col); col.layoutSizingHorizontal = "FILL";
+    const raised = state !== "empty";
+    const label = text("Лейбл", raised ? 13 : 16, false, raised ? (state === "error" ? "content/status-negative/primary" : "content/neutral/secondary") : "content/neutral/tertiary");
+    label.name = "label"; bind(label, "fontSize", VP(raised ? "field/label-size" : "field/value-size"));
+    col.appendChild(label); label.layoutSizingHorizontal = "FILL";
+    const valueRow = frame("value-row", "HORIZONTAL"); valueRow.counterAxisAlignItems = "CENTER"; valueRow.itemSpacing = 1;
+    const value = text("Значение", 16, false, "content/neutral/primary"); value.name = "value";
+    bind(value, "fontSize", VP("field/value-size")); valueRow.appendChild(value);
+    if (state === "focus") { const caret = figma.createRectangle(); caret.name = "caret"; caret.resize(2, 20); fill(caret, "content/neutral/primary"); valueRow.appendChild(caret); }
+    if (state === "empty") valueRow.visible = false;
+    if (state === "focus") value.visible = false;
+    col.appendChild(valueRow);
+    const trail = makeSlot(comp, "trailing", box);
+    const hint = text("Подсказка", 13, false, state === "error" ? "content/status-negative/primary" : "content/neutral/secondary");
+    hint.name = "hint"; bind(hint, "fontSize", VP("field/hint-size"));
+    comp.appendChild(hint); hint.layoutSizingHorizontal = "FILL";
+    if (state === "disabled") bind(comp, "opacity", N("opacity/40"));
+    comp.x = i * 400; comp.y = 0;
+    inputParts.push({ label, value, hint, lead, trail });
+    return comp;
+  });
+  const inputSet = combine(inputComps, "Input",
+    "Универсальное поле ввода: серая заливка, плавающий лейбл, слоты leading / trailing, подсказка снизу. Состояния: empty, focus, filled, error, disabled. На его основе собраны все Field/*. Контракт: kb/components/input.json.");
+  const ik = {
+    label: inputSet.addComponentProperty("label", "TEXT", "Лейбл"),
+    value: inputSet.addComponentProperty("value", "TEXT", "Значение"),
+    hint: inputSet.addComponentProperty("hint", "TEXT", "Подсказка"),
+    hasHint: inputSet.addComponentProperty("hasHint", "BOOLEAN", false),
+    leading: inputSet.addComponentProperty("leading", "BOOLEAN", false),
+    trailing: inputSet.addComponentProperty("trailing", "BOOLEAN", false),
+  };
+  inputParts.forEach(({ label, value, hint, lead, trail }) => {
+    label.componentPropertyReferences = { characters: ik.label };
+    value.componentPropertyReferences = { characters: ik.value };
+    hint.componentPropertyReferences = { characters: ik.hint, visible: ik.hasHint };
+    try { lead.componentPropertyReferences = { visible: ik.leading }; trail.componentPropertyReferences = { visible: ik.trailing }; } catch (e) { say(`⚠ слоты Input: ${e.message}`); }
+  });
+  const inHeader = text("Input и поля", 32, true, "content/neutral/primary"); inHeader.y = cursorY; page.appendChild(inHeader);
+  inputSet.x = 0; inputSet.y = cursorY + 56;
+  let fieldY = inputSet.y + inputSet.height + 80;
+  say("✓ Input: 5 состояний, свойства label / value / hint / hasHint / leading / trailing");
+
+  // ---- Field/*: наборы на базе инстансов Input. Меняете Input — меняются все поля.
+  const putInSlot = (inst, slotName, node) => {
+    const sl = inst.findOne((n) => n.type === "SLOT" && n.name === slotName);
+    if (!sl) { say(`⚠ нет слота ${slotName}`); return; }
+    try { sl.appendChild(node); } catch (e) { say(`⚠ не удалось положить в слот ${slotName}: ${e.message}`); }
+  };
+  const FIELDS = [
+    { name: "password", label: "Пароль", value: "••••••••", trailing: () => icon("eye", "content/neutral/secondary"), hint: "Минимум 8 символов" },
+    { name: "number", label: "Количество", value: "2", trailing: () => {
+        const g = frame("stepper", "HORIZONTAL"); g.itemSpacing = 8;
+        for (const n of ["minus", "plus"]) {
+          const b = frame(`step-${n}`, "HORIZONTAL"); b.primaryAxisAlignItems = "CENTER"; b.counterAxisAlignItems = "CENTER";
+          b.primaryAxisSizingMode = "FIXED"; b.counterAxisSizingMode = "FIXED"; b.resize(32, 32); b.cornerRadius = 10;
+          fill(b, "ground/ground-2"); b.appendChild(icon(n, "content/neutral/primary")); g.appendChild(b);
+        }
+        return g; } },
+    { name: "search", label: "Найти", value: "Пицца", leading: () => icon("search", "content/neutral/secondary"), trailing: () => icon("clear", "content/neutral/tertiary") },
+    { name: "select", label: "Город", value: "Москва", trailing: () => icon("chevron", "content/neutral/secondary") },
+    { name: "phone", label: "Телефон", value: "900 000-00-00", leading: () => text("+7", 16, false, "content/neutral/primary") },
+    { name: "date", label: "Дата доставки", value: "12 ноября", trailing: () => icon("calendar", "content/neutral/secondary") },
+  ];
+  for (const f of FIELDS) {
+    const comps = FIELD_STATES.map((state, i) => {
+      const comp = figma.createComponent(); comp.name = `state=${state}`;
+      comp.layoutMode = "VERTICAL"; comp.primaryAxisSizingMode = "AUTO"; comp.counterAxisSizingMode = "FIXED"; comp.fills = [];
+      comp.resize(343, 56); bind(comp, "width", VP("field/width"));
+      const inst = inputComps[i].createInstance();
+      comp.appendChild(inst); inst.layoutSizingHorizontal = "FILL";
+      const props = { [ik.label]: f.label, [ik.value]: f.value, [ik.leading]: !!f.leading, [ik.trailing]: !!f.trailing };
+      if (f.hint) { props[ik.hint] = f.hint; props[ik.hasHint] = true; }
+      if (state === "error") { props[ik.hint] = "Проверьте значение"; props[ik.hasHint] = true; }
+      inst.setProperties(props);
+      if (f.leading) putInSlot(inst, "leading", f.leading());
+      if (f.trailing) putInSlot(inst, "trailing", f.trailing());
+      comp.x = i * 400; comp.y = 0;
+      return comp;
+    });
+    const set = combine(comps, `Field/${f.name}`, `Поле «${f.name}» на базе Input. Состояния как у Input. Контракт: kb/components/input.json → fields.`);
+    set.x = 0; set.y = fieldY; fieldY += set.height + 60;
+  }
+  cursorY = fieldY + 100;
+  say(`✓ Field: ${FIELDS.map((f) => f.name).join(", ")}`);
+  // ================= /Поля ввода =================
+
   const buttonInstance = (meaning, contrast, size, label) => {
-    const { set, labelKey } = buttonSets[`${meaning}/${size}`];
-    const comp = set.children.find((c) => c.name === `contrast=${contrast}, state=default`);
-    const inst = comp.createInstance();
+    const [g, sc] = meaning.includes("-") ? meaning.split("-") : [meaning, null];
+    const { set, labelKey } = buttonSets[`${g}/${size}`];
+    const name = (sc ? `scheme=${sc}, ` : "") + `contrast=${contrast}, state=default`;
+    const inst = set.children.find((c) => c.name === name).createInstance();
     inst.setProperties({ [labelKey]: label });
     return inst;
   };

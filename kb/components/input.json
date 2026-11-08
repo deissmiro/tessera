@@ -1,0 +1,83 @@
+{
+  "name": "input",
+  "figmaName": "Input",
+  "summary": "Универсальное поле ввода. Мягкий стиль в духе Яндекса: серая заливка без обводки, скругление 16, высота 56, плавающий лейбл. Все поля Field/* собраны из его инстансов — правка Input меняет все поля.",
+  "props": {
+    "state": {
+      "kind": "variant",
+      "values": [
+        "empty",
+        "focus",
+        "filled",
+        "error",
+        "disabled"
+      ],
+      "description": "empty — лейбл крупно как плейсхолдер; focus — лейбл поднят, курсор, чёрная обводка 2; filled — лейбл поднят + значение; error — розовая заливка, красные лейбл и подсказка; disabled — opacity/40."
+    },
+    "label": {
+      "kind": "text",
+      "default": "Лейбл"
+    },
+    "value": {
+      "kind": "text",
+      "default": "Значение"
+    },
+    "hint": {
+      "kind": "text",
+      "default": "Подсказка"
+    },
+    "hasHint": {
+      "kind": "boolean",
+      "default": false
+    },
+    "leading": {
+      "kind": "boolean",
+      "default": false,
+      "controls": "slot leading"
+    },
+    "trailing": {
+      "kind": "boolean",
+      "default": false,
+      "controls": "slot trailing"
+    }
+  },
+  "slots": {
+    "leading": {
+      "kind": "figma-slot",
+      "description": "Иконка, префикс (+7)."
+    },
+    "trailing": {
+      "kind": "figma-slot",
+      "description": "Иконка действия, очистка, степпер, шеврон."
+    }
+  },
+  "colors": {
+    "field": "background/neutral-soft; error → background/status-negative-pale",
+    "focus": "обводка content/neutral/primary, толщина viewport/field/focus-ring",
+    "label": "empty → content/neutral/tertiary; поднятый → content/neutral/secondary; error → content/status-negative/primary",
+    "value": "content/neutral/primary",
+    "hint": "content/neutral/secondary; error → content/status-negative/primary"
+  },
+  "layout": {
+    "height": "viewport/field/height",
+    "radius": "viewport/field/radius",
+    "padding-x": "viewport/field/padding-x",
+    "gap": "viewport/field/gap",
+    "label": "viewport/field/label-size (поднятый) / value-size (empty)",
+    "value": "viewport/field/value-size",
+    "hint": "viewport/field/hint-size, отступ viewport/field/hint-gap",
+    "width": "viewport/field/width"
+  },
+  "fields": {
+    "Field/password": "trailing — глаз; значение точками",
+    "Field/number": "trailing — степпер − +",
+    "Field/search": "leading — лупа, trailing — очистить",
+    "Field/select": "trailing — шеврон",
+    "Field/phone": "leading — префикс +7",
+    "Field/date": "trailing — календарь"
+  },
+  "planned": [
+    "Field/textarea — многострочное",
+    "Field/code — ввод кода из СМС по ячейкам"
+  ]
+}

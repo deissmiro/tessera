@@ -519,6 +519,99 @@
           "$description": "Скругление квадратной подложки L."
         }
       }
+    },
+    "field": {
+      "$description": "Поля ввода: мягкий стиль — серая заливка без обводки, плавающий лейбл.",
+      "height": {
+        "$type": "number",
+        "$modes": {
+          "s": 56,
+          "m": 56,
+          "l": 56
+        },
+        "$description": "Высота поля."
+      },
+      "radius": {
+        "$type": "number",
+        "$modes": {
+          "s": 16,
+          "m": 16,
+          "l": 16
+        },
+        "$description": "Скругление поля."
+      },
+      "padding-x": {
+        "$type": "number",
+        "$modes": {
+          "s": 16,
+          "m": 16,
+          "l": 16
+        },
+        "$description": "Горизонтальный отступ."
+      },
+      "gap": {
+        "$type": "number",
+        "$modes": {
+          "s": 8,
+          "m": 8,
+          "l": 8
+        },
+        "$description": "Шаг между иконками и текстом в поле."
+      },
+      "label-size": {
+        "$type": "number",
+        "$modes": {
+          "s": 13,
+          "m": 13,
+          "l": 13
+        },
+        "$description": "Кегль поднятого лейбла."
+      },
+      "value-size": {
+        "$type": "number",
+        "$modes": {
+          "s": 16,
+          "m": 16,
+          "l": 16
+        },
+        "$description": "Кегль значения и лейбла-плейсхолдера."
+      },
+      "hint-size": {
+        "$type": "number",
+        "$modes": {
+          "s": 13,
+          "m": 13,
+          "l": 13
+        },
+        "$description": "Кегль подсказки под полем."
+      },
+      "hint-gap": {
+        "$type": "number",
+        "$modes": {
+          "s": 6,
+          "m": 6,
+          "l": 6
+        },
+        "$description": "Шаг от поля до подсказки."
+      },
+      "focus-ring": {
+        "$type": "number",
+        "$modes": {
+          "s": 2,
+          "m": 2,
+          "l": 2
+        },
+        "$description": "Толщина обводки в фокусе."
+      },
+      "width": {
+        "$type": "number",
+        "$modes": {
+          "s": 343,
+          "m": 343,
+          "l": 343
+        },
+        "$description": "Ширина поля по умолчанию."
+      }
     }
   }
 }

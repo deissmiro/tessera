@@ -1,8 +1,8 @@
 {
   "name": "rich-icon",
-  "figmaName": "RichIcon/<meaning>/<small|medium|large>",
+  "figmaName": "RichIcon/<group>/<small|medium|large>",
   "summary": "Иконка в цветной подложке: в списках, карточках, пустых состояниях. Устроена как кнопка: отдельный набор на смысл × размер, внутри варианты contrast × shape.",
-  "structure": "RichIcon/accent-uno/medium и т. д.",
+  "structure": "Как у кнопки: набор на группу смысла × размер, варианты scheme × contrast × shape.",
   "props": {
     "meaning": {
       "kind": "set",
