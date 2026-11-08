@@ -1,6 +1,6 @@
 {
   "name": "snackbar",
   "figmaName": "Snackbar",
-  "summary": "Снэкбар: тёмная плашка background/inverse с тенью; tone default/success/error задаёт цвет значка. Свойства message, action, hasAction, hasIcon; слот icon.",
+  "summary": "Тёмная плашка background/inverse, скругление 20, тень. Заголовок (Semi Bold) + описание (content/inverse/secondary), белая кнопка действия (Button static-light pale small), закрыть. tone default (иконка info) / success / error (значок в цветном круге). Свойства: title, description, hasDescription, hasAction, hasClose, hasIcon.",
   "layout": "viewport/snackbar/*"
 }

@@ -1005,11 +1005,11 @@
       "height": {
         "$type": "number",
         "$modes": {
-          "s": 56,
+          "s": 64,
           "m": 64,
           "l": 64
         },
-        "$description": "Высота панели."
+        "$description": "Высота плавающей панели."
       },
       "icon": {
         "$type": "number",
@@ -1037,6 +1037,33 @@
           "l": 2
         },
         "$description": "Шаг иконка — подпись."
+      },
+      "margin": {
+        "$type": "number",
+        "$modes": {
+          "s": 12,
+          "m": 12,
+          "l": 12
+        },
+        "$description": "Отступ панели от краёв экрана."
+      },
+      "inset": {
+        "$type": "number",
+        "$modes": {
+          "s": 6,
+          "m": 6,
+          "l": 6
+        },
+        "$description": "Внутренний отступ капсулы."
+      },
+      "item-padding-y": {
+        "$type": "number",
+        "$modes": {
+          "s": 6,
+          "m": 6,
+          "l": 6
+        },
+        "$description": "Вертикальный отступ таба."
       }
     },
     "snackbar": {
@@ -1062,9 +1089,9 @@
       "radius": {
         "$type": "number",
         "$modes": {
-          "s": 16,
-          "m": 16,
-          "l": 16
+          "s": 20,
+          "m": 20,
+          "l": 20
         },
         "$description": "Скругление."
       },
@@ -1115,6 +1142,33 @@
           "l": 40
         },
         "$description": "Размер L."
+      },
+      "stroke-s": {
+        "$type": "number",
+        "$modes": {
+          "s": 2,
+          "m": 2,
+          "l": 2
+        },
+        "$description": "Толщина дуги S."
+      },
+      "stroke-m": {
+        "$type": "number",
+        "$modes": {
+          "s": 2.5,
+          "m": 2.5,
+          "l": 2.5
+        },
+        "$description": "Толщина дуги M."
+      },
+      "stroke-l": {
+        "$type": "number",
+        "$modes": {
+          "s": 3.5,
+          "m": 3.5,
+          "l": 3.5
+        },
+        "$description": "Толщина дуги L."
       }
     },
     "progress": {
@@ -1143,27 +1197,27 @@
       "tooltip-padding-x": {
         "$type": "number",
         "$modes": {
-          "s": 12,
-          "m": 12,
-          "l": 12
+          "s": 14,
+          "m": 14,
+          "l": 14
         },
         "$description": "Отступ тултипа."
       },
       "tooltip-padding-y": {
         "$type": "number",
         "$modes": {
-          "s": 8,
-          "m": 8,
-          "l": 8
+          "s": 10,
+          "m": 10,
+          "l": 10
         },
         "$description": "Вертикальный отступ тултипа."
       },
       "tooltip-radius": {
         "$type": "number",
         "$modes": {
-          "s": 10,
-          "m": 10,
-          "l": 10
+          "s": 14,
+          "m": 14,
+          "l": 14
         },
         "$description": "Скругление тултипа."
       },
@@ -1179,18 +1233,18 @@
       "popover-padding": {
         "$type": "number",
         "$modes": {
-          "s": 16,
-          "m": 16,
-          "l": 16
+          "s": 20,
+          "m": 20,
+          "l": 20
         },
         "$description": "Отступ поповера."
       },
       "popover-radius": {
         "$type": "number",
         "$modes": {
-          "s": 16,
-          "m": 16,
-          "l": 16
+          "s": 20,
+          "m": 20,
+          "l": 20
         },
         "$description": "Скругление поповера."
       },
@@ -1266,20 +1320,20 @@
       "day": {
         "$type": "number",
         "$modes": {
-          "s": 40,
-          "m": 40,
-          "l": 40
+          "s": 44,
+          "m": 44,
+          "l": 44
         },
         "$description": "Размер дня."
       },
       "gap": {
         "$type": "number",
         "$modes": {
-          "s": 4,
-          "m": 4,
-          "l": 4
+          "s": 0,
+          "m": 0,
+          "l": 0
         },
-        "$description": "Шаг сетки."
+        "$description": "Шаг по горизонтали: 0, чтобы диапазон шёл сплошной полосой."
       },
       "padding": {
         "$type": "number",
@@ -1293,9 +1347,9 @@
       "radius": {
         "$type": "number",
         "$modes": {
-          "s": 20,
-          "m": 20,
-          "l": 20
+          "s": 24,
+          "m": 24,
+          "l": 24
         },
         "$description": "Скругление календаря."
       },
@@ -1307,6 +1361,24 @@
           "l": 15
         },
         "$description": "Кегль дня."
+      },
+      "day-radius": {
+        "$type": "number",
+        "$modes": {
+          "s": 12,
+          "m": 12,
+          "l": 12
+        },
+        "$description": "Скругление выбранного дня."
+      },
+      "row-gap": {
+        "$type": "number",
+        "$modes": {
+          "s": 4,
+          "m": 4,
+          "l": 4
+        },
+        "$description": "Шаг между неделями."
       }
     },
     "pagination": {

@@ -505,25 +505,6 @@ async function buildComponents(index) {
 
   } catch (e) { fail("Navbar", e); }
   try {
-  // Демо Navbar на трёх брейкпоинтах
-  {
-    const vpCol = col("Viewport");
-    const demo = frame("Navbar · брейкпоинты", "VERTICAL"); demo.itemSpacing = 40;
-    demo.paddingLeft = demo.paddingRight = demo.paddingTop = demo.paddingBottom = 40; fill(demo, "ground/ground-1");
-    const navSet = page.children.find((n) => n.name === "Navbar/default");
-    for (const mode of vpCol.modes) {
-      const cell = frame(mode.name, "VERTICAL"); cell.itemSpacing = 12;
-      cell.appendChild(text(`Navbar · ${mode.name}`, 20, true, "content/neutral/primary"));
-      const inst = navSet.children.find((c) => c.name === "surface=island").createInstance();
-      cell.appendChild(inst); cell.setExplicitVariableModeForCollection(vpCol, mode.modeId);
-      demo.appendChild(cell);
-    }
-    page.appendChild(demo); demo.x = 0; demo.y = cursorY; cursorY = demo.y + demo.height + 160;
-  }
-
-
-  } catch (e) { fail("Navbar · демо", e); }
-  try {
   // ================= Поля ввода =================
   // Иконки 24×24 из примитивов (позже — библиотека иконок).
   var icon = (name, colorName) => {
@@ -536,6 +517,9 @@ async function buildComponents(index) {
     if (name === "chevron") vec("M 7 10 L 12 15 L 17 10");
     if (name === "chevron-right") vec("M 10 7 L 15 12 L 10 17");
     if (name === "chevron-left") vec("M 14 7 L 9 12 L 14 17");
+    if (name === "check") vec("M 6 12.5 L 10 16.5 L 18 8");
+    if (name === "alert") vec("M 12 7 L 12 13 M 12 17 L 12 17.01");
+    if (name === "info") { const e = figma.createEllipse(); e.resize(18, 18); e.x = 3; e.y = 3; stroke(e); f.appendChild(e); vec("M 12 11 L 12 16 M 12 8 L 12 8.01"); }
     if (name === "calendar") { const r = figma.createRectangle(); r.resize(16, 15); r.x = 4; r.y = 5; r.cornerRadius = 3; stroke(r); f.appendChild(r); vec("M 4 10 L 20 10 M 8 3 L 8 7 M 16 3 L 16 7"); }
     if (name === "clear") vec("M 7 7 L 17 17 M 17 7 L 7 17");
     if (name === "minus") vec("M 6 12 L 18 12");
@@ -898,28 +882,6 @@ async function buildComponents(index) {
     say("✓ Tabs: line и pill × 3 / 4 / 5");
   } catch (e) { fail("Tabs", e); }
 
-  // ---- Демо пресетов: одни и те же компоненты на ground (default) и на цветном фоне (overlay)
-  try {
-    const presetCol = col("Preset");
-    const pick = (setName, variantName) => { const st = page.children.find((n) => n.name === setName && n.type === "COMPONENT_SET"); return st && st.children.find((c) => c.name === variantName); };
-    const demo = frame("Presets · demo", "HORIZONTAL"); demo.itemSpacing = 40;
-    for (const [mode, bg, title] of [["default", "ground/ground-1", "preset = default · на странице"], ["overlay", "background/brand-uno-deep", "preset = overlay · на цветном фоне"]]) {
-      const card = frame(title, "VERTICAL"); card.itemSpacing = 16; card.paddingLeft = card.paddingRight = card.paddingTop = card.paddingBottom = 32;
-      card.cornerRadius = 24; fill(card, bg);
-      card.appendChild(text(title, 18, true, mode === "overlay" ? "content/brand-uno/on-deep" : "content/neutral/primary"));
-      for (const [setName, v] of [["Field", "state=filled"], ["Field/select", "state=filled"], ["Field/number", "state=filled"], ["Textarea", "state=filled"], ["Segmented control", "items=3"]]) {
-        const comp = pick(setName, v); if (comp) { const i = comp.createInstance(); card.appendChild(i); }
-      }
-      const chips = frame("chips", "HORIZONTAL"); chips.itemSpacing = 8;
-      for (const v of ["selected=true, state=default", "selected=false, state=default", "selected=false, state=default"]) { const comp = pick("Chip", v); if (comp) chips.appendChild(comp.createInstance()); }
-      card.appendChild(chips);
-      if (presetCol) { const m = presetCol.modes.find((x) => x.name === mode); if (m) card.setExplicitVariableModeForCollection(presetCol, m.modeId); }
-      demo.appendChild(card);
-    }
-    const h = text("Presets", 32, true, "content/neutral/primary"); h.y = cursorY; page.appendChild(h);
-    page.appendChild(demo); demo.x = 0; demo.y = cursorY + 56; cursorY = demo.y + demo.height + 160;
-    say("✓ Пресеты: default и overlay (мод коллекции Preset)");
-  } catch (e) { fail("Presets · demo", e); }
 
   // ================= Пакет: Badge, Stepper, Tab bar, Divider, Snackbar, Spinner, Progress, Tooltip, Popover, Code input, Date picker, Pagination =================
   var section = (title, set) => { const h = text(title, 32, true, "content/neutral/primary"); h.y = cursorY; page.appendChild(h); set.x = 0; set.y = cursorY + 56; cursorY = set.y + set.height + 160; };
@@ -979,23 +941,25 @@ async function buildComponents(index) {
     section("Stepper", set); say("✓ Stepper");
   } catch (e) { fail("Stepper", e); }
 
-  // ---- Tab bar: нижняя навигация. Tab bar/item (active) + Tab bar (items 3/4/5)
+  // ---- Tab bar: плавающая круглая капсула. Tab bar/item (active) + Tab bar (items 3/4/5)
   try {
     const itemComps = [], itemLabels = [], itemBadges = [];
     ["false", "true"].forEach((act, ci) => {
       const c = figma.createComponent(); c.name = `active=${act}`;
       c.layoutMode = "VERTICAL"; c.primaryAxisAlignItems = "CENTER"; c.counterAxisAlignItems = "CENTER";
-      c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "FIXED"; c.resize(78, 56); c.fills = [];
+      c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "FIXED"; c.resize(72, 52); c.cornerRadius = 999;
+      ["paddingTop", "paddingBottom"].forEach((p) => bind(c, p, VP("tabbar/item-padding-y")));
       bind(c, "itemSpacing", VP("tabbar/gap"));
+      if (act === "true") fill(c, "background/neutral-soft"); else c.fills = [];
       const color = act === "true" ? "content/neutral/primary" : "content/neutral/tertiary";
       const slot = makeSlot(c, "icon", c);
       slot.appendChild(glyph("tabbar/icon", color));
       const badge = figma.createEllipse(); badge.name = "badge"; badge.resize(8, 8); fill(badge, "background/status-negative-deep");
-      c.appendChild(badge); badge.layoutPositioning = "ABSOLUTE"; badge.x = 46; badge.y = 6;
+      c.appendChild(badge); badge.layoutPositioning = "ABSOLUTE"; badge.x = 42; badge.y = 6;
       const l = text("Главная", 11, true, color); l.name = "label"; bind(l, "fontSize", VP("tabbar/label-size")); c.appendChild(l);
       c.x = ci * 100; itemComps.push(c); itemLabels.push(l); itemBadges.push(badge);
     });
-    const itemSet = combine(itemComps, "Tab bar/item", "Таб нижней навигации: иконка (слот) + подпись. Активный — чёрный, остальные — content/neutral/tertiary. badge — точка.");
+    const itemSet = combine(itemComps, "Tab bar/item", "Таб плавающей панели: иконка (слот) + подпись. Активный — в серой капсуле background/neutral-soft, остальные — content/neutral/tertiary. badge — точка.");
     const lk = itemSet.addComponentProperty("label", "TEXT", "Главная");
     const bk = itemSet.addComponentProperty("badge", "BOOLEAN", false);
     itemLabels.forEach((l) => (l.componentPropertyReferences = { characters: lk }));
@@ -1005,21 +969,27 @@ async function buildComponents(index) {
     const comps = [];
     [3, 4, 5].forEach((count, r) => {
       const c = figma.createComponent(); c.name = `items=${count}`;
-      c.layoutMode = "HORIZONTAL"; c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "FIXED"; c.counterAxisAlignItems = "CENTER";
-      c.resize(390, 56); bind(c, "width", VP("screen/width")); bind(c, "height", VP("tabbar/height"));
-      fill(c, "ground/ground-2");
-      const v = T("border/neutral/pale"); if (v) { c.strokes = [paint(v)]; c.strokeAlign = "INSIDE"; c.strokeTopWeight = 1; c.strokeBottomWeight = 0; c.strokeLeftWeight = 0; c.strokeRightWeight = 0; }
+      c.layoutMode = "HORIZONTAL"; c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "AUTO"; c.fills = [];
+      c.resize(390, 80); bind(c, "width", VP("screen/width"));
+      ["paddingLeft", "paddingRight", "paddingBottom"].forEach((p) => bind(c, p, VP("tabbar/margin")));
+      const capsule = frame("capsule", "HORIZONTAL"); capsule.counterAxisAlignItems = "CENTER"; capsule.cornerRadius = 999;
+      capsule.counterAxisSizingMode = "FIXED"; capsule.resize(360, 64);
+      c.appendChild(capsule); capsule.layoutSizingHorizontal = "FILL";
+      bind(capsule, "height", VP("tabbar/height"));
+      ["paddingLeft", "paddingRight", "paddingTop", "paddingBottom"].forEach((p) => bind(capsule, p, VP("tabbar/inset")));
+      fill(capsule, "ground/ground-2"); shadow(capsule);
       for (let i = 0; i < count; i++) {
-        const inst = (i === 0 ? on : off).createInstance(); c.appendChild(inst);
+        const inst = (i === 0 ? on : off).createInstance(); capsule.appendChild(inst);
         inst.layoutSizingHorizontal = "FILL"; inst.layoutSizingVertical = "FILL";
         inst.setProperties({ [lk]: names[i] });
         try { inst.isExposedInstance = true; } catch (e) {}
       }
-      c.y = r * 80; comps.push(c);
+      c.y = r * 100; comps.push(c);
     });
-    const set = combine(comps, "Tab bar", "Нижняя навигация: items 3 / 4 / 5, ширина экрана брейкпоинта. Активный таб — свойство active у вложенных табов. Контракт: kb/components/tab-bar.json.");
+    const set = combine(comps, "Tab bar", "Нижняя навигация — плавающая круглая капсула с тенью, отступ от краёв viewport/tabbar/margin. items 3 / 4 / 5. Активный таб — свойство active у вложенных табов. Контракт: kb/components/tab-bar.json.");
     section("Tab bar", itemSet); section("", set); say("✓ Tab bar");
   } catch (e) { fail("Tab bar", e); }
+
 
   // ---- Divider: line / line-inset / section
   try {
@@ -1036,48 +1006,67 @@ async function buildComponents(index) {
     section("Divider", set); say("✓ Divider");
   } catch (e) { fail("Divider", e); }
 
-  // ---- Snackbar: тёмная плашка (inverse), иконка, текст, действие
+  // ---- Snackbar: тёмная плашка с крупным скруглением, заголовок + описание, действие, закрыть
   try {
     const comps = [], parts = [];
     [["default", null], ["success", "status-positive"], ["error", "status-negative"]].forEach(([tone, m], r) => {
       const c = figma.createComponent(); c.name = `tone=${tone}`;
       c.layoutMode = "HORIZONTAL"; c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "AUTO"; c.counterAxisAlignItems = "CENTER";
-      c.resize(343, 52); bind(c, "width", VP("snackbar/width"));
+      c.resize(343, 60); bind(c, "width", VP("snackbar/width"));
       ["paddingLeft", "paddingRight"].forEach((p) => bind(c, p, VP("snackbar/padding-x")));
       ["paddingTop", "paddingBottom"].forEach((p) => bind(c, p, VP("snackbar/padding-y")));
       bind(c, "itemSpacing", VP("snackbar/gap")); radius(c, ALL, VP("snackbar/radius"));
       fill(c, "background/inverse"); shadow(c);
       const lead = makeSlot(c, "icon", c);
-      const dot = figma.createEllipse(); dot.resize(20, 20); fill(dot, m ? `background/${m}-deep` : "content/inverse/primary"); lead.appendChild(dot);
-      const msg = text(tone === "error" ? "Не удалось оформить заказ" : tone === "success" ? "Заказ оформлен" : "Добавлено в корзину", 15, false, "content/inverse/primary");
-      msg.name = "message"; c.appendChild(msg); msg.layoutSizingHorizontal = "FILL"; msg.textAutoResize = "HEIGHT";
-      const act = text("Отменить", 15, true, "content/inverse/primary"); act.name = "action"; c.appendChild(act);
-      c.y = r * 80; comps.push(c); parts.push({ lead, msg, act });
+      if (m) {
+        const b = frame("status", "HORIZONTAL"); b.primaryAxisAlignItems = "CENTER"; b.counterAxisAlignItems = "CENTER";
+        b.primaryAxisSizingMode = "FIXED"; b.counterAxisSizingMode = "FIXED"; b.resize(28, 28); b.cornerRadius = 999; fill(b, `background/${m}-deep`);
+        b.appendChild(icon(tone === "success" ? "check" : "alert", `content/${m}/on-deep`)); lead.appendChild(b);
+      } else lead.appendChild(icon("info", "content/inverse/primary"));
+      const col = frame("text", "VERTICAL"); col.itemSpacing = 2; c.appendChild(col); col.layoutSizingHorizontal = "FILL";
+      const title = text(tone === "error" ? "Не удалось оформить заказ" : tone === "success" ? "Заказ оформлен" : "Добавлено в корзину", 15, true, "content/inverse/primary");
+      title.name = "title"; col.appendChild(title); title.layoutSizingHorizontal = "FILL"; title.textAutoResize = "HEIGHT";
+      const desc = text(tone === "error" ? "Проверьте соединение и попробуйте ещё раз" : "Курьер приедет через 25–35 минут", 13, false, "content/inverse/secondary");
+      desc.name = "description"; col.appendChild(desc); desc.layoutSizingHorizontal = "FILL"; desc.textAutoResize = "HEIGHT";
+      let act;
+      try { act = buttonInstance("static-light", "pale", "s", "Отменить"); }
+      catch (e) { act = frame("action", "HORIZONTAL"); act.appendChild(text("Отменить", 14, true, "content/inverse/primary")); }
+      act.name = "action"; c.appendChild(act);
+      const close = icon("clear", "content/inverse/secondary"); close.name = "close"; c.appendChild(close);
+      c.y = r * 100; comps.push(c); parts.push({ lead, title, desc, act, close });
     });
-    const set = combine(comps, "Snackbar", "Снэкбар: тёмная плашка background/inverse с тенью. tone: default, success, error — цвет значка. Свойства: message, action, hasAction, hasIcon. Контракт: kb/components/snackbar.json.");
-    const k = { msg: set.addComponentProperty("message", "TEXT", "Добавлено в корзину"), act: set.addComponentProperty("action", "TEXT", "Отменить"),
-      hasAct: set.addComponentProperty("hasAction", "BOOLEAN", true), hasIcon: set.addComponentProperty("hasIcon", "BOOLEAN", true) };
-    parts.forEach(({ lead, msg, act }) => { msg.componentPropertyReferences = { characters: k.msg }; act.componentPropertyReferences = { characters: k.act, visible: k.hasAct }; try { lead.componentPropertyReferences = { visible: k.hasIcon }; } catch (e) {} });
+    const set = combine(comps, "Snackbar", "Снэкбар: тёмная плашка background/inverse, скругление 20, тень. Заголовок + описание, кнопка действия (белая) и закрыть. tone: default (иконка), success, error (значок в цветном круге). Контракт: kb/components/snackbar.json.");
+    const k = { title: set.addComponentProperty("title", "TEXT", "Добавлено в корзину"), desc: set.addComponentProperty("description", "TEXT", "Курьер приедет через 25–35 минут"),
+      hasDesc: set.addComponentProperty("hasDescription", "BOOLEAN", true), hasAct: set.addComponentProperty("hasAction", "BOOLEAN", true),
+      hasClose: set.addComponentProperty("hasClose", "BOOLEAN", false), hasIcon: set.addComponentProperty("hasIcon", "BOOLEAN", true) };
+    parts.forEach(({ lead, title, desc, act, close }) => {
+      title.componentPropertyReferences = { characters: k.title };
+      desc.componentPropertyReferences = { characters: k.desc, visible: k.hasDesc };
+      act.componentPropertyReferences = { visible: k.hasAct }; close.componentPropertyReferences = { visible: k.hasClose };
+      try { lead.componentPropertyReferences = { visible: k.hasIcon }; } catch (e) {}
+    });
     section("Snackbar", set); say("✓ Snackbar");
   } catch (e) { fail("Snackbar", e); }
 
-  // ---- Spinner: size × tone. Кольцо-трек + дуга (arcData).
+  // ---- Spinner: тонкая дуга 270° со скруглёнными концами, без трека
   try {
     const comps = [];
-    [["neutral", "content/neutral/primary", "border/neutral/pale"], ["on-deep", "content/neutral/on-deep", "content/neutral/tertiary"]].forEach(([tone, arc, track], r) => ["s", "m", "l"].forEach((size, ci) => {
-      const c = figma.createComponent(); c.name = `size=${SIZES[size]}, tone=${tone}`; c.resize(24, 24); c.fills = [];
+    [["neutral", "content/neutral/primary"], ["on-deep", "content/neutral/on-deep"]].forEach(([tone, color], r) => ["s", "m", "l"].forEach((size, ci) => {
+      const c = figma.createComponent(); c.name = `size=${SIZES[size]}, tone=${tone}`; c.resize(24, 24);
       bind(c, "width", VP(`spinner/${size}`)); bind(c, "height", VP(`spinner/${size}`));
-      if (tone === "on-deep") fill(c, "background/neutral-deep");
-      for (const [nm, color, end] of [["track", track, 2 * Math.PI], ["arc", arc, 1.5 * Math.PI]]) {
-        const e = figma.createEllipse(); e.name = nm; e.resize(24, 24);
-        e.arcData = { startingAngle: 0, endingAngle: end, innerRadius: 0.78 }; fill(e, color);
-        c.appendChild(e); e.constraints = { horizontal: "SCALE", vertical: "SCALE" };
-      }
+      if (tone === "on-deep") fill(c, "background/neutral-deep"); else c.fills = [];
+      const arc = figma.createVector(); arc.name = "arc";
+      arc.vectorPaths = [{ windingRule: "NONE", data: "M 12 2 C 17.52 2 22 6.48 22 12 C 22 17.52 17.52 22 12 22 C 6.48 22 2 17.52 2 12" }];
+      arc.fills = []; const v = T(color); if (v) arc.strokes = [paint(v)];
+      arc.strokeCap = "ROUND"; c.appendChild(arc); arc.x = 2; arc.y = 2;
+      bind(arc, "strokeWeight", VP(`spinner/stroke-${size}`));
+      arc.constraints = { horizontal: "SCALE", vertical: "SCALE" };
       c.x = ci * 64; c.y = r * 64; comps.push(c);
     }));
-    const set = combine(comps, "Spinner", "Спиннер: size small 16 / medium 24 / large 40; tone neutral (на светлом) и on-deep (на тёмной кнопке). В коде — вращение дуги. Контракт: kb/components/spinner.json.");
+    const set = combine(comps, "Spinner", "Спиннер: тонкая дуга 270° со скруглёнными концами, без трека. size small 16 / medium 24 / large 40, tone neutral | on-deep. В коде — вращение. Контракт: kb/components/spinner.json.");
     section("Spinner", set); say("✓ Spinner");
   } catch (e) { fail("Spinner", e); }
+
 
   // ---- Progress bar: value 0 / 25 / 50 / 75 / 100
   try {
@@ -1096,53 +1085,69 @@ async function buildComponents(index) {
     section("Progress bar", set); say("✓ Progress bar");
   } catch (e) { fail("Progress bar", e); }
 
-  // ---- Tooltip: тёмный, placement × 4
+  // Стрелка со скруглённым кончиком; dir — куда смотрит.
+  var arrowVec = (dir, colorName) => {
+    const paths = {
+      down: ["M 0 0 L 16 0 L 9.4 7.2 C 8.6 8 7.4 8 6.6 7.2 Z", 16, 8],
+      up: ["M 0 8 L 16 8 L 9.4 0.8 C 8.6 0 7.4 0 6.6 0.8 Z", 16, 8],
+      right: ["M 0 0 L 0 16 L 7.2 9.4 C 8 8.6 8 7.4 7.2 6.6 Z", 8, 16],
+      left: ["M 8 0 L 8 16 L 0.8 9.4 C 0 8.6 0 7.4 0.8 6.6 Z", 8, 16],
+    }[dir];
+    const a = figma.createVector(); a.name = "arrow"; a.vectorPaths = [{ windingRule: "NONZERO", data: paths[0] }];
+    fill(a, colorName); return a;
+  };
+
+  // ---- Tooltip: тёмный, скругление 14, заголовок (по желанию) + текст, стрелка со скруглённым кончиком
   try {
-    const comps = [], labels = [];
-    const arrowOf = () => { const a = figma.createRectangle(); a.name = "arrow"; a.resize(10, 10); a.rotation = 45; fill(a, "background/inverse"); return a; };
-    ["top", "bottom", "left", "right"].forEach((pl, ci) => {
+    const comps = [], parts = [];
+    [["top", "VERTICAL", "down", true], ["bottom", "VERTICAL", "up", false], ["left", "HORIZONTAL", "right", true], ["right", "HORIZONTAL", "left", false]].forEach(([pl, dir, arrowDir, bubbleFirst], ci) => {
       const c = figma.createComponent(); c.name = `placement=${pl}`;
-      c.layoutMode = pl === "top" || pl === "bottom" ? "VERTICAL" : "HORIZONTAL"; c.primaryAxisSizingMode = "AUTO"; c.counterAxisSizingMode = "AUTO";
-      c.counterAxisAlignItems = "CENTER"; c.itemSpacing = -6; c.fills = [];
-      const bubble = frame("bubble", "HORIZONTAL");
+      c.layoutMode = dir; c.primaryAxisSizingMode = "AUTO"; c.counterAxisSizingMode = "AUTO"; c.counterAxisAlignItems = "CENTER"; c.itemSpacing = 0; c.fills = [];
+      const bubble = frame("bubble", "VERTICAL"); bubble.itemSpacing = 2;
       ["paddingLeft", "paddingRight"].forEach((p) => bind(bubble, p, VP("overlay/tooltip-padding-x")));
       ["paddingTop", "paddingBottom"].forEach((p) => bind(bubble, p, VP("overlay/tooltip-padding-y")));
       radius(bubble, ALL, VP("overlay/tooltip-radius")); fill(bubble, "background/inverse");
-      const l = text("Подсказка к элементу", 13, false, "content/inverse/primary"); l.name = "text"; bubble.appendChild(l); labels.push(l);
-      const arrowWrap = frame("arrow-wrap"); arrowWrap.resize(14, 14); arrowWrap.clipsContent = false;
-      const a = arrowOf(); arrowWrap.appendChild(a); a.x = 7; a.y = 0;
-      // стрелка смотрит на элемент: tooltip сверху — стрелка снизу
-      if (pl === "top" || pl === "left") { c.appendChild(bubble); c.appendChild(arrowWrap); } else { c.appendChild(arrowWrap); c.appendChild(bubble); }
-      bubble.layoutPositioning = "AUTO";
-      c.x = ci * 240; comps.push(c);
+      bubble.maxWidth = 240; bind(bubble, "maxWidth", VP("overlay/tooltip-max-width"));
+      const title = text("Бесплатная доставка", 14, true, "content/inverse/primary"); title.name = "title"; bubble.appendChild(title);
+      const body = text("При заказе от 1000 ₽", 13, false, "content/inverse/secondary"); body.name = "text"; bubble.appendChild(body);
+      const arrow = arrowVec(arrowDir, "background/inverse");
+      if (bubbleFirst) { c.appendChild(bubble); c.appendChild(arrow); } else { c.appendChild(arrow); c.appendChild(bubble); }
+      c.x = ci * 240; comps.push(c); parts.push({ title, body });
     });
-    const set = combine(comps, "Tooltip", "Тултип: тёмный (background/inverse), текст content/inverse/primary. placement — где тултип относительно элемента; стрелка смотрит на элемент. Контракт: kb/components/tooltip.json.");
-    const k = set.addComponentProperty("text", "TEXT", "Подсказка к элементу");
-    labels.forEach((l) => (l.componentPropertyReferences = { characters: k }));
+    const set = combine(comps, "Tooltip", "Тултип: тёмный background/inverse, скругление 14, заголовок (по желанию) и текст, стрелка со скруглённым кончиком смотрит на элемент. placement top / bottom / left / right. Контракт: kb/components/tooltip.json.");
+    const k = { title: set.addComponentProperty("title", "TEXT", "Бесплатная доставка"), text: set.addComponentProperty("text", "TEXT", "При заказе от 1000 ₽"), hasTitle: set.addComponentProperty("hasTitle", "BOOLEAN", true) };
+    parts.forEach(({ title, body }) => { title.componentPropertyReferences = { characters: k.title, visible: k.hasTitle }; body.componentPropertyReferences = { characters: k.text }; });
     section("Tooltip", set); say("✓ Tooltip");
   } catch (e) { fail("Tooltip", e); }
 
-  // ---- Popover: светлая карточка с тенью, слот content
+  // ---- Popover: белая карточка, скругление 20, тень; заголовок + закрыть, текст, кнопка; стрелка
   try {
-    const comps = [];
-    ["bottom", "top"].forEach((pl, ci) => {
+    const comps = [], parts = [];
+    [["bottom", "up"], ["top", "down"]].forEach(([pl, arrowDir], ci) => {
       const c = figma.createComponent(); c.name = `placement=${pl}`;
-      c.layoutMode = "VERTICAL"; c.primaryAxisSizingMode = "AUTO"; c.counterAxisSizingMode = "AUTO"; c.counterAxisAlignItems = "MIN"; c.itemSpacing = -6; c.fills = [];
-      const card = frame("card", "VERTICAL"); card.counterAxisSizingMode = "FIXED"; card.resize(280, 10);
+      c.layoutMode = "VERTICAL"; c.primaryAxisSizingMode = "AUTO"; c.counterAxisSizingMode = "AUTO"; c.counterAxisAlignItems = "MIN"; c.itemSpacing = 0; c.fills = [];
+      const card = frame("card", "VERTICAL"); card.counterAxisSizingMode = "FIXED"; card.resize(280, 10); card.itemSpacing = 12;
       bind(card, "width", VP("overlay/popover-width")); pad(card, VP("overlay/popover-padding")); radius(card, ALL, VP("overlay/popover-radius"));
-      card.itemSpacing = 8; fill(card, "ground/ground-2"); shadow(card);
-      const content = makeSlot(c, "content", card); content.layoutMode = "VERTICAL"; content.itemSpacing = 6; content.layoutSizingHorizontal = "FILL";
-      const t1 = text("Заголовок поповера", 15, true, "content/neutral/primary"); content.appendChild(t1);
-      const t2 = text("Поповер — для пояснений и коротких действий рядом с элементом.", 14, false, "content/neutral/secondary");
-      content.appendChild(t2); t2.layoutSizingHorizontal = "FILL"; t2.textAutoResize = "HEIGHT";
-      const aw = frame("arrow-wrap"); aw.resize(40, 14); aw.clipsContent = false;
-      const a = figma.createRectangle(); a.name = "arrow"; a.resize(12, 12); a.rotation = 45; fill(a, "ground/ground-2"); aw.appendChild(a); a.x = 24; a.y = pl === "bottom" ? 2 : -6;
+      fill(card, "ground/ground-2"); shadow(card);
+      const head = frame("header", "HORIZONTAL"); head.itemSpacing = 8; card.appendChild(head); head.layoutSizingHorizontal = "FILL";
+      const title = text("Можно заказать заранее", 17, true, "content/neutral/primary"); title.name = "title";
+      head.appendChild(title); title.layoutSizingHorizontal = "FILL"; title.textAutoResize = "HEIGHT";
+      const close = icon("clear", "content/neutral/tertiary"); close.name = "close"; head.appendChild(close);
+      const content = makeSlot(c, "content", card); content.layoutMode = "VERTICAL"; content.layoutSizingHorizontal = "FILL";
+      const body = text("Выберите время доставки — привезём ко времени, а не сразу.", 15, false, "content/neutral/secondary");
+      content.appendChild(body); body.layoutSizingHorizontal = "FILL"; body.textAutoResize = "HEIGHT";
+      const footer = makeSlot(c, "footer", card); footer.layoutSizingHorizontal = "FILL";
+      try { footer.appendChild(buttonInstance("neutral", "pale", "s", "Понятно")); } catch (e) {}
+      const aw = frame("arrow-wrap", "HORIZONTAL"); aw.paddingLeft = 28; aw.appendChild(arrowVec(arrowDir, "ground/ground-2"));
       if (pl === "bottom") { c.appendChild(aw); c.appendChild(card); } else { c.appendChild(card); c.appendChild(aw); }
-      c.x = ci * 340; comps.push(c);
+      c.x = ci * 340; comps.push(c); parts.push({ title, close, footer });
     });
-    const set = combine(comps, "Popover", "Поповер: белая карточка ground/ground-2 с тенью и стрелкой. placement: bottom (под элементом), top (над). Слот content. Контракт: kb/components/popover.json.");
+    const set = combine(comps, "Popover", "Поповер: белая карточка ground/ground-2, скругление 20, тень. Заголовок + закрыть, слот content, слот footer (по умолчанию серая кнопка «Понятно»), стрелка со скруглённым кончиком. placement bottom (под элементом) / top. Контракт: kb/components/popover.json.");
+    const k = { title: set.addComponentProperty("title", "TEXT", "Можно заказать заранее"), hasClose: set.addComponentProperty("hasClose", "BOOLEAN", true), hasFooter: set.addComponentProperty("hasFooter", "BOOLEAN", true) };
+    parts.forEach(({ title, close, footer }) => { title.componentPropertyReferences = { characters: k.title }; close.componentPropertyReferences = { visible: k.hasClose }; try { footer.componentPropertyReferences = { visible: k.hasFooter }; } catch (e) {} });
     section("Popover", set); say("✓ Popover");
   } catch (e) { fail("Popover", e); }
+
 
   // ---- Code input: ячейка (state) + поле кода (length 4 / 6 × state)
   try {
@@ -1179,65 +1184,63 @@ async function buildComponents(index) {
     section("Code input", cellSet); section("", set); say("✓ Code input");
   } catch (e) { fail("Code input", e); }
 
-  // ---- Date picker: день (state) + месяц
+  // ---- Date picker: дни — скруглённые квадраты, диапазон сплошной серой полосой
   try {
-    const dayComps = [], dayLabels = [];
-    [["default", null, "content/neutral/primary"], ["today", null, "content/neutral/primary"], ["selected", "background/neutral-deep", "content/neutral/on-deep"],
-     ["range", "background/neutral-soft", "content/neutral/primary"], ["disabled", null, "content/neutral/tertiary"], ["outside", null, "content/neutral/tertiary"]].forEach(([state, bg, fg], ci) => {
+    const dayComps = [], dayLabels = [], dots = [];
+    [["default", null, "content/neutral/primary", false], ["today", null, "content/neutral/primary", true], ["selected", "background/neutral-deep", "content/neutral/on-deep", true],
+     ["range", "background/neutral-soft", "content/neutral/primary", false], ["disabled", null, "content/neutral/tertiary", false], ["empty", null, "content/neutral/tertiary", false]].forEach(([state, bg, fg, bold], ci) => {
       const c = figma.createComponent(); c.name = `state=${state}`;
-      c.layoutMode = "HORIZONTAL"; c.primaryAxisAlignItems = "CENTER"; c.counterAxisAlignItems = "CENTER";
-      c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "FIXED"; c.resize(40, 40); c.cornerRadius = 999;
+      c.layoutMode = "VERTICAL"; c.primaryAxisAlignItems = "CENTER"; c.counterAxisAlignItems = "CENTER"; c.itemSpacing = 2;
+      c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "FIXED"; c.resize(44, 44);
       bind(c, "width", VP("datepicker/day")); bind(c, "height", VP("datepicker/day"));
+      if (state === "selected") radius(c, ALL, VP("datepicker/day-radius"));
       if (bg) fill(c, bg); else c.fills = [];
-      if (state === "today") { const v = T("border/neutral/deep"); if (v) { c.strokes = [paint(v)]; c.strokeAlign = "INSIDE"; c.strokeWeight = 1.5; } }
-      const l = text("12", 15, state === "selected" || state === "today", fg); l.name = "day"; bind(l, "fontSize", VP("datepicker/font-size")); c.appendChild(l);
-      if (state === "disabled") l.textDecoration = "STRIKETHROUGH";
-      c.x = ci * 56; dayComps.push(c); dayLabels.push(l);
+      const l = text(state === "empty" ? "" : "12", 16, bold, fg); l.name = "day"; bind(l, "fontSize", VP("datepicker/font-size")); c.appendChild(l);
+      if (state === "today") { const d = figma.createEllipse(); d.name = "today"; d.resize(4, 4); fill(d, "content/neutral/primary"); c.appendChild(d); }
+      if (state !== "empty") dayLabels.push(l);
+      c.x = ci * 60; dayComps.push(c);
     });
-    const daySet = combine(dayComps, "Date picker/day", "День календаря: default, today (обводка), selected (чёрный), range (серый — внутри диапазона), disabled, outside (соседний месяц).");
+    const daySet = combine(dayComps, "Date picker/day", "День: default, today (жирный + точка), selected (чёрный скруглённый квадрат), range (серый, без скругления — полоса), disabled, empty.");
     const dk = daySet.addComponentProperty("day", "TEXT", "12");
     dayLabels.forEach((l) => (l.componentPropertyReferences = { characters: dk }));
     const day = (st) => daySet.children.find((c) => c.name === `state=${st}`);
     const c = figma.createComponent(); c.name = "Date picker";
-    c.layoutMode = "VERTICAL"; c.primaryAxisSizingMode = "AUTO"; c.counterAxisSizingMode = "AUTO"; c.itemSpacing = 12;
+    c.layoutMode = "VERTICAL"; c.primaryAxisSizingMode = "AUTO"; c.counterAxisSizingMode = "AUTO"; c.itemSpacing = 16;
     pad(c, VP("datepicker/padding")); radius(c, ALL, VP("datepicker/radius")); fill(c, "ground/ground-2");
-    const head = frame("header", "HORIZONTAL"); head.counterAxisAlignItems = "CENTER"; c.appendChild(head); head.layoutSizingHorizontal = "FILL";
-    const prev = fieldButton(icon("chevron-left", "content/neutral/primary"), "prev"); head.appendChild(prev);
-    const month = text("Ноябрь 2026", 17, true, "content/neutral/primary"); month.name = "month"; month.textAlignHorizontal = "CENTER";
-    head.appendChild(month); month.layoutSizingHorizontal = "FILL";
-    const next = fieldButton(icon("chevron-right", "content/neutral/primary"), "next"); head.appendChild(next);
-    const grid = frame("grid", "VERTICAL"); bind(grid, "itemSpacing", VP("datepicker/gap")); c.appendChild(grid);
+    const head = frame("header", "HORIZONTAL"); head.counterAxisAlignItems = "CENTER"; head.itemSpacing = 8; c.appendChild(head); head.layoutSizingHorizontal = "FILL";
+    const month = text("Ноябрь", 20, true, "content/neutral/primary"); month.name = "month"; head.appendChild(month);
+    const year = text("2026", 20, false, "content/neutral/tertiary"); year.name = "year"; head.appendChild(year); year.layoutSizingHorizontal = "FILL";
+    for (const [nm, ic] of [["prev", "chevron-left"], ["next", "chevron-right"]]) {
+      const b = frame(nm, "HORIZONTAL"); b.primaryAxisAlignItems = "CENTER"; b.counterAxisAlignItems = "CENTER";
+      b.primaryAxisSizingMode = "FIXED"; b.counterAxisSizingMode = "FIXED"; b.resize(36, 36); b.cornerRadius = 999;
+      fill(b, "background/neutral-soft"); b.appendChild(icon(ic, "content/neutral/primary")); head.appendChild(b);
+    }
+    const grid = frame("grid", "VERTICAL"); bind(grid, "itemSpacing", VP("datepicker/row-gap")); c.appendChild(grid);
     const wd = frame("weekdays", "HORIZONTAL"); bind(wd, "itemSpacing", VP("datepicker/gap")); grid.appendChild(wd);
-    for (const w of ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]) {
-      const cellF = frame(w, "HORIZONTAL"); cellF.primaryAxisAlignItems = "CENTER"; cellF.primaryAxisSizingMode = "FIXED"; cellF.resize(40, 20);
+    for (const w of ["пн", "вт", "ср", "чт", "пт", "сб", "вс"]) {
+      const cellF = frame(w, "HORIZONTAL"); cellF.primaryAxisAlignItems = "CENTER"; cellF.primaryAxisSizingMode = "FIXED"; cellF.resize(44, 20);
       bind(cellF, "width", VP("datepicker/day"));
-      cellF.appendChild(text(w, 12, false, "content/neutral/tertiary")); wd.appendChild(cellF);
+      cellF.appendChild(text(w, 13, false, w === "сб" || w === "вс" ? "content/status-negative/primary" : "content/neutral/tertiary")); wd.appendChild(cellF);
     }
     // Ноябрь 2026: 1-е число — воскресенье (неделя с понедельника)
     let d = -5;
     for (let w = 0; w < 6; w++) {
       const row = frame(`week ${w + 1}`, "HORIZONTAL"); bind(row, "itemSpacing", VP("datepicker/gap")); grid.appendChild(row);
       for (let i = 0; i < 7; i++, d++) {
-        let st = "default", label;
-        if (d < 1) { st = "outside"; label = String(31 + d); }
-        else if (d > 30) { st = "outside"; label = String(d - 30); }
-        else {
-          label = String(d);
-          if (d < 8) st = "disabled";
-          if (d === 8) st = "today";
-          if (d === 12 || d === 16) st = "selected";
-          if (d > 12 && d < 16) st = "range";
-        }
-        const inst = day(st).createInstance(); inst.setProperties({ [dk]: label }); row.appendChild(inst);
+        let st = "default", label = String(d);
+        if (d < 1 || d > 30) { st = "empty"; label = ""; }
+        else if (d < 8) st = "disabled";
+        else if (d === 8) st = "today";
+        else if (d === 12 || d === 16) st = "selected";
+        else if (d > 12 && d < 16) st = "range";
+        const inst = day(st).createInstance(); if (st !== "empty") inst.setProperties({ [dk]: label }); row.appendChild(inst);
       }
     }
-    const footer = frame("footer", "HORIZONTAL"); footer.itemSpacing = 8; c.appendChild(footer); footer.layoutSizingHorizontal = "FILL";
-    try {
-      for (const [lbl, m, ct] of [["Сбросить", "neutral", "pale"], ["Готово", "accent-uno", "deep"]]) { const b = buttonInstance(m, ct, "m", lbl); footer.appendChild(b); b.layoutSizingHorizontal = "FILL"; }
-    } catch (e) { footer.visible = false; }
+    try { const b = buttonInstance("neutral", "deep", "l", "Выбрать 12–16 ноября"); c.appendChild(b); b.layoutSizingHorizontal = "FILL"; } catch (e) {}
     page.appendChild(c);
-    section("Date picker", daySet); section("", c); say("✓ Date picker: месяц с today, диапазоном и выбором");
+    section("Date picker", daySet); section("", c); say("✓ Date picker");
   } catch (e) { fail("Date picker", e); }
+
 
   // ---- Pagination: точки карусели
   try {
@@ -1262,28 +1265,6 @@ async function buildComponents(index) {
     section("Pagination", dotSet); section("", set); say("✓ Pagination");
   } catch (e) { fail("Pagination", e); }
 
-  // ---- Демо скелетона: одни и те же компоненты с модом skeleton off / on
-  try {
-    const skCol = col("Skeleton");
-    const pick = (setName, variantName) => { const st = page.children.find((n) => n.name === setName && n.type === "COMPONENT_SET"); return st && st.children.find((c) => c.name === variantName); };
-    const demo = frame("Skeleton · demo", "HORIZONTAL"); demo.itemSpacing = 40;
-    for (const mode of ["off", "on"]) {
-      const card = frame(`skeleton = ${mode}`, "VERTICAL"); card.itemSpacing = 12; card.paddingLeft = card.paddingRight = card.paddingTop = card.paddingBottom = 24;
-      card.cornerRadius = 24; fill(card, "ground/ground-2");
-      card.appendChild(text(`skeleton = ${mode}`, 18, true, "content/neutral/primary"));
-      for (const [s, v] of [["Cell", "state=default"], ["Cell", "state=default"], ["Field", "state=filled"], ["Stepper", "size=medium, state=default"]]) { const comp = pick(s, v); if (comp) card.appendChild(comp.createInstance()); }
-      const row = frame("row", "HORIZONTAL"); row.itemSpacing = 8;
-      const btnComp = buttonSets["accent/m"] && buttonSets["accent/m"].set.children.find((c) => c.name === "scheme=uno, contrast=deep, state=default");
-      if (btnComp) row.appendChild(btnComp.createInstance());
-      const chip = pick("Chip", "selected=false, state=default"); if (chip) row.appendChild(chip.createInstance());
-      card.appendChild(row);
-      const m = skCol && skCol.modes.find((x) => x.name === mode); if (m) card.setExplicitVariableModeForCollection(skCol, m.modeId);
-      demo.appendChild(card);
-    }
-    const h = text("Skeleton", 32, true, "content/neutral/primary"); h.y = cursorY; page.appendChild(h);
-    page.appendChild(demo); demo.x = 0; demo.y = cursorY + 56; cursorY = demo.y + demo.height + 160;
-    say("✓ Skeleton: мод off / on");
-  } catch (e) { fail("Skeleton · demo", e); }
   // ================= /Поля ввода =================
   } catch (e) { fail("Поля", e); }
   // ================= /Поля ввода =================
@@ -1414,26 +1395,7 @@ async function buildComponents(index) {
   }
   say("✓ компонент Window: 4 вида, свойства modal / scrim, слоты header-left / header-center / header-right / content / footer");
 
-  // Демо: каждый вид на трёх брейкпоинтах — инстансы с явным модом Viewport.
-  var vpCol = col("Viewport");
-  var grid = frame("Window · брейкпоинты", "VERTICAL"); grid.itemSpacing = 80;
-  grid.paddingLeft = grid.paddingRight = grid.paddingTop = grid.paddingBottom = 80;
-  for (const comp of set.children) {
-    const row = frame(comp.name, "HORIZONTAL"); row.itemSpacing = 80; row.counterAxisAlignItems = "MIN";
-    for (const mode of vpCol.modes) {
-      const cell = frame(`${comp.name} · ${mode.name}`, "VERTICAL"); cell.itemSpacing = 16;
-      cell.appendChild(text(`${comp.name.replace("type=", "")} · ${mode.name}`, 28, true, "content/neutral/primary"));
-      const screen = frame("screen", "VERTICAL"); fill(screen, "ground/ground-1");
-      const inst = comp.createInstance();
-      screen.appendChild(inst);
-      screen.setExplicitVariableModeForCollection(vpCol, mode.modeId);
-      cell.appendChild(screen); row.appendChild(cell);
-    }
-    grid.appendChild(row);
-  }
-  page.appendChild(grid); grid.y = set.y + set.height + 200; fill(grid, "ground/ground-1");
   figma.viewport.scrollAndZoomIntoView(page.children);
-  say("✓ демо: 4 вида × 3 брейкпоинта на странице «Tessera · Components»");
   } catch (e) { fail("Window", e); }
   if (failures.length) say(`Не собралось: ${failures.join(", ")}. Остальное собрано.`);
 }
