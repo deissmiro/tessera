@@ -78,7 +78,7 @@ async function buildCheckPage(data, index) {
   const themeCol = cols.find((c) => c.name.includes("Theme"));
   const NAME = "Tessera · Color check";
   let page = figma.root.children.find((p) => p.name === NAME);
-  if (page) page.children.forEach((n) => n.remove()); else { page = figma.createPage(); page.name = NAME; }
+  if (page) { await page.loadAsync(); page.children.forEach((n) => n.remove()); } else { page = figma.createPage(); page.name = NAME; }
   await figma.setCurrentPageAsync(page);
 
   const V = (n) => index[`${theme.name}::${n}`];
@@ -204,7 +204,7 @@ async function buildComponents(index) {
 
   const NAME = "Tessera · Components";
   let page = figma.root.children.find((p) => p.name === NAME);
-  if (page) page.children.forEach((n) => n.remove()); else { page = figma.createPage(); page.name = NAME; }
+  if (page) { await page.loadAsync(); page.children.forEach((n) => n.remove()); } else { page = figma.createPage(); page.name = NAME; }
   await figma.setCurrentPageAsync(page);
 
   // ================= Контролы =================
@@ -649,7 +649,7 @@ async function headless(checkPage, components) {
     const out = await run(await fetchVariables(url), checkPage, components);
     const n = out.split("\n").find((l) => l.startsWith("⚠"));
     figma.closePlugin(n ? `Tessera обновлена, но ${n}` : "Tessera обновлена из репозитория ✓");
-  } catch (e) { figma.closePlugin("✗ " + (e.message || e)); }
+  } catch (e) { console.error(e); figma.closePlugin("✗ " + (e.message || e) + (log.length ? " · последний шаг: " + log[log.length - 1] : "")); }
 }
 
 if (figma.command === "update") headless(false);
