@@ -4511,6 +4511,40 @@
       "m": 480,
       "l": 560
      }
+    },
+    {
+     "name": "window/action-height",
+     "type": "FLOAT",
+     "description": "Высота кнопок в футере окна.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-window-action-height)"
+     },
+     "valuesByMode": {
+      "s": 56,
+      "m": 56,
+      "l": 56
+     }
+    },
+    {
+     "name": "window/footer-gap",
+     "type": "FLOAT",
+     "description": "Шаг между элементами футера окна.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-window-footer-gap)"
+     },
+     "valuesByMode": {
+      "s": 8,
+      "m": 8,
+      "l": 8
+     }
     }
    ]
   }

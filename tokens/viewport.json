@@ -134,6 +134,24 @@
           },
           "$description": "Максимальная ширина."
         }
+      },
+      "action-height": {
+        "$type": "number",
+        "$modes": {
+          "s": 56,
+          "m": 56,
+          "l": 56
+        },
+        "$description": "Высота кнопок в футере окна."
+      },
+      "footer-gap": {
+        "$type": "number",
+        "$modes": {
+          "s": 8,
+          "m": 8,
+          "l": 8
+        },
+        "$description": "Шаг между элементами футера окна."
       }
     }
   }

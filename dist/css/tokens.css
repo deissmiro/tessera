@@ -141,6 +141,8 @@
   --viewport-window-adaptive-margin: 0px;
   --viewport-window-adaptive-bottom-radius: 0px;
   --viewport-window-adaptive-max-width: 9999px;
+  --viewport-window-action-height: 56px;
+  --viewport-window-footer-gap: 8px;
 }
 
 :root, [data-brand="tessera"] {
@@ -431,6 +433,8 @@
     --viewport-window-adaptive-margin: 24px;
     --viewport-window-adaptive-bottom-radius: 24px;
     --viewport-window-adaptive-max-width: 480px;
+    --viewport-window-action-height: 56px;
+    --viewport-window-footer-gap: 8px;
   }
 }
 
@@ -450,5 +454,7 @@
     --viewport-window-adaptive-margin: 32px;
     --viewport-window-adaptive-bottom-radius: 24px;
     --viewport-window-adaptive-max-width: 560px;
+    --viewport-window-action-height: 56px;
+    --viewport-window-footer-gap: 8px;
   }
 }

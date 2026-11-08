@@ -207,7 +207,7 @@ async function buildComponents(index) {
   if (page) page.children.forEach((n) => n.remove()); else { page = figma.createPage(); page.name = NAME; }
   await figma.setCurrentPageAsync(page);
 
-  function panelFor(type) {
+  function panelFor(type, root) {
     const panel = frame("panel", "VERTICAL");
     fill(panel, "ground/ground-2");
     pad(panel, VP("window/padding")); bind(panel, "itemSpacing", VP("window/gap"));
@@ -225,24 +225,44 @@ async function buildComponents(index) {
       gw.appendChild(g); panel.appendChild(gw); gw.layoutSizingHorizontal = "FILL";
       if (type === "adaptive") bind(gw, "visible", VP("window/adaptive/grabber"));
     }
-    const header = frame("header", "HORIZONTAL"); header.itemSpacing = 12; header.counterAxisAlignItems = "CENTER";
-    const title = text("Заголовок окна", 18, true, "content/neutral/primary"); title.name = "title";
-    header.appendChild(title); title.layoutSizingHorizontal = "FILL"; title.textAutoResize = "HEIGHT";
-    const close = text("×", 24, false, "content/neutral/secondary"); close.name = "close"; header.appendChild(close);
-    panel.appendChild(header); header.layoutSizingHorizontal = "FILL";
+    // Нативный слот Figma внутри компонента. Если вложить слот глубже корня нельзя — оставляем его в корне и сообщаем.
+    const slot = (name, dir, parent) => {
+      const sl = root.createSlot(); sl.name = name; sl.fills = [];
+      sl.layoutMode = dir; sl.primaryAxisSizingMode = "AUTO"; sl.counterAxisSizingMode = "AUTO";
+      sl.clipsContent = false;
+      try { parent.appendChild(sl); } catch (e) { say(`⚠ слот ${name} нельзя вложить в ${parent.name}: ${e.message}`); }
+      return sl;
+    };
 
-    const content = frame("slot/content", "VERTICAL"); content.itemSpacing = 8;
+    // 1. Шапка: три слота — слева, по центру (заголовок), справа.
+    const header = frame("header", "HORIZONTAL"); header.itemSpacing = 12; header.counterAxisAlignItems = "CENTER";
+    panel.appendChild(header); header.layoutSizingHorizontal = "FILL";
+    const left = slot("header-left", "HORIZONTAL", header); left.counterAxisAlignItems = "CENTER";
+    const center = slot("header-center", "HORIZONTAL", header); center.counterAxisAlignItems = "CENTER";
+    center.layoutSizingHorizontal = "FILL";
+    const title = text("Заголовок окна", 18, true, "content/neutral/primary"); title.name = "title";
+    center.appendChild(title); title.layoutSizingHorizontal = "FILL"; title.textAutoResize = "HEIGHT";
+    const right = slot("header-right", "HORIZONTAL", header); right.counterAxisAlignItems = "CENTER";
+    const close = text("×", 24, false, "content/neutral/secondary"); close.name = "close"; right.appendChild(close);
+
+    // 2. Контент: слот.
+    const content = slot("content", "VERTICAL", panel); content.itemSpacing = 8;
+    content.layoutSizingHorizontal = "FILL";
     const body = text("Контент окна: текст, форма или список. Замените содержимое слота.", 15, false, "content/neutral/secondary");
     content.appendChild(body); body.layoutSizingHorizontal = "FILL"; body.textAutoResize = "HEIGHT";
-    panel.appendChild(content); content.layoutSizingHorizontal = "FILL";
 
-    const actions = frame("slot/actions", "HORIZONTAL"); actions.itemSpacing = 8; actions.primaryAxisAlignItems = "MAX";
-    for (const [label, bg, fg] of [["Отмена", "background/neutral-soft", "content/neutral/primary"], ["Продолжить", "background/accent-uno-deep", "content/accent-uno/on-deep"]]) {
-      const b = frame(`button · ${label}`, "HORIZONTAL"); b.paddingLeft = b.paddingRight = 16; b.paddingTop = b.paddingBottom = 12; b.cornerRadius = 12;
-      fill(b, bg); b.appendChild(text(label, 15, true, fg)); actions.appendChild(b);
+    // 3. Футер: слот. По умолчанию — две кнопки во всю ширину, высота 56.
+    const footer = slot("footer", "VERTICAL", panel); bind(footer, "itemSpacing", VP("window/footer-gap"));
+    footer.layoutSizingHorizontal = "FILL";
+    for (const [label, bg, fg] of [["Продолжить", "background/accent-uno-deep", "content/accent-uno/on-deep"], ["Отмена", "background/neutral-soft", "content/neutral/primary"]]) {
+      const b = frame(`button · ${label}`, "HORIZONTAL");
+      b.primaryAxisAlignItems = "CENTER"; b.counterAxisAlignItems = "CENTER"; b.cornerRadius = 12;
+      fill(b, bg); b.appendChild(text(label, 16, true, fg));
+      footer.appendChild(b);
+      b.layoutSizingHorizontal = "FILL"; b.layoutSizingVertical = "FIXED"; b.resize(b.width, 56);
+      bind(b, "height", VP("window/action-height"));
     }
-    panel.appendChild(actions); actions.layoutSizingHorizontal = "FILL";
-    return { panel, title };
+    return { panel };
   }
 
   const variants = [];
@@ -265,7 +285,7 @@ async function buildComponents(index) {
     }
 
     const before = frame("spacer-before"); before.layoutMode = "VERTICAL"; root.appendChild(before);
-    const { panel, title } = panelFor(type);
+    const { panel } = panelFor(type, root);
     root.appendChild(panel);
     const after = frame("spacer-after"); after.layoutMode = "VERTICAL"; root.appendChild(after);
     if (type === "side-sheet") {
@@ -281,23 +301,21 @@ async function buildComponents(index) {
       if (type === "bottom-sheet") after.remove();
       if (type === "adaptive") bind(after, "visible", VP("window/adaptive/centered"));
     }
-    variants.push({ root, scrim, blocker, title });
+    variants.push({ root, scrim, blocker });
   }
 
   const set = figma.combineAsVariants(variants.map((v) => v.root), page);
   set.name = "Window";
   set.layoutMode = "HORIZONTAL"; set.itemSpacing = 80; set.paddingLeft = set.paddingRight = set.paddingTop = set.paddingBottom = 80;
   set.primaryAxisSizingMode = "AUTO"; set.counterAxisSizingMode = "AUTO";
-  set.description = "Окно поверх страницы: dialog, bottom-sheet, side-sheet, adaptive (шит на s, диалог на m/l). modal — блокирует страницу, scrim — затемнение. Размеры и поведение — мод коллекции Viewport. Контракт: kb/components/window.json.";
+  set.description = "Окно поверх страницы: dialog, bottom-sheet, side-sheet, adaptive (шит на s, диалог на m/l). modal — блокирует страницу, scrim — затемнение. Размеры и поведение — мод коллекции Viewport. Слоты: header-left, header-center, header-right, content, footer. Контракт: kb/components/window.json.";
   const modalKey = set.addComponentProperty("modal", "BOOLEAN", true);
   const scrimKey = set.addComponentProperty("scrim", "BOOLEAN", true);
-  const titleKey = set.addComponentProperty("title", "TEXT", "Заголовок окна");
   for (const v of variants) {
     v.blocker.componentPropertyReferences = { visible: modalKey };
     v.scrim.componentPropertyReferences = { visible: scrimKey };
-    v.title.componentPropertyReferences = { characters: titleKey };
   }
-  say("✓ компонент Window: 4 вида, свойства modal / scrim / title");
+  say("✓ компонент Window: 4 вида, свойства modal / scrim, слоты header-left / header-center / header-right / content / footer");
 
   // Демо: каждый вид на трёх брейкпоинтах — инстансы с явным модом Viewport.
   const vpCol = col("Viewport");

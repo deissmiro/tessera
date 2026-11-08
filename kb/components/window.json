@@ -1,61 +1,116 @@
 {
   "name": "window",
   "figmaName": "Window",
-  "summary": "Окно поверх страницы. Четыре вида: диалог, нижний шит, боковой шит и адаптивное окно (шит на телефоне, диалог на планшете и десктопе). Модальность и затемнение включаются отдельно. Размеры и поведение меняются модом коллекции «4 · Viewport».",
-
+  "summary": "Окно поверх страницы. Четыре вида: диалог, нижний шит, боковой шит и адаптивное окно (шит на телефоне, диалог на планшете и десктопе). Модальность и затемнение включаются отдельно. Окно из трёх частей: шапка (три слота), контент (слот), футер (слот). Размеры и поведение меняются модом коллекции «4 · Viewport».",
   "props": {
-    "type":  { "kind": "variant", "values": ["dialog", "bottom-sheet", "side-sheet", "adaptive"], "default": "adaptive",
-               "description": "dialog — по центру; bottom-sheet — прижат к низу; side-sheet — справа во всю высоту; adaptive — bottom-sheet на s, dialog на m и l." },
-    "modal": { "kind": "boolean", "default": true,
-               "description": "Модальное окно блокирует страницу: клики мимо окна не доходят до неё (слой blocker). Немодальное — страница остаётся живой." },
-    "scrim": { "kind": "boolean", "default": true,
-               "description": "Затемнение страницы. Имеет смысл только у модального окна; немодальное — без затемнения." },
-    "title": { "kind": "text", "default": "Заголовок окна" }
+    "type": {
+      "kind": "variant",
+      "values": [
+        "dialog",
+        "bottom-sheet",
+        "side-sheet",
+        "adaptive"
+      ],
+      "default": "adaptive",
+      "description": "dialog — по центру; bottom-sheet — прижат к низу; side-sheet — справа во всю высоту; adaptive — bottom-sheet на s, dialog на m и l."
+    },
+    "modal": {
+      "kind": "boolean",
+      "default": true,
+      "description": "Модальное окно блокирует страницу: клики мимо окна не доходят до неё (слой blocker). Немодальное — страница остаётся живой."
+    },
+    "scrim": {
+      "kind": "boolean",
+      "default": true,
+      "description": "Затемнение страницы. Имеет смысл только у модального окна; немодальное — без затемнения."
+    }
   },
-
   "combinations": {
-    "modal + scrim":    "Стандарт: подтверждения, формы, всё, что требует ответа.",
-    "modal без scrim":  "Блокирует страницу, но не затемняет — например, поверх уже тёмного медиа.",
-    "немодальное":      "Без затемнения и блокировки: вспомогательные панели, фильтры рядом с контентом.",
+    "modal + scrim": "Стандарт: подтверждения, формы, всё, что требует ответа.",
+    "modal без scrim": "Блокирует страницу, но не затемняет — например, поверх уже тёмного медиа.",
+    "немодальное": "Без затемнения и блокировки: вспомогательные панели, фильтры рядом с контентом.",
     "немодальное + scrim": "Не использовать: затемнение обещает блокировку, которой нет."
   },
-
   "anatomy": [
     "root — экран брейкпоинта (viewport/screen/width × height)",
     "scrim — затемнение: background/static-dark-deep + opacity/40",
     "blocker — прозрачный слой модальности",
     "panel — само окно",
     "panel/grabber — только у шитов",
-    "panel/header — заголовок + закрыть",
-    "panel/slot/content — контент окна",
-    "panel/slot/actions — действия"
+    "panel/header — три слота: header-left, header-center (по умолчанию заголовок), header-right (по умолчанию закрыть)",
+    "panel/content — слот контента",
+    "panel/footer — слот футера: по умолчанию две кнопки во всю ширину, 56 по высоте; можно положить что угодно"
   ],
-
   "slots": {
-    "content": { "description": "Любой контент окна: текст, форма, список.", "required": true },
-    "actions": { "description": "Кнопки действий: главное справа (на s — снизу и во всю ширину).", "required": false }
+    "header-left": {
+      "kind": "figma-slot",
+      "default": "пусто",
+      "description": "Назад, иконка, аватар."
+    },
+    "header-center": {
+      "kind": "figma-slot",
+      "default": "заголовок (content/neutral/primary, 18 semibold)",
+      "description": "Заголовок, заголовок с подзаголовком, табы."
+    },
+    "header-right": {
+      "kind": "figma-slot",
+      "default": "закрыть",
+      "description": "Закрыть, меню, действия шапки."
+    },
+    "content": {
+      "kind": "figma-slot",
+      "default": "текст",
+      "description": "Любой контент окна.",
+      "required": true
+    },
+    "footer": {
+      "kind": "figma-slot",
+      "default": "две кнопки во всю ширину, высота viewport/window/action-height (56), шаг viewport/window/footer-gap",
+      "description": "Кнопки, чекбокс согласия, подпись — что угодно."
+    }
   },
-
   "layout": {
-    "dialog":       { "position": "center", "margin": "viewport/window/margin", "maxWidth": "viewport/window/dialog-max-width", "radius": "all" },
-    "bottom-sheet": { "position": "bottom", "margin": 0, "maxWidth": "viewport/window/sheet-max-width", "radius": "top", "grabber": true },
-    "side-sheet":   { "position": "right", "margin": 0, "width": "viewport/window/side-width", "height": "fill", "radius": "left" },
-    "adaptive":     { "position": "bottom на s, center на m/l — viewport/window/adaptive/centered",
-                      "margin": "viewport/window/adaptive/margin", "maxWidth": "viewport/window/adaptive/max-width",
-                      "radius": "верх — viewport/window/radius, низ — viewport/window/adaptive/bottom-radius",
-                      "grabber": "viewport/window/adaptive/grabber" },
-    "panel": { "padding": "viewport/window/padding", "gap": "viewport/window/gap", "radius": "viewport/window/radius" }
+    "dialog": {
+      "position": "center",
+      "margin": "viewport/window/margin",
+      "maxWidth": "viewport/window/dialog-max-width",
+      "radius": "all"
+    },
+    "bottom-sheet": {
+      "position": "bottom",
+      "margin": 0,
+      "maxWidth": "viewport/window/sheet-max-width",
+      "radius": "top",
+      "grabber": true
+    },
+    "side-sheet": {
+      "position": "right",
+      "margin": 0,
+      "width": "viewport/window/side-width",
+      "height": "fill",
+      "radius": "left"
+    },
+    "adaptive": {
+      "position": "bottom на s, center на m/l — viewport/window/adaptive/centered",
+      "margin": "viewport/window/adaptive/margin",
+      "maxWidth": "viewport/window/adaptive/max-width",
+      "radius": "верх — viewport/window/radius, низ — viewport/window/adaptive/bottom-radius",
+      "grabber": "viewport/window/adaptive/grabber"
+    },
+    "panel": {
+      "padding": "viewport/window/padding",
+      "gap": "viewport/window/gap",
+      "radius": "viewport/window/radius"
+    }
   },
-
   "colors": {
-    "panel":   "theme/ground/ground-2",
-    "scrim":   "theme/background/static-dark-deep + numbers/opacity/40",
-    "title":   "theme/content/neutral/primary",
-    "body":    "theme/content/neutral/secondary",
+    "panel": "theme/ground/ground-2",
+    "scrim": "theme/background/static-dark-deep + numbers/opacity/40",
+    "title": "theme/content/neutral/primary",
+    "body": "theme/content/neutral/secondary",
     "grabber": "theme/border/neutral/soft",
-    "close":   "theme/content/neutral/secondary"
+    "close": "theme/content/neutral/secondary"
   },
-
   "a11y": [
     "Модальное: фокус внутри окна, Esc закрывает, фокус возвращается на вызвавший элемент.",
     "У окна есть заголовок; role=dialog, aria-modal соответствует modal.",
