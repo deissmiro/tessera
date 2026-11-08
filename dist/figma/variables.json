@@ -4919,6 +4919,74 @@
      }
     },
     {
+     "name": "control/switch/width",
+     "type": "FLOAT",
+     "description": "Ширина трека.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-control-switch-width)"
+     },
+     "valuesByMode": {
+      "s": 52,
+      "m": 52,
+      "l": 52
+     }
+    },
+    {
+     "name": "control/switch/height",
+     "type": "FLOAT",
+     "description": "Высота трека.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-control-switch-height)"
+     },
+     "valuesByMode": {
+      "s": 32,
+      "m": 32,
+      "l": 32
+     }
+    },
+    {
+     "name": "control/switch/knob",
+     "type": "FLOAT",
+     "description": "Размер ручки.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-control-switch-knob)"
+     },
+     "valuesByMode": {
+      "s": 28,
+      "m": 28,
+      "l": 28
+     }
+    },
+    {
+     "name": "control/switch/inset",
+     "type": "FLOAT",
+     "description": "Отступ ручки от края трека.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-control-switch-inset)"
+     },
+     "valuesByMode": {
+      "s": 2,
+      "m": 2,
+      "l": 2
+     }
+    },
+    {
      "name": "navbar/height",
      "type": "FLOAT",
      "description": "Высота панели.",
@@ -5341,6 +5409,125 @@
       "s": 343,
       "m": 343,
       "l": 343
+     }
+    },
+    {
+     "name": "cell/min-height",
+     "type": "FLOAT",
+     "description": "Минимальная высота ячейки.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-cell-min-height)"
+     },
+     "valuesByMode": {
+      "s": 64,
+      "m": 64,
+      "l": 64
+     }
+    },
+    {
+     "name": "cell/padding-x",
+     "type": "FLOAT",
+     "description": "Горизонтальный отступ.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-cell-padding-x)"
+     },
+     "valuesByMode": {
+      "s": 16,
+      "m": 16,
+      "l": 16
+     }
+    },
+    {
+     "name": "cell/padding-y",
+     "type": "FLOAT",
+     "description": "Вертикальный отступ.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-cell-padding-y)"
+     },
+     "valuesByMode": {
+      "s": 12,
+      "m": 12,
+      "l": 12
+     }
+    },
+    {
+     "name": "cell/gap",
+     "type": "FLOAT",
+     "description": "Шаг между слотами.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-cell-gap)"
+     },
+     "valuesByMode": {
+      "s": 12,
+      "m": 12,
+      "l": 12
+     }
+    },
+    {
+     "name": "cell/title-size",
+     "type": "FLOAT",
+     "description": "Кегль заголовка.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-cell-title-size)"
+     },
+     "valuesByMode": {
+      "s": 16,
+      "m": 16,
+      "l": 16
+     }
+    },
+    {
+     "name": "cell/subtitle-size",
+     "type": "FLOAT",
+     "description": "Кегль подзаголовка.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-cell-subtitle-size)"
+     },
+     "valuesByMode": {
+      "s": 13,
+      "m": 13,
+      "l": 13
+     }
+    },
+    {
+     "name": "cell/width",
+     "type": "FLOAT",
+     "description": "Ширина ячейки по умолчанию.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-cell-width)"
+     },
+     "valuesByMode": {
+      "s": 375,
+      "m": 375,
+      "l": 375
      }
     }
    ]

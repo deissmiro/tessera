@@ -514,11 +514,12 @@ async function buildComponents(index) {
   var icon = (name, colorName) => {
     const f = figma.createFrame(); f.name = `icon/${name}`; f.fills = []; f.resize(24, 24);
     const v = T(colorName);
-    const stroke = (node, w = 2) => { node.fills = []; if (v) node.strokes = [paint(v)]; node.strokeWeight = w; node.strokeCap = "ROUND"; node.strokeJoin = "ROUND"; };
-    const vec = (d, w) => { const n = figma.createVector(); n.vectorPaths = [{ windingRule: "NONE", data: d }]; stroke(n, w); f.appendChild(n); n.x = 0; n.y = 0; return n; };
+    const stroke = (node, w = 2) => { node.fills = []; if (v) node.strokes = [paint(v)]; node.strokeWeight = w; };
+    const vec = (d, w) => { const n = figma.createVector(); n.vectorPaths = [{ windingRule: "NONE", data: d }]; stroke(n, w); n.strokeCap = "ROUND"; n.strokeJoin = "ROUND"; f.appendChild(n); return n; };
     if (name === "search") { const e = figma.createEllipse(); e.resize(13, 13); e.x = 4; e.y = 4; stroke(e); f.appendChild(e); vec("M 15 15 L 20 20"); }
     if (name === "eye") { vec("M 2.5 12 C 5 7 8.5 5 12 5 C 15.5 5 19 7 21.5 12 C 19 17 15.5 19 12 19 C 8.5 19 5 17 2.5 12 Z"); const d = figma.createEllipse(); d.resize(6, 6); d.x = 9; d.y = 9; stroke(d); f.appendChild(d); }
     if (name === "chevron") vec("M 7 10 L 12 15 L 17 10");
+    if (name === "chevron-right") vec("M 10 7 L 15 12 L 10 17");
     if (name === "calendar") { const r = figma.createRectangle(); r.resize(16, 15); r.x = 4; r.y = 5; r.cornerRadius = 3; stroke(r); f.appendChild(r); vec("M 4 10 L 20 10 M 8 3 L 8 7 M 16 3 L 16 7"); }
     if (name === "clear") { const c = figma.createEllipse(); c.resize(20, 20); c.x = 2; c.y = 2; if (v) c.fills = [paint(v)]; f.appendChild(c); const x = vec("M 9 9 L 15 15 M 15 9 L 9 15", 2); const w = T("ground/ground-2"); if (w) x.strokes = [paint(w)]; }
     if (name === "minus") vec("M 6 12 L 18 12");
@@ -527,110 +528,182 @@ async function buildComponents(index) {
     return f;
   };
 
-  // ---- Input: универсальное поле. Плавающий лейбл, серая заливка, без обводки.
+  // Одно поле = отдельный набор компонентов (state × 5). Содержимое слотов кладётся прямо в компонент.
   var FIELD_STATES = ["empty", "focus", "filled", "error", "disabled"];
-  var inputParts = [];
-  var inputComps = FIELD_STATES.map((state, i) => {
-    const comp = figma.createComponent(); comp.name = `state=${state}`;
-    comp.layoutMode = "VERTICAL"; comp.primaryAxisSizingMode = "AUTO"; comp.counterAxisSizingMode = "FIXED";
-    comp.resize(343, 56); bind(comp, "width", VP("field/width")); comp.fills = [];
-    bind(comp, "itemSpacing", VP("field/hint-gap"));
-    const box = frame("field", "HORIZONTAL"); box.counterAxisAlignItems = "CENTER";
-    box.counterAxisSizingMode = "FIXED"; box.resize(343, 56); bind(box, "height", VP("field/height"));
-    ["paddingLeft", "paddingRight"].forEach((p) => bind(box, p, VP("field/padding-x")));
-    bind(box, "itemSpacing", VP("field/gap")); radius(box, ALL, VP("field/radius"));
-    fill(box, state === "error" ? "background/status-negative-pale" : "background/neutral-soft");
-    if (state === "focus") { const v = T("content/neutral/primary"); if (v) { box.strokes = [paint(v)]; box.strokeAlign = "INSIDE"; bind(box, "strokeWeight", VP("field/focus-ring")); } }
-    comp.appendChild(box); box.layoutSizingHorizontal = "FILL";
-    const lead = makeSlot(comp, "leading", box);
-    const col = frame("text", "VERTICAL"); col.itemSpacing = 0; col.primaryAxisAlignItems = "CENTER";
-    box.appendChild(col); col.layoutSizingHorizontal = "FILL";
-    const raised = state !== "empty";
-    const label = text("Лейбл", raised ? 13 : 16, false, raised ? (state === "error" ? "content/status-negative/primary" : "content/neutral/secondary") : "content/neutral/tertiary");
-    label.name = "label"; bind(label, "fontSize", VP(raised ? "field/label-size" : "field/value-size"));
-    col.appendChild(label); label.layoutSizingHorizontal = "FILL";
-    const valueRow = frame("value-row", "HORIZONTAL"); valueRow.counterAxisAlignItems = "CENTER"; valueRow.itemSpacing = 1;
-    const value = text("Значение", 16, false, "content/neutral/primary"); value.name = "value";
-    bind(value, "fontSize", VP("field/value-size")); valueRow.appendChild(value);
-    if (state === "focus") { const caret = figma.createRectangle(); caret.name = "caret"; caret.resize(2, 20); fill(caret, "content/neutral/primary"); valueRow.appendChild(caret); }
-    if (state === "empty") valueRow.visible = false;
-    if (state === "focus") value.visible = false;
-    col.appendChild(valueRow);
-    const trail = makeSlot(comp, "trailing", box);
-    const hint = text("Подсказка", 13, false, state === "error" ? "content/status-negative/primary" : "content/neutral/secondary");
-    hint.name = "hint"; bind(hint, "fontSize", VP("field/hint-size"));
-    comp.appendChild(hint); hint.layoutSizingHorizontal = "FILL";
-    if (state === "disabled") bind(comp, "opacity", N("opacity/40"));
-    comp.x = i * 400; comp.y = 0;
-    inputParts.push({ label, value, hint, lead, trail });
-    return comp;
-  });
-  var inputSet = combine(inputComps, "Input",
-    "Универсальное поле ввода: серая заливка, плавающий лейбл, слоты leading / trailing, подсказка снизу. Состояния: empty, focus, filled, error, disabled. На его основе собраны все Field/*. Контракт: kb/components/input.json.");
-  var ik = {
-    label: inputSet.addComponentProperty("label", "TEXT", "Лейбл"),
-    value: inputSet.addComponentProperty("value", "TEXT", "Значение"),
-    hint: inputSet.addComponentProperty("hint", "TEXT", "Подсказка"),
-    hasHint: inputSet.addComponentProperty("hasHint", "BOOLEAN", false),
-    leading: inputSet.addComponentProperty("leading", "BOOLEAN", false),
-    trailing: inputSet.addComponentProperty("trailing", "BOOLEAN", false),
+  var buildField = (setName, opt) => {
+    const parts = [];
+    const comps = FIELD_STATES.map((state, i) => {
+      const comp = figma.createComponent(); comp.name = `state=${state}`;
+      comp.layoutMode = "VERTICAL"; comp.primaryAxisSizingMode = "AUTO"; comp.counterAxisSizingMode = "FIXED";
+      comp.resize(343, 56); bind(comp, "width", VP("field/width")); comp.fills = [];
+      bind(comp, "itemSpacing", VP("field/hint-gap"));
+      const box = frame("field", "HORIZONTAL"); box.counterAxisAlignItems = "CENTER";
+      box.counterAxisSizingMode = "FIXED"; box.resize(343, 56);
+      comp.appendChild(box); box.layoutSizingHorizontal = "FILL";
+      bind(box, "height", VP("field/height"));
+      ["paddingLeft", "paddingRight"].forEach((p) => bind(box, p, VP("field/padding-x")));
+      bind(box, "itemSpacing", VP("field/gap")); radius(box, ALL, VP("field/radius"));
+      fill(box, state === "error" ? "background/status-negative-pale" : "background/neutral-soft");
+      if (state === "focus") { const v = T("content/neutral/primary"); if (v) { box.strokes = [paint(v)]; box.strokeAlign = "INSIDE"; box.strokeWeight = 2; } }
+      const lead = makeSlot(comp, "leading", box);
+      if (opt.leading) lead.appendChild(opt.leading());
+      const col = frame("text", "VERTICAL"); col.primaryAxisAlignItems = "CENTER";
+      box.appendChild(col); col.layoutSizingHorizontal = "FILL";
+      const raised = state !== "empty";
+      const label = text(opt.label, raised ? 13 : 16, false, raised ? (state === "error" ? "content/status-negative/primary" : "content/neutral/secondary") : "content/neutral/tertiary");
+      label.name = "label"; bind(label, "fontSize", VP(raised ? "field/label-size" : "field/value-size"));
+      col.appendChild(label); label.layoutSizingHorizontal = "FILL";
+      const valueRow = frame("value-row", "HORIZONTAL"); valueRow.counterAxisAlignItems = "CENTER"; valueRow.itemSpacing = 1;
+      col.appendChild(valueRow);
+      const value = text(opt.value, 16, false, "content/neutral/primary"); value.name = "value";
+      bind(value, "fontSize", VP("field/value-size")); valueRow.appendChild(value);
+      if (state === "focus") { const caret = figma.createRectangle(); caret.name = "caret"; caret.resize(2, 20); fill(caret, "content/neutral/primary"); valueRow.appendChild(caret); value.visible = false; }
+      if (state === "empty") valueRow.visible = false;
+      const trail = makeSlot(comp, "trailing", box);
+      if (opt.trailing) trail.appendChild(opt.trailing());
+      const hint = text(state === "error" ? "Проверьте значение" : (opt.hint || "Подсказка"), 13, false, state === "error" ? "content/status-negative/primary" : "content/neutral/secondary");
+      hint.name = "hint"; bind(hint, "fontSize", VP("field/hint-size"));
+      comp.appendChild(hint); hint.layoutSizingHorizontal = "FILL";
+      if (state === "disabled") bind(comp, "opacity", N("opacity/40"));
+      comp.x = i * 400; comp.y = 0;
+      parts.push({ label, value, hint, lead, trail });
+      return comp;
+    });
+    const set = combine(comps, setName, opt.description);
+    const k = {
+      label: set.addComponentProperty("label", "TEXT", opt.label),
+      value: set.addComponentProperty("value", "TEXT", opt.value),
+      hasHint: set.addComponentProperty("hasHint", "BOOLEAN", !!opt.hint),
+      leading: set.addComponentProperty("leading", "BOOLEAN", !!opt.leading),
+      trailing: set.addComponentProperty("trailing", "BOOLEAN", !!opt.trailing),
+    };
+    parts.forEach(({ label, value, hint, lead, trail }) => {
+      label.componentPropertyReferences = { characters: k.label };
+      value.componentPropertyReferences = { characters: k.value };
+      hint.componentPropertyReferences = { visible: k.hasHint };
+      try { lead.componentPropertyReferences = { visible: k.leading }; trail.componentPropertyReferences = { visible: k.trailing }; } catch (e) { say(`⚠ слоты ${setName}: ${e.message}`); }
+    });
+    return set;
   };
-  inputParts.forEach(({ label, value, hint, lead, trail }) => {
-    label.componentPropertyReferences = { characters: ik.label };
-    value.componentPropertyReferences = { characters: ik.value };
-    hint.componentPropertyReferences = { characters: ik.hint, visible: ik.hasHint };
-    try { lead.componentPropertyReferences = { visible: ik.leading }; trail.componentPropertyReferences = { visible: ik.trailing }; } catch (e) { say(`⚠ слоты Input: ${e.message}`); }
-  });
-  var inHeader = text("Input и поля", 32, true, "content/neutral/primary"); inHeader.y = cursorY; page.appendChild(inHeader);
-  inputSet.x = 0; inputSet.y = cursorY + 56;
-  var fieldY = inputSet.y + inputSet.height + 80;
-  say("✓ Input: 5 состояний, свойства label / value / hint / hasHint / leading / trailing");
 
-  } catch (e) { fail("Input", e); }
-  try {
-  // ---- Field/*: наборы на базе инстансов Input. Меняете Input — меняются все поля.
-  var putInSlot = (inst, slotName, node) => {
-    const sl = inst.findOne((n) => n.type === "SLOT" && n.name === slotName);
-    if (!sl) { say(`⚠ нет слота ${slotName}`); return; }
-    try { sl.appendChild(node); } catch (e) { say(`⚠ не удалось положить в слот ${slotName}: ${e.message}`); }
-  };
+  var fieldHeader = text("Input и поля", 32, true, "content/neutral/primary"); fieldHeader.y = cursorY; page.appendChild(fieldHeader);
+  var fieldY = cursorY + 56;
   var FIELDS = [
-    { name: "password", label: "Пароль", value: "••••••••", trailing: () => icon("eye", "content/neutral/secondary"), hint: "Минимум 8 символов" },
-    { name: "number", label: "Количество", value: "2", trailing: () => {
+    ["Input", { label: "Лейбл", value: "Значение", description: "Универсальное поле: серая заливка, плавающий лейбл, пустые слоты leading / trailing, подсказка. Состояния: empty, focus, filled, error, disabled. Контракт: kb/components/input.json." }],
+    ["Field/password", { label: "Пароль", value: "••••••••", hint: "Минимум 8 символов", trailing: () => icon("eye", "content/neutral/secondary"), description: "Поле пароля: значение точками, справа — показать пароль." }],
+    ["Field/number", { label: "Количество", value: "2", description: "Числовое поле со степпером − +.", trailing: () => {
         const g = frame("stepper", "HORIZONTAL"); g.itemSpacing = 8;
         for (const n of ["minus", "plus"]) {
           const b = frame(`step-${n}`, "HORIZONTAL"); b.primaryAxisAlignItems = "CENTER"; b.counterAxisAlignItems = "CENTER";
           b.primaryAxisSizingMode = "FIXED"; b.counterAxisSizingMode = "FIXED"; b.resize(32, 32); b.cornerRadius = 10;
           fill(b, "ground/ground-2"); b.appendChild(icon(n, "content/neutral/primary")); g.appendChild(b);
         }
-        return g; } },
-    { name: "search", label: "Найти", value: "Пицца", leading: () => icon("search", "content/neutral/secondary"), trailing: () => icon("clear", "content/neutral/tertiary") },
-    { name: "select", label: "Город", value: "Москва", trailing: () => icon("chevron", "content/neutral/secondary") },
-    { name: "phone", label: "Телефон", value: "900 000-00-00", leading: () => text("+7", 16, false, "content/neutral/primary") },
-    { name: "date", label: "Дата доставки", value: "12 ноября", trailing: () => icon("calendar", "content/neutral/secondary") },
+        return g; } }],
+    ["Field/search", { label: "Найти", value: "Пицца", leading: () => icon("search", "content/neutral/secondary"), trailing: () => icon("clear", "content/neutral/tertiary"), description: "Поиск: слева лупа, справа — очистить." }],
+    ["Field/select", { label: "Город", value: "Москва", trailing: () => icon("chevron", "content/neutral/secondary"), description: "Выбор из списка: справа шеврон, по нажатию открывается список или шит." }],
+    ["Field/phone", { label: "Телефон", value: "900 000-00-00", leading: () => text("+7", 16, false, "content/neutral/primary"), description: "Телефон: префикс страны в слоте leading." }],
+    ["Field/date", { label: "Дата доставки", value: "12 ноября", trailing: () => icon("calendar", "content/neutral/secondary"), description: "Дата: справа календарь, по нажатию открывается выбор даты." }],
   ];
-  for (const f of FIELDS) {
-    const comps = FIELD_STATES.map((state, i) => {
-      const comp = figma.createComponent(); comp.name = `state=${state}`;
-      comp.layoutMode = "VERTICAL"; comp.primaryAxisSizingMode = "AUTO"; comp.counterAxisSizingMode = "FIXED"; comp.fills = [];
-      comp.resize(343, 56); bind(comp, "width", VP("field/width"));
-      const inst = inputComps[i].createInstance();
-      comp.appendChild(inst); inst.layoutSizingHorizontal = "FILL";
-      const props = { [ik.label]: f.label, [ik.value]: f.value, [ik.leading]: !!f.leading, [ik.trailing]: !!f.trailing };
-      if (f.hint) { props[ik.hint] = f.hint; props[ik.hasHint] = true; }
-      if (state === "error") { props[ik.hint] = "Проверьте значение"; props[ik.hasHint] = true; }
-      inst.setProperties(props);
-      if (f.leading) putInSlot(inst, "leading", f.leading());
-      if (f.trailing) putInSlot(inst, "trailing", f.trailing());
-      comp.x = i * 400; comp.y = 0;
-      return comp;
-    });
-    const set = combine(comps, `Field/${f.name}`, `Поле «${f.name}» на базе Input. Состояния как у Input. Контракт: kb/components/input.json → fields.`);
-    set.x = 0; set.y = fieldY; fieldY += set.height + 60;
+  var builtFields = [];
+  for (const [name, opt] of FIELDS) {
+    try {
+      const set = buildField(name, opt);
+      set.x = 0; set.y = fieldY; fieldY += set.height + 60;
+      builtFields.push(name);
+    } catch (e) { fail(name, e); }
   }
   cursorY = fieldY + 100;
-  say(`✓ Field: ${FIELDS.map((f) => f.name).join(", ")}`);
-  } catch (e) { fail("Field", e); }
+  say(`✓ Поля: ${builtFields.join(", ")}`);
+
+  // ---- Switch: checked × state. Включённый — чёрный, как остальные контролы.
+  try {
+    const swComps = [], swLabels = [];
+    ["false", "true"].forEach((on, r) => ["default", "disabled"].forEach((state, ci) => {
+      const comp = figma.createComponent(); comp.name = `checked=${on}, state=${state}`;
+      comp.layoutMode = "HORIZONTAL"; comp.primaryAxisSizingMode = "AUTO"; comp.counterAxisSizingMode = "AUTO";
+      comp.counterAxisAlignItems = "CENTER"; comp.fills = []; bind(comp, "itemSpacing", VP("control/selector/gap"));
+      const track = frame("track", "HORIZONTAL"); track.counterAxisAlignItems = "CENTER";
+      track.primaryAxisAlignItems = on === "true" ? "MAX" : "MIN";
+      track.primaryAxisSizingMode = "FIXED"; track.counterAxisSizingMode = "FIXED"; track.resize(52, 32);
+      comp.appendChild(track);
+      bind(track, "width", VP("control/switch/width")); bind(track, "height", VP("control/switch/height"));
+      ["paddingLeft", "paddingRight", "paddingTop", "paddingBottom"].forEach((p) => bind(track, p, VP("control/switch/inset")));
+      track.cornerRadius = 999;
+      fill(track, on === "true" ? "background/neutral-deep" : "background/neutral-soft");
+      const knob = figma.createEllipse(); knob.name = "knob"; knob.resize(28, 28);
+      track.appendChild(knob);
+      bind(knob, "width", VP("control/switch/knob")); bind(knob, "height", VP("control/switch/knob"));
+      fill(knob, "ground/ground-2");
+      const label = text("Подпись", 15, false, "content/neutral/primary"); label.name = "label"; comp.appendChild(label);
+      bind(label, "fontSize", VP("control/m/font-size"));
+      if (state === "disabled") bind(comp, "opacity", N("opacity/40"));
+      comp.x = ci * 200; comp.y = r * 56; swComps.push(comp); swLabels.push(label);
+    }));
+    const swSet = combine(swComps, "Switch", "Свитч. Выключенный — серый трек, включённый — чёрный, ручка белая. Контракт: kb/components/switch.json.");
+    const lk = swSet.addComponentProperty("label", "TEXT", "Подпись");
+    const hk = swSet.addComponentProperty("hasLabel", "BOOLEAN", true);
+    swLabels.forEach((l) => (l.componentPropertyReferences = { characters: lk, visible: hk }));
+    const h = text("Switch", 32, true, "content/neutral/primary"); h.y = cursorY; page.appendChild(h);
+    swSet.x = 0; swSet.y = cursorY + 56; cursorY = swSet.y + swSet.height + 160;
+    say("✓ Switch: 4 варианта");
+  } catch (e) { fail("Switch", e); }
+
+  // ---- Cell: ячейка списка. Слоты left / content / right.
+  try {
+    const cellComps = [], cellParts = [];
+    ["default", "pressed", "disabled"].forEach((state, ci) => {
+      const comp = figma.createComponent(); comp.name = `state=${state}`;
+      comp.layoutMode = "HORIZONTAL"; comp.primaryAxisSizingMode = "FIXED"; comp.counterAxisSizingMode = "AUTO";
+      comp.counterAxisAlignItems = "CENTER"; comp.resize(375, 64); comp.clipsContent = true;
+      bind(comp, "width", VP("cell/width")); bind(comp, "minHeight", VP("cell/min-height"));
+      ["paddingLeft", "paddingRight"].forEach((p) => bind(comp, p, VP("cell/padding-x")));
+      ["paddingTop", "paddingBottom"].forEach((p) => bind(comp, p, VP("cell/padding-y")));
+      bind(comp, "itemSpacing", VP("cell/gap"));
+      fill(comp, "ground/ground-2");
+      const left = makeSlot(comp, "left", comp);
+      let leftContent = null;
+      try {
+        if (typeof riSet !== "undefined" && riSet) leftContent = riSet.children.find((c) => c.name === "size=medium, shape=circle").createInstance();
+      } catch (e) { leftContent = null; }
+      if (!leftContent) { leftContent = frame("icon-placeholder", "HORIZONTAL"); leftContent.resize(40, 40); leftContent.cornerRadius = 999; fill(leftContent, "background/neutral-soft"); }
+      left.appendChild(leftContent);
+      const content = makeSlot(comp, "content", comp); content.layoutMode = "VERTICAL"; content.itemSpacing = 2;
+      content.layoutSizingHorizontal = "FILL";
+      const title = text("Заголовок ячейки", 16, false, "content/neutral/primary"); title.name = "title";
+      bind(title, "fontSize", VP("cell/title-size")); content.appendChild(title); title.layoutSizingHorizontal = "FILL";
+      const subtitle = text("Подзаголовок", 13, false, "content/neutral/secondary"); subtitle.name = "subtitle";
+      bind(subtitle, "fontSize", VP("cell/subtitle-size")); content.appendChild(subtitle); subtitle.layoutSizingHorizontal = "FILL";
+      const right = makeSlot(comp, "right", comp);
+      right.appendChild(icon("chevron-right", "content/neutral/tertiary"));
+      const div = figma.createRectangle(); div.name = "divider"; fill(div, "border/neutral/pale");
+      comp.appendChild(div); div.layoutPositioning = "ABSOLUTE"; div.resize(comp.width, 1); div.x = 0; div.y = comp.height - 1;
+      div.constraints = { horizontal: "STRETCH", vertical: "MAX" };
+      stateLayer(comp, state === "pressed" ? "pressed" : "default", "content/neutral/primary");
+      if (state === "disabled") bind(comp, "opacity", N("opacity/40"));
+      comp.x = ci * 420; comp.y = 0;
+      cellComps.push(comp); cellParts.push({ left, right, title, subtitle, div });
+    });
+    const cellSet = combine(cellComps, "Cell", "Ячейка списка: слоты left (по умолчанию RichIcon), content (заголовок + подзаголовок), right (по умолчанию шеврон; можно Switch, Checkbox, значение). Контракт: kb/components/cell.json.");
+    const k = {
+      title: cellSet.addComponentProperty("title", "TEXT", "Заголовок ячейки"),
+      subtitle: cellSet.addComponentProperty("subtitle", "TEXT", "Подзаголовок"),
+      hasSubtitle: cellSet.addComponentProperty("hasSubtitle", "BOOLEAN", true),
+      left: cellSet.addComponentProperty("left", "BOOLEAN", true),
+      right: cellSet.addComponentProperty("right", "BOOLEAN", true),
+      divider: cellSet.addComponentProperty("divider", "BOOLEAN", true),
+    };
+    cellParts.forEach(({ left, right, title, subtitle, div }) => {
+      title.componentPropertyReferences = { characters: k.title };
+      subtitle.componentPropertyReferences = { characters: k.subtitle, visible: k.hasSubtitle };
+      div.componentPropertyReferences = { visible: k.divider };
+      try { left.componentPropertyReferences = { visible: k.left }; right.componentPropertyReferences = { visible: k.right }; } catch (e) { say(`⚠ слоты Cell: ${e.message}`); }
+    });
+    const h = text("Cell", 32, true, "content/neutral/primary"); h.y = cursorY; page.appendChild(h);
+    cellSet.x = 0; cellSet.y = cursorY + 56; cursorY = cellSet.y + cellSet.height + 160;
+    say("✓ Cell: 3 состояния, слоты left / content / right");
+  } catch (e) { fail("Cell", e); }
+  // ================= /Поля ввода =================
+  } catch (e) { fail("Поля", e); }
   // ================= /Поля ввода =================
 
   var buttonInstance = (meaning, contrast, size, label) => {

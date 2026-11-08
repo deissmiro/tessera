@@ -368,6 +368,45 @@
           },
           "$description": "Толщина кольца выбранного радио."
         }
+      },
+      "switch": {
+        "$description": "Свитч.",
+        "width": {
+          "$type": "number",
+          "$modes": {
+            "s": 52,
+            "m": 52,
+            "l": 52
+          },
+          "$description": "Ширина трека."
+        },
+        "height": {
+          "$type": "number",
+          "$modes": {
+            "s": 32,
+            "m": 32,
+            "l": 32
+          },
+          "$description": "Высота трека."
+        },
+        "knob": {
+          "$type": "number",
+          "$modes": {
+            "s": 28,
+            "m": 28,
+            "l": 28
+          },
+          "$description": "Размер ручки."
+        },
+        "inset": {
+          "$type": "number",
+          "$modes": {
+            "s": 2,
+            "m": 2,
+            "l": 2
+          },
+          "$description": "Отступ ручки от края трека."
+        }
       }
     },
     "navbar": {
@@ -611,6 +650,72 @@
           "l": 343
         },
         "$description": "Ширина поля по умолчанию."
+      }
+    },
+    "cell": {
+      "$description": "Ячейка списка.",
+      "min-height": {
+        "$type": "number",
+        "$modes": {
+          "s": 64,
+          "m": 64,
+          "l": 64
+        },
+        "$description": "Минимальная высота ячейки."
+      },
+      "padding-x": {
+        "$type": "number",
+        "$modes": {
+          "s": 16,
+          "m": 16,
+          "l": 16
+        },
+        "$description": "Горизонтальный отступ."
+      },
+      "padding-y": {
+        "$type": "number",
+        "$modes": {
+          "s": 12,
+          "m": 12,
+          "l": 12
+        },
+        "$description": "Вертикальный отступ."
+      },
+      "gap": {
+        "$type": "number",
+        "$modes": {
+          "s": 12,
+          "m": 12,
+          "l": 12
+        },
+        "$description": "Шаг между слотами."
+      },
+      "title-size": {
+        "$type": "number",
+        "$modes": {
+          "s": 16,
+          "m": 16,
+          "l": 16
+        },
+        "$description": "Кегль заголовка."
+      },
+      "subtitle-size": {
+        "$type": "number",
+        "$modes": {
+          "s": 13,
+          "m": 13,
+          "l": 13
+        },
+        "$description": "Кегль подзаголовка."
+      },
+      "width": {
+        "$type": "number",
+        "$modes": {
+          "s": 375,
+          "m": 375,
+          "l": 375
+        },
+        "$description": "Ширина ячейки по умолчанию."
       }
     }
   }

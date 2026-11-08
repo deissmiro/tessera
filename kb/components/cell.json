@@ -1,0 +1,63 @@
+{
+  "name": "cell",
+  "figmaName": "Cell",
+  "summary": "Ячейка списка: три слота — left (по умолчанию RichIcon medium circle), content (заголовок + подзаголовок), right (по умолчанию шеврон; кладите Switch, Checkbox, Radio, значение, бейдж).",
+  "props": {
+    "state": {
+      "kind": "variant",
+      "values": [
+        "default",
+        "pressed",
+        "disabled"
+      ]
+    },
+    "title": {
+      "kind": "text"
+    },
+    "subtitle": {
+      "kind": "text"
+    },
+    "hasSubtitle": {
+      "kind": "boolean",
+      "default": true
+    },
+    "left": {
+      "kind": "boolean",
+      "default": true
+    },
+    "right": {
+      "kind": "boolean",
+      "default": true
+    },
+    "divider": {
+      "kind": "boolean",
+      "default": true
+    }
+  },
+  "slots": {
+    "left": {
+      "kind": "figma-slot"
+    },
+    "content": {
+      "kind": "figma-slot"
+    },
+    "right": {
+      "kind": "figma-slot"
+    }
+  },
+  "colors": {
+    "fill": "ground/ground-2",
+    "title": "content/neutral/primary",
+    "subtitle": "content/neutral/secondary",
+    "divider": "border/neutral/pale",
+    "pressed": "слой content/neutral/primary + opacity/20"
+  },
+  "layout": {
+    "min-height": "viewport/cell/min-height",
+    "padding": "viewport/cell/padding-x × padding-y",
+    "gap": "viewport/cell/gap",
+    "title": "viewport/cell/title-size",
+    "subtitle": "viewport/cell/subtitle-size",
+    "width": "viewport/cell/width"
+  }
+}

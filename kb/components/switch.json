@@ -1,0 +1,34 @@
+{
+  "name": "switch",
+  "figmaName": "Switch",
+  "summary": "Свитч в мягком стиле: выключенный — серый трек (background/neutral-soft), включённый — чёрный (background/neutral-deep), ручка белая (ground/ground-2).",
+  "props": {
+    "checked": {
+      "kind": "variant",
+      "values": [
+        "false",
+        "true"
+      ]
+    },
+    "state": {
+      "kind": "variant",
+      "values": [
+        "default",
+        "disabled"
+      ]
+    },
+    "label": {
+      "kind": "text",
+      "default": "Подпись"
+    },
+    "hasLabel": {
+      "kind": "boolean",
+      "default": true
+    }
+  },
+  "layout": {
+    "track": "viewport/control/switch/width × height, полное скругление",
+    "knob": "viewport/control/switch/knob, отступ viewport/control/switch/inset",
+    "gap": "viewport/control/selector/gap"
+  }
+}
