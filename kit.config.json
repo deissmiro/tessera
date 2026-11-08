@@ -1,0 +1,57 @@
+{
+  "name": "Tessera",
+  "version": "0.2.0",
+  "description": "Открытый гибкий кит. Сейчас в работе только цвет. Источник правды — этот репозиторий.",
+  "layers": [
+    {
+      "id": "palette",
+      "collection": "0 · Palette",
+      "axis": null,
+      "files": "tokens/palette/*.json",
+      "description": "Библиотека палитр: сырые цветовые рампы всех палитр в одной коллекции без модов (<палитра>/<рампа>/<ступень>). Ничего не знает о брендах и темах. Скрыта из пикеров."
+    },
+    {
+      "id": "brand",
+      "collection": "1 · Brand",
+      "axis": "brand",
+      "files": "tokens/brand/{mode}.json",
+      "description": "Верхний уровень: собирательный образ бренда. Один мод = один бренд. Сейчас — цвет (какая палитра, опорные цвета, контент на них); дальше сюда же типографика, скругления, размеры."
+    },
+    {
+      "id": "theme",
+      "collection": "2 · Theme",
+      "axis": "theme",
+      "files": "tokens/theme.json",
+      "description": "Семантика цвета по модели kb/color-model.json. Генерируется. Ссылается только на Brand, поэтому любой бренд работает в любой теме."
+    }
+  ],
+  "axes": {
+    "brand": {
+      "modes": [
+        "tessera",
+        "sunny"
+      ],
+      "default": "tessera",
+      "description": "Добавляется tools/palette.py из brands/<id>.brand.json."
+    },
+    "theme": {
+      "modes": [
+        "light",
+        "dark"
+      ],
+      "default": "light"
+    }
+  },
+  "references": {
+    "palette": [],
+    "brand": [
+      "palette"
+    ],
+    "theme": [
+      "brand"
+    ]
+  },
+  "contrast": {
+    "pairs": "kb/contrast-pairs.json"
+  }
+}

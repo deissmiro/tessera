@@ -1,0 +1,29 @@
+<style>
+  body { font: 12px Inter, system-ui, sans-serif; margin: 12px; color: #222; }
+  h3 { font-size: 12px; margin: 14px 0 6px; }
+  input[type=text] { width: 100%; box-sizing: border-box; padding: 6px; border: 1px solid #ccc; border-radius: 6px; font: inherit; }
+  input[type=file] { width: 100%; }
+  button { margin-top: 8px; width: 100%; padding: 8px; border: 0; border-radius: 6px; background: #4f46e5; color: #fff; font-weight: 600; cursor: pointer; }
+  button.secondary { background: #eef; color: #4f46e5; }
+  button:disabled { opacity: .4; }
+  .hint { color: #777; margin: 4px 0 0; }
+  pre { background: #f4f4f5; padding: 8px; border-radius: 6px; max-height: 120px; overflow: auto; white-space: pre-wrap; }
+</style>
+<h3>Из репозитория (рекомендуется)</h3>
+<input id="url" type="text" placeholder="https://raw.githubusercontent.com/<user>/<repo>/main/dist/figma/variables.json">
+<p class="hint">Ссылка сохраняется. Дальше обновляйте одной командой: Plugins → Tessera Sync → Обновить из репозитория.</p>
+<button id="fromUrl">Обновить из репозитория</button>
+<h3>Или из файла</h3>
+<input id="v" type="file" accept=".json">
+<button id="fromFile" class="secondary" disabled>Загрузить файл</button>
+<p><label><input id="cp" type="checkbox" checked> Пересобрать проверочную страницу brand × theme</label></p>
+<pre id="log">—</pre>
+<script>
+  const $ = (id) => document.getElementById(id);
+  let fileData = null;
+  $("v").onchange = async () => { fileData = JSON.parse(await $("v").files[0].text()); $("fromFile").disabled = false; };
+  const send = (m) => { $("log").textContent = "Синхронизация…"; parent.postMessage({ pluginMessage: { checkPage: $("cp").checked, ...m } }, "*"); };
+  $("fromUrl").onclick = () => send({ type: "sync-url", url: $("url").value.trim() });
+  $("fromFile").onclick = () => send({ type: "sync", variables: fileData });
+  onmessage = (e) => { const m = e.data.pluginMessage; if (!m) return; if ("url" in m) $("url").value = m.url; if (m.log) $("log").textContent = m.log; };
+</script>

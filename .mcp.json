@@ -1,0 +1,5 @@
+{
+  "mcpServers": {
+    "tessera-kit": { "command": "node", "args": ["mcp/server.mjs"] }
+  }
+}

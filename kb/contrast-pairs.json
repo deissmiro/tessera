@@ -1,0 +1,221 @@
+{
+  "$description": "Сгенерировано из kb/color-model.json → pairs. Правьте правила там.",
+  "pairs": [
+    {
+      "fg": "theme.content.neutral.primary",
+      "bg": "theme.ground.page",
+      "min": 7
+    },
+    {
+      "fg": "theme.content.neutral.primary",
+      "bg": "theme.ground.island",
+      "min": 7
+    },
+    {
+      "fg": "theme.content.neutral.secondary",
+      "bg": "theme.ground.page",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.neutral.secondary",
+      "bg": "theme.ground.island",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.neutral.tertiary",
+      "bg": "theme.ground.page",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.neutral.tertiary",
+      "bg": "theme.ground.island",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.neutral.primary",
+      "bg": "theme.background.neutral-soft",
+      "min": 7
+    },
+    {
+      "fg": "theme.content.neutral.on-deep",
+      "bg": "theme.background.neutral-deep",
+      "min": 7
+    },
+    {
+      "fg": "theme.content.inverse.primary",
+      "bg": "theme.background.inverse",
+      "min": 7
+    },
+    {
+      "fg": "theme.content.static-light.primary",
+      "bg": "theme.background.static-dark-deep",
+      "min": 7
+    },
+    {
+      "fg": "theme.content.static-dark.primary",
+      "bg": "theme.background.static-light-pale",
+      "min": 7
+    },
+    {
+      "fg": "theme.content.accent-duo.primary",
+      "bg": "theme.ground.island",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.accent-uno.primary",
+      "bg": "theme.ground.island",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.brand-duo.primary",
+      "bg": "theme.ground.island",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.brand-uno.primary",
+      "bg": "theme.ground.island",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.status-negative.primary",
+      "bg": "theme.ground.island",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.status-positive.primary",
+      "bg": "theme.ground.island",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.accent-duo.primary",
+      "bg": "theme.background.accent-duo-pale",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.accent-uno.primary",
+      "bg": "theme.background.accent-uno-pale",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.brand-duo.primary",
+      "bg": "theme.background.brand-duo-pale",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.brand-uno.primary",
+      "bg": "theme.background.brand-uno-pale",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.status-negative.primary",
+      "bg": "theme.background.status-negative-pale",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.status-positive.primary",
+      "bg": "theme.background.status-positive-pale",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.accent-duo.primary",
+      "bg": "theme.background.accent-duo-soft",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.accent-uno.primary",
+      "bg": "theme.background.accent-uno-soft",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.brand-duo.primary",
+      "bg": "theme.background.brand-duo-soft",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.brand-uno.primary",
+      "bg": "theme.background.brand-uno-soft",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.status-negative.primary",
+      "bg": "theme.background.status-negative-soft",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.status-positive.primary",
+      "bg": "theme.background.status-positive-soft",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.accent-duo.on-deep",
+      "bg": "theme.background.accent-duo-deep",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.accent-uno.on-deep",
+      "bg": "theme.background.accent-uno-deep",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.brand-duo.on-deep",
+      "bg": "theme.background.brand-duo-deep",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.brand-uno.on-deep",
+      "bg": "theme.background.brand-uno-deep",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.status-negative.on-deep",
+      "bg": "theme.background.status-negative-deep",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.content.status-positive.on-deep",
+      "bg": "theme.background.status-positive-deep",
+      "min": 4.5
+    },
+    {
+      "fg": "theme.border.neutral.deep",
+      "bg": "theme.ground.island",
+      "min": 3
+    },
+    {
+      "fg": "theme.background.accent-duo-deep",
+      "bg": "theme.ground.page",
+      "min": 3,
+      "severity": "warn"
+    },
+    {
+      "fg": "theme.background.accent-uno-deep",
+      "bg": "theme.ground.page",
+      "min": 3,
+      "severity": "warn"
+    },
+    {
+      "fg": "theme.background.brand-duo-deep",
+      "bg": "theme.ground.page",
+      "min": 3,
+      "severity": "warn"
+    },
+    {
+      "fg": "theme.background.brand-uno-deep",
+      "bg": "theme.ground.page",
+      "min": 3,
+      "severity": "warn"
+    },
+    {
+      "fg": "theme.background.status-negative-deep",
+      "bg": "theme.ground.page",
+      "min": 3,
+      "severity": "warn"
+    },
+    {
+      "fg": "theme.background.status-positive-deep",
+      "bg": "theme.ground.page",
+      "min": 3,
+      "severity": "warn"
+    }
+  ]
+}

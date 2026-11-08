@@ -1,0 +1,879 @@
+{
+  "theme": {
+    "$description": "Семантика цвета. Сгенерировано tools/theme_gen.py из kb/color-model.json — руками не править.",
+    "ground": {
+      "$description": "Земля: цвет страницы и острова на ней — и больше ничего. Остров — любой крупный блок, лежащий на странице (карточка, панель, секция).",
+      "page": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.neutral.100}",
+          "dark": "{brand.color.neutral.950}"
+        },
+        "$description": "Земля · page."
+      },
+      "island": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.white}",
+          "dark": "{brand.color.neutral.900}"
+        },
+        "$description": "Земля · island."
+      }
+    },
+    "background": {
+      "$description": "Заливки элементов поверх земли: кнопки, чипы, плашки, бейджи. Плоский набор: <смысл>-<контраст>.",
+      "neutral-pale": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.neutral.50}",
+          "dark": "{brand.color.neutral.850}"
+        },
+        "$description": "Заливки элементов поверх земли · neutral · pale. Основной нейтральный цвет интерфейса."
+      },
+      "neutral-soft": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.neutral.100}",
+          "dark": "{brand.color.neutral.800}"
+        },
+        "$description": "Заливки элементов поверх земли · neutral · soft. Основной нейтральный цвет интерфейса."
+      },
+      "neutral-deep": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.neutral.900}",
+          "dark": "{brand.color.neutral.100}"
+        },
+        "$description": "Заливки элементов поверх земли · neutral · deep. Основной нейтральный цвет интерфейса."
+      },
+      "accent-uno-pale": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.accent-uno.50}",
+          "dark": "{brand.color.accent-uno.950}"
+        },
+        "$description": "Заливки элементов поверх земли · accent-uno · pale. Интерактивный акцент."
+      },
+      "accent-uno-soft": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.accent-uno.100}",
+          "dark": "{brand.color.accent-uno.900}"
+        },
+        "$description": "Заливки элементов поверх земли · accent-uno · soft. Интерактивный акцент."
+      },
+      "accent-uno-deep": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.accent-uno.base}",
+          "dark": "{brand.color.accent-uno.dark-base}"
+        },
+        "$description": "Заливки элементов поверх земли · accent-uno · deep. Интерактивный акцент."
+      },
+      "accent-duo-pale": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.accent-duo.50}",
+          "dark": "{brand.color.accent-duo.950}"
+        },
+        "$description": "Заливки элементов поверх земли · accent-duo · pale. Интерактивный акцент."
+      },
+      "accent-duo-soft": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.accent-duo.100}",
+          "dark": "{brand.color.accent-duo.900}"
+        },
+        "$description": "Заливки элементов поверх земли · accent-duo · soft. Интерактивный акцент."
+      },
+      "accent-duo-deep": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.accent-duo.base}",
+          "dark": "{brand.color.accent-duo.dark-base}"
+        },
+        "$description": "Заливки элементов поверх земли · accent-duo · deep. Интерактивный акцент."
+      },
+      "status-positive-pale": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.positive.50}",
+          "dark": "{brand.color.positive.950}"
+        },
+        "$description": "Заливки элементов поверх земли · status-positive · pale. Статусы: успех и ошибка."
+      },
+      "status-positive-soft": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.positive.100}",
+          "dark": "{brand.color.positive.900}"
+        },
+        "$description": "Заливки элементов поверх земли · status-positive · soft. Статусы: успех и ошибка."
+      },
+      "status-positive-deep": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.positive.base}",
+          "dark": "{brand.color.positive.dark-base}"
+        },
+        "$description": "Заливки элементов поверх земли · status-positive · deep. Статусы: успех и ошибка."
+      },
+      "status-negative-pale": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.negative.50}",
+          "dark": "{brand.color.negative.950}"
+        },
+        "$description": "Заливки элементов поверх земли · status-negative · pale. Статусы: успех и ошибка."
+      },
+      "status-negative-soft": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.negative.100}",
+          "dark": "{brand.color.negative.900}"
+        },
+        "$description": "Заливки элементов поверх земли · status-negative · soft. Статусы: успех и ошибка."
+      },
+      "status-negative-deep": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.negative.base}",
+          "dark": "{brand.color.negative.dark-base}"
+        },
+        "$description": "Заливки элементов поверх земли · status-negative · deep. Статусы: успех и ошибка."
+      },
+      "brand-uno-pale": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.brand-uno.50}",
+          "dark": "{brand.color.brand-uno.950}"
+        },
+        "$description": "Заливки элементов поверх земли · brand-uno · pale. Фирменные цвета для промо и айдентики, не для интерактива."
+      },
+      "brand-uno-soft": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.brand-uno.100}",
+          "dark": "{brand.color.brand-uno.900}"
+        },
+        "$description": "Заливки элементов поверх земли · brand-uno · soft. Фирменные цвета для промо и айдентики, не для интерактива."
+      },
+      "brand-uno-deep": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.brand-uno.base}",
+          "dark": "{brand.color.brand-uno.dark-base}"
+        },
+        "$description": "Заливки элементов поверх земли · brand-uno · deep. Фирменные цвета для промо и айдентики, не для интерактива."
+      },
+      "brand-duo-pale": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.brand-duo.50}",
+          "dark": "{brand.color.brand-duo.950}"
+        },
+        "$description": "Заливки элементов поверх земли · brand-duo · pale. Фирменные цвета для промо и айдентики, не для интерактива."
+      },
+      "brand-duo-soft": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.brand-duo.100}",
+          "dark": "{brand.color.brand-duo.900}"
+        },
+        "$description": "Заливки элементов поверх земли · brand-duo · soft. Фирменные цвета для промо и айдентики, не для интерактива."
+      },
+      "brand-duo-deep": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.brand-duo.base}",
+          "dark": "{brand.color.brand-duo.dark-base}"
+        },
+        "$description": "Заливки элементов поверх земли · brand-duo · deep. Фирменные цвета для промо и айдентики, не для интерактива."
+      },
+      "static-light-pale": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.white}",
+          "dark": "{brand.color.white}"
+        },
+        "$description": "Заливки элементов поверх земли · static-light · pale. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+      },
+      "static-light-soft": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.neutral.100}",
+          "dark": "{brand.color.neutral.100}"
+        },
+        "$description": "Заливки элементов поверх земли · static-light · soft. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+      },
+      "static-light-deep": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.neutral.200}",
+          "dark": "{brand.color.neutral.200}"
+        },
+        "$description": "Заливки элементов поверх земли · static-light · deep. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+      },
+      "static-dark-pale": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.neutral.800}",
+          "dark": "{brand.color.neutral.800}"
+        },
+        "$description": "Заливки элементов поверх земли · static-dark · pale. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+      },
+      "static-dark-soft": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.neutral.900}",
+          "dark": "{brand.color.neutral.900}"
+        },
+        "$description": "Заливки элементов поверх земли · static-dark · soft. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+      },
+      "static-dark-deep": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.neutral.950}",
+          "dark": "{brand.color.neutral.950}"
+        },
+        "$description": "Заливки элементов поверх земли · static-dark · deep. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+      },
+      "inverse": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.neutral.900}",
+          "dark": "{brand.color.neutral.100}"
+        },
+        "$description": "Заливки элементов поверх земли · inverse. Инверсный цвет: тосты, тултипы, инверсные плашки."
+      }
+    },
+    "over-background": {
+      "$description": "Полупрозрачные слои поверх любой заливки: ховер, нажатие, выделение, затемнение. Плоский набор: <смысл>-<контраст>.",
+      "neutral-pale": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.alpha.black-4}",
+          "dark": "{brand.color.alpha.white-4}"
+        },
+        "$description": "Полупрозрачные слои поверх любой заливки · neutral · pale. Основной нейтральный цвет интерфейса."
+      },
+      "neutral-soft": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.alpha.black-8}",
+          "dark": "{brand.color.alpha.white-8}"
+        },
+        "$description": "Полупрозрачные слои поверх любой заливки · neutral · soft. Основной нейтральный цвет интерфейса."
+      },
+      "neutral-deep": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.alpha.black-16}",
+          "dark": "{brand.color.alpha.white-16}"
+        },
+        "$description": "Полупрозрачные слои поверх любой заливки · neutral · deep. Основной нейтральный цвет интерфейса."
+      },
+      "static-light-pale": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.alpha.white-16}",
+          "dark": "{brand.color.alpha.white-16}"
+        },
+        "$description": "Полупрозрачные слои поверх любой заливки · static-light · pale. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+      },
+      "static-light-soft": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.alpha.white-24}",
+          "dark": "{brand.color.alpha.white-24}"
+        },
+        "$description": "Полупрозрачные слои поверх любой заливки · static-light · soft. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+      },
+      "static-light-deep": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.alpha.white-48}",
+          "dark": "{brand.color.alpha.white-48}"
+        },
+        "$description": "Полупрозрачные слои поверх любой заливки · static-light · deep. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+      },
+      "static-dark-pale": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.alpha.black-16}",
+          "dark": "{brand.color.alpha.black-16}"
+        },
+        "$description": "Полупрозрачные слои поверх любой заливки · static-dark · pale. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+      },
+      "static-dark-soft": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.alpha.black-24}",
+          "dark": "{brand.color.alpha.black-24}"
+        },
+        "$description": "Полупрозрачные слои поверх любой заливки · static-dark · soft. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+      },
+      "static-dark-deep": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.alpha.black-48}",
+          "dark": "{brand.color.alpha.black-48}"
+        },
+        "$description": "Полупрозрачные слои поверх любой заливки · static-dark · deep. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+      },
+      "inverse": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.alpha.white-8}",
+          "dark": "{brand.color.alpha.black-8}"
+        },
+        "$description": "Полупрозрачные слои поверх любой заливки · inverse. Инверсный цвет: тосты, тултипы, инверсные плашки."
+      }
+    },
+    "content": {
+      "$description": "Текст и иконки: content/<смысл>/<иерархия>. on-deep — контент поверх background/<смысл>-deep.",
+      "neutral": {
+        "$description": "Основной нейтральный цвет интерфейса.",
+        "primary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.neutral.950}",
+            "dark": "{brand.color.neutral.50}"
+          },
+          "$description": "Текст и иконки · neutral · primary. Основной нейтральный цвет интерфейса."
+        },
+        "secondary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.neutral.800}",
+            "dark": "{brand.color.neutral.200}"
+          },
+          "$description": "Текст и иконки · neutral · secondary. Основной нейтральный цвет интерфейса."
+        },
+        "tertiary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.neutral.700}",
+            "dark": "{brand.color.neutral.300}"
+          },
+          "$description": "Текст и иконки · neutral · tertiary. Основной нейтральный цвет интерфейса."
+        },
+        "on-deep": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.neutral.50}",
+            "dark": "{brand.color.neutral.950}"
+          },
+          "$description": "Текст и иконки · neutral · on-deep. Основной нейтральный цвет интерфейса."
+        }
+      },
+      "accent-uno": {
+        "$description": "Интерактивный акцент. uno — основной, duo — второй.",
+        "primary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.accent-uno.700}",
+            "dark": "{brand.color.accent-uno.300}"
+          },
+          "$description": "Текст и иконки · accent-uno · primary. Интерактивный акцент."
+        },
+        "secondary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.accent-uno.600}",
+            "dark": "{brand.color.accent-uno.400}"
+          },
+          "$description": "Текст и иконки · accent-uno · secondary. Интерактивный акцент."
+        },
+        "tertiary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.accent-uno.500}",
+            "dark": "{brand.color.accent-uno.500}"
+          },
+          "$description": "Текст и иконки · accent-uno · tertiary. Интерактивный акцент."
+        },
+        "on-deep": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.accent-uno.on-base}",
+            "dark": "{brand.color.accent-uno.on-dark-base}"
+          },
+          "$description": "Текст и иконки · accent-uno · on-deep. Интерактивный акцент."
+        }
+      },
+      "accent-duo": {
+        "$description": "Интерактивный акцент. uno — основной, duo — второй.",
+        "primary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.accent-duo.700}",
+            "dark": "{brand.color.accent-duo.300}"
+          },
+          "$description": "Текст и иконки · accent-duo · primary. Интерактивный акцент."
+        },
+        "secondary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.accent-duo.600}",
+            "dark": "{brand.color.accent-duo.400}"
+          },
+          "$description": "Текст и иконки · accent-duo · secondary. Интерактивный акцент."
+        },
+        "tertiary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.accent-duo.500}",
+            "dark": "{brand.color.accent-duo.500}"
+          },
+          "$description": "Текст и иконки · accent-duo · tertiary. Интерактивный акцент."
+        },
+        "on-deep": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.accent-duo.on-base}",
+            "dark": "{brand.color.accent-duo.on-dark-base}"
+          },
+          "$description": "Текст и иконки · accent-duo · on-deep. Интерактивный акцент."
+        }
+      },
+      "status-positive": {
+        "$description": "Статусы: успех и ошибка.",
+        "primary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.positive.700}",
+            "dark": "{brand.color.positive.300}"
+          },
+          "$description": "Текст и иконки · status-positive · primary. Статусы: успех и ошибка."
+        },
+        "secondary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.positive.600}",
+            "dark": "{brand.color.positive.400}"
+          },
+          "$description": "Текст и иконки · status-positive · secondary. Статусы: успех и ошибка."
+        },
+        "tertiary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.positive.500}",
+            "dark": "{brand.color.positive.500}"
+          },
+          "$description": "Текст и иконки · status-positive · tertiary. Статусы: успех и ошибка."
+        },
+        "on-deep": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.positive.on-base}",
+            "dark": "{brand.color.positive.on-dark-base}"
+          },
+          "$description": "Текст и иконки · status-positive · on-deep. Статусы: успех и ошибка."
+        }
+      },
+      "status-negative": {
+        "$description": "Статусы: успех и ошибка.",
+        "primary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.negative.700}",
+            "dark": "{brand.color.negative.300}"
+          },
+          "$description": "Текст и иконки · status-negative · primary. Статусы: успех и ошибка."
+        },
+        "secondary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.negative.600}",
+            "dark": "{brand.color.negative.400}"
+          },
+          "$description": "Текст и иконки · status-negative · secondary. Статусы: успех и ошибка."
+        },
+        "tertiary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.negative.500}",
+            "dark": "{brand.color.negative.500}"
+          },
+          "$description": "Текст и иконки · status-negative · tertiary. Статусы: успех и ошибка."
+        },
+        "on-deep": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.negative.on-base}",
+            "dark": "{brand.color.negative.on-dark-base}"
+          },
+          "$description": "Текст и иконки · status-negative · on-deep. Статусы: успех и ошибка."
+        }
+      },
+      "brand-uno": {
+        "$description": "Фирменные цвета для промо и айдентики, не для интерактива.",
+        "primary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.brand-uno.700}",
+            "dark": "{brand.color.brand-uno.300}"
+          },
+          "$description": "Текст и иконки · brand-uno · primary. Фирменные цвета для промо и айдентики, не для интерактива."
+        },
+        "secondary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.brand-uno.600}",
+            "dark": "{brand.color.brand-uno.400}"
+          },
+          "$description": "Текст и иконки · brand-uno · secondary. Фирменные цвета для промо и айдентики, не для интерактива."
+        },
+        "tertiary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.brand-uno.500}",
+            "dark": "{brand.color.brand-uno.500}"
+          },
+          "$description": "Текст и иконки · brand-uno · tertiary. Фирменные цвета для промо и айдентики, не для интерактива."
+        },
+        "on-deep": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.brand-uno.on-base}",
+            "dark": "{brand.color.brand-uno.on-dark-base}"
+          },
+          "$description": "Текст и иконки · brand-uno · on-deep. Фирменные цвета для промо и айдентики, не для интерактива."
+        }
+      },
+      "brand-duo": {
+        "$description": "Фирменные цвета для промо и айдентики, не для интерактива.",
+        "primary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.brand-duo.700}",
+            "dark": "{brand.color.brand-duo.300}"
+          },
+          "$description": "Текст и иконки · brand-duo · primary. Фирменные цвета для промо и айдентики, не для интерактива."
+        },
+        "secondary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.brand-duo.600}",
+            "dark": "{brand.color.brand-duo.400}"
+          },
+          "$description": "Текст и иконки · brand-duo · secondary. Фирменные цвета для промо и айдентики, не для интерактива."
+        },
+        "tertiary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.brand-duo.500}",
+            "dark": "{brand.color.brand-duo.500}"
+          },
+          "$description": "Текст и иконки · brand-duo · tertiary. Фирменные цвета для промо и айдентики, не для интерактива."
+        },
+        "on-deep": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.brand-duo.on-base}",
+            "dark": "{brand.color.brand-duo.on-dark-base}"
+          },
+          "$description": "Текст и иконки · brand-duo · on-deep. Фирменные цвета для промо и айдентики, не для интерактива."
+        }
+      },
+      "static-light": {
+        "$description": "Не меняются от темы: light всегда светлый, dark всегда тёмный. Для контента поверх фото и медиа.",
+        "primary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.white}",
+            "dark": "{brand.color.white}"
+          },
+          "$description": "Текст и иконки · static-light · primary. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+        },
+        "secondary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.alpha.white-64}",
+            "dark": "{brand.color.alpha.white-64}"
+          },
+          "$description": "Текст и иконки · static-light · secondary. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+        },
+        "tertiary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.alpha.white-48}",
+            "dark": "{brand.color.alpha.white-48}"
+          },
+          "$description": "Текст и иконки · static-light · tertiary. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+        },
+        "on-deep": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.neutral.950}",
+            "dark": "{brand.color.neutral.950}"
+          },
+          "$description": "Текст и иконки · static-light · on-deep. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+        }
+      },
+      "static-dark": {
+        "$description": "Не меняются от темы: light всегда светлый, dark всегда тёмный. Для контента поверх фото и медиа.",
+        "primary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.neutral.950}",
+            "dark": "{brand.color.neutral.950}"
+          },
+          "$description": "Текст и иконки · static-dark · primary. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+        },
+        "secondary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.alpha.black-64}",
+            "dark": "{brand.color.alpha.black-64}"
+          },
+          "$description": "Текст и иконки · static-dark · secondary. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+        },
+        "tertiary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.alpha.black-48}",
+            "dark": "{brand.color.alpha.black-48}"
+          },
+          "$description": "Текст и иконки · static-dark · tertiary. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+        },
+        "on-deep": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.white}",
+            "dark": "{brand.color.white}"
+          },
+          "$description": "Текст и иконки · static-dark · on-deep. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+        }
+      },
+      "inverse": {
+        "$description": "Инверсный цвет: тосты, тултипы, инверсные плашки. В background, over-background и border — один цвет без градаций контраста.",
+        "primary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.neutral.50}",
+            "dark": "{brand.color.neutral.950}"
+          },
+          "$description": "Текст и иконки · inverse · primary. Инверсный цвет: тосты, тултипы, инверсные плашки."
+        },
+        "secondary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.neutral.200}",
+            "dark": "{brand.color.neutral.800}"
+          },
+          "$description": "Текст и иконки · inverse · secondary. Инверсный цвет: тосты, тултипы, инверсные плашки."
+        },
+        "tertiary": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.neutral.300}",
+            "dark": "{brand.color.neutral.700}"
+          },
+          "$description": "Текст и иконки · inverse · tertiary. Инверсный цвет: тосты, тултипы, инверсные плашки."
+        }
+      }
+    },
+    "border": {
+      "$description": "Обводки и разделители: border/<смысл>/<контраст>. deep — граница контрола.",
+      "neutral": {
+        "$description": "Основной нейтральный цвет интерфейса.",
+        "pale": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.neutral.100}",
+            "dark": "{brand.color.neutral.850}"
+          },
+          "$description": "Обводки и разделители · neutral · pale. Основной нейтральный цвет интерфейса."
+        },
+        "soft": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.neutral.200}",
+            "dark": "{brand.color.neutral.800}"
+          },
+          "$description": "Обводки и разделители · neutral · soft. Основной нейтральный цвет интерфейса."
+        },
+        "deep": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.neutral.500}",
+            "dark": "{brand.color.neutral.500}"
+          },
+          "$description": "Обводки и разделители · neutral · deep. Основной нейтральный цвет интерфейса."
+        }
+      },
+      "accent-uno": {
+        "$description": "Интерактивный акцент. uno — основной, duo — второй.",
+        "pale": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.accent-uno.100}",
+            "dark": "{brand.color.accent-uno.900}"
+          },
+          "$description": "Обводки и разделители · accent-uno · pale. Интерактивный акцент."
+        },
+        "soft": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.accent-uno.300}",
+            "dark": "{brand.color.accent-uno.700}"
+          },
+          "$description": "Обводки и разделители · accent-uno · soft. Интерактивный акцент."
+        },
+        "deep": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.accent-uno.base}",
+            "dark": "{brand.color.accent-uno.dark-base}"
+          },
+          "$description": "Обводки и разделители · accent-uno · deep. Интерактивный акцент."
+        }
+      },
+      "accent-duo": {
+        "$description": "Интерактивный акцент. uno — основной, duo — второй.",
+        "pale": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.accent-duo.100}",
+            "dark": "{brand.color.accent-duo.900}"
+          },
+          "$description": "Обводки и разделители · accent-duo · pale. Интерактивный акцент."
+        },
+        "soft": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.accent-duo.300}",
+            "dark": "{brand.color.accent-duo.700}"
+          },
+          "$description": "Обводки и разделители · accent-duo · soft. Интерактивный акцент."
+        },
+        "deep": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.accent-duo.base}",
+            "dark": "{brand.color.accent-duo.dark-base}"
+          },
+          "$description": "Обводки и разделители · accent-duo · deep. Интерактивный акцент."
+        }
+      },
+      "status-positive": {
+        "$description": "Статусы: успех и ошибка.",
+        "pale": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.positive.100}",
+            "dark": "{brand.color.positive.900}"
+          },
+          "$description": "Обводки и разделители · status-positive · pale. Статусы: успех и ошибка."
+        },
+        "soft": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.positive.300}",
+            "dark": "{brand.color.positive.700}"
+          },
+          "$description": "Обводки и разделители · status-positive · soft. Статусы: успех и ошибка."
+        },
+        "deep": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.positive.base}",
+            "dark": "{brand.color.positive.dark-base}"
+          },
+          "$description": "Обводки и разделители · status-positive · deep. Статусы: успех и ошибка."
+        }
+      },
+      "status-negative": {
+        "$description": "Статусы: успех и ошибка.",
+        "pale": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.negative.100}",
+            "dark": "{brand.color.negative.900}"
+          },
+          "$description": "Обводки и разделители · status-negative · pale. Статусы: успех и ошибка."
+        },
+        "soft": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.negative.300}",
+            "dark": "{brand.color.negative.700}"
+          },
+          "$description": "Обводки и разделители · status-negative · soft. Статусы: успех и ошибка."
+        },
+        "deep": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.negative.base}",
+            "dark": "{brand.color.negative.dark-base}"
+          },
+          "$description": "Обводки и разделители · status-negative · deep. Статусы: успех и ошибка."
+        }
+      },
+      "static-light": {
+        "$description": "Не меняются от темы: light всегда светлый, dark всегда тёмный. Для контента поверх фото и медиа.",
+        "pale": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.alpha.white-16}",
+            "dark": "{brand.color.alpha.white-16}"
+          },
+          "$description": "Обводки и разделители · static-light · pale. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+        },
+        "soft": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.alpha.white-24}",
+            "dark": "{brand.color.alpha.white-24}"
+          },
+          "$description": "Обводки и разделители · static-light · soft. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+        },
+        "deep": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.alpha.white-48}",
+            "dark": "{brand.color.alpha.white-48}"
+          },
+          "$description": "Обводки и разделители · static-light · deep. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+        }
+      },
+      "static-dark": {
+        "$description": "Не меняются от темы: light всегда светлый, dark всегда тёмный. Для контента поверх фото и медиа.",
+        "pale": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.alpha.black-8}",
+            "dark": "{brand.color.alpha.black-8}"
+          },
+          "$description": "Обводки и разделители · static-dark · pale. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+        },
+        "soft": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.alpha.black-16}",
+            "dark": "{brand.color.alpha.black-16}"
+          },
+          "$description": "Обводки и разделители · static-dark · soft. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+        },
+        "deep": {
+          "$type": "color",
+          "$modes": {
+            "light": "{brand.color.alpha.black-48}",
+            "dark": "{brand.color.alpha.black-48}"
+          },
+          "$description": "Обводки и разделители · static-dark · deep. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+        }
+      },
+      "inverse": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.neutral.700}",
+          "dark": "{brand.color.neutral.300}"
+        },
+        "$description": "Обводки и разделители · inverse. Инверсный цвет: тосты, тултипы, инверсные плашки."
+      }
+    }
+  }
+}

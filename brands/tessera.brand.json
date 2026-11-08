@@ -1,0 +1,10 @@
+{
+  "id": "tessera",
+  "name": "Tessera",
+  "description": "Базовый бренд кита. Скопируйте файл, поменяйте значения и запустите tools/palette.py — получите новый мод .",
+  "accent": "#4f46e5",
+  "neutral": {
+    "tint": 0.012
+  },
+  "status": {}
+}

@@ -1,0 +1,479 @@
+{
+  "$description": "Модель цвета — источник правды для семантики. tools/theme_gen.py разворачивает её в tokens/theme.json (коллекция «2 · Theme»), руками theme.json не правится. Тема ссылается только на Brand.",
+  "groups": {
+    "ground": {
+      "order": 0,
+      "shape": "levels",
+      "levels": [
+        "page",
+        "island"
+      ],
+      "description": "Земля: цвет страницы и острова на ней — и больше ничего. Остров — любой крупный блок, лежащий на странице (карточка, панель, секция).",
+      "steps": {
+        "page": [
+          "neutral.100",
+          "neutral.950"
+        ],
+        "island": [
+          "white",
+          "neutral.900"
+        ]
+      }
+    },
+    "background": {
+      "order": 1,
+      "shape": "flat",
+      "levels": [
+        "pale",
+        "soft",
+        "deep"
+      ],
+      "description": "Заливки элементов поверх земли: кнопки, чипы, плашки, бейджи. Плоский набор: <смысл>-<контраст>."
+    },
+    "over-background": {
+      "order": 2,
+      "shape": "flat",
+      "levels": [
+        "pale",
+        "soft",
+        "deep"
+      ],
+      "description": "Полупрозрачные слои поверх любой заливки: ховер, нажатие, выделение, затемнение. Плоский набор: <смысл>-<контраст>."
+    },
+    "content": {
+      "order": 3,
+      "shape": "nested",
+      "levels": [
+        "primary",
+        "secondary",
+        "tertiary",
+        "on-deep"
+      ],
+      "description": "Текст и иконки: content/<смысл>/<иерархия>. on-deep — контент поверх background/<смысл>-deep."
+    },
+    "border": {
+      "order": 4,
+      "shape": "nested",
+      "levels": [
+        "pale",
+        "soft",
+        "deep"
+      ],
+      "description": "Обводки и разделители: border/<смысл>/<контраст>. deep — граница контрола."
+    }
+  },
+  "meanings": {
+    "neutral": {
+      "schemes": [
+        null
+      ],
+      "kind": "neutral",
+      "description": "Основной нейтральный цвет интерфейса."
+    },
+    "accent": {
+      "schemes": [
+        "uno",
+        "duo"
+      ],
+      "kind": "colored",
+      "description": "Интерактивный акцент. uno — основной, duo — второй."
+    },
+    "status": {
+      "schemes": [
+        "positive",
+        "negative"
+      ],
+      "kind": "colored",
+      "description": "Статусы: успех и ошибка."
+    },
+    "brand": {
+      "schemes": [
+        "uno",
+        "duo"
+      ],
+      "kind": "colored",
+      "description": "Фирменные цвета для промо и айдентики, не для интерактива."
+    },
+    "static": {
+      "schemes": [
+        "light",
+        "dark"
+      ],
+      "kind": "static",
+      "description": "Не меняются от темы: light всегда светлый, dark всегда тёмный. Для контента поверх фото и медиа."
+    },
+    "inverse": {
+      "schemes": [
+        null
+      ],
+      "kind": "inverse",
+      "description": "Инверсный цвет: тосты, тултипы, инверсные плашки. В background, over-background и border — один цвет без градаций контраста.",
+      "single": {
+        "background": [
+          "neutral.900",
+          "neutral.100"
+        ],
+        "over-background": [
+          "white-8",
+          "black-8"
+        ],
+        "border": [
+          "neutral.700",
+          "neutral.300"
+        ]
+      },
+      "exclude": {
+        "content": [
+          "on-deep"
+        ]
+      }
+    }
+  },
+  "availability": {
+    "$description": "Какие смыслы есть в группе. Ground описан своими уровнями и смыслов не имеет.",
+    "background": [
+      "neutral",
+      "accent",
+      "status",
+      "brand",
+      "static",
+      "inverse"
+    ],
+    "over-background": [
+      "neutral",
+      "static",
+      "inverse"
+    ],
+    "content": [
+      "neutral",
+      "accent",
+      "status",
+      "brand",
+      "static",
+      "inverse"
+    ],
+    "border": [
+      "neutral",
+      "accent",
+      "status",
+      "static",
+      "inverse"
+    ]
+  },
+  "steps": {
+    "$description": "Пары [светлая, тёмная]: какой цвет бренда берёт комбинация. neutral.N / <рампа>.N — ступень, base / dark-base / on-base / on-dark-base — опорные цвета бренда, white / black-N / white-N — белый, чёрный и прозрачности. Inverse: в background, over-background, border — один цвет (meanings.inverse.single); в content — neutral, поменянный местами.",
+    "neutral": {
+      "background": {
+        "pale": [
+          "neutral.50",
+          "neutral.850"
+        ],
+        "soft": [
+          "neutral.100",
+          "neutral.800"
+        ],
+        "deep": [
+          "neutral.900",
+          "neutral.100"
+        ]
+      },
+      "over-background": {
+        "pale": [
+          "black-4",
+          "white-4"
+        ],
+        "soft": [
+          "black-8",
+          "white-8"
+        ],
+        "deep": [
+          "black-16",
+          "white-16"
+        ]
+      },
+      "content": {
+        "primary": [
+          "neutral.950",
+          "neutral.50"
+        ],
+        "secondary": [
+          "neutral.800",
+          "neutral.200"
+        ],
+        "tertiary": [
+          "neutral.700",
+          "neutral.300"
+        ],
+        "on-deep": [
+          "neutral.50",
+          "neutral.950"
+        ]
+      },
+      "border": {
+        "pale": [
+          "neutral.100",
+          "neutral.850"
+        ],
+        "soft": [
+          "neutral.200",
+          "neutral.800"
+        ],
+        "deep": [
+          "neutral.500",
+          "neutral.500"
+        ]
+      }
+    },
+    "colored": {
+      "background": {
+        "pale": [
+          "50",
+          "950"
+        ],
+        "soft": [
+          "100",
+          "900"
+        ],
+        "deep": [
+          "base",
+          "dark-base"
+        ]
+      },
+      "content": {
+        "primary": [
+          "700",
+          "300"
+        ],
+        "secondary": [
+          "600",
+          "400"
+        ],
+        "tertiary": [
+          "500",
+          "500"
+        ],
+        "on-deep": [
+          "on-base",
+          "on-dark-base"
+        ]
+      },
+      "border": {
+        "pale": [
+          "100",
+          "900"
+        ],
+        "soft": [
+          "300",
+          "700"
+        ],
+        "deep": [
+          "base",
+          "dark-base"
+        ]
+      }
+    },
+    "static": {
+      "light": {
+        "background": {
+          "pale": [
+            "white",
+            "white"
+          ],
+          "soft": [
+            "neutral.100",
+            "neutral.100"
+          ],
+          "deep": [
+            "neutral.200",
+            "neutral.200"
+          ]
+        },
+        "over-background": {
+          "pale": [
+            "white-16",
+            "white-16"
+          ],
+          "soft": [
+            "white-24",
+            "white-24"
+          ],
+          "deep": [
+            "white-48",
+            "white-48"
+          ]
+        },
+        "content": {
+          "primary": [
+            "white",
+            "white"
+          ],
+          "secondary": [
+            "white-64",
+            "white-64"
+          ],
+          "tertiary": [
+            "white-48",
+            "white-48"
+          ],
+          "on-deep": [
+            "neutral.950",
+            "neutral.950"
+          ]
+        },
+        "border": {
+          "pale": [
+            "white-16",
+            "white-16"
+          ],
+          "soft": [
+            "white-24",
+            "white-24"
+          ],
+          "deep": [
+            "white-48",
+            "white-48"
+          ]
+        }
+      },
+      "dark": {
+        "background": {
+          "pale": [
+            "neutral.800",
+            "neutral.800"
+          ],
+          "soft": [
+            "neutral.900",
+            "neutral.900"
+          ],
+          "deep": [
+            "neutral.950",
+            "neutral.950"
+          ]
+        },
+        "over-background": {
+          "pale": [
+            "black-16",
+            "black-16"
+          ],
+          "soft": [
+            "black-24",
+            "black-24"
+          ],
+          "deep": [
+            "black-48",
+            "black-48"
+          ]
+        },
+        "content": {
+          "primary": [
+            "neutral.950",
+            "neutral.950"
+          ],
+          "secondary": [
+            "black-64",
+            "black-64"
+          ],
+          "tertiary": [
+            "black-48",
+            "black-48"
+          ],
+          "on-deep": [
+            "white",
+            "white"
+          ]
+        },
+        "border": {
+          "pale": [
+            "black-8",
+            "black-8"
+          ],
+          "soft": [
+            "black-16",
+            "black-16"
+          ],
+          "deep": [
+            "black-48",
+            "black-48"
+          ]
+        }
+      }
+    }
+  },
+  "pairs": {
+    "$description": "Обязательный контраст. Имена — как в Figma. {m} подставляет каждый цветной смысл-схему (accent-uno, status-negative, …), {g} — page и island. severity warn не ломает сборку.",
+    "rules": [
+      {
+        "fg": "content/neutral/primary",
+        "bg": "ground/{g}",
+        "min": 7
+      },
+      {
+        "fg": "content/neutral/secondary",
+        "bg": "ground/{g}",
+        "min": 4.5
+      },
+      {
+        "fg": "content/neutral/tertiary",
+        "bg": "ground/{g}",
+        "min": 4.5
+      },
+      {
+        "fg": "content/neutral/primary",
+        "bg": "background/neutral-soft",
+        "min": 7
+      },
+      {
+        "fg": "content/neutral/on-deep",
+        "bg": "background/neutral-deep",
+        "min": 7
+      },
+      {
+        "fg": "content/inverse/primary",
+        "bg": "background/inverse",
+        "min": 7
+      },
+      {
+        "fg": "content/static-light/primary",
+        "bg": "background/static-dark-deep",
+        "min": 7
+      },
+      {
+        "fg": "content/static-dark/primary",
+        "bg": "background/static-light-pale",
+        "min": 7
+      },
+      {
+        "fg": "content/{m}/primary",
+        "bg": "ground/island",
+        "min": 4.5
+      },
+      {
+        "fg": "content/{m}/primary",
+        "bg": "background/{m}-pale",
+        "min": 4.5
+      },
+      {
+        "fg": "content/{m}/primary",
+        "bg": "background/{m}-soft",
+        "min": 4.5
+      },
+      {
+        "fg": "content/{m}/on-deep",
+        "bg": "background/{m}-deep",
+        "min": 4.5
+      },
+      {
+        "fg": "border/neutral/deep",
+        "bg": "ground/island",
+        "min": 3
+      },
+      {
+        "fg": "background/{m}-deep",
+        "bg": "ground/page",
+        "min": 3,
+        "severity": "warn",
+        "note": "WCAG 1.4.11: заливка контрола отличима от страницы. Для светлых брендов допустимо, если есть читаемый лейбл."
+      }
+    ]
+  }
+}

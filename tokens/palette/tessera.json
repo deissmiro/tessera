@@ -1,0 +1,307 @@
+{
+  "palette": {
+    "tessera": {
+      "$description": "Палитра «tessera». Сгенерировано tools/palette.py из brands/tessera.brand.json; руками не править.",
+      "gray": {
+        "$description": "Серая шкала: 13 ступеней (150 и 850 — промежуточные для земли).",
+        "50": {
+          "$type": "color",
+          "$value": "#f6f7f8",
+          "$description": "gray 50."
+        },
+        "100": {
+          "$type": "color",
+          "$value": "#ecedee",
+          "$description": "gray 100."
+        },
+        "150": {
+          "$type": "color",
+          "$value": "#e2e3e5",
+          "$description": "gray 150."
+        },
+        "200": {
+          "$type": "color",
+          "$value": "#d8d9dc",
+          "$description": "gray 200."
+        },
+        "300": {
+          "$type": "color",
+          "$value": "#bebfc4",
+          "$description": "gray 300."
+        },
+        "400": {
+          "$type": "color",
+          "$value": "#a1a3aa",
+          "$description": "gray 400."
+        },
+        "500": {
+          "$type": "color",
+          "$value": "#86878f",
+          "$description": "gray 500."
+        },
+        "600": {
+          "$type": "color",
+          "$value": "#6e7077",
+          "$description": "gray 600."
+        },
+        "700": {
+          "$type": "color",
+          "$value": "#585960",
+          "$description": "gray 700."
+        },
+        "800": {
+          "$type": "color",
+          "$value": "#424349",
+          "$description": "gray 800."
+        },
+        "850": {
+          "$type": "color",
+          "$value": "#38393e",
+          "$description": "gray 850."
+        },
+        "900": {
+          "$type": "color",
+          "$value": "#2e2f33",
+          "$description": "gray 900."
+        },
+        "950": {
+          "$type": "color",
+          "$value": "#1b1c1f",
+          "$description": "gray 950."
+        }
+      },
+      "indigo": {
+        "$description": "indigo: шкала из #4f46e5.",
+        "50": {
+          "$type": "color",
+          "$value": "#f4f6ff",
+          "$description": "indigo 50."
+        },
+        "100": {
+          "$type": "color",
+          "$value": "#e8ecff",
+          "$description": "indigo 100."
+        },
+        "200": {
+          "$type": "color",
+          "$value": "#cfd7ff",
+          "$description": "indigo 200."
+        },
+        "300": {
+          "$type": "color",
+          "$value": "#afbaff",
+          "$description": "indigo 300."
+        },
+        "400": {
+          "$type": "color",
+          "$value": "#8c98ff",
+          "$description": "indigo 400."
+        },
+        "500": {
+          "$type": "color",
+          "$value": "#6d73ff",
+          "$description": "indigo 500."
+        },
+        "600": {
+          "$type": "color",
+          "$value": "#4f46e5",
+          "$description": "indigo 600."
+        },
+        "700": {
+          "$type": "color",
+          "$value": "#453ccb",
+          "$description": "indigo 700."
+        },
+        "800": {
+          "$type": "color",
+          "$value": "#3329a2",
+          "$description": "indigo 800."
+        },
+        "900": {
+          "$type": "color",
+          "$value": "#231978",
+          "$description": "indigo 900."
+        },
+        "950": {
+          "$type": "color",
+          "$value": "#140a51",
+          "$description": "indigo 950."
+        }
+      },
+      "magenta": {
+        "$description": "magenta: шкала из #ae0093.",
+        "50": {
+          "$type": "color",
+          "$value": "#fff3fb",
+          "$description": "magenta 50."
+        },
+        "100": {
+          "$type": "color",
+          "$value": "#ffe3f6",
+          "$description": "magenta 100."
+        },
+        "200": {
+          "$type": "color",
+          "$value": "#ffc4ee",
+          "$description": "magenta 200."
+        },
+        "300": {
+          "$type": "color",
+          "$value": "#fc98e2",
+          "$description": "magenta 300."
+        },
+        "400": {
+          "$type": "color",
+          "$value": "#ec6cce",
+          "$description": "magenta 400."
+        },
+        "500": {
+          "$type": "color",
+          "$value": "#d63eb7",
+          "$description": "magenta 500."
+        },
+        "600": {
+          "$type": "color",
+          "$value": "#ae0093",
+          "$description": "magenta 600."
+        },
+        "700": {
+          "$type": "color",
+          "$value": "#990081",
+          "$description": "magenta 700."
+        },
+        "800": {
+          "$type": "color",
+          "$value": "#760063",
+          "$description": "magenta 800."
+        },
+        "900": {
+          "$type": "color",
+          "$value": "#550046",
+          "$description": "magenta 900."
+        },
+        "950": {
+          "$type": "color",
+          "$value": "#35002c",
+          "$description": "magenta 950."
+        }
+      },
+      "green": {
+        "$description": "green: шкала из #16884a.",
+        "50": {
+          "$type": "color",
+          "$value": "#effaf2",
+          "$description": "green 50."
+        },
+        "100": {
+          "$type": "color",
+          "$value": "#dff3e4",
+          "$description": "green 100."
+        },
+        "200": {
+          "$type": "color",
+          "$value": "#bee5c8",
+          "$description": "green 200."
+        },
+        "300": {
+          "$type": "color",
+          "$value": "#93d0a4",
+          "$description": "green 300."
+        },
+        "400": {
+          "$type": "color",
+          "$value": "#65b880",
+          "$description": "green 400."
+        },
+        "500": {
+          "$type": "color",
+          "$value": "#369f5f",
+          "$description": "green 500."
+        },
+        "600": {
+          "$type": "color",
+          "$value": "#16884a",
+          "$description": "green 600."
+        },
+        "700": {
+          "$type": "color",
+          "$value": "#006c37",
+          "$description": "green 700."
+        },
+        "800": {
+          "$type": "color",
+          "$value": "#005228",
+          "$description": "green 800."
+        },
+        "900": {
+          "$type": "color",
+          "$value": "#003a1b",
+          "$description": "green 900."
+        },
+        "950": {
+          "$type": "color",
+          "$value": "#00230e",
+          "$description": "green 950."
+        }
+      },
+      "red": {
+        "$description": "red: шкала из #d92d20.",
+        "50": {
+          "$type": "color",
+          "$value": "#fff4f2",
+          "$description": "red 50."
+        },
+        "100": {
+          "$type": "color",
+          "$value": "#ffe6e2",
+          "$description": "red 100."
+        },
+        "200": {
+          "$type": "color",
+          "$value": "#ffcbc2",
+          "$description": "red 200."
+        },
+        "300": {
+          "$type": "color",
+          "$value": "#ffa495",
+          "$description": "red 300."
+        },
+        "400": {
+          "$type": "color",
+          "$value": "#ff6f5d",
+          "$description": "red 400."
+        },
+        "500": {
+          "$type": "color",
+          "$value": "#eb4131",
+          "$description": "red 500."
+        },
+        "600": {
+          "$type": "color",
+          "$value": "#d92d20",
+          "$description": "red 600."
+        },
+        "700": {
+          "$type": "color",
+          "$value": "#aa0300",
+          "$description": "red 700."
+        },
+        "800": {
+          "$type": "color",
+          "$value": "#840200",
+          "$description": "red 800."
+        },
+        "900": {
+          "$type": "color",
+          "$value": "#5f0100",
+          "$description": "red 900."
+        },
+        "950": {
+          "$type": "color",
+          "$value": "#3c0000",
+          "$description": "red 950."
+        }
+      }
+    }
+  }
+}

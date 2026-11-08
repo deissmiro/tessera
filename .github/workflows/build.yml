@@ -1,0 +1,26 @@
+name: build
+on:
+  push:
+    branches: [main]
+    paths: ["brands/**", "kb/**", "tokens/palette/common.json", "tools/**", "kit.config.json"]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Палитры брендов
+        run: for f in brands/*.brand.json; do python3 tools/palette.py "$f"; done
+      - name: Проверка и сборка
+        run: python3 tools/build.py
+      - name: Закоммитить dist
+        run: |
+          git config user.name "tessera-bot"
+          git config user.email "tessera-bot@users.noreply.github.com"
+          git add tokens dist kb/contrast-pairs.json kit.config.json
+          git diff --cached --quiet || git commit -m "build: обновить токены и dist"
+          git push

@@ -1,0 +1,5902 @@
+{
+ "kit": "Tessera",
+ "version": "0.2.0",
+ "collections": [
+  {
+   "name": "0 · Palette",
+   "description": "Библиотека палитр: сырые цветовые рампы всех палитр в одной коллекции без модов (<палитра>/<рампа>/<ступень>). Ничего не знает о брендах и темах. Скрыта из пикеров.",
+   "modes": [
+    "default"
+   ],
+   "variables": [
+    {
+     "name": "common/white",
+     "type": "COLOR",
+     "description": "Белый.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-common-white)"
+     },
+     "valuesByMode": {
+      "default": "#ffffff"
+     }
+    },
+    {
+     "name": "common/black",
+     "type": "COLOR",
+     "description": "Чёрный.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-common-black)"
+     },
+     "valuesByMode": {
+      "default": "#000000"
+     }
+    },
+    {
+     "name": "common/alpha/black-4",
+     "type": "COLOR",
+     "description": "Чёрный 4%.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-common-alpha-black-4)"
+     },
+     "valuesByMode": {
+      "default": "#0000000a"
+     }
+    },
+    {
+     "name": "common/alpha/black-8",
+     "type": "COLOR",
+     "description": "Чёрный 8%.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-common-alpha-black-8)"
+     },
+     "valuesByMode": {
+      "default": "#00000014"
+     }
+    },
+    {
+     "name": "common/alpha/black-16",
+     "type": "COLOR",
+     "description": "Чёрный 16%.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-common-alpha-black-16)"
+     },
+     "valuesByMode": {
+      "default": "#00000029"
+     }
+    },
+    {
+     "name": "common/alpha/black-24",
+     "type": "COLOR",
+     "description": "Чёрный 24%.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-common-alpha-black-24)"
+     },
+     "valuesByMode": {
+      "default": "#0000003d"
+     }
+    },
+    {
+     "name": "common/alpha/black-48",
+     "type": "COLOR",
+     "description": "Чёрный 48%.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-common-alpha-black-48)"
+     },
+     "valuesByMode": {
+      "default": "#0000007a"
+     }
+    },
+    {
+     "name": "common/alpha/black-64",
+     "type": "COLOR",
+     "description": "Чёрный 64%.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-common-alpha-black-64)"
+     },
+     "valuesByMode": {
+      "default": "#000000a3"
+     }
+    },
+    {
+     "name": "common/alpha/white-4",
+     "type": "COLOR",
+     "description": "Белый 4%.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-common-alpha-white-4)"
+     },
+     "valuesByMode": {
+      "default": "#ffffff0a"
+     }
+    },
+    {
+     "name": "common/alpha/white-8",
+     "type": "COLOR",
+     "description": "Белый 8%.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-common-alpha-white-8)"
+     },
+     "valuesByMode": {
+      "default": "#ffffff14"
+     }
+    },
+    {
+     "name": "common/alpha/white-16",
+     "type": "COLOR",
+     "description": "Белый 16%.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-common-alpha-white-16)"
+     },
+     "valuesByMode": {
+      "default": "#ffffff29"
+     }
+    },
+    {
+     "name": "common/alpha/white-24",
+     "type": "COLOR",
+     "description": "Белый 24%.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-common-alpha-white-24)"
+     },
+     "valuesByMode": {
+      "default": "#ffffff3d"
+     }
+    },
+    {
+     "name": "common/alpha/white-48",
+     "type": "COLOR",
+     "description": "Белый 48%.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-common-alpha-white-48)"
+     },
+     "valuesByMode": {
+      "default": "#ffffff7a"
+     }
+    },
+    {
+     "name": "common/alpha/white-64",
+     "type": "COLOR",
+     "description": "Белый 64%.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-common-alpha-white-64)"
+     },
+     "valuesByMode": {
+      "default": "#ffffffa3"
+     }
+    },
+    {
+     "name": "sunny/gray/50",
+     "type": "COLOR",
+     "description": "gray 50.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-gray-50)"
+     },
+     "valuesByMode": {
+      "default": "#f7f7f6"
+     }
+    },
+    {
+     "name": "sunny/gray/100",
+     "type": "COLOR",
+     "description": "gray 100.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-gray-100)"
+     },
+     "valuesByMode": {
+      "default": "#ededeb"
+     }
+    },
+    {
+     "name": "sunny/gray/150",
+     "type": "COLOR",
+     "description": "gray 150.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-gray-150)"
+     },
+     "valuesByMode": {
+      "default": "#e3e3e1"
+     }
+    },
+    {
+     "name": "sunny/gray/200",
+     "type": "COLOR",
+     "description": "gray 200.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-gray-200)"
+     },
+     "valuesByMode": {
+      "default": "#dad9d7"
+     }
+    },
+    {
+     "name": "sunny/gray/300",
+     "type": "COLOR",
+     "description": "gray 300.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-gray-300)"
+     },
+     "valuesByMode": {
+      "default": "#c0bfbb"
+     }
+    },
+    {
+     "name": "sunny/gray/400",
+     "type": "COLOR",
+     "description": "gray 400.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-gray-400)"
+     },
+     "valuesByMode": {
+      "default": "#a4a39e"
+     }
+    },
+    {
+     "name": "sunny/gray/500",
+     "type": "COLOR",
+     "description": "gray 500.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-gray-500)"
+     },
+     "valuesByMode": {
+      "default": "#898882"
+     }
+    },
+    {
+     "name": "sunny/gray/600",
+     "type": "COLOR",
+     "description": "gray 600.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-gray-600)"
+     },
+     "valuesByMode": {
+      "default": "#71706b"
+     }
+    },
+    {
+     "name": "sunny/gray/700",
+     "type": "COLOR",
+     "description": "gray 700.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-gray-700)"
+     },
+     "valuesByMode": {
+      "default": "#5b5955"
+     }
+    },
+    {
+     "name": "sunny/gray/800",
+     "type": "COLOR",
+     "description": "gray 800.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-gray-800)"
+     },
+     "valuesByMode": {
+      "default": "#454440"
+     }
+    },
+    {
+     "name": "sunny/gray/850",
+     "type": "COLOR",
+     "description": "gray 850.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-gray-850)"
+     },
+     "valuesByMode": {
+      "default": "#3a3936"
+     }
+    },
+    {
+     "name": "sunny/gray/900",
+     "type": "COLOR",
+     "description": "gray 900.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-gray-900)"
+     },
+     "valuesByMode": {
+      "default": "#302f2c"
+     }
+    },
+    {
+     "name": "sunny/gray/950",
+     "type": "COLOR",
+     "description": "gray 950.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-gray-950)"
+     },
+     "valuesByMode": {
+      "default": "#1c1c1a"
+     }
+    },
+    {
+     "name": "sunny/yellow/50",
+     "type": "COLOR",
+     "description": "yellow 50.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-yellow-50)"
+     },
+     "valuesByMode": {
+      "default": "#fff7db"
+     }
+    },
+    {
+     "name": "sunny/yellow/100",
+     "type": "COLOR",
+     "description": "yellow 100.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-yellow-100)"
+     },
+     "valuesByMode": {
+      "default": "#ffedad"
+     }
+    },
+    {
+     "name": "sunny/yellow/200",
+     "type": "COLOR",
+     "description": "yellow 200.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-yellow-200)"
+     },
+     "valuesByMode": {
+      "default": "#ffd400"
+     }
+    },
+    {
+     "name": "sunny/yellow/300",
+     "type": "COLOR",
+     "description": "yellow 300.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-yellow-300)"
+     },
+     "valuesByMode": {
+      "default": "#e2bc00"
+     }
+    },
+    {
+     "name": "sunny/yellow/400",
+     "type": "COLOR",
+     "description": "yellow 400.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-yellow-400)"
+     },
+     "valuesByMode": {
+      "default": "#c1a000"
+     }
+    },
+    {
+     "name": "sunny/yellow/500",
+     "type": "COLOR",
+     "description": "yellow 500.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-yellow-500)"
+     },
+     "valuesByMode": {
+      "default": "#a18500"
+     }
+    },
+    {
+     "name": "sunny/yellow/600",
+     "type": "COLOR",
+     "description": "yellow 600.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-yellow-600)"
+     },
+     "valuesByMode": {
+      "default": "#866e00"
+     }
+    },
+    {
+     "name": "sunny/yellow/700",
+     "type": "COLOR",
+     "description": "yellow 700.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-yellow-700)"
+     },
+     "valuesByMode": {
+      "default": "#6b5800"
+     }
+    },
+    {
+     "name": "sunny/yellow/800",
+     "type": "COLOR",
+     "description": "yellow 800.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-yellow-800)"
+     },
+     "valuesByMode": {
+      "default": "#524200"
+     }
+    },
+    {
+     "name": "sunny/yellow/900",
+     "type": "COLOR",
+     "description": "yellow 900.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-yellow-900)"
+     },
+     "valuesByMode": {
+      "default": "#392e00"
+     }
+    },
+    {
+     "name": "sunny/yellow/950",
+     "type": "COLOR",
+     "description": "yellow 950.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-yellow-950)"
+     },
+     "valuesByMode": {
+      "default": "#231b00"
+     }
+    },
+    {
+     "name": "sunny/orange/50",
+     "type": "COLOR",
+     "description": "orange 50.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-orange-50)"
+     },
+     "valuesByMode": {
+      "default": "#fff4ef"
+     }
+    },
+    {
+     "name": "sunny/orange/100",
+     "type": "COLOR",
+     "description": "orange 100.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-orange-100)"
+     },
+     "valuesByMode": {
+      "default": "#ffe7db"
+     }
+    },
+    {
+     "name": "sunny/orange/200",
+     "type": "COLOR",
+     "description": "orange 200.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-orange-200)"
+     },
+     "valuesByMode": {
+      "default": "#ffcdb1"
+     }
+    },
+    {
+     "name": "sunny/orange/300",
+     "type": "COLOR",
+     "description": "orange 300.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-orange-300)"
+     },
+     "valuesByMode": {
+      "default": "#ffa774"
+     }
+    },
+    {
+     "name": "sunny/orange/400",
+     "type": "COLOR",
+     "description": "orange 400.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-orange-400)"
+     },
+     "valuesByMode": {
+      "default": "#ff7a00"
+     }
+    },
+    {
+     "name": "sunny/orange/500",
+     "type": "COLOR",
+     "description": "orange 500.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-orange-500)"
+     },
+     "valuesByMode": {
+      "default": "#d26300"
+     }
+    },
+    {
+     "name": "sunny/orange/600",
+     "type": "COLOR",
+     "description": "orange 600.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-orange-600)"
+     },
+     "valuesByMode": {
+      "default": "#af5200"
+     }
+    },
+    {
+     "name": "sunny/orange/700",
+     "type": "COLOR",
+     "description": "orange 700.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-orange-700)"
+     },
+     "valuesByMode": {
+      "default": "#8d4000"
+     }
+    },
+    {
+     "name": "sunny/orange/800",
+     "type": "COLOR",
+     "description": "orange 800.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-orange-800)"
+     },
+     "valuesByMode": {
+      "default": "#6c3000"
+     }
+    },
+    {
+     "name": "sunny/orange/900",
+     "type": "COLOR",
+     "description": "orange 900.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-orange-900)"
+     },
+     "valuesByMode": {
+      "default": "#4d2000"
+     }
+    },
+    {
+     "name": "sunny/orange/950",
+     "type": "COLOR",
+     "description": "orange 950.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-orange-950)"
+     },
+     "valuesByMode": {
+      "default": "#311200"
+     }
+    },
+    {
+     "name": "sunny/green/50",
+     "type": "COLOR",
+     "description": "green 50.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-green-50)"
+     },
+     "valuesByMode": {
+      "default": "#effaf2"
+     }
+    },
+    {
+     "name": "sunny/green/100",
+     "type": "COLOR",
+     "description": "green 100.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-green-100)"
+     },
+     "valuesByMode": {
+      "default": "#dff3e4"
+     }
+    },
+    {
+     "name": "sunny/green/200",
+     "type": "COLOR",
+     "description": "green 200.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-green-200)"
+     },
+     "valuesByMode": {
+      "default": "#bee5c8"
+     }
+    },
+    {
+     "name": "sunny/green/300",
+     "type": "COLOR",
+     "description": "green 300.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-green-300)"
+     },
+     "valuesByMode": {
+      "default": "#93d0a4"
+     }
+    },
+    {
+     "name": "sunny/green/400",
+     "type": "COLOR",
+     "description": "green 400.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-green-400)"
+     },
+     "valuesByMode": {
+      "default": "#65b880"
+     }
+    },
+    {
+     "name": "sunny/green/500",
+     "type": "COLOR",
+     "description": "green 500.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-green-500)"
+     },
+     "valuesByMode": {
+      "default": "#369f5f"
+     }
+    },
+    {
+     "name": "sunny/green/600",
+     "type": "COLOR",
+     "description": "green 600.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-green-600)"
+     },
+     "valuesByMode": {
+      "default": "#16884a"
+     }
+    },
+    {
+     "name": "sunny/green/700",
+     "type": "COLOR",
+     "description": "green 700.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-green-700)"
+     },
+     "valuesByMode": {
+      "default": "#006c37"
+     }
+    },
+    {
+     "name": "sunny/green/800",
+     "type": "COLOR",
+     "description": "green 800.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-green-800)"
+     },
+     "valuesByMode": {
+      "default": "#005228"
+     }
+    },
+    {
+     "name": "sunny/green/900",
+     "type": "COLOR",
+     "description": "green 900.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-green-900)"
+     },
+     "valuesByMode": {
+      "default": "#003a1b"
+     }
+    },
+    {
+     "name": "sunny/green/950",
+     "type": "COLOR",
+     "description": "green 950.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-green-950)"
+     },
+     "valuesByMode": {
+      "default": "#00230e"
+     }
+    },
+    {
+     "name": "sunny/red/50",
+     "type": "COLOR",
+     "description": "red 50.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-red-50)"
+     },
+     "valuesByMode": {
+      "default": "#fff4f2"
+     }
+    },
+    {
+     "name": "sunny/red/100",
+     "type": "COLOR",
+     "description": "red 100.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-red-100)"
+     },
+     "valuesByMode": {
+      "default": "#ffe6e2"
+     }
+    },
+    {
+     "name": "sunny/red/200",
+     "type": "COLOR",
+     "description": "red 200.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-red-200)"
+     },
+     "valuesByMode": {
+      "default": "#ffcbc2"
+     }
+    },
+    {
+     "name": "sunny/red/300",
+     "type": "COLOR",
+     "description": "red 300.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-red-300)"
+     },
+     "valuesByMode": {
+      "default": "#ffa495"
+     }
+    },
+    {
+     "name": "sunny/red/400",
+     "type": "COLOR",
+     "description": "red 400.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-red-400)"
+     },
+     "valuesByMode": {
+      "default": "#ff6f5d"
+     }
+    },
+    {
+     "name": "sunny/red/500",
+     "type": "COLOR",
+     "description": "red 500.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-red-500)"
+     },
+     "valuesByMode": {
+      "default": "#eb4131"
+     }
+    },
+    {
+     "name": "sunny/red/600",
+     "type": "COLOR",
+     "description": "red 600.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-red-600)"
+     },
+     "valuesByMode": {
+      "default": "#d92d20"
+     }
+    },
+    {
+     "name": "sunny/red/700",
+     "type": "COLOR",
+     "description": "red 700.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-red-700)"
+     },
+     "valuesByMode": {
+      "default": "#aa0300"
+     }
+    },
+    {
+     "name": "sunny/red/800",
+     "type": "COLOR",
+     "description": "red 800.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-red-800)"
+     },
+     "valuesByMode": {
+      "default": "#840200"
+     }
+    },
+    {
+     "name": "sunny/red/900",
+     "type": "COLOR",
+     "description": "red 900.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-red-900)"
+     },
+     "valuesByMode": {
+      "default": "#5f0100"
+     }
+    },
+    {
+     "name": "sunny/red/950",
+     "type": "COLOR",
+     "description": "red 950.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-sunny-red-950)"
+     },
+     "valuesByMode": {
+      "default": "#3c0000"
+     }
+    },
+    {
+     "name": "tessera/gray/50",
+     "type": "COLOR",
+     "description": "gray 50.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-gray-50)"
+     },
+     "valuesByMode": {
+      "default": "#f6f7f8"
+     }
+    },
+    {
+     "name": "tessera/gray/100",
+     "type": "COLOR",
+     "description": "gray 100.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-gray-100)"
+     },
+     "valuesByMode": {
+      "default": "#ecedee"
+     }
+    },
+    {
+     "name": "tessera/gray/150",
+     "type": "COLOR",
+     "description": "gray 150.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-gray-150)"
+     },
+     "valuesByMode": {
+      "default": "#e2e3e5"
+     }
+    },
+    {
+     "name": "tessera/gray/200",
+     "type": "COLOR",
+     "description": "gray 200.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-gray-200)"
+     },
+     "valuesByMode": {
+      "default": "#d8d9dc"
+     }
+    },
+    {
+     "name": "tessera/gray/300",
+     "type": "COLOR",
+     "description": "gray 300.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-gray-300)"
+     },
+     "valuesByMode": {
+      "default": "#bebfc4"
+     }
+    },
+    {
+     "name": "tessera/gray/400",
+     "type": "COLOR",
+     "description": "gray 400.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-gray-400)"
+     },
+     "valuesByMode": {
+      "default": "#a1a3aa"
+     }
+    },
+    {
+     "name": "tessera/gray/500",
+     "type": "COLOR",
+     "description": "gray 500.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-gray-500)"
+     },
+     "valuesByMode": {
+      "default": "#86878f"
+     }
+    },
+    {
+     "name": "tessera/gray/600",
+     "type": "COLOR",
+     "description": "gray 600.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-gray-600)"
+     },
+     "valuesByMode": {
+      "default": "#6e7077"
+     }
+    },
+    {
+     "name": "tessera/gray/700",
+     "type": "COLOR",
+     "description": "gray 700.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-gray-700)"
+     },
+     "valuesByMode": {
+      "default": "#585960"
+     }
+    },
+    {
+     "name": "tessera/gray/800",
+     "type": "COLOR",
+     "description": "gray 800.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-gray-800)"
+     },
+     "valuesByMode": {
+      "default": "#424349"
+     }
+    },
+    {
+     "name": "tessera/gray/850",
+     "type": "COLOR",
+     "description": "gray 850.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-gray-850)"
+     },
+     "valuesByMode": {
+      "default": "#38393e"
+     }
+    },
+    {
+     "name": "tessera/gray/900",
+     "type": "COLOR",
+     "description": "gray 900.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-gray-900)"
+     },
+     "valuesByMode": {
+      "default": "#2e2f33"
+     }
+    },
+    {
+     "name": "tessera/gray/950",
+     "type": "COLOR",
+     "description": "gray 950.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-gray-950)"
+     },
+     "valuesByMode": {
+      "default": "#1b1c1f"
+     }
+    },
+    {
+     "name": "tessera/indigo/50",
+     "type": "COLOR",
+     "description": "indigo 50.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-indigo-50)"
+     },
+     "valuesByMode": {
+      "default": "#f4f6ff"
+     }
+    },
+    {
+     "name": "tessera/indigo/100",
+     "type": "COLOR",
+     "description": "indigo 100.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-indigo-100)"
+     },
+     "valuesByMode": {
+      "default": "#e8ecff"
+     }
+    },
+    {
+     "name": "tessera/indigo/200",
+     "type": "COLOR",
+     "description": "indigo 200.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-indigo-200)"
+     },
+     "valuesByMode": {
+      "default": "#cfd7ff"
+     }
+    },
+    {
+     "name": "tessera/indigo/300",
+     "type": "COLOR",
+     "description": "indigo 300.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-indigo-300)"
+     },
+     "valuesByMode": {
+      "default": "#afbaff"
+     }
+    },
+    {
+     "name": "tessera/indigo/400",
+     "type": "COLOR",
+     "description": "indigo 400.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-indigo-400)"
+     },
+     "valuesByMode": {
+      "default": "#8c98ff"
+     }
+    },
+    {
+     "name": "tessera/indigo/500",
+     "type": "COLOR",
+     "description": "indigo 500.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-indigo-500)"
+     },
+     "valuesByMode": {
+      "default": "#6d73ff"
+     }
+    },
+    {
+     "name": "tessera/indigo/600",
+     "type": "COLOR",
+     "description": "indigo 600.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-indigo-600)"
+     },
+     "valuesByMode": {
+      "default": "#4f46e5"
+     }
+    },
+    {
+     "name": "tessera/indigo/700",
+     "type": "COLOR",
+     "description": "indigo 700.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-indigo-700)"
+     },
+     "valuesByMode": {
+      "default": "#453ccb"
+     }
+    },
+    {
+     "name": "tessera/indigo/800",
+     "type": "COLOR",
+     "description": "indigo 800.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-indigo-800)"
+     },
+     "valuesByMode": {
+      "default": "#3329a2"
+     }
+    },
+    {
+     "name": "tessera/indigo/900",
+     "type": "COLOR",
+     "description": "indigo 900.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-indigo-900)"
+     },
+     "valuesByMode": {
+      "default": "#231978"
+     }
+    },
+    {
+     "name": "tessera/indigo/950",
+     "type": "COLOR",
+     "description": "indigo 950.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-indigo-950)"
+     },
+     "valuesByMode": {
+      "default": "#140a51"
+     }
+    },
+    {
+     "name": "tessera/magenta/50",
+     "type": "COLOR",
+     "description": "magenta 50.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-magenta-50)"
+     },
+     "valuesByMode": {
+      "default": "#fff3fb"
+     }
+    },
+    {
+     "name": "tessera/magenta/100",
+     "type": "COLOR",
+     "description": "magenta 100.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-magenta-100)"
+     },
+     "valuesByMode": {
+      "default": "#ffe3f6"
+     }
+    },
+    {
+     "name": "tessera/magenta/200",
+     "type": "COLOR",
+     "description": "magenta 200.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-magenta-200)"
+     },
+     "valuesByMode": {
+      "default": "#ffc4ee"
+     }
+    },
+    {
+     "name": "tessera/magenta/300",
+     "type": "COLOR",
+     "description": "magenta 300.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-magenta-300)"
+     },
+     "valuesByMode": {
+      "default": "#fc98e2"
+     }
+    },
+    {
+     "name": "tessera/magenta/400",
+     "type": "COLOR",
+     "description": "magenta 400.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-magenta-400)"
+     },
+     "valuesByMode": {
+      "default": "#ec6cce"
+     }
+    },
+    {
+     "name": "tessera/magenta/500",
+     "type": "COLOR",
+     "description": "magenta 500.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-magenta-500)"
+     },
+     "valuesByMode": {
+      "default": "#d63eb7"
+     }
+    },
+    {
+     "name": "tessera/magenta/600",
+     "type": "COLOR",
+     "description": "magenta 600.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-magenta-600)"
+     },
+     "valuesByMode": {
+      "default": "#ae0093"
+     }
+    },
+    {
+     "name": "tessera/magenta/700",
+     "type": "COLOR",
+     "description": "magenta 700.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-magenta-700)"
+     },
+     "valuesByMode": {
+      "default": "#990081"
+     }
+    },
+    {
+     "name": "tessera/magenta/800",
+     "type": "COLOR",
+     "description": "magenta 800.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-magenta-800)"
+     },
+     "valuesByMode": {
+      "default": "#760063"
+     }
+    },
+    {
+     "name": "tessera/magenta/900",
+     "type": "COLOR",
+     "description": "magenta 900.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-magenta-900)"
+     },
+     "valuesByMode": {
+      "default": "#550046"
+     }
+    },
+    {
+     "name": "tessera/magenta/950",
+     "type": "COLOR",
+     "description": "magenta 950.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-magenta-950)"
+     },
+     "valuesByMode": {
+      "default": "#35002c"
+     }
+    },
+    {
+     "name": "tessera/green/50",
+     "type": "COLOR",
+     "description": "green 50.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-green-50)"
+     },
+     "valuesByMode": {
+      "default": "#effaf2"
+     }
+    },
+    {
+     "name": "tessera/green/100",
+     "type": "COLOR",
+     "description": "green 100.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-green-100)"
+     },
+     "valuesByMode": {
+      "default": "#dff3e4"
+     }
+    },
+    {
+     "name": "tessera/green/200",
+     "type": "COLOR",
+     "description": "green 200.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-green-200)"
+     },
+     "valuesByMode": {
+      "default": "#bee5c8"
+     }
+    },
+    {
+     "name": "tessera/green/300",
+     "type": "COLOR",
+     "description": "green 300.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-green-300)"
+     },
+     "valuesByMode": {
+      "default": "#93d0a4"
+     }
+    },
+    {
+     "name": "tessera/green/400",
+     "type": "COLOR",
+     "description": "green 400.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-green-400)"
+     },
+     "valuesByMode": {
+      "default": "#65b880"
+     }
+    },
+    {
+     "name": "tessera/green/500",
+     "type": "COLOR",
+     "description": "green 500.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-green-500)"
+     },
+     "valuesByMode": {
+      "default": "#369f5f"
+     }
+    },
+    {
+     "name": "tessera/green/600",
+     "type": "COLOR",
+     "description": "green 600.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-green-600)"
+     },
+     "valuesByMode": {
+      "default": "#16884a"
+     }
+    },
+    {
+     "name": "tessera/green/700",
+     "type": "COLOR",
+     "description": "green 700.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-green-700)"
+     },
+     "valuesByMode": {
+      "default": "#006c37"
+     }
+    },
+    {
+     "name": "tessera/green/800",
+     "type": "COLOR",
+     "description": "green 800.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-green-800)"
+     },
+     "valuesByMode": {
+      "default": "#005228"
+     }
+    },
+    {
+     "name": "tessera/green/900",
+     "type": "COLOR",
+     "description": "green 900.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-green-900)"
+     },
+     "valuesByMode": {
+      "default": "#003a1b"
+     }
+    },
+    {
+     "name": "tessera/green/950",
+     "type": "COLOR",
+     "description": "green 950.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-green-950)"
+     },
+     "valuesByMode": {
+      "default": "#00230e"
+     }
+    },
+    {
+     "name": "tessera/red/50",
+     "type": "COLOR",
+     "description": "red 50.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-red-50)"
+     },
+     "valuesByMode": {
+      "default": "#fff4f2"
+     }
+    },
+    {
+     "name": "tessera/red/100",
+     "type": "COLOR",
+     "description": "red 100.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-red-100)"
+     },
+     "valuesByMode": {
+      "default": "#ffe6e2"
+     }
+    },
+    {
+     "name": "tessera/red/200",
+     "type": "COLOR",
+     "description": "red 200.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-red-200)"
+     },
+     "valuesByMode": {
+      "default": "#ffcbc2"
+     }
+    },
+    {
+     "name": "tessera/red/300",
+     "type": "COLOR",
+     "description": "red 300.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-red-300)"
+     },
+     "valuesByMode": {
+      "default": "#ffa495"
+     }
+    },
+    {
+     "name": "tessera/red/400",
+     "type": "COLOR",
+     "description": "red 400.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-red-400)"
+     },
+     "valuesByMode": {
+      "default": "#ff6f5d"
+     }
+    },
+    {
+     "name": "tessera/red/500",
+     "type": "COLOR",
+     "description": "red 500.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-red-500)"
+     },
+     "valuesByMode": {
+      "default": "#eb4131"
+     }
+    },
+    {
+     "name": "tessera/red/600",
+     "type": "COLOR",
+     "description": "red 600.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-red-600)"
+     },
+     "valuesByMode": {
+      "default": "#d92d20"
+     }
+    },
+    {
+     "name": "tessera/red/700",
+     "type": "COLOR",
+     "description": "red 700.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-red-700)"
+     },
+     "valuesByMode": {
+      "default": "#aa0300"
+     }
+    },
+    {
+     "name": "tessera/red/800",
+     "type": "COLOR",
+     "description": "red 800.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-red-800)"
+     },
+     "valuesByMode": {
+      "default": "#840200"
+     }
+    },
+    {
+     "name": "tessera/red/900",
+     "type": "COLOR",
+     "description": "red 900.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-red-900)"
+     },
+     "valuesByMode": {
+      "default": "#5f0100"
+     }
+    },
+    {
+     "name": "tessera/red/950",
+     "type": "COLOR",
+     "description": "red 950.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--palette-tessera-red-950)"
+     },
+     "valuesByMode": {
+      "default": "#3c0000"
+     }
+    }
+   ]
+  },
+  {
+   "name": "1 · Brand",
+   "description": "Верхний уровень: собирательный образ бренда. Один мод = один бренд. Сейчас — цвет (какая палитра, опорные цвета, контент на них); дальше сюда же типографика, скругления, размеры.",
+   "modes": [
+    "tessera",
+    "sunny"
+   ],
+   "variables": [
+    {
+     "name": "color/white",
+     "type": "COLOR",
+     "description": "Белый.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-white)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::common/white"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::common/white"
+      }
+     }
+    },
+    {
+     "name": "color/black",
+     "type": "COLOR",
+     "description": "Чёрный.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-black)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::common/black"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::common/black"
+      }
+     }
+    },
+    {
+     "name": "color/alpha/black-4",
+     "type": "COLOR",
+     "description": "black 4%.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-alpha-black-4)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::common/alpha/black-4"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::common/alpha/black-4"
+      }
+     }
+    },
+    {
+     "name": "color/alpha/black-8",
+     "type": "COLOR",
+     "description": "black 8%.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-alpha-black-8)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::common/alpha/black-8"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::common/alpha/black-8"
+      }
+     }
+    },
+    {
+     "name": "color/alpha/black-16",
+     "type": "COLOR",
+     "description": "black 16%.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-alpha-black-16)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::common/alpha/black-16"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::common/alpha/black-16"
+      }
+     }
+    },
+    {
+     "name": "color/alpha/black-24",
+     "type": "COLOR",
+     "description": "black 24%.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-alpha-black-24)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::common/alpha/black-24"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::common/alpha/black-24"
+      }
+     }
+    },
+    {
+     "name": "color/alpha/black-48",
+     "type": "COLOR",
+     "description": "black 48%.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-alpha-black-48)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::common/alpha/black-48"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::common/alpha/black-48"
+      }
+     }
+    },
+    {
+     "name": "color/alpha/black-64",
+     "type": "COLOR",
+     "description": "black 64%.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-alpha-black-64)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::common/alpha/black-64"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::common/alpha/black-64"
+      }
+     }
+    },
+    {
+     "name": "color/alpha/white-4",
+     "type": "COLOR",
+     "description": "white 4%.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-alpha-white-4)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::common/alpha/white-4"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::common/alpha/white-4"
+      }
+     }
+    },
+    {
+     "name": "color/alpha/white-8",
+     "type": "COLOR",
+     "description": "white 8%.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-alpha-white-8)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::common/alpha/white-8"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::common/alpha/white-8"
+      }
+     }
+    },
+    {
+     "name": "color/alpha/white-16",
+     "type": "COLOR",
+     "description": "white 16%.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-alpha-white-16)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::common/alpha/white-16"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::common/alpha/white-16"
+      }
+     }
+    },
+    {
+     "name": "color/alpha/white-24",
+     "type": "COLOR",
+     "description": "white 24%.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-alpha-white-24)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::common/alpha/white-24"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::common/alpha/white-24"
+      }
+     }
+    },
+    {
+     "name": "color/alpha/white-48",
+     "type": "COLOR",
+     "description": "white 48%.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-alpha-white-48)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::common/alpha/white-48"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::common/alpha/white-48"
+      }
+     }
+    },
+    {
+     "name": "color/alpha/white-64",
+     "type": "COLOR",
+     "description": "white 64%.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-alpha-white-64)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::common/alpha/white-64"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::common/alpha/white-64"
+      }
+     }
+    },
+    {
+     "name": "color/neutral/50",
+     "type": "COLOR",
+     "description": "neutral 50 → gray 50.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-neutral-50)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/gray/50"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/gray/50"
+      }
+     }
+    },
+    {
+     "name": "color/neutral/100",
+     "type": "COLOR",
+     "description": "neutral 100 → gray 100.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-neutral-100)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/gray/100"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/gray/100"
+      }
+     }
+    },
+    {
+     "name": "color/neutral/150",
+     "type": "COLOR",
+     "description": "neutral 150 → gray 150.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-neutral-150)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/gray/150"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/gray/150"
+      }
+     }
+    },
+    {
+     "name": "color/neutral/200",
+     "type": "COLOR",
+     "description": "neutral 200 → gray 200.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-neutral-200)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/gray/200"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/gray/200"
+      }
+     }
+    },
+    {
+     "name": "color/neutral/300",
+     "type": "COLOR",
+     "description": "neutral 300 → gray 300.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-neutral-300)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/gray/300"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/gray/300"
+      }
+     }
+    },
+    {
+     "name": "color/neutral/400",
+     "type": "COLOR",
+     "description": "neutral 400 → gray 400.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-neutral-400)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/gray/400"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/gray/400"
+      }
+     }
+    },
+    {
+     "name": "color/neutral/500",
+     "type": "COLOR",
+     "description": "neutral 500 → gray 500.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-neutral-500)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/gray/500"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/gray/500"
+      }
+     }
+    },
+    {
+     "name": "color/neutral/600",
+     "type": "COLOR",
+     "description": "neutral 600 → gray 600.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-neutral-600)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/gray/600"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/gray/600"
+      }
+     }
+    },
+    {
+     "name": "color/neutral/700",
+     "type": "COLOR",
+     "description": "neutral 700 → gray 700.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-neutral-700)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/gray/700"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/gray/700"
+      }
+     }
+    },
+    {
+     "name": "color/neutral/800",
+     "type": "COLOR",
+     "description": "neutral 800 → gray 800.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-neutral-800)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/gray/800"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/gray/800"
+      }
+     }
+    },
+    {
+     "name": "color/neutral/850",
+     "type": "COLOR",
+     "description": "neutral 850 → gray 850.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-neutral-850)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/gray/850"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/gray/850"
+      }
+     }
+    },
+    {
+     "name": "color/neutral/900",
+     "type": "COLOR",
+     "description": "neutral 900 → gray 900.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-neutral-900)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/gray/900"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/gray/900"
+      }
+     }
+    },
+    {
+     "name": "color/neutral/950",
+     "type": "COLOR",
+     "description": "neutral 950 → gray 950.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-neutral-950)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/gray/950"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/gray/950"
+      }
+     }
+    },
+    {
+     "name": "color/accent-uno/50",
+     "type": "COLOR",
+     "description": "accent-uno 50 → indigo 50.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-uno-50)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/indigo/50"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/yellow/50"
+      }
+     }
+    },
+    {
+     "name": "color/accent-uno/100",
+     "type": "COLOR",
+     "description": "accent-uno 100 → indigo 100.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-uno-100)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/indigo/100"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/yellow/100"
+      }
+     }
+    },
+    {
+     "name": "color/accent-uno/200",
+     "type": "COLOR",
+     "description": "accent-uno 200 → indigo 200.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-uno-200)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/indigo/200"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/yellow/200"
+      }
+     }
+    },
+    {
+     "name": "color/accent-uno/300",
+     "type": "COLOR",
+     "description": "accent-uno 300 → indigo 300.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-uno-300)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/indigo/300"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/yellow/300"
+      }
+     }
+    },
+    {
+     "name": "color/accent-uno/400",
+     "type": "COLOR",
+     "description": "accent-uno 400 → indigo 400.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-uno-400)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/indigo/400"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/yellow/400"
+      }
+     }
+    },
+    {
+     "name": "color/accent-uno/500",
+     "type": "COLOR",
+     "description": "accent-uno 500 → indigo 500.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-uno-500)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/indigo/500"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/yellow/500"
+      }
+     }
+    },
+    {
+     "name": "color/accent-uno/600",
+     "type": "COLOR",
+     "description": "accent-uno 600 → indigo 600.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-uno-600)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/indigo/600"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/yellow/600"
+      }
+     }
+    },
+    {
+     "name": "color/accent-uno/700",
+     "type": "COLOR",
+     "description": "accent-uno 700 → indigo 700.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-uno-700)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/indigo/700"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/yellow/700"
+      }
+     }
+    },
+    {
+     "name": "color/accent-uno/800",
+     "type": "COLOR",
+     "description": "accent-uno 800 → indigo 800.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-uno-800)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/indigo/800"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/yellow/800"
+      }
+     }
+    },
+    {
+     "name": "color/accent-uno/900",
+     "type": "COLOR",
+     "description": "accent-uno 900 → indigo 900.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-uno-900)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/indigo/900"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/yellow/900"
+      }
+     }
+    },
+    {
+     "name": "color/accent-uno/950",
+     "type": "COLOR",
+     "description": "accent-uno 950 → indigo 950.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-uno-950)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/indigo/950"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/yellow/950"
+      }
+     }
+    },
+    {
+     "name": "color/accent-uno/base",
+     "type": "COLOR",
+     "description": "Опорный accent-uno = исходный цвет (indigo 600). deep в светлой теме.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-uno-base)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/indigo/600"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/yellow/200"
+      }
+     }
+    },
+    {
+     "name": "color/accent-uno/dark-base",
+     "type": "COLOR",
+     "description": "Опорный accent-uno для тёмной темы (indigo 500): ближайший к base, что держит 3:1 на тёмной странице и 4.5:1 с контентом.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-uno-dark-base)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/indigo/500"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/yellow/200"
+      }
+     }
+    },
+    {
+     "name": "color/accent-uno/on-base",
+     "type": "COLOR",
+     "description": "Контент поверх base (6.29:1).",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-uno-on-base)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::common/white"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/gray/950"
+      }
+     }
+    },
+    {
+     "name": "color/accent-uno/on-dark-base",
+     "type": "COLOR",
+     "description": "Контент поверх dark-base (4.50:1).",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-uno-on-dark-base)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/gray/950"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/gray/950"
+      }
+     }
+    },
+    {
+     "name": "color/accent-duo/50",
+     "type": "COLOR",
+     "description": "accent-duo 50 → magenta 50.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-duo-50)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/magenta/50"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/orange/50"
+      }
+     }
+    },
+    {
+     "name": "color/accent-duo/100",
+     "type": "COLOR",
+     "description": "accent-duo 100 → magenta 100.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-duo-100)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/magenta/100"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/orange/100"
+      }
+     }
+    },
+    {
+     "name": "color/accent-duo/200",
+     "type": "COLOR",
+     "description": "accent-duo 200 → magenta 200.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-duo-200)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/magenta/200"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/orange/200"
+      }
+     }
+    },
+    {
+     "name": "color/accent-duo/300",
+     "type": "COLOR",
+     "description": "accent-duo 300 → magenta 300.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-duo-300)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/magenta/300"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/orange/300"
+      }
+     }
+    },
+    {
+     "name": "color/accent-duo/400",
+     "type": "COLOR",
+     "description": "accent-duo 400 → magenta 400.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-duo-400)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/magenta/400"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/orange/400"
+      }
+     }
+    },
+    {
+     "name": "color/accent-duo/500",
+     "type": "COLOR",
+     "description": "accent-duo 500 → magenta 500.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-duo-500)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/magenta/500"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/orange/500"
+      }
+     }
+    },
+    {
+     "name": "color/accent-duo/600",
+     "type": "COLOR",
+     "description": "accent-duo 600 → magenta 600.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-duo-600)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/magenta/600"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/orange/600"
+      }
+     }
+    },
+    {
+     "name": "color/accent-duo/700",
+     "type": "COLOR",
+     "description": "accent-duo 700 → magenta 700.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-duo-700)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/magenta/700"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/orange/700"
+      }
+     }
+    },
+    {
+     "name": "color/accent-duo/800",
+     "type": "COLOR",
+     "description": "accent-duo 800 → magenta 800.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-duo-800)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/magenta/800"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/orange/800"
+      }
+     }
+    },
+    {
+     "name": "color/accent-duo/900",
+     "type": "COLOR",
+     "description": "accent-duo 900 → magenta 900.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-duo-900)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/magenta/900"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/orange/900"
+      }
+     }
+    },
+    {
+     "name": "color/accent-duo/950",
+     "type": "COLOR",
+     "description": "accent-duo 950 → magenta 950.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-duo-950)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/magenta/950"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/orange/950"
+      }
+     }
+    },
+    {
+     "name": "color/accent-duo/base",
+     "type": "COLOR",
+     "description": "Опорный accent-duo = исходный цвет (magenta 600). deep в светлой теме.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-duo-base)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/magenta/600"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/orange/400"
+      }
+     }
+    },
+    {
+     "name": "color/accent-duo/dark-base",
+     "type": "COLOR",
+     "description": "Опорный accent-duo для тёмной темы (magenta 400): ближайший к base, что держит 3:1 на тёмной странице и 4.5:1 с контентом.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-duo-dark-base)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/magenta/400"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/orange/400"
+      }
+     }
+    },
+    {
+     "name": "color/accent-duo/on-base",
+     "type": "COLOR",
+     "description": "Контент поверх base (6.52:1).",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-duo-on-base)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::common/white"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/gray/950"
+      }
+     }
+    },
+    {
+     "name": "color/accent-duo/on-dark-base",
+     "type": "COLOR",
+     "description": "Контент поверх dark-base (6.17:1).",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-accent-duo-on-dark-base)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/gray/950"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/gray/950"
+      }
+     }
+    },
+    {
+     "name": "color/brand-uno/50",
+     "type": "COLOR",
+     "description": "brand-uno 50 → indigo 50.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-uno-50)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/indigo/50"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/yellow/50"
+      }
+     }
+    },
+    {
+     "name": "color/brand-uno/100",
+     "type": "COLOR",
+     "description": "brand-uno 100 → indigo 100.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-uno-100)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/indigo/100"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/yellow/100"
+      }
+     }
+    },
+    {
+     "name": "color/brand-uno/200",
+     "type": "COLOR",
+     "description": "brand-uno 200 → indigo 200.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-uno-200)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/indigo/200"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/yellow/200"
+      }
+     }
+    },
+    {
+     "name": "color/brand-uno/300",
+     "type": "COLOR",
+     "description": "brand-uno 300 → indigo 300.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-uno-300)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/indigo/300"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/yellow/300"
+      }
+     }
+    },
+    {
+     "name": "color/brand-uno/400",
+     "type": "COLOR",
+     "description": "brand-uno 400 → indigo 400.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-uno-400)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/indigo/400"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/yellow/400"
+      }
+     }
+    },
+    {
+     "name": "color/brand-uno/500",
+     "type": "COLOR",
+     "description": "brand-uno 500 → indigo 500.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-uno-500)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/indigo/500"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/yellow/500"
+      }
+     }
+    },
+    {
+     "name": "color/brand-uno/600",
+     "type": "COLOR",
+     "description": "brand-uno 600 → indigo 600.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-uno-600)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/indigo/600"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/yellow/600"
+      }
+     }
+    },
+    {
+     "name": "color/brand-uno/700",
+     "type": "COLOR",
+     "description": "brand-uno 700 → indigo 700.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-uno-700)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/indigo/700"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/yellow/700"
+      }
+     }
+    },
+    {
+     "name": "color/brand-uno/800",
+     "type": "COLOR",
+     "description": "brand-uno 800 → indigo 800.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-uno-800)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/indigo/800"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/yellow/800"
+      }
+     }
+    },
+    {
+     "name": "color/brand-uno/900",
+     "type": "COLOR",
+     "description": "brand-uno 900 → indigo 900.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-uno-900)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/indigo/900"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/yellow/900"
+      }
+     }
+    },
+    {
+     "name": "color/brand-uno/950",
+     "type": "COLOR",
+     "description": "brand-uno 950 → indigo 950.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-uno-950)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/indigo/950"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/yellow/950"
+      }
+     }
+    },
+    {
+     "name": "color/brand-uno/base",
+     "type": "COLOR",
+     "description": "Опорный brand-uno = исходный цвет (indigo 600). deep в светлой теме.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-uno-base)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/indigo/600"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/yellow/200"
+      }
+     }
+    },
+    {
+     "name": "color/brand-uno/dark-base",
+     "type": "COLOR",
+     "description": "Опорный brand-uno для тёмной темы (indigo 500): ближайший к base, что держит 3:1 на тёмной странице и 4.5:1 с контентом.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-uno-dark-base)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/indigo/500"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/yellow/200"
+      }
+     }
+    },
+    {
+     "name": "color/brand-uno/on-base",
+     "type": "COLOR",
+     "description": "Контент поверх base (6.29:1).",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-uno-on-base)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::common/white"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/gray/950"
+      }
+     }
+    },
+    {
+     "name": "color/brand-uno/on-dark-base",
+     "type": "COLOR",
+     "description": "Контент поверх dark-base (4.50:1).",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-uno-on-dark-base)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/gray/950"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/gray/950"
+      }
+     }
+    },
+    {
+     "name": "color/brand-duo/50",
+     "type": "COLOR",
+     "description": "brand-duo 50 → magenta 50.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-duo-50)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/magenta/50"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/orange/50"
+      }
+     }
+    },
+    {
+     "name": "color/brand-duo/100",
+     "type": "COLOR",
+     "description": "brand-duo 100 → magenta 100.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-duo-100)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/magenta/100"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/orange/100"
+      }
+     }
+    },
+    {
+     "name": "color/brand-duo/200",
+     "type": "COLOR",
+     "description": "brand-duo 200 → magenta 200.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-duo-200)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/magenta/200"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/orange/200"
+      }
+     }
+    },
+    {
+     "name": "color/brand-duo/300",
+     "type": "COLOR",
+     "description": "brand-duo 300 → magenta 300.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-duo-300)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/magenta/300"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/orange/300"
+      }
+     }
+    },
+    {
+     "name": "color/brand-duo/400",
+     "type": "COLOR",
+     "description": "brand-duo 400 → magenta 400.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-duo-400)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/magenta/400"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/orange/400"
+      }
+     }
+    },
+    {
+     "name": "color/brand-duo/500",
+     "type": "COLOR",
+     "description": "brand-duo 500 → magenta 500.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-duo-500)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/magenta/500"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/orange/500"
+      }
+     }
+    },
+    {
+     "name": "color/brand-duo/600",
+     "type": "COLOR",
+     "description": "brand-duo 600 → magenta 600.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-duo-600)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/magenta/600"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/orange/600"
+      }
+     }
+    },
+    {
+     "name": "color/brand-duo/700",
+     "type": "COLOR",
+     "description": "brand-duo 700 → magenta 700.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-duo-700)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/magenta/700"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/orange/700"
+      }
+     }
+    },
+    {
+     "name": "color/brand-duo/800",
+     "type": "COLOR",
+     "description": "brand-duo 800 → magenta 800.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-duo-800)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/magenta/800"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/orange/800"
+      }
+     }
+    },
+    {
+     "name": "color/brand-duo/900",
+     "type": "COLOR",
+     "description": "brand-duo 900 → magenta 900.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-duo-900)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/magenta/900"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/orange/900"
+      }
+     }
+    },
+    {
+     "name": "color/brand-duo/950",
+     "type": "COLOR",
+     "description": "brand-duo 950 → magenta 950.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-duo-950)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/magenta/950"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/orange/950"
+      }
+     }
+    },
+    {
+     "name": "color/brand-duo/base",
+     "type": "COLOR",
+     "description": "Опорный brand-duo = исходный цвет (magenta 600). deep в светлой теме.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-duo-base)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/magenta/600"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/orange/400"
+      }
+     }
+    },
+    {
+     "name": "color/brand-duo/dark-base",
+     "type": "COLOR",
+     "description": "Опорный brand-duo для тёмной темы (magenta 400): ближайший к base, что держит 3:1 на тёмной странице и 4.5:1 с контентом.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-duo-dark-base)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/magenta/400"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/orange/400"
+      }
+     }
+    },
+    {
+     "name": "color/brand-duo/on-base",
+     "type": "COLOR",
+     "description": "Контент поверх base (6.52:1).",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-duo-on-base)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::common/white"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/gray/950"
+      }
+     }
+    },
+    {
+     "name": "color/brand-duo/on-dark-base",
+     "type": "COLOR",
+     "description": "Контент поверх dark-base (6.17:1).",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-brand-duo-on-dark-base)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/gray/950"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/gray/950"
+      }
+     }
+    },
+    {
+     "name": "color/positive/50",
+     "type": "COLOR",
+     "description": "positive 50 → green 50.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-positive-50)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/green/50"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/green/50"
+      }
+     }
+    },
+    {
+     "name": "color/positive/100",
+     "type": "COLOR",
+     "description": "positive 100 → green 100.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-positive-100)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/green/100"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/green/100"
+      }
+     }
+    },
+    {
+     "name": "color/positive/200",
+     "type": "COLOR",
+     "description": "positive 200 → green 200.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-positive-200)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/green/200"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/green/200"
+      }
+     }
+    },
+    {
+     "name": "color/positive/300",
+     "type": "COLOR",
+     "description": "positive 300 → green 300.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-positive-300)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/green/300"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/green/300"
+      }
+     }
+    },
+    {
+     "name": "color/positive/400",
+     "type": "COLOR",
+     "description": "positive 400 → green 400.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-positive-400)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/green/400"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/green/400"
+      }
+     }
+    },
+    {
+     "name": "color/positive/500",
+     "type": "COLOR",
+     "description": "positive 500 → green 500.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-positive-500)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/green/500"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/green/500"
+      }
+     }
+    },
+    {
+     "name": "color/positive/600",
+     "type": "COLOR",
+     "description": "positive 600 → green 600.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-positive-600)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/green/600"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/green/600"
+      }
+     }
+    },
+    {
+     "name": "color/positive/700",
+     "type": "COLOR",
+     "description": "positive 700 → green 700.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-positive-700)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/green/700"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/green/700"
+      }
+     }
+    },
+    {
+     "name": "color/positive/800",
+     "type": "COLOR",
+     "description": "positive 800 → green 800.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-positive-800)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/green/800"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/green/800"
+      }
+     }
+    },
+    {
+     "name": "color/positive/900",
+     "type": "COLOR",
+     "description": "positive 900 → green 900.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-positive-900)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/green/900"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/green/900"
+      }
+     }
+    },
+    {
+     "name": "color/positive/950",
+     "type": "COLOR",
+     "description": "positive 950 → green 950.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-positive-950)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/green/950"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/green/950"
+      }
+     }
+    },
+    {
+     "name": "color/positive/base",
+     "type": "COLOR",
+     "description": "Опорный positive = исходный цвет (green 600). deep в светлой теме.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-positive-base)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/green/600"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/green/600"
+      }
+     }
+    },
+    {
+     "name": "color/positive/dark-base",
+     "type": "COLOR",
+     "description": "Опорный positive для тёмной темы (green 600): ближайший к base, что держит 3:1 на тёмной странице и 4.5:1 с контентом.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-positive-dark-base)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/green/600"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/green/600"
+      }
+     }
+    },
+    {
+     "name": "color/positive/on-base",
+     "type": "COLOR",
+     "description": "Контент поверх base (4.51:1).",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-positive-on-base)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::common/white"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::common/white"
+      }
+     }
+    },
+    {
+     "name": "color/positive/on-dark-base",
+     "type": "COLOR",
+     "description": "Контент поверх dark-base (4.51:1).",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-positive-on-dark-base)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::common/white"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::common/white"
+      }
+     }
+    },
+    {
+     "name": "color/negative/50",
+     "type": "COLOR",
+     "description": "negative 50 → red 50.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-negative-50)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/red/50"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/red/50"
+      }
+     }
+    },
+    {
+     "name": "color/negative/100",
+     "type": "COLOR",
+     "description": "negative 100 → red 100.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-negative-100)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/red/100"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/red/100"
+      }
+     }
+    },
+    {
+     "name": "color/negative/200",
+     "type": "COLOR",
+     "description": "negative 200 → red 200.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-negative-200)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/red/200"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/red/200"
+      }
+     }
+    },
+    {
+     "name": "color/negative/300",
+     "type": "COLOR",
+     "description": "negative 300 → red 300.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-negative-300)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/red/300"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/red/300"
+      }
+     }
+    },
+    {
+     "name": "color/negative/400",
+     "type": "COLOR",
+     "description": "negative 400 → red 400.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-negative-400)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/red/400"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/red/400"
+      }
+     }
+    },
+    {
+     "name": "color/negative/500",
+     "type": "COLOR",
+     "description": "negative 500 → red 500.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-negative-500)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/red/500"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/red/500"
+      }
+     }
+    },
+    {
+     "name": "color/negative/600",
+     "type": "COLOR",
+     "description": "negative 600 → red 600.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-negative-600)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/red/600"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/red/600"
+      }
+     }
+    },
+    {
+     "name": "color/negative/700",
+     "type": "COLOR",
+     "description": "negative 700 → red 700.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-negative-700)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/red/700"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/red/700"
+      }
+     }
+    },
+    {
+     "name": "color/negative/800",
+     "type": "COLOR",
+     "description": "negative 800 → red 800.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-negative-800)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/red/800"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/red/800"
+      }
+     }
+    },
+    {
+     "name": "color/negative/900",
+     "type": "COLOR",
+     "description": "negative 900 → red 900.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-negative-900)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/red/900"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/red/900"
+      }
+     }
+    },
+    {
+     "name": "color/negative/950",
+     "type": "COLOR",
+     "description": "negative 950 → red 950.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-negative-950)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/red/950"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/red/950"
+      }
+     }
+    },
+    {
+     "name": "color/negative/base",
+     "type": "COLOR",
+     "description": "Опорный negative = исходный цвет (red 600). deep в светлой теме.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-negative-base)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/red/600"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/red/600"
+      }
+     }
+    },
+    {
+     "name": "color/negative/dark-base",
+     "type": "COLOR",
+     "description": "Опорный negative для тёмной темы (red 600): ближайший к base, что держит 3:1 на тёмной странице и 4.5:1 с контентом.",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-negative-dark-base)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/red/600"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/red/600"
+      }
+     }
+    },
+    {
+     "name": "color/negative/on-base",
+     "type": "COLOR",
+     "description": "Контент поверх base (4.83:1).",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-negative-on-base)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::common/white"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::common/white"
+      }
+     }
+    },
+    {
+     "name": "color/negative/on-dark-base",
+     "type": "COLOR",
+     "description": "Контент поверх dark-base (4.83:1).",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-negative-on-dark-base)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::common/white"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::common/white"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "name": "2 · Theme",
+   "description": "Семантика цвета по модели kb/color-model.json. Генерируется. Ссылается только на Brand, поэтому любой бренд работает в любой теме.",
+   "modes": [
+    "light",
+    "dark"
+   ],
+   "variables": [
+    {
+     "name": "ground/page",
+     "type": "COLOR",
+     "description": "Земля · page.",
+     "scopes": [
+      "FRAME_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-ground-page)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/neutral/100"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/neutral/950"
+      }
+     }
+    },
+    {
+     "name": "ground/island",
+     "type": "COLOR",
+     "description": "Земля · island.",
+     "scopes": [
+      "FRAME_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-ground-island)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/white"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/neutral/900"
+      }
+     }
+    },
+    {
+     "name": "background/neutral-pale",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · neutral · pale. Основной нейтральный цвет интерфейса.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-neutral-pale)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/neutral/50"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/neutral/850"
+      }
+     }
+    },
+    {
+     "name": "background/neutral-soft",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · neutral · soft. Основной нейтральный цвет интерфейса.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-neutral-soft)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/neutral/100"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/neutral/800"
+      }
+     }
+    },
+    {
+     "name": "background/neutral-deep",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · neutral · deep. Основной нейтральный цвет интерфейса.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-neutral-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/neutral/900"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/neutral/100"
+      }
+     }
+    },
+    {
+     "name": "background/accent-uno-pale",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · accent-uno · pale. Интерактивный акцент.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-accent-uno-pale)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/accent-uno/50"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/accent-uno/950"
+      }
+     }
+    },
+    {
+     "name": "background/accent-uno-soft",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · accent-uno · soft. Интерактивный акцент.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-accent-uno-soft)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/accent-uno/100"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/accent-uno/900"
+      }
+     }
+    },
+    {
+     "name": "background/accent-uno-deep",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · accent-uno · deep. Интерактивный акцент.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-accent-uno-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/accent-uno/base"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/accent-uno/dark-base"
+      }
+     }
+    },
+    {
+     "name": "background/accent-duo-pale",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · accent-duo · pale. Интерактивный акцент.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-accent-duo-pale)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/accent-duo/50"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/accent-duo/950"
+      }
+     }
+    },
+    {
+     "name": "background/accent-duo-soft",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · accent-duo · soft. Интерактивный акцент.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-accent-duo-soft)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/accent-duo/100"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/accent-duo/900"
+      }
+     }
+    },
+    {
+     "name": "background/accent-duo-deep",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · accent-duo · deep. Интерактивный акцент.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-accent-duo-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/accent-duo/base"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/accent-duo/dark-base"
+      }
+     }
+    },
+    {
+     "name": "background/status-positive-pale",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · status-positive · pale. Статусы: успех и ошибка.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-status-positive-pale)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/positive/50"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/positive/950"
+      }
+     }
+    },
+    {
+     "name": "background/status-positive-soft",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · status-positive · soft. Статусы: успех и ошибка.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-status-positive-soft)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/positive/100"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/positive/900"
+      }
+     }
+    },
+    {
+     "name": "background/status-positive-deep",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · status-positive · deep. Статусы: успех и ошибка.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-status-positive-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/positive/base"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/positive/dark-base"
+      }
+     }
+    },
+    {
+     "name": "background/status-negative-pale",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · status-negative · pale. Статусы: успех и ошибка.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-status-negative-pale)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/negative/50"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/negative/950"
+      }
+     }
+    },
+    {
+     "name": "background/status-negative-soft",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · status-negative · soft. Статусы: успех и ошибка.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-status-negative-soft)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/negative/100"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/negative/900"
+      }
+     }
+    },
+    {
+     "name": "background/status-negative-deep",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · status-negative · deep. Статусы: успех и ошибка.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-status-negative-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/negative/base"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/negative/dark-base"
+      }
+     }
+    },
+    {
+     "name": "background/brand-uno-pale",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · brand-uno · pale. Фирменные цвета для промо и айдентики, не для интерактива.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-brand-uno-pale)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/brand-uno/50"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/brand-uno/950"
+      }
+     }
+    },
+    {
+     "name": "background/brand-uno-soft",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · brand-uno · soft. Фирменные цвета для промо и айдентики, не для интерактива.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-brand-uno-soft)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/brand-uno/100"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/brand-uno/900"
+      }
+     }
+    },
+    {
+     "name": "background/brand-uno-deep",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · brand-uno · deep. Фирменные цвета для промо и айдентики, не для интерактива.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-brand-uno-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/brand-uno/base"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/brand-uno/dark-base"
+      }
+     }
+    },
+    {
+     "name": "background/brand-duo-pale",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · brand-duo · pale. Фирменные цвета для промо и айдентики, не для интерактива.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-brand-duo-pale)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/brand-duo/50"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/brand-duo/950"
+      }
+     }
+    },
+    {
+     "name": "background/brand-duo-soft",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · brand-duo · soft. Фирменные цвета для промо и айдентики, не для интерактива.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-brand-duo-soft)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/brand-duo/100"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/brand-duo/900"
+      }
+     }
+    },
+    {
+     "name": "background/brand-duo-deep",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · brand-duo · deep. Фирменные цвета для промо и айдентики, не для интерактива.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-brand-duo-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/brand-duo/base"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/brand-duo/dark-base"
+      }
+     }
+    },
+    {
+     "name": "background/static-light-pale",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · static-light · pale. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-static-light-pale)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/white"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/white"
+      }
+     }
+    },
+    {
+     "name": "background/static-light-soft",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · static-light · soft. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-static-light-soft)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/neutral/100"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/neutral/100"
+      }
+     }
+    },
+    {
+     "name": "background/static-light-deep",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · static-light · deep. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-static-light-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/neutral/200"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/neutral/200"
+      }
+     }
+    },
+    {
+     "name": "background/static-dark-pale",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · static-dark · pale. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-static-dark-pale)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/neutral/800"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/neutral/800"
+      }
+     }
+    },
+    {
+     "name": "background/static-dark-soft",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · static-dark · soft. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-static-dark-soft)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/neutral/900"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/neutral/900"
+      }
+     }
+    },
+    {
+     "name": "background/static-dark-deep",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · static-dark · deep. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-static-dark-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/neutral/950"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/neutral/950"
+      }
+     }
+    },
+    {
+     "name": "background/inverse",
+     "type": "COLOR",
+     "description": "Заливки элементов поверх земли · inverse. Инверсный цвет: тосты, тултипы, инверсные плашки.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-background-inverse)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/neutral/900"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/neutral/100"
+      }
+     }
+    },
+    {
+     "name": "over-background/neutral-pale",
+     "type": "COLOR",
+     "description": "Полупрозрачные слои поверх любой заливки · neutral · pale. Основной нейтральный цвет интерфейса.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-over-background-neutral-pale)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/alpha/black-4"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/alpha/white-4"
+      }
+     }
+    },
+    {
+     "name": "over-background/neutral-soft",
+     "type": "COLOR",
+     "description": "Полупрозрачные слои поверх любой заливки · neutral · soft. Основной нейтральный цвет интерфейса.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-over-background-neutral-soft)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/alpha/black-8"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/alpha/white-8"
+      }
+     }
+    },
+    {
+     "name": "over-background/neutral-deep",
+     "type": "COLOR",
+     "description": "Полупрозрачные слои поверх любой заливки · neutral · deep. Основной нейтральный цвет интерфейса.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-over-background-neutral-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/alpha/black-16"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/alpha/white-16"
+      }
+     }
+    },
+    {
+     "name": "over-background/static-light-pale",
+     "type": "COLOR",
+     "description": "Полупрозрачные слои поверх любой заливки · static-light · pale. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-over-background-static-light-pale)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/alpha/white-16"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/alpha/white-16"
+      }
+     }
+    },
+    {
+     "name": "over-background/static-light-soft",
+     "type": "COLOR",
+     "description": "Полупрозрачные слои поверх любой заливки · static-light · soft. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-over-background-static-light-soft)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/alpha/white-24"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/alpha/white-24"
+      }
+     }
+    },
+    {
+     "name": "over-background/static-light-deep",
+     "type": "COLOR",
+     "description": "Полупрозрачные слои поверх любой заливки · static-light · deep. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-over-background-static-light-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/alpha/white-48"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/alpha/white-48"
+      }
+     }
+    },
+    {
+     "name": "over-background/static-dark-pale",
+     "type": "COLOR",
+     "description": "Полупрозрачные слои поверх любой заливки · static-dark · pale. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-over-background-static-dark-pale)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/alpha/black-16"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/alpha/black-16"
+      }
+     }
+    },
+    {
+     "name": "over-background/static-dark-soft",
+     "type": "COLOR",
+     "description": "Полупрозрачные слои поверх любой заливки · static-dark · soft. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-over-background-static-dark-soft)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/alpha/black-24"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/alpha/black-24"
+      }
+     }
+    },
+    {
+     "name": "over-background/static-dark-deep",
+     "type": "COLOR",
+     "description": "Полупрозрачные слои поверх любой заливки · static-dark · deep. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-over-background-static-dark-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/alpha/black-48"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/alpha/black-48"
+      }
+     }
+    },
+    {
+     "name": "over-background/inverse",
+     "type": "COLOR",
+     "description": "Полупрозрачные слои поверх любой заливки · inverse. Инверсный цвет: тосты, тултипы, инверсные плашки.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-over-background-inverse)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/alpha/white-8"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/alpha/black-8"
+      }
+     }
+    },
+    {
+     "name": "content/neutral/primary",
+     "type": "COLOR",
+     "description": "Текст и иконки · neutral · primary. Основной нейтральный цвет интерфейса.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-neutral-primary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/neutral/950"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/neutral/50"
+      }
+     }
+    },
+    {
+     "name": "content/neutral/secondary",
+     "type": "COLOR",
+     "description": "Текст и иконки · neutral · secondary. Основной нейтральный цвет интерфейса.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-neutral-secondary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/neutral/800"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/neutral/200"
+      }
+     }
+    },
+    {
+     "name": "content/neutral/tertiary",
+     "type": "COLOR",
+     "description": "Текст и иконки · neutral · tertiary. Основной нейтральный цвет интерфейса.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-neutral-tertiary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/neutral/700"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/neutral/300"
+      }
+     }
+    },
+    {
+     "name": "content/neutral/on-deep",
+     "type": "COLOR",
+     "description": "Текст и иконки · neutral · on-deep. Основной нейтральный цвет интерфейса.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-neutral-on-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/neutral/50"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/neutral/950"
+      }
+     }
+    },
+    {
+     "name": "content/accent-uno/primary",
+     "type": "COLOR",
+     "description": "Текст и иконки · accent-uno · primary. Интерактивный акцент.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-accent-uno-primary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/accent-uno/700"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/accent-uno/300"
+      }
+     }
+    },
+    {
+     "name": "content/accent-uno/secondary",
+     "type": "COLOR",
+     "description": "Текст и иконки · accent-uno · secondary. Интерактивный акцент.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-accent-uno-secondary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/accent-uno/600"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/accent-uno/400"
+      }
+     }
+    },
+    {
+     "name": "content/accent-uno/tertiary",
+     "type": "COLOR",
+     "description": "Текст и иконки · accent-uno · tertiary. Интерактивный акцент.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-accent-uno-tertiary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/accent-uno/500"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/accent-uno/500"
+      }
+     }
+    },
+    {
+     "name": "content/accent-uno/on-deep",
+     "type": "COLOR",
+     "description": "Текст и иконки · accent-uno · on-deep. Интерактивный акцент.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-accent-uno-on-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/accent-uno/on-base"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/accent-uno/on-dark-base"
+      }
+     }
+    },
+    {
+     "name": "content/accent-duo/primary",
+     "type": "COLOR",
+     "description": "Текст и иконки · accent-duo · primary. Интерактивный акцент.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-accent-duo-primary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/accent-duo/700"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/accent-duo/300"
+      }
+     }
+    },
+    {
+     "name": "content/accent-duo/secondary",
+     "type": "COLOR",
+     "description": "Текст и иконки · accent-duo · secondary. Интерактивный акцент.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-accent-duo-secondary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/accent-duo/600"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/accent-duo/400"
+      }
+     }
+    },
+    {
+     "name": "content/accent-duo/tertiary",
+     "type": "COLOR",
+     "description": "Текст и иконки · accent-duo · tertiary. Интерактивный акцент.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-accent-duo-tertiary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/accent-duo/500"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/accent-duo/500"
+      }
+     }
+    },
+    {
+     "name": "content/accent-duo/on-deep",
+     "type": "COLOR",
+     "description": "Текст и иконки · accent-duo · on-deep. Интерактивный акцент.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-accent-duo-on-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/accent-duo/on-base"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/accent-duo/on-dark-base"
+      }
+     }
+    },
+    {
+     "name": "content/status-positive/primary",
+     "type": "COLOR",
+     "description": "Текст и иконки · status-positive · primary. Статусы: успех и ошибка.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-status-positive-primary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/positive/700"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/positive/300"
+      }
+     }
+    },
+    {
+     "name": "content/status-positive/secondary",
+     "type": "COLOR",
+     "description": "Текст и иконки · status-positive · secondary. Статусы: успех и ошибка.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-status-positive-secondary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/positive/600"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/positive/400"
+      }
+     }
+    },
+    {
+     "name": "content/status-positive/tertiary",
+     "type": "COLOR",
+     "description": "Текст и иконки · status-positive · tertiary. Статусы: успех и ошибка.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-status-positive-tertiary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/positive/500"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/positive/500"
+      }
+     }
+    },
+    {
+     "name": "content/status-positive/on-deep",
+     "type": "COLOR",
+     "description": "Текст и иконки · status-positive · on-deep. Статусы: успех и ошибка.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-status-positive-on-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/positive/on-base"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/positive/on-dark-base"
+      }
+     }
+    },
+    {
+     "name": "content/status-negative/primary",
+     "type": "COLOR",
+     "description": "Текст и иконки · status-negative · primary. Статусы: успех и ошибка.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-status-negative-primary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/negative/700"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/negative/300"
+      }
+     }
+    },
+    {
+     "name": "content/status-negative/secondary",
+     "type": "COLOR",
+     "description": "Текст и иконки · status-negative · secondary. Статусы: успех и ошибка.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-status-negative-secondary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/negative/600"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/negative/400"
+      }
+     }
+    },
+    {
+     "name": "content/status-negative/tertiary",
+     "type": "COLOR",
+     "description": "Текст и иконки · status-negative · tertiary. Статусы: успех и ошибка.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-status-negative-tertiary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/negative/500"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/negative/500"
+      }
+     }
+    },
+    {
+     "name": "content/status-negative/on-deep",
+     "type": "COLOR",
+     "description": "Текст и иконки · status-negative · on-deep. Статусы: успех и ошибка.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-status-negative-on-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/negative/on-base"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/negative/on-dark-base"
+      }
+     }
+    },
+    {
+     "name": "content/brand-uno/primary",
+     "type": "COLOR",
+     "description": "Текст и иконки · brand-uno · primary. Фирменные цвета для промо и айдентики, не для интерактива.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-brand-uno-primary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/brand-uno/700"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/brand-uno/300"
+      }
+     }
+    },
+    {
+     "name": "content/brand-uno/secondary",
+     "type": "COLOR",
+     "description": "Текст и иконки · brand-uno · secondary. Фирменные цвета для промо и айдентики, не для интерактива.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-brand-uno-secondary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/brand-uno/600"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/brand-uno/400"
+      }
+     }
+    },
+    {
+     "name": "content/brand-uno/tertiary",
+     "type": "COLOR",
+     "description": "Текст и иконки · brand-uno · tertiary. Фирменные цвета для промо и айдентики, не для интерактива.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-brand-uno-tertiary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/brand-uno/500"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/brand-uno/500"
+      }
+     }
+    },
+    {
+     "name": "content/brand-uno/on-deep",
+     "type": "COLOR",
+     "description": "Текст и иконки · brand-uno · on-deep. Фирменные цвета для промо и айдентики, не для интерактива.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-brand-uno-on-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/brand-uno/on-base"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/brand-uno/on-dark-base"
+      }
+     }
+    },
+    {
+     "name": "content/brand-duo/primary",
+     "type": "COLOR",
+     "description": "Текст и иконки · brand-duo · primary. Фирменные цвета для промо и айдентики, не для интерактива.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-brand-duo-primary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/brand-duo/700"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/brand-duo/300"
+      }
+     }
+    },
+    {
+     "name": "content/brand-duo/secondary",
+     "type": "COLOR",
+     "description": "Текст и иконки · brand-duo · secondary. Фирменные цвета для промо и айдентики, не для интерактива.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-brand-duo-secondary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/brand-duo/600"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/brand-duo/400"
+      }
+     }
+    },
+    {
+     "name": "content/brand-duo/tertiary",
+     "type": "COLOR",
+     "description": "Текст и иконки · brand-duo · tertiary. Фирменные цвета для промо и айдентики, не для интерактива.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-brand-duo-tertiary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/brand-duo/500"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/brand-duo/500"
+      }
+     }
+    },
+    {
+     "name": "content/brand-duo/on-deep",
+     "type": "COLOR",
+     "description": "Текст и иконки · brand-duo · on-deep. Фирменные цвета для промо и айдентики, не для интерактива.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-brand-duo-on-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/brand-duo/on-base"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/brand-duo/on-dark-base"
+      }
+     }
+    },
+    {
+     "name": "content/static-light/primary",
+     "type": "COLOR",
+     "description": "Текст и иконки · static-light · primary. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-static-light-primary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/white"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/white"
+      }
+     }
+    },
+    {
+     "name": "content/static-light/secondary",
+     "type": "COLOR",
+     "description": "Текст и иконки · static-light · secondary. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-static-light-secondary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/alpha/white-64"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/alpha/white-64"
+      }
+     }
+    },
+    {
+     "name": "content/static-light/tertiary",
+     "type": "COLOR",
+     "description": "Текст и иконки · static-light · tertiary. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-static-light-tertiary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/alpha/white-48"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/alpha/white-48"
+      }
+     }
+    },
+    {
+     "name": "content/static-light/on-deep",
+     "type": "COLOR",
+     "description": "Текст и иконки · static-light · on-deep. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-static-light-on-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/neutral/950"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/neutral/950"
+      }
+     }
+    },
+    {
+     "name": "content/static-dark/primary",
+     "type": "COLOR",
+     "description": "Текст и иконки · static-dark · primary. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-static-dark-primary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/neutral/950"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/neutral/950"
+      }
+     }
+    },
+    {
+     "name": "content/static-dark/secondary",
+     "type": "COLOR",
+     "description": "Текст и иконки · static-dark · secondary. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-static-dark-secondary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/alpha/black-64"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/alpha/black-64"
+      }
+     }
+    },
+    {
+     "name": "content/static-dark/tertiary",
+     "type": "COLOR",
+     "description": "Текст и иконки · static-dark · tertiary. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-static-dark-tertiary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/alpha/black-48"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/alpha/black-48"
+      }
+     }
+    },
+    {
+     "name": "content/static-dark/on-deep",
+     "type": "COLOR",
+     "description": "Текст и иконки · static-dark · on-deep. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-static-dark-on-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/white"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/white"
+      }
+     }
+    },
+    {
+     "name": "content/inverse/primary",
+     "type": "COLOR",
+     "description": "Текст и иконки · inverse · primary. Инверсный цвет: тосты, тултипы, инверсные плашки.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-inverse-primary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/neutral/50"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/neutral/950"
+      }
+     }
+    },
+    {
+     "name": "content/inverse/secondary",
+     "type": "COLOR",
+     "description": "Текст и иконки · inverse · secondary. Инверсный цвет: тосты, тултипы, инверсные плашки.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-inverse-secondary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/neutral/200"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/neutral/800"
+      }
+     }
+    },
+    {
+     "name": "content/inverse/tertiary",
+     "type": "COLOR",
+     "description": "Текст и иконки · inverse · tertiary. Инверсный цвет: тосты, тултипы, инверсные плашки.",
+     "scopes": [
+      "TEXT_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-content-inverse-tertiary)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/neutral/300"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/neutral/700"
+      }
+     }
+    },
+    {
+     "name": "border/neutral/pale",
+     "type": "COLOR",
+     "description": "Обводки и разделители · neutral · pale. Основной нейтральный цвет интерфейса.",
+     "scopes": [
+      "STROKE_COLOR"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-border-neutral-pale)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/neutral/100"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/neutral/850"
+      }
+     }
+    },
+    {
+     "name": "border/neutral/soft",
+     "type": "COLOR",
+     "description": "Обводки и разделители · neutral · soft. Основной нейтральный цвет интерфейса.",
+     "scopes": [
+      "STROKE_COLOR"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-border-neutral-soft)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/neutral/200"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/neutral/800"
+      }
+     }
+    },
+    {
+     "name": "border/neutral/deep",
+     "type": "COLOR",
+     "description": "Обводки и разделители · neutral · deep. Основной нейтральный цвет интерфейса.",
+     "scopes": [
+      "STROKE_COLOR"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-border-neutral-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/neutral/500"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/neutral/500"
+      }
+     }
+    },
+    {
+     "name": "border/accent-uno/pale",
+     "type": "COLOR",
+     "description": "Обводки и разделители · accent-uno · pale. Интерактивный акцент.",
+     "scopes": [
+      "STROKE_COLOR"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-border-accent-uno-pale)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/accent-uno/100"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/accent-uno/900"
+      }
+     }
+    },
+    {
+     "name": "border/accent-uno/soft",
+     "type": "COLOR",
+     "description": "Обводки и разделители · accent-uno · soft. Интерактивный акцент.",
+     "scopes": [
+      "STROKE_COLOR"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-border-accent-uno-soft)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/accent-uno/300"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/accent-uno/700"
+      }
+     }
+    },
+    {
+     "name": "border/accent-uno/deep",
+     "type": "COLOR",
+     "description": "Обводки и разделители · accent-uno · deep. Интерактивный акцент.",
+     "scopes": [
+      "STROKE_COLOR"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-border-accent-uno-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/accent-uno/base"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/accent-uno/dark-base"
+      }
+     }
+    },
+    {
+     "name": "border/accent-duo/pale",
+     "type": "COLOR",
+     "description": "Обводки и разделители · accent-duo · pale. Интерактивный акцент.",
+     "scopes": [
+      "STROKE_COLOR"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-border-accent-duo-pale)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/accent-duo/100"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/accent-duo/900"
+      }
+     }
+    },
+    {
+     "name": "border/accent-duo/soft",
+     "type": "COLOR",
+     "description": "Обводки и разделители · accent-duo · soft. Интерактивный акцент.",
+     "scopes": [
+      "STROKE_COLOR"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-border-accent-duo-soft)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/accent-duo/300"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/accent-duo/700"
+      }
+     }
+    },
+    {
+     "name": "border/accent-duo/deep",
+     "type": "COLOR",
+     "description": "Обводки и разделители · accent-duo · deep. Интерактивный акцент.",
+     "scopes": [
+      "STROKE_COLOR"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-border-accent-duo-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/accent-duo/base"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/accent-duo/dark-base"
+      }
+     }
+    },
+    {
+     "name": "border/status-positive/pale",
+     "type": "COLOR",
+     "description": "Обводки и разделители · status-positive · pale. Статусы: успех и ошибка.",
+     "scopes": [
+      "STROKE_COLOR"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-border-status-positive-pale)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/positive/100"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/positive/900"
+      }
+     }
+    },
+    {
+     "name": "border/status-positive/soft",
+     "type": "COLOR",
+     "description": "Обводки и разделители · status-positive · soft. Статусы: успех и ошибка.",
+     "scopes": [
+      "STROKE_COLOR"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-border-status-positive-soft)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/positive/300"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/positive/700"
+      }
+     }
+    },
+    {
+     "name": "border/status-positive/deep",
+     "type": "COLOR",
+     "description": "Обводки и разделители · status-positive · deep. Статусы: успех и ошибка.",
+     "scopes": [
+      "STROKE_COLOR"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-border-status-positive-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/positive/base"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/positive/dark-base"
+      }
+     }
+    },
+    {
+     "name": "border/status-negative/pale",
+     "type": "COLOR",
+     "description": "Обводки и разделители · status-negative · pale. Статусы: успех и ошибка.",
+     "scopes": [
+      "STROKE_COLOR"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-border-status-negative-pale)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/negative/100"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/negative/900"
+      }
+     }
+    },
+    {
+     "name": "border/status-negative/soft",
+     "type": "COLOR",
+     "description": "Обводки и разделители · status-negative · soft. Статусы: успех и ошибка.",
+     "scopes": [
+      "STROKE_COLOR"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-border-status-negative-soft)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/negative/300"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/negative/700"
+      }
+     }
+    },
+    {
+     "name": "border/status-negative/deep",
+     "type": "COLOR",
+     "description": "Обводки и разделители · status-negative · deep. Статусы: успех и ошибка.",
+     "scopes": [
+      "STROKE_COLOR"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-border-status-negative-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/negative/base"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/negative/dark-base"
+      }
+     }
+    },
+    {
+     "name": "border/static-light/pale",
+     "type": "COLOR",
+     "description": "Обводки и разделители · static-light · pale. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "scopes": [
+      "STROKE_COLOR"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-border-static-light-pale)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/alpha/white-16"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/alpha/white-16"
+      }
+     }
+    },
+    {
+     "name": "border/static-light/soft",
+     "type": "COLOR",
+     "description": "Обводки и разделители · static-light · soft. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "scopes": [
+      "STROKE_COLOR"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-border-static-light-soft)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/alpha/white-24"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/alpha/white-24"
+      }
+     }
+    },
+    {
+     "name": "border/static-light/deep",
+     "type": "COLOR",
+     "description": "Обводки и разделители · static-light · deep. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "scopes": [
+      "STROKE_COLOR"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-border-static-light-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/alpha/white-48"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/alpha/white-48"
+      }
+     }
+    },
+    {
+     "name": "border/static-dark/pale",
+     "type": "COLOR",
+     "description": "Обводки и разделители · static-dark · pale. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "scopes": [
+      "STROKE_COLOR"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-border-static-dark-pale)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/alpha/black-8"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/alpha/black-8"
+      }
+     }
+    },
+    {
+     "name": "border/static-dark/soft",
+     "type": "COLOR",
+     "description": "Обводки и разделители · static-dark · soft. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "scopes": [
+      "STROKE_COLOR"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-border-static-dark-soft)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/alpha/black-16"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/alpha/black-16"
+      }
+     }
+    },
+    {
+     "name": "border/static-dark/deep",
+     "type": "COLOR",
+     "description": "Обводки и разделители · static-dark · deep. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "scopes": [
+      "STROKE_COLOR"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-border-static-dark-deep)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/alpha/black-48"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/alpha/black-48"
+      }
+     }
+    },
+    {
+     "name": "border/inverse",
+     "type": "COLOR",
+     "description": "Обводки и разделители · inverse. Инверсный цвет: тосты, тултипы, инверсные плашки.",
+     "scopes": [
+      "STROKE_COLOR"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-border-inverse)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/neutral/700"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/neutral/300"
+      }
+     }
+    }
+   ]
+  }
+ ]
+}

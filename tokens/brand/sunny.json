@@ -1,0 +1,617 @@
+{
+  "brand": {
+    "$description": "Бренд «Sunny (пример)» — верхний уровень. Сейчас: цвет. Дальше: типографика, скругления, размеры.",
+    "color": {
+      "$description": "Цвет бренда: палитра «sunny» и опорные цвета, подобранные по контрасту.",
+      "white": {
+        "$type": "color",
+        "$value": "{palette.common.white}",
+        "$description": "Белый."
+      },
+      "black": {
+        "$type": "color",
+        "$value": "{palette.common.black}",
+        "$description": "Чёрный."
+      },
+      "alpha": {
+        "$description": "Прозрачности.",
+        "black-4": {
+          "$type": "color",
+          "$value": "{palette.common.alpha.black-4}",
+          "$description": "black 4%."
+        },
+        "black-8": {
+          "$type": "color",
+          "$value": "{palette.common.alpha.black-8}",
+          "$description": "black 8%."
+        },
+        "black-16": {
+          "$type": "color",
+          "$value": "{palette.common.alpha.black-16}",
+          "$description": "black 16%."
+        },
+        "black-24": {
+          "$type": "color",
+          "$value": "{palette.common.alpha.black-24}",
+          "$description": "black 24%."
+        },
+        "black-48": {
+          "$type": "color",
+          "$value": "{palette.common.alpha.black-48}",
+          "$description": "black 48%."
+        },
+        "black-64": {
+          "$type": "color",
+          "$value": "{palette.common.alpha.black-64}",
+          "$description": "black 64%."
+        },
+        "white-4": {
+          "$type": "color",
+          "$value": "{palette.common.alpha.white-4}",
+          "$description": "white 4%."
+        },
+        "white-8": {
+          "$type": "color",
+          "$value": "{palette.common.alpha.white-8}",
+          "$description": "white 8%."
+        },
+        "white-16": {
+          "$type": "color",
+          "$value": "{palette.common.alpha.white-16}",
+          "$description": "white 16%."
+        },
+        "white-24": {
+          "$type": "color",
+          "$value": "{palette.common.alpha.white-24}",
+          "$description": "white 24%."
+        },
+        "white-48": {
+          "$type": "color",
+          "$value": "{palette.common.alpha.white-48}",
+          "$description": "white 48%."
+        },
+        "white-64": {
+          "$type": "color",
+          "$value": "{palette.common.alpha.white-64}",
+          "$description": "white 64%."
+        }
+      },
+      "neutral": {
+        "$description": "Нейтральный цвет бренда. Шкала палитры: gray.",
+        "50": {
+          "$type": "color",
+          "$value": "{palette.sunny.gray.50}",
+          "$description": "neutral 50 → gray 50."
+        },
+        "100": {
+          "$type": "color",
+          "$value": "{palette.sunny.gray.100}",
+          "$description": "neutral 100 → gray 100."
+        },
+        "150": {
+          "$type": "color",
+          "$value": "{palette.sunny.gray.150}",
+          "$description": "neutral 150 → gray 150."
+        },
+        "200": {
+          "$type": "color",
+          "$value": "{palette.sunny.gray.200}",
+          "$description": "neutral 200 → gray 200."
+        },
+        "300": {
+          "$type": "color",
+          "$value": "{palette.sunny.gray.300}",
+          "$description": "neutral 300 → gray 300."
+        },
+        "400": {
+          "$type": "color",
+          "$value": "{palette.sunny.gray.400}",
+          "$description": "neutral 400 → gray 400."
+        },
+        "500": {
+          "$type": "color",
+          "$value": "{palette.sunny.gray.500}",
+          "$description": "neutral 500 → gray 500."
+        },
+        "600": {
+          "$type": "color",
+          "$value": "{palette.sunny.gray.600}",
+          "$description": "neutral 600 → gray 600."
+        },
+        "700": {
+          "$type": "color",
+          "$value": "{palette.sunny.gray.700}",
+          "$description": "neutral 700 → gray 700."
+        },
+        "800": {
+          "$type": "color",
+          "$value": "{palette.sunny.gray.800}",
+          "$description": "neutral 800 → gray 800."
+        },
+        "850": {
+          "$type": "color",
+          "$value": "{palette.sunny.gray.850}",
+          "$description": "neutral 850 → gray 850."
+        },
+        "900": {
+          "$type": "color",
+          "$value": "{palette.sunny.gray.900}",
+          "$description": "neutral 900 → gray 900."
+        },
+        "950": {
+          "$type": "color",
+          "$value": "{palette.sunny.gray.950}",
+          "$description": "neutral 950 → gray 950."
+        }
+      },
+      "accent-uno": {
+        "$description": "Основной акцент. Шкала палитры: yellow.",
+        "50": {
+          "$type": "color",
+          "$value": "{palette.sunny.yellow.50}",
+          "$description": "accent-uno 50 → yellow 50."
+        },
+        "100": {
+          "$type": "color",
+          "$value": "{palette.sunny.yellow.100}",
+          "$description": "accent-uno 100 → yellow 100."
+        },
+        "200": {
+          "$type": "color",
+          "$value": "{palette.sunny.yellow.200}",
+          "$description": "accent-uno 200 → yellow 200."
+        },
+        "300": {
+          "$type": "color",
+          "$value": "{palette.sunny.yellow.300}",
+          "$description": "accent-uno 300 → yellow 300."
+        },
+        "400": {
+          "$type": "color",
+          "$value": "{palette.sunny.yellow.400}",
+          "$description": "accent-uno 400 → yellow 400."
+        },
+        "500": {
+          "$type": "color",
+          "$value": "{palette.sunny.yellow.500}",
+          "$description": "accent-uno 500 → yellow 500."
+        },
+        "600": {
+          "$type": "color",
+          "$value": "{palette.sunny.yellow.600}",
+          "$description": "accent-uno 600 → yellow 600."
+        },
+        "700": {
+          "$type": "color",
+          "$value": "{palette.sunny.yellow.700}",
+          "$description": "accent-uno 700 → yellow 700."
+        },
+        "800": {
+          "$type": "color",
+          "$value": "{palette.sunny.yellow.800}",
+          "$description": "accent-uno 800 → yellow 800."
+        },
+        "900": {
+          "$type": "color",
+          "$value": "{palette.sunny.yellow.900}",
+          "$description": "accent-uno 900 → yellow 900."
+        },
+        "950": {
+          "$type": "color",
+          "$value": "{palette.sunny.yellow.950}",
+          "$description": "accent-uno 950 → yellow 950."
+        },
+        "base": {
+          "$type": "color",
+          "$value": "{palette.sunny.yellow.200}",
+          "$description": "Опорный accent-uno = исходный цвет (yellow 200). deep в светлой теме."
+        },
+        "dark-base": {
+          "$type": "color",
+          "$value": "{palette.sunny.yellow.200}",
+          "$description": "Опорный accent-uno для тёмной темы (yellow 200): ближайший к base, что держит 3:1 на тёмной странице и 4.5:1 с контентом."
+        },
+        "on-base": {
+          "$type": "color",
+          "$value": "{palette.sunny.gray.950}",
+          "$description": "Контент поверх base (11.92:1)."
+        },
+        "on-dark-base": {
+          "$type": "color",
+          "$value": "{palette.sunny.gray.950}",
+          "$description": "Контент поверх dark-base (11.92:1)."
+        }
+      },
+      "accent-duo": {
+        "$description": "Второй акцент. Шкала палитры: orange.",
+        "50": {
+          "$type": "color",
+          "$value": "{palette.sunny.orange.50}",
+          "$description": "accent-duo 50 → orange 50."
+        },
+        "100": {
+          "$type": "color",
+          "$value": "{palette.sunny.orange.100}",
+          "$description": "accent-duo 100 → orange 100."
+        },
+        "200": {
+          "$type": "color",
+          "$value": "{palette.sunny.orange.200}",
+          "$description": "accent-duo 200 → orange 200."
+        },
+        "300": {
+          "$type": "color",
+          "$value": "{palette.sunny.orange.300}",
+          "$description": "accent-duo 300 → orange 300."
+        },
+        "400": {
+          "$type": "color",
+          "$value": "{palette.sunny.orange.400}",
+          "$description": "accent-duo 400 → orange 400."
+        },
+        "500": {
+          "$type": "color",
+          "$value": "{palette.sunny.orange.500}",
+          "$description": "accent-duo 500 → orange 500."
+        },
+        "600": {
+          "$type": "color",
+          "$value": "{palette.sunny.orange.600}",
+          "$description": "accent-duo 600 → orange 600."
+        },
+        "700": {
+          "$type": "color",
+          "$value": "{palette.sunny.orange.700}",
+          "$description": "accent-duo 700 → orange 700."
+        },
+        "800": {
+          "$type": "color",
+          "$value": "{palette.sunny.orange.800}",
+          "$description": "accent-duo 800 → orange 800."
+        },
+        "900": {
+          "$type": "color",
+          "$value": "{palette.sunny.orange.900}",
+          "$description": "accent-duo 900 → orange 900."
+        },
+        "950": {
+          "$type": "color",
+          "$value": "{palette.sunny.orange.950}",
+          "$description": "accent-duo 950 → orange 950."
+        },
+        "base": {
+          "$type": "color",
+          "$value": "{palette.sunny.orange.400}",
+          "$description": "Опорный accent-duo = исходный цвет (orange 400). deep в светлой теме."
+        },
+        "dark-base": {
+          "$type": "color",
+          "$value": "{palette.sunny.orange.400}",
+          "$description": "Опорный accent-duo для тёмной темы (orange 400): ближайший к base, что держит 3:1 на тёмной странице и 4.5:1 с контентом."
+        },
+        "on-base": {
+          "$type": "color",
+          "$value": "{palette.sunny.gray.950}",
+          "$description": "Контент поверх base (6.53:1)."
+        },
+        "on-dark-base": {
+          "$type": "color",
+          "$value": "{palette.sunny.gray.950}",
+          "$description": "Контент поверх dark-base (6.53:1)."
+        }
+      },
+      "brand-uno": {
+        "$description": "Основной фирменный. Шкала палитры: yellow.",
+        "50": {
+          "$type": "color",
+          "$value": "{palette.sunny.yellow.50}",
+          "$description": "brand-uno 50 → yellow 50."
+        },
+        "100": {
+          "$type": "color",
+          "$value": "{palette.sunny.yellow.100}",
+          "$description": "brand-uno 100 → yellow 100."
+        },
+        "200": {
+          "$type": "color",
+          "$value": "{palette.sunny.yellow.200}",
+          "$description": "brand-uno 200 → yellow 200."
+        },
+        "300": {
+          "$type": "color",
+          "$value": "{palette.sunny.yellow.300}",
+          "$description": "brand-uno 300 → yellow 300."
+        },
+        "400": {
+          "$type": "color",
+          "$value": "{palette.sunny.yellow.400}",
+          "$description": "brand-uno 400 → yellow 400."
+        },
+        "500": {
+          "$type": "color",
+          "$value": "{palette.sunny.yellow.500}",
+          "$description": "brand-uno 500 → yellow 500."
+        },
+        "600": {
+          "$type": "color",
+          "$value": "{palette.sunny.yellow.600}",
+          "$description": "brand-uno 600 → yellow 600."
+        },
+        "700": {
+          "$type": "color",
+          "$value": "{palette.sunny.yellow.700}",
+          "$description": "brand-uno 700 → yellow 700."
+        },
+        "800": {
+          "$type": "color",
+          "$value": "{palette.sunny.yellow.800}",
+          "$description": "brand-uno 800 → yellow 800."
+        },
+        "900": {
+          "$type": "color",
+          "$value": "{palette.sunny.yellow.900}",
+          "$description": "brand-uno 900 → yellow 900."
+        },
+        "950": {
+          "$type": "color",
+          "$value": "{palette.sunny.yellow.950}",
+          "$description": "brand-uno 950 → yellow 950."
+        },
+        "base": {
+          "$type": "color",
+          "$value": "{palette.sunny.yellow.200}",
+          "$description": "Опорный brand-uno = исходный цвет (yellow 200). deep в светлой теме."
+        },
+        "dark-base": {
+          "$type": "color",
+          "$value": "{palette.sunny.yellow.200}",
+          "$description": "Опорный brand-uno для тёмной темы (yellow 200): ближайший к base, что держит 3:1 на тёмной странице и 4.5:1 с контентом."
+        },
+        "on-base": {
+          "$type": "color",
+          "$value": "{palette.sunny.gray.950}",
+          "$description": "Контент поверх base (11.92:1)."
+        },
+        "on-dark-base": {
+          "$type": "color",
+          "$value": "{palette.sunny.gray.950}",
+          "$description": "Контент поверх dark-base (11.92:1)."
+        }
+      },
+      "brand-duo": {
+        "$description": "Второй фирменный. Шкала палитры: orange.",
+        "50": {
+          "$type": "color",
+          "$value": "{palette.sunny.orange.50}",
+          "$description": "brand-duo 50 → orange 50."
+        },
+        "100": {
+          "$type": "color",
+          "$value": "{palette.sunny.orange.100}",
+          "$description": "brand-duo 100 → orange 100."
+        },
+        "200": {
+          "$type": "color",
+          "$value": "{palette.sunny.orange.200}",
+          "$description": "brand-duo 200 → orange 200."
+        },
+        "300": {
+          "$type": "color",
+          "$value": "{palette.sunny.orange.300}",
+          "$description": "brand-duo 300 → orange 300."
+        },
+        "400": {
+          "$type": "color",
+          "$value": "{palette.sunny.orange.400}",
+          "$description": "brand-duo 400 → orange 400."
+        },
+        "500": {
+          "$type": "color",
+          "$value": "{palette.sunny.orange.500}",
+          "$description": "brand-duo 500 → orange 500."
+        },
+        "600": {
+          "$type": "color",
+          "$value": "{palette.sunny.orange.600}",
+          "$description": "brand-duo 600 → orange 600."
+        },
+        "700": {
+          "$type": "color",
+          "$value": "{palette.sunny.orange.700}",
+          "$description": "brand-duo 700 → orange 700."
+        },
+        "800": {
+          "$type": "color",
+          "$value": "{palette.sunny.orange.800}",
+          "$description": "brand-duo 800 → orange 800."
+        },
+        "900": {
+          "$type": "color",
+          "$value": "{palette.sunny.orange.900}",
+          "$description": "brand-duo 900 → orange 900."
+        },
+        "950": {
+          "$type": "color",
+          "$value": "{palette.sunny.orange.950}",
+          "$description": "brand-duo 950 → orange 950."
+        },
+        "base": {
+          "$type": "color",
+          "$value": "{palette.sunny.orange.400}",
+          "$description": "Опорный brand-duo = исходный цвет (orange 400). deep в светлой теме."
+        },
+        "dark-base": {
+          "$type": "color",
+          "$value": "{palette.sunny.orange.400}",
+          "$description": "Опорный brand-duo для тёмной темы (orange 400): ближайший к base, что держит 3:1 на тёмной странице и 4.5:1 с контентом."
+        },
+        "on-base": {
+          "$type": "color",
+          "$value": "{palette.sunny.gray.950}",
+          "$description": "Контент поверх base (6.53:1)."
+        },
+        "on-dark-base": {
+          "$type": "color",
+          "$value": "{palette.sunny.gray.950}",
+          "$description": "Контент поверх dark-base (6.53:1)."
+        }
+      },
+      "positive": {
+        "$description": "Статус успеха. Шкала палитры: green.",
+        "50": {
+          "$type": "color",
+          "$value": "{palette.sunny.green.50}",
+          "$description": "positive 50 → green 50."
+        },
+        "100": {
+          "$type": "color",
+          "$value": "{palette.sunny.green.100}",
+          "$description": "positive 100 → green 100."
+        },
+        "200": {
+          "$type": "color",
+          "$value": "{palette.sunny.green.200}",
+          "$description": "positive 200 → green 200."
+        },
+        "300": {
+          "$type": "color",
+          "$value": "{palette.sunny.green.300}",
+          "$description": "positive 300 → green 300."
+        },
+        "400": {
+          "$type": "color",
+          "$value": "{palette.sunny.green.400}",
+          "$description": "positive 400 → green 400."
+        },
+        "500": {
+          "$type": "color",
+          "$value": "{palette.sunny.green.500}",
+          "$description": "positive 500 → green 500."
+        },
+        "600": {
+          "$type": "color",
+          "$value": "{palette.sunny.green.600}",
+          "$description": "positive 600 → green 600."
+        },
+        "700": {
+          "$type": "color",
+          "$value": "{palette.sunny.green.700}",
+          "$description": "positive 700 → green 700."
+        },
+        "800": {
+          "$type": "color",
+          "$value": "{palette.sunny.green.800}",
+          "$description": "positive 800 → green 800."
+        },
+        "900": {
+          "$type": "color",
+          "$value": "{palette.sunny.green.900}",
+          "$description": "positive 900 → green 900."
+        },
+        "950": {
+          "$type": "color",
+          "$value": "{palette.sunny.green.950}",
+          "$description": "positive 950 → green 950."
+        },
+        "base": {
+          "$type": "color",
+          "$value": "{palette.sunny.green.600}",
+          "$description": "Опорный positive = исходный цвет (green 600). deep в светлой теме."
+        },
+        "dark-base": {
+          "$type": "color",
+          "$value": "{palette.sunny.green.600}",
+          "$description": "Опорный positive для тёмной темы (green 600): ближайший к base, что держит 3:1 на тёмной странице и 4.5:1 с контентом."
+        },
+        "on-base": {
+          "$type": "color",
+          "$value": "{palette.common.white}",
+          "$description": "Контент поверх base (4.51:1)."
+        },
+        "on-dark-base": {
+          "$type": "color",
+          "$value": "{palette.common.white}",
+          "$description": "Контент поверх dark-base (4.51:1)."
+        }
+      },
+      "negative": {
+        "$description": "Статус ошибки. Шкала палитры: red.",
+        "50": {
+          "$type": "color",
+          "$value": "{palette.sunny.red.50}",
+          "$description": "negative 50 → red 50."
+        },
+        "100": {
+          "$type": "color",
+          "$value": "{palette.sunny.red.100}",
+          "$description": "negative 100 → red 100."
+        },
+        "200": {
+          "$type": "color",
+          "$value": "{palette.sunny.red.200}",
+          "$description": "negative 200 → red 200."
+        },
+        "300": {
+          "$type": "color",
+          "$value": "{palette.sunny.red.300}",
+          "$description": "negative 300 → red 300."
+        },
+        "400": {
+          "$type": "color",
+          "$value": "{palette.sunny.red.400}",
+          "$description": "negative 400 → red 400."
+        },
+        "500": {
+          "$type": "color",
+          "$value": "{palette.sunny.red.500}",
+          "$description": "negative 500 → red 500."
+        },
+        "600": {
+          "$type": "color",
+          "$value": "{palette.sunny.red.600}",
+          "$description": "negative 600 → red 600."
+        },
+        "700": {
+          "$type": "color",
+          "$value": "{palette.sunny.red.700}",
+          "$description": "negative 700 → red 700."
+        },
+        "800": {
+          "$type": "color",
+          "$value": "{palette.sunny.red.800}",
+          "$description": "negative 800 → red 800."
+        },
+        "900": {
+          "$type": "color",
+          "$value": "{palette.sunny.red.900}",
+          "$description": "negative 900 → red 900."
+        },
+        "950": {
+          "$type": "color",
+          "$value": "{palette.sunny.red.950}",
+          "$description": "negative 950 → red 950."
+        },
+        "base": {
+          "$type": "color",
+          "$value": "{palette.sunny.red.600}",
+          "$description": "Опорный negative = исходный цвет (red 600). deep в светлой теме."
+        },
+        "dark-base": {
+          "$type": "color",
+          "$value": "{palette.sunny.red.600}",
+          "$description": "Опорный negative для тёмной темы (red 600): ближайший к base, что держит 3:1 на тёмной странице и 4.5:1 с контентом."
+        },
+        "on-base": {
+          "$type": "color",
+          "$value": "{palette.common.white}",
+          "$description": "Контент поверх base (4.83:1)."
+        },
+        "on-dark-base": {
+          "$type": "color",
+          "$value": "{palette.common.white}",
+          "$description": "Контент поверх dark-base (4.83:1)."
+        }
+      }
+    }
+  }
+}
