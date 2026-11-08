@@ -36,5 +36,9 @@
     "min-height": "viewport/field/textarea-min-height (120)",
     "padding": "viewport/field/padding-x × padding-y, текст — viewport/field/text-padding-x",
     "label-gap": "viewport/field/label-gap"
-  }
+  },
+  "colors": {
+    "field": "preset/field/fill"
+  },
+  "presets": "default — на странице и островах; overlay — на цветном фоне. Мод коллекции «5 · Preset» на фрейме-родителе."
 }

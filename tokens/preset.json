@@ -1,0 +1,62 @@
+{
+  "preset": {
+    "$description": "Пресеты — адаптация компонентов к поверхности, на которой они лежат. default — на странице и островах (ground), overlay — на цветном фоне. Мод ставится на фрейм.",
+    "field": {
+      "$description": "Field, Field/*, Textarea.",
+      "fill": {
+        "$type": "color",
+        "$modes": {
+          "default": "{theme.background.neutral-soft}",
+          "overlay": "{theme.ground.ground-2}"
+        },
+        "$description": "Заливка поля: на ground — серая, на цветном фоне — белая."
+      },
+      "button": {
+        "$type": "color",
+        "$modes": {
+          "default": "{theme.ground.ground-2}",
+          "overlay": "{theme.background.neutral-soft}"
+        },
+        "$description": "Кнопка внутри поля: на сером поле — белая, на белом поле — серая."
+      }
+    },
+    "chip": {
+      "$description": "Chip (невыбранный).",
+      "fill": {
+        "$type": "color",
+        "$modes": {
+          "default": "{theme.background.neutral-pale}",
+          "overlay": "{theme.ground.ground-2}"
+        },
+        "$description": "Заливка невыбранного чипса."
+      },
+      "border": {
+        "$type": "color",
+        "$modes": {
+          "default": "{theme.border.neutral.soft}",
+          "overlay": "{theme.ground.ground-2}"
+        },
+        "$description": "Обводка невыбранного чипса: на цветном фоне сливается с заливкой."
+      }
+    },
+    "segment": {
+      "$description": "Segmented control.",
+      "track": {
+        "$type": "color",
+        "$modes": {
+          "default": "{theme.background.neutral-soft}",
+          "overlay": "{theme.ground.ground-2}"
+        },
+        "$description": "Трек: на ground — серый, на цветном фоне — белый."
+      },
+      "selected": {
+        "$type": "color",
+        "$modes": {
+          "default": "{theme.ground.ground-2}",
+          "overlay": "{theme.background.neutral-soft}"
+        },
+        "$description": "Выбранный сегмент: на сером треке — белый, на белом треке — серый."
+      }
+    }
+  }
+}

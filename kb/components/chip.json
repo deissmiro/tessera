@@ -47,7 +47,7 @@
     }
   },
   "colors": {
-    "off": "background/neutral-pale + border/neutral/soft, подпись content/neutral/primary",
+    "off": "preset/chip/fill + preset/chip/border, подпись content/neutral/primary",
     "on": "background/neutral-deep, подпись content/neutral/on-deep"
   },
   "states": {
@@ -61,5 +61,6 @@
     "radius": "viewport/control/chip/radius",
     "gap": "viewport/control/m/gap",
     "font-size": "viewport/control/m/font-size"
-  }
+  },
+  "presets": "default — на странице и островах; overlay — на цветном фоне. Мод коллекции «5 · Preset» на фрейме-родителе."
 }

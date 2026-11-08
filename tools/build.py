@@ -24,7 +24,7 @@ from theme_gen import generate as generate_theme  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 REF = re.compile(r"^\{([a-z0-9.\-]+)\}$")
-MUST_REFERENCE = {"brand", "theme"}
+MUST_REFERENCE = {"brand", "theme", "preset"}
 errors, warnings = [], []
 
 
@@ -139,6 +139,8 @@ SCOPES = [(r"^theme\.border", ["STROKE_COLOR"]),
           (r"^theme\.ground", ["FRAME_FILL"]),
           (r"^theme\.background", ["FRAME_FILL", "SHAPE_FILL"]),
           (r"^numbers\.opacity", ["OPACITY"]),
+          (r"^preset\..*border", ["STROKE_COLOR"]),
+          (r"^preset\.", ["FRAME_FILL", "SHAPE_FILL"]),
           (r"(font-size|label-size|value-size|hint-size|title-size|subtitle-size)", ["FONT_SIZE"]),
           (r"focus-ring", ["STROKE_FLOAT"]),
           (r"radius", ["CORNER_RADIUS"]),

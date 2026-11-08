@@ -52,12 +52,12 @@
     }
   },
   "colors": {
-    "field": "background/neutral-soft",
+    "field": "preset/field/fill (default — background/neutral-soft, overlay — ground/ground-2)",
     "error-stroke": "background/status-negative-deep",
     "label": "empty → content/neutral/tertiary; поднятый → content/neutral/secondary; error → content/status-negative/primary",
     "value": "content/neutral/primary",
     "hint": "content/neutral/secondary; error → content/status-negative/primary",
-    "button": "ground/ground-2, иконка content/neutral/primary"
+    "button": "preset/field/button (default — белая, overlay — серая)"
   },
   "layout": {
     "height": "viewport/field/height",
@@ -82,5 +82,6 @@
   "planned": [
     "Field/textarea — многострочное",
     "Field/code — ввод кода из СМС по ячейкам"
-  ]
+  ],
+  "presets": "default — на странице и островах; overlay — на цветном фоне. Мод коллекции «5 · Preset» на фрейме-родителе."
 }

@@ -1,6 +1,6 @@
 {
  "kit": "Tessera",
- "version": "0.4.0",
+ "version": "0.5.0",
  "collections": [
   {
    "name": "0 · Palette",
@@ -5817,6 +5817,141 @@
       "s": 15,
       "m": 15,
       "l": 15
+     }
+    }
+   ]
+  },
+  {
+   "name": "5 · Preset",
+   "description": "Пресеты компонентов: default — на странице и островах, overlay — на цветном фоне. Ссылается на Theme. Мод выбирается на фрейме.",
+   "modes": [
+    "default",
+    "overlay"
+   ],
+   "variables": [
+    {
+     "name": "field/fill",
+     "type": "COLOR",
+     "description": "Заливка поля: на ground — серая, на цветном фоне — белая.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--preset-field-fill)"
+     },
+     "valuesByMode": {
+      "default": {
+       "$alias": "2 · Theme::background/neutral-soft"
+      },
+      "overlay": {
+       "$alias": "2 · Theme::ground/ground-2"
+      }
+     }
+    },
+    {
+     "name": "field/button",
+     "type": "COLOR",
+     "description": "Кнопка внутри поля: на сером поле — белая, на белом поле — серая.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--preset-field-button)"
+     },
+     "valuesByMode": {
+      "default": {
+       "$alias": "2 · Theme::ground/ground-2"
+      },
+      "overlay": {
+       "$alias": "2 · Theme::background/neutral-soft"
+      }
+     }
+    },
+    {
+     "name": "chip/fill",
+     "type": "COLOR",
+     "description": "Заливка невыбранного чипса.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--preset-chip-fill)"
+     },
+     "valuesByMode": {
+      "default": {
+       "$alias": "2 · Theme::background/neutral-pale"
+      },
+      "overlay": {
+       "$alias": "2 · Theme::ground/ground-2"
+      }
+     }
+    },
+    {
+     "name": "chip/border",
+     "type": "COLOR",
+     "description": "Обводка невыбранного чипса: на цветном фоне сливается с заливкой.",
+     "scopes": [
+      "STROKE_COLOR"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--preset-chip-border)"
+     },
+     "valuesByMode": {
+      "default": {
+       "$alias": "2 · Theme::border/neutral/soft"
+      },
+      "overlay": {
+       "$alias": "2 · Theme::ground/ground-2"
+      }
+     }
+    },
+    {
+     "name": "segment/track",
+     "type": "COLOR",
+     "description": "Трек: на ground — серый, на цветном фоне — белый.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--preset-segment-track)"
+     },
+     "valuesByMode": {
+      "default": {
+       "$alias": "2 · Theme::background/neutral-soft"
+      },
+      "overlay": {
+       "$alias": "2 · Theme::ground/ground-2"
+      }
+     }
+    },
+    {
+     "name": "segment/selected",
+     "type": "COLOR",
+     "description": "Выбранный сегмент: на сером треке — белый, на белом треке — серый.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--preset-segment-selected)"
+     },
+     "valuesByMode": {
+      "default": {
+       "$alias": "2 · Theme::ground/ground-2"
+      },
+      "overlay": {
+       "$alias": "2 · Theme::background/neutral-soft"
+      }
      }
     }
    ]

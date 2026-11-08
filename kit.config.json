@@ -1,6 +1,6 @@
 {
   "name": "Tessera",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Открытый гибкий кит. Сейчас в работе только цвет. Источник правды — этот репозиторий.",
   "layers": [
     {
@@ -37,6 +37,13 @@
       "axis": "breakpoint",
       "files": "tokens/viewport.json",
       "description": "Брейкпоинты s / m / l: размеры, отступы и поведение компонентов на телефоне, планшете и десктопе. Мод выбирается на фрейме."
+    },
+    {
+      "id": "preset",
+      "collection": "5 · Preset",
+      "axis": "preset",
+      "files": "tokens/preset.json",
+      "description": "Пресеты компонентов: default — на странице и островах, overlay — на цветном фоне. Ссылается на Theme. Мод выбирается на фрейме."
     }
   ],
   "axes": {
@@ -68,6 +75,14 @@
         "l": 1280
       },
       "description": "s — телефон (до 767), m — планшет (768–1279), l — десктоп (от 1280)."
+    },
+    "preset": {
+      "modes": [
+        "default",
+        "overlay"
+      ],
+      "default": "default",
+      "description": "Поверхность под компонентом: default — ground, overlay — цветной фон."
     }
   },
   "references": {
@@ -79,7 +94,10 @@
       "brand"
     ],
     "numbers": [],
-    "viewport": []
+    "viewport": [],
+    "preset": [
+      "theme"
+    ]
   },
   "contrast": {
     "pairs": "kb/contrast-pairs.json"

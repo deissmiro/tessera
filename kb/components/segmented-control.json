@@ -9,5 +9,10 @@
     "radius": "трек viewport/segment/radius, сегмент viewport/segment/item-radius",
     "font-size": "viewport/segment/font-size",
     "width": "viewport/segment/width, сегменты делят ширину поровну"
-  }
+  },
+  "colors": {
+    "track": "preset/segment/track",
+    "selected": "preset/segment/selected"
+  },
+  "presets": "default — на странице и островах; overlay — на цветном фоне. Мод коллекции «5 · Preset» на фрейме-родителе."
 }

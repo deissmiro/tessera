@@ -188,6 +188,8 @@ async function buildComponents(index) {
   var bind = (node, field, v) => { if (v) node.setBoundVariable(field, v); };
   var paint = (v) => figma.variables.setBoundVariableForPaint({ type: "SOLID", color: { r: 0.5, g: 0.5, b: 0.5 } }, "color", v);
   var fill = (node, themeName) => { const v = T(themeName); if (v) node.fills = [paint(v)]; };
+  var PR = (n) => V("Preset", n);
+  var fillP = (node, presetName) => { const v = PR(presetName); if (v) node.fills = [paint(v)]; };
   var frame = (name, dir) => {
     const f = figma.createFrame(); f.name = name; f.fills = [];
     if (dir) { f.layoutMode = dir; f.primaryAxisSizingMode = "AUTO"; f.counterAxisSizingMode = "AUTO"; }
@@ -382,7 +384,7 @@ async function buildComponents(index) {
     const on = sel === "true";
     const lc = on ? "content/neutral/on-deep" : "content/neutral/primary";
     if (on) fill(ch, "background/neutral-deep");
-    else { fill(ch, "background/neutral-pale"); const v = T("border/neutral/soft"); if (v) { ch.strokes = [paint(v)]; ch.strokeWeight = 1; ch.strokeAlign = "INSIDE"; } }
+    else { fillP(ch, "chip/fill"); const v = PR("chip/border"); if (v) { ch.strokes = [paint(v)]; ch.strokeWeight = 1; ch.strokeAlign = "INSIDE"; } }
     const lead = makeSlot(ch, "leading", ch);
     const label = text("Чипс", 15, true, lc); label.name = "label"; ch.appendChild(label);
     bind(label, "fontSize", VP("control/m/font-size"));
@@ -533,7 +535,7 @@ async function buildComponents(index) {
   var fieldButton = (content, name) => {
     const b = frame(name || "button", "HORIZONTAL"); b.primaryAxisAlignItems = "CENTER"; b.counterAxisAlignItems = "CENTER";
     b.counterAxisSizingMode = "FIXED"; b.resize(36, 36); b.cornerRadius = 10; b.paddingLeft = b.paddingRight = 6;
-    fill(b, "ground/ground-2"); b.appendChild(content);
+    fillP(b, "field/button"); b.appendChild(content);
     return b;
   };
 
@@ -552,7 +554,7 @@ async function buildComponents(index) {
       bind(box, "height", VP("field/height"));
       ["paddingLeft", "paddingRight"].forEach((p) => bind(box, p, VP("field/padding-x")));
       bind(box, "itemSpacing", VP("field/gap")); radius(box, ALL, VP("field/radius"));
-      fill(box, "background/neutral-soft");
+      fillP(box, "field/fill");
       if (state === "error") { const v = T("background/status-negative-deep"); if (v) { box.strokes = [paint(v)]; box.strokeAlign = "INSIDE"; box.strokeWeight = 1.5; } }
       const lead = makeSlot(comp, "leading", box);
       if (opt.leading) lead.appendChild(opt.leading());
@@ -724,7 +726,7 @@ async function buildComponents(index) {
       bind(box, "minHeight", VP("field/textarea-min-height"));
       ["paddingLeft", "paddingRight"].forEach((p) => bind(box, p, VP("field/padding-x")));
       ["paddingTop", "paddingBottom"].forEach((p) => bind(box, p, VP("field/padding-y")));
-      radius(box, ALL, VP("field/radius")); fill(box, "background/neutral-soft");
+      radius(box, ALL, VP("field/radius")); fillP(box, "field/fill");
       if (state === "error") { const v = T("background/status-negative-deep"); if (v) { box.strokes = [paint(v)]; box.strokeAlign = "INSIDE"; box.strokeWeight = 1.5; } }
       const col = frame("text", "VERTICAL"); box.appendChild(col); col.layoutSizingHorizontal = "FILL"; col.layoutSizingVertical = "FILL";
       ["paddingLeft", "paddingRight"].forEach((p) => bind(col, p, VP("field/text-padding-x")));
@@ -777,7 +779,7 @@ async function buildComponents(index) {
       c.primaryAxisAlignItems = "CENTER"; c.counterAxisAlignItems = "CENTER"; c.resize(100, 36);
       ["paddingLeft", "paddingRight"].forEach((p) => bind(c, p, VP("segment/padding-x")));
       radius(c, ALL, VP("segment/item-radius"));
-      if (sel === "true") fill(c, "ground/ground-2"); else c.fills = [];
+      if (sel === "true") fillP(c, "segment/selected"); else c.fills = [];
       const l = text("Сегмент", 14, false, sel === "true" ? "content/neutral/primary" : "content/neutral/secondary");
       l.fontName = { family: "Inter", style: sel === "true" ? "Semi Bold" : "Medium" }; l.name = "label";
       bind(l, "fontSize", VP("segment/font-size")); c.appendChild(l);
@@ -794,7 +796,7 @@ async function buildComponents(index) {
       c.layoutMode = "HORIZONTAL"; c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "FIXED"; c.counterAxisAlignItems = "CENTER";
       c.resize(343, 40); bind(c, "width", VP("segment/width")); bind(c, "height", VP("segment/height"));
       ["paddingLeft", "paddingRight", "paddingTop", "paddingBottom"].forEach((p) => bind(c, p, VP("segment/inset")));
-      radius(c, ALL, VP("segment/radius")); fill(c, "background/neutral-soft");
+      radius(c, ALL, VP("segment/radius")); fillP(c, "segment/track");
       const labels = ["Доставка", "Самовывоз", "В зале", "Ещё"];
       for (let i = 0; i < count; i++) {
         const inst = (i === 0 ? segOn : segOff).createInstance();
@@ -868,6 +870,29 @@ async function buildComponents(index) {
     tabsSet.x = 0; tabsSet.y = tabSet.y + tabSet.height + 40; cursorY = tabsSet.y + tabsSet.height + 160;
     say("✓ Tabs: line и pill × 3 / 4 / 5");
   } catch (e) { fail("Tabs", e); }
+
+  // ---- Демо пресетов: одни и те же компоненты на ground (default) и на цветном фоне (overlay)
+  try {
+    const presetCol = col("Preset");
+    const pick = (setName, variantName) => { const st = page.children.find((n) => n.name === setName && n.type === "COMPONENT_SET"); return st && st.children.find((c) => c.name === variantName); };
+    const demo = frame("Presets · demo", "HORIZONTAL"); demo.itemSpacing = 40;
+    for (const [mode, bg, title] of [["default", "ground/ground-1", "preset = default · на странице"], ["overlay", "background/brand-uno-deep", "preset = overlay · на цветном фоне"]]) {
+      const card = frame(title, "VERTICAL"); card.itemSpacing = 16; card.paddingLeft = card.paddingRight = card.paddingTop = card.paddingBottom = 32;
+      card.cornerRadius = 24; fill(card, bg);
+      card.appendChild(text(title, 18, true, mode === "overlay" ? "content/brand-uno/on-deep" : "content/neutral/primary"));
+      for (const [setName, v] of [["Field", "state=filled"], ["Field/select", "state=filled"], ["Field/number", "state=filled"], ["Textarea", "state=filled"], ["Segmented control", "items=3"]]) {
+        const comp = pick(setName, v); if (comp) { const i = comp.createInstance(); card.appendChild(i); }
+      }
+      const chips = frame("chips", "HORIZONTAL"); chips.itemSpacing = 8;
+      for (const v of ["selected=true, state=default", "selected=false, state=default", "selected=false, state=default"]) { const comp = pick("Chip", v); if (comp) chips.appendChild(comp.createInstance()); }
+      card.appendChild(chips);
+      if (presetCol) { const m = presetCol.modes.find((x) => x.name === mode); if (m) card.setExplicitVariableModeForCollection(presetCol, m.modeId); }
+      demo.appendChild(card);
+    }
+    const h = text("Presets", 32, true, "content/neutral/primary"); h.y = cursorY; page.appendChild(h);
+    page.appendChild(demo); demo.x = 0; demo.y = cursorY + 56; cursorY = demo.y + demo.height + 160;
+    say("✓ Пресеты: default и overlay (мод коллекции Preset)");
+  } catch (e) { fail("Presets · demo", e); }
   // ================= /Поля ввода =================
   } catch (e) { fail("Поля", e); }
   // ================= /Поля ввода =================
