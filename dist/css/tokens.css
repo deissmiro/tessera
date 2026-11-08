@@ -192,7 +192,6 @@
   --viewport-field-value-size: 16px;
   --viewport-field-hint-size: 13px;
   --viewport-field-hint-gap: 6px;
-  --viewport-field-focus-ring: 2px;
   --viewport-field-width: 343px;
   --viewport-cell-min-height: 64px;
   --viewport-cell-padding-x: 16px;
@@ -542,7 +541,6 @@
     --viewport-field-value-size: 16px;
     --viewport-field-hint-size: 13px;
     --viewport-field-hint-gap: 6px;
-    --viewport-field-focus-ring: 2px;
     --viewport-field-width: 343px;
     --viewport-cell-min-height: 64px;
     --viewport-cell-padding-x: 16px;
@@ -621,7 +619,6 @@
     --viewport-field-value-size: 16px;
     --viewport-field-hint-size: 13px;
     --viewport-field-hint-gap: 6px;
-    --viewport-field-focus-ring: 2px;
     --viewport-field-width: 343px;
     --viewport-cell-min-height: 64px;
     --viewport-cell-padding-x: 16px;

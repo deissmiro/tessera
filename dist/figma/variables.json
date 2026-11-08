@@ -5378,23 +5378,6 @@
      }
     },
     {
-     "name": "field/focus-ring",
-     "type": "FLOAT",
-     "description": "Толщина обводки в фокусе.",
-     "scopes": [
-      "STROKE_FLOAT"
-     ],
-     "hiddenFromPublishing": false,
-     "codeSyntax": {
-      "WEB": "var(--viewport-field-focus-ring)"
-     },
-     "valuesByMode": {
-      "s": 2,
-      "m": 2,
-      "l": 2
-     }
-    },
-    {
      "name": "field/width",
      "type": "FLOAT",
      "description": "Ширина поля по умолчанию.",

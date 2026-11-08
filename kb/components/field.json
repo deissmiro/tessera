@@ -1,7 +1,7 @@
 {
-  "name": "input",
-  "figmaName": "Input",
-  "summary": "Универсальное поле ввода. Мягкий стиль в духе Яндекса: серая заливка без обводки, скругление 16, высота 56, плавающий лейбл. Поля Field/* — отдельные компоненты с той же анатомией и токенами; иконки лежат прямо в их слотах.",
+  "name": "field",
+  "figmaName": "Field",
+  "summary": "Поле ввода. Мягкий стиль: серая заливка без обводки, скругление 16, высота 56, плавающий лейбл (Medium). Фокус — только курсор, без обводки. Ошибка — красная обводка и красный лейбл, заливка обычная. Поля Field/* — отдельные компоненты той же анатомии; кнопки внутри поля белые (ground/ground-2).",
   "props": {
     "state": {
       "kind": "variant",
@@ -12,7 +12,7 @@
         "error",
         "disabled"
       ],
-      "description": "empty — лейбл крупно как плейсхолдер; focus — лейбл поднят, курсор, чёрная обводка 2; filled — лейбл поднят + значение; error — розовая заливка, красные лейбл и подсказка; disabled — opacity/40."
+      "description": "empty — лейбл крупно как плейсхолдер; focus — лейбл поднят, курсор; filled — лейбл поднят + значение; error — красная обводка (background/status-negative-deep, 1.5) и красный лейбл и подсказка; disabled — opacity/40."
     },
     "label": {
       "kind": "text",
@@ -52,11 +52,12 @@
     }
   },
   "colors": {
-    "field": "background/neutral-soft; error → background/status-negative-pale",
-    "focus": "обводка content/neutral/primary, толщина viewport/field/focus-ring",
+    "field": "background/neutral-soft",
+    "error-stroke": "background/status-negative-deep",
     "label": "empty → content/neutral/tertiary; поднятый → content/neutral/secondary; error → content/status-negative/primary",
     "value": "content/neutral/primary",
-    "hint": "content/neutral/secondary; error → content/status-negative/primary"
+    "hint": "content/neutral/secondary; error → content/status-negative/primary",
+    "button": "ground/ground-2, иконка content/neutral/primary"
   },
   "layout": {
     "height": "viewport/field/height",
@@ -69,12 +70,12 @@
     "width": "viewport/field/width"
   },
   "fields": {
-    "Field/password": "trailing — глаз; значение точками",
-    "Field/number": "trailing — степпер − +",
+    "Field/password": "trailing — белая кнопка с глазом",
+    "Field/number": "trailing — белые кнопки − и +",
     "Field/search": "leading — лупа, trailing — очистить",
-    "Field/select": "trailing — шеврон",
-    "Field/phone": "leading — префикс +7",
-    "Field/date": "trailing — календарь"
+    "Field/select": "trailing — белая кнопка с шевроном",
+    "Field/phone": "leading — белая кнопка с кодом страны (+7)",
+    "Field/date": "trailing — белая кнопка с календарём"
   },
   "planned": [
     "Field/textarea — многострочное",

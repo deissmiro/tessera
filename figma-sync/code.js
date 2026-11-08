@@ -175,6 +175,7 @@ async function buildCheckPage(data, index) {
 // ---- Компоненты кита. Собираются по kb/components/*.json; все значения — привязки к переменным.
 async function buildComponents(index) {
   await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+  await figma.loadFontAsync({ family: "Inter", style: "Medium" });
   await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
   var cols = await figma.variables.getLocalVariableCollectionsAsync();
   var col = (part) => cols.find((c) => c.name.includes(part));
@@ -528,6 +529,14 @@ async function buildComponents(index) {
     return f;
   };
 
+  // Белая кнопка внутри поля: иконка или короткий текст (+7).
+  var fieldButton = (content, name) => {
+    const b = frame(name || "button", "HORIZONTAL"); b.primaryAxisAlignItems = "CENTER"; b.counterAxisAlignItems = "CENTER";
+    b.counterAxisSizingMode = "FIXED"; b.resize(36, 36); b.cornerRadius = 10; b.paddingLeft = b.paddingRight = 6;
+    fill(b, "ground/ground-2"); b.appendChild(content);
+    return b;
+  };
+
   // Одно поле = отдельный набор компонентов (state × 5). Содержимое слотов кладётся прямо в компонент.
   var FIELD_STATES = ["empty", "focus", "filled", "error", "disabled"];
   var buildField = (setName, opt) => {
@@ -543,15 +552,15 @@ async function buildComponents(index) {
       bind(box, "height", VP("field/height"));
       ["paddingLeft", "paddingRight"].forEach((p) => bind(box, p, VP("field/padding-x")));
       bind(box, "itemSpacing", VP("field/gap")); radius(box, ALL, VP("field/radius"));
-      fill(box, state === "error" ? "background/status-negative-pale" : "background/neutral-soft");
-      if (state === "focus") { const v = T("content/neutral/primary"); if (v) { box.strokes = [paint(v)]; box.strokeAlign = "INSIDE"; box.strokeWeight = 2; } }
+      fill(box, "background/neutral-soft");
+      if (state === "error") { const v = T("background/status-negative-deep"); if (v) { box.strokes = [paint(v)]; box.strokeAlign = "INSIDE"; box.strokeWeight = 1.5; } }
       const lead = makeSlot(comp, "leading", box);
       if (opt.leading) lead.appendChild(opt.leading());
       const col = frame("text", "VERTICAL"); col.primaryAxisAlignItems = "CENTER";
       box.appendChild(col); col.layoutSizingHorizontal = "FILL";
       const raised = state !== "empty";
-      const label = text(opt.label, raised ? 13 : 16, false, raised ? (state === "error" ? "content/status-negative/primary" : "content/neutral/secondary") : "content/neutral/tertiary");
-      label.name = "label"; bind(label, "fontSize", VP(raised ? "field/label-size" : "field/value-size"));
+      const label = text(opt.label, raised ? 13 : 16, false, state === "error" ? "content/status-negative/primary" : (raised ? "content/neutral/secondary" : "content/neutral/tertiary"));
+      label.fontName = { family: "Inter", style: "Medium" }; label.name = "label"; bind(label, "fontSize", VP(raised ? "field/label-size" : "field/value-size"));
       col.appendChild(label); label.layoutSizingHorizontal = "FILL";
       const valueRow = frame("value-row", "HORIZONTAL"); valueRow.counterAxisAlignItems = "CENTER"; valueRow.itemSpacing = 1;
       col.appendChild(valueRow);
@@ -586,23 +595,20 @@ async function buildComponents(index) {
     return set;
   };
 
-  var fieldHeader = text("Input и поля", 32, true, "content/neutral/primary"); fieldHeader.y = cursorY; page.appendChild(fieldHeader);
+  var fieldHeader = text("Field", 32, true, "content/neutral/primary"); fieldHeader.y = cursorY; page.appendChild(fieldHeader);
   var fieldY = cursorY + 56;
   var FIELDS = [
-    ["Input", { label: "Лейбл", value: "Значение", description: "Универсальное поле: серая заливка, плавающий лейбл, пустые слоты leading / trailing, подсказка. Состояния: empty, focus, filled, error, disabled. Контракт: kb/components/input.json." }],
-    ["Field/password", { label: "Пароль", value: "••••••••", hint: "Минимум 8 символов", trailing: () => icon("eye", "content/neutral/secondary"), description: "Поле пароля: значение точками, справа — показать пароль." }],
-    ["Field/number", { label: "Количество", value: "2", description: "Числовое поле со степпером − +.", trailing: () => {
-        const g = frame("stepper", "HORIZONTAL"); g.itemSpacing = 8;
-        for (const n of ["minus", "plus"]) {
-          const b = frame(`step-${n}`, "HORIZONTAL"); b.primaryAxisAlignItems = "CENTER"; b.counterAxisAlignItems = "CENTER";
-          b.primaryAxisSizingMode = "FIXED"; b.counterAxisSizingMode = "FIXED"; b.resize(32, 32); b.cornerRadius = 10;
-          fill(b, "ground/ground-2"); b.appendChild(icon(n, "content/neutral/primary")); g.appendChild(b);
-        }
+    ["Field", { label: "Лейбл", value: "Значение", description: "Поле ввода: серая заливка, плавающий лейбл, пустые слоты leading / trailing, подсказка. Состояния: empty, focus, filled, error (красная обводка и лейбл), disabled. Контракт: kb/components/field.json." }],
+    ["Field/password", { label: "Пароль", value: "••••••••", hint: "Минимум 8 символов", trailing: () => fieldButton(icon("eye", "content/neutral/primary"), "show"), description: "Пароль: значение точками, справа белая кнопка «показать»." }],
+    ["Field/number", { label: "Количество", value: "2", description: "Число: справа белые кнопки − и +.", trailing: () => {
+        const g = frame("stepper", "HORIZONTAL"); g.itemSpacing = 6;
+        g.appendChild(fieldButton(icon("minus", "content/neutral/primary"), "minus"));
+        g.appendChild(fieldButton(icon("plus", "content/neutral/primary"), "plus"));
         return g; } }],
     ["Field/search", { label: "Найти", value: "Пицца", leading: () => icon("search", "content/neutral/secondary"), trailing: () => icon("clear", "content/neutral/tertiary"), description: "Поиск: слева лупа, справа — очистить." }],
-    ["Field/select", { label: "Город", value: "Москва", trailing: () => icon("chevron", "content/neutral/secondary"), description: "Выбор из списка: справа шеврон, по нажатию открывается список или шит." }],
-    ["Field/phone", { label: "Телефон", value: "900 000-00-00", leading: () => text("+7", 16, false, "content/neutral/primary"), description: "Телефон: префикс страны в слоте leading." }],
-    ["Field/date", { label: "Дата доставки", value: "12 ноября", trailing: () => icon("calendar", "content/neutral/secondary"), description: "Дата: справа календарь, по нажатию открывается выбор даты." }],
+    ["Field/select", { label: "Город", value: "Москва", trailing: () => fieldButton(icon("chevron", "content/neutral/primary"), "open"), description: "Выбор из списка: справа белая кнопка с шевроном." }],
+    ["Field/phone", { label: "Телефон", value: "900 000-00-00", leading: () => { const t = text("+7", 16, false, "content/neutral/primary"); t.fontName = { family: "Inter", style: "Medium" }; return fieldButton(t, "country"); }, description: "Телефон: код страны в белой кнопке слева." }],
+    ["Field/date", { label: "Дата доставки", value: "12 ноября", trailing: () => fieldButton(icon("calendar", "content/neutral/primary"), "calendar"), description: "Дата: справа белая кнопка с календарём." }],
   ];
   var builtFields = [];
   for (const [name, opt] of FIELDS) {

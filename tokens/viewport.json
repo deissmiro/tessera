@@ -633,15 +633,6 @@
         },
         "$description": "Шаг от поля до подсказки."
       },
-      "focus-ring": {
-        "$type": "number",
-        "$modes": {
-          "s": 2,
-          "m": 2,
-          "l": 2
-        },
-        "$description": "Толщина обводки в фокусе."
-      },
       "width": {
         "$type": "number",
         "$modes": {
