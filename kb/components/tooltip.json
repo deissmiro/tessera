@@ -1,0 +1,6 @@
+{
+  "name": "tooltip",
+  "figmaName": "Tooltip",
+  "summary": "Тултип: background/inverse, текст content/inverse/primary, стрелка. placement top/bottom/left/right. Свойство text.",
+  "layout": "viewport/overlay/tooltip-*"
+}

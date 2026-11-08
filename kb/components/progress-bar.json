@@ -1,0 +1,6 @@
+{
+  "name": "progress-bar",
+  "figmaName": "Progress bar",
+  "summary": "Прогресс-бар: серый трек background/neutral-soft, заполнение background/neutral-deep. value 0/25/50/75/100.",
+  "layout": "viewport/progress/*"
+}

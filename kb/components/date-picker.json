@@ -1,0 +1,6 @@
+{
+  "name": "date-picker",
+  "figmaName": "Date picker",
+  "summary": "Календарь: Date picker/day (default, today — обводка, selected — чёрный, range — серый, disabled, outside) и Date picker — месяц с шапкой (белые кнопки ‹ ›), днями недели, сеткой 6×7 и кнопками «Сбросить» / «Готово».",
+  "layout": "viewport/datepicker/*"
+}

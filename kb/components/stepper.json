@@ -1,0 +1,6 @@
+{
+  "name": "stepper",
+  "figmaName": "Stepper",
+  "summary": "Степпер − число +: size small/medium/large × state default/min/disabled. Трек preset/field/fill (пресеты работают), кнопки — иконки на треке. Свойство value. Поддерживает скелетон.",
+  "layout": "viewport/stepper/*"
+}

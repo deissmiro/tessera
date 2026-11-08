@@ -1,6 +1,6 @@
 {
   "name": "Tessera",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Открытый гибкий кит. Сейчас в работе только цвет. Источник правды — этот репозиторий.",
   "layers": [
     {
@@ -44,6 +44,13 @@
       "axis": "preset",
       "files": "tokens/preset.json",
       "description": "Пресеты компонентов: default — на странице и островах, overlay — на цветном фоне. Ссылается на Theme. Мод выбирается на фрейме."
+    },
+    {
+      "id": "skeleton",
+      "collection": "6 · Skeleton",
+      "axis": "skeleton",
+      "files": "tokens/skeleton.json",
+      "description": "Скелетон: off — контент, on — заглушки загрузки. Мод на фрейме перестраивает все компоненты внутри."
     }
   ],
   "axes": {
@@ -83,6 +90,14 @@
       ],
       "default": "default",
       "description": "Поверхность под компонентом: default — ground, overlay — цветной фон."
+    },
+    "skeleton": {
+      "modes": [
+        "off",
+        "on"
+      ],
+      "default": "off",
+      "description": "Состояние загрузки."
     }
   },
   "references": {
@@ -97,7 +112,8 @@
     "viewport": [],
     "preset": [
       "theme"
-    ]
+    ],
+    "skeleton": []
   },
   "contrast": {
     "pairs": "kb/contrast-pairs.json"

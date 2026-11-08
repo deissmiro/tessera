@@ -1,0 +1,6 @@
+{
+  "name": "code-input",
+  "figmaName": "Code input",
+  "summary": "Ввод кода: Code input/cell (empty, active с курсором, filled, error с красной обводкой) и Code input (length 4/6 × state empty/filling/filled/error). Ячейки — preset/field/fill.",
+  "layout": "viewport/code/*"
+}

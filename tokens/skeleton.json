@@ -1,0 +1,21 @@
+{
+  "skeleton": {
+    "$description": "Скелетон: мод на фрейме переключает компоненты в состояние загрузки.",
+    "visible": {
+      "$type": "boolean",
+      "$modes": {
+        "off": false,
+        "on": true
+      },
+      "$description": "Показать заглушки скелетона. Привязано к видимости слоёв skeleton в компонентах."
+    },
+    "content": {
+      "$type": "boolean",
+      "$modes": {
+        "off": true,
+        "on": false
+      },
+      "$description": "Показать реальный контент. В скелетоне контент скрыт."
+    }
+  }
+}

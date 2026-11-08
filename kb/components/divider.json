@@ -1,0 +1,6 @@
+{
+  "name": "divider",
+  "figmaName": "Divider",
+  "summary": "Разделитель: type line (border/neutral/pale, 1), inset (с отступом слева 16 — в списках), section (8, цвет страницы ground/ground-1).",
+  "layout": "viewport/divider/*"
+}

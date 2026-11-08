@@ -1,0 +1,6 @@
+{
+  "name": "pagination",
+  "figmaName": "Pagination",
+  "summary": "Пагинация карусели: Pagination/dot (active — чёрная пилюля 16, остальные — серые точки 6) и Pagination (items 3–6).",
+  "layout": "viewport/pagination/*"
+}

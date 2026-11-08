@@ -876,6 +876,498 @@
         },
         "$description": "Кегль подписи."
       }
+    },
+    "badge": {
+      "$description": "Бейдж-счётчик.",
+      "dot": {
+        "$type": "number",
+        "$modes": {
+          "s": 8,
+          "m": 8,
+          "l": 8
+        },
+        "$description": "Размер точки."
+      },
+      "height": {
+        "$type": "number",
+        "$modes": {
+          "s": 20,
+          "m": 20,
+          "l": 20
+        },
+        "$description": "Высота бейджа с числом."
+      },
+      "padding-x": {
+        "$type": "number",
+        "$modes": {
+          "s": 6,
+          "m": 6,
+          "l": 6
+        },
+        "$description": "Отступ числа."
+      },
+      "font-size": {
+        "$type": "number",
+        "$modes": {
+          "s": 12,
+          "m": 12,
+          "l": 12
+        },
+        "$description": "Кегль числа."
+      }
+    },
+    "stepper": {
+      "$description": "Степпер количества.",
+      "s": {
+        "$description": "S",
+        "height": {
+          "$type": "number",
+          "$modes": {
+            "s": 32,
+            "m": 32,
+            "l": 32
+          },
+          "$description": "Высота S."
+        },
+        "button": {
+          "$type": "number",
+          "$modes": {
+            "s": 32,
+            "m": 32,
+            "l": 32
+          },
+          "$description": "Кнопка S."
+        }
+      },
+      "m": {
+        "$description": "M",
+        "height": {
+          "$type": "number",
+          "$modes": {
+            "s": 40,
+            "m": 40,
+            "l": 40
+          },
+          "$description": "Высота M."
+        },
+        "button": {
+          "$type": "number",
+          "$modes": {
+            "s": 40,
+            "m": 40,
+            "l": 40
+          },
+          "$description": "Кнопка M."
+        }
+      },
+      "l": {
+        "$description": "L",
+        "height": {
+          "$type": "number",
+          "$modes": {
+            "s": 48,
+            "m": 48,
+            "l": 48
+          },
+          "$description": "Высота L."
+        },
+        "button": {
+          "$type": "number",
+          "$modes": {
+            "s": 48,
+            "m": 48,
+            "l": 48
+          },
+          "$description": "Кнопка L."
+        }
+      },
+      "value-width": {
+        "$type": "number",
+        "$modes": {
+          "s": 28,
+          "m": 28,
+          "l": 28
+        },
+        "$description": "Минимальная ширина числа."
+      },
+      "font-size": {
+        "$type": "number",
+        "$modes": {
+          "s": 16,
+          "m": 16,
+          "l": 16
+        },
+        "$description": "Кегль числа."
+      }
+    },
+    "tabbar": {
+      "$description": "Нижняя навигация.",
+      "height": {
+        "$type": "number",
+        "$modes": {
+          "s": 56,
+          "m": 64,
+          "l": 64
+        },
+        "$description": "Высота панели."
+      },
+      "icon": {
+        "$type": "number",
+        "$modes": {
+          "s": 24,
+          "m": 24,
+          "l": 24
+        },
+        "$description": "Иконка таба."
+      },
+      "label-size": {
+        "$type": "number",
+        "$modes": {
+          "s": 11,
+          "m": 11,
+          "l": 11
+        },
+        "$description": "Кегль подписи."
+      },
+      "gap": {
+        "$type": "number",
+        "$modes": {
+          "s": 2,
+          "m": 2,
+          "l": 2
+        },
+        "$description": "Шаг иконка — подпись."
+      }
+    },
+    "snackbar": {
+      "$description": "Снэкбар.",
+      "padding-x": {
+        "$type": "number",
+        "$modes": {
+          "s": 16,
+          "m": 16,
+          "l": 16
+        },
+        "$description": "Отступ."
+      },
+      "padding-y": {
+        "$type": "number",
+        "$modes": {
+          "s": 14,
+          "m": 14,
+          "l": 14
+        },
+        "$description": "Вертикальный отступ."
+      },
+      "radius": {
+        "$type": "number",
+        "$modes": {
+          "s": 16,
+          "m": 16,
+          "l": 16
+        },
+        "$description": "Скругление."
+      },
+      "gap": {
+        "$type": "number",
+        "$modes": {
+          "s": 12,
+          "m": 12,
+          "l": 12
+        },
+        "$description": "Шаг между частями."
+      },
+      "width": {
+        "$type": "number",
+        "$modes": {
+          "s": 343,
+          "m": 400,
+          "l": 400
+        },
+        "$description": "Ширина."
+      }
+    },
+    "spinner": {
+      "$description": "Спиннер.",
+      "s": {
+        "$type": "number",
+        "$modes": {
+          "s": 16,
+          "m": 16,
+          "l": 16
+        },
+        "$description": "Размер S."
+      },
+      "m": {
+        "$type": "number",
+        "$modes": {
+          "s": 24,
+          "m": 24,
+          "l": 24
+        },
+        "$description": "Размер M."
+      },
+      "l": {
+        "$type": "number",
+        "$modes": {
+          "s": 40,
+          "m": 40,
+          "l": 40
+        },
+        "$description": "Размер L."
+      }
+    },
+    "progress": {
+      "$description": "Прогресс-бар.",
+      "height": {
+        "$type": "number",
+        "$modes": {
+          "s": 4,
+          "m": 4,
+          "l": 4
+        },
+        "$description": "Толщина."
+      },
+      "width": {
+        "$type": "number",
+        "$modes": {
+          "s": 343,
+          "m": 343,
+          "l": 343
+        },
+        "$description": "Ширина по умолчанию."
+      }
+    },
+    "overlay": {
+      "$description": "Тултип и поповер.",
+      "tooltip-padding-x": {
+        "$type": "number",
+        "$modes": {
+          "s": 12,
+          "m": 12,
+          "l": 12
+        },
+        "$description": "Отступ тултипа."
+      },
+      "tooltip-padding-y": {
+        "$type": "number",
+        "$modes": {
+          "s": 8,
+          "m": 8,
+          "l": 8
+        },
+        "$description": "Вертикальный отступ тултипа."
+      },
+      "tooltip-radius": {
+        "$type": "number",
+        "$modes": {
+          "s": 10,
+          "m": 10,
+          "l": 10
+        },
+        "$description": "Скругление тултипа."
+      },
+      "tooltip-max-width": {
+        "$type": "number",
+        "$modes": {
+          "s": 240,
+          "m": 240,
+          "l": 240
+        },
+        "$description": "Максимальная ширина тултипа."
+      },
+      "popover-padding": {
+        "$type": "number",
+        "$modes": {
+          "s": 16,
+          "m": 16,
+          "l": 16
+        },
+        "$description": "Отступ поповера."
+      },
+      "popover-radius": {
+        "$type": "number",
+        "$modes": {
+          "s": 16,
+          "m": 16,
+          "l": 16
+        },
+        "$description": "Скругление поповера."
+      },
+      "popover-width": {
+        "$type": "number",
+        "$modes": {
+          "s": 280,
+          "m": 280,
+          "l": 280
+        },
+        "$description": "Ширина поповера."
+      },
+      "arrow": {
+        "$type": "number",
+        "$modes": {
+          "s": 10,
+          "m": 10,
+          "l": 10
+        },
+        "$description": "Размер стрелки."
+      }
+    },
+    "code": {
+      "$description": "Ввод кода.",
+      "cell-width": {
+        "$type": "number",
+        "$modes": {
+          "s": 48,
+          "m": 48,
+          "l": 48
+        },
+        "$description": "Ширина ячейки."
+      },
+      "cell-height": {
+        "$type": "number",
+        "$modes": {
+          "s": 56,
+          "m": 56,
+          "l": 56
+        },
+        "$description": "Высота ячейки."
+      },
+      "gap": {
+        "$type": "number",
+        "$modes": {
+          "s": 8,
+          "m": 8,
+          "l": 8
+        },
+        "$description": "Шаг между ячейками."
+      },
+      "radius": {
+        "$type": "number",
+        "$modes": {
+          "s": 12,
+          "m": 12,
+          "l": 12
+        },
+        "$description": "Скругление ячейки."
+      },
+      "font-size": {
+        "$type": "number",
+        "$modes": {
+          "s": 24,
+          "m": 24,
+          "l": 24
+        },
+        "$description": "Кегль цифры."
+      }
+    },
+    "datepicker": {
+      "$description": "Календарь.",
+      "day": {
+        "$type": "number",
+        "$modes": {
+          "s": 40,
+          "m": 40,
+          "l": 40
+        },
+        "$description": "Размер дня."
+      },
+      "gap": {
+        "$type": "number",
+        "$modes": {
+          "s": 4,
+          "m": 4,
+          "l": 4
+        },
+        "$description": "Шаг сетки."
+      },
+      "padding": {
+        "$type": "number",
+        "$modes": {
+          "s": 16,
+          "m": 16,
+          "l": 16
+        },
+        "$description": "Отступ календаря."
+      },
+      "radius": {
+        "$type": "number",
+        "$modes": {
+          "s": 20,
+          "m": 20,
+          "l": 20
+        },
+        "$description": "Скругление календаря."
+      },
+      "font-size": {
+        "$type": "number",
+        "$modes": {
+          "s": 15,
+          "m": 15,
+          "l": 15
+        },
+        "$description": "Кегль дня."
+      }
+    },
+    "pagination": {
+      "$description": "Пагинация-точки.",
+      "dot": {
+        "$type": "number",
+        "$modes": {
+          "s": 6,
+          "m": 6,
+          "l": 6
+        },
+        "$description": "Размер точки."
+      },
+      "active-width": {
+        "$type": "number",
+        "$modes": {
+          "s": 16,
+          "m": 16,
+          "l": 16
+        },
+        "$description": "Ширина активной точки."
+      },
+      "gap": {
+        "$type": "number",
+        "$modes": {
+          "s": 6,
+          "m": 6,
+          "l": 6
+        },
+        "$description": "Шаг между точками."
+      }
+    },
+    "divider": {
+      "$description": "Разделитель.",
+      "line": {
+        "$type": "number",
+        "$modes": {
+          "s": 1,
+          "m": 1,
+          "l": 1
+        },
+        "$description": "Тонкая линия."
+      },
+      "section": {
+        "$type": "number",
+        "$modes": {
+          "s": 8,
+          "m": 8,
+          "l": 8
+        },
+        "$description": "Толстый разделитель секций."
+      },
+      "inset": {
+        "$type": "number",
+        "$modes": {
+          "s": 16,
+          "m": 16,
+          "l": 16
+        },
+        "$description": "Отступ линии слева."
+      }
     }
   }
 }

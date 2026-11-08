@@ -1,6 +1,6 @@
 {
  "kit": "Tessera",
- "version": "0.5.0",
+ "version": "0.6.0",
  "collections": [
   {
    "name": "0 · Palette",
@@ -5818,6 +5818,856 @@
       "m": 15,
       "l": 15
      }
+    },
+    {
+     "name": "badge/dot",
+     "type": "FLOAT",
+     "description": "Размер точки.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-badge-dot)"
+     },
+     "valuesByMode": {
+      "s": 8,
+      "m": 8,
+      "l": 8
+     }
+    },
+    {
+     "name": "badge/height",
+     "type": "FLOAT",
+     "description": "Высота бейджа с числом.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-badge-height)"
+     },
+     "valuesByMode": {
+      "s": 20,
+      "m": 20,
+      "l": 20
+     }
+    },
+    {
+     "name": "badge/padding-x",
+     "type": "FLOAT",
+     "description": "Отступ числа.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-badge-padding-x)"
+     },
+     "valuesByMode": {
+      "s": 6,
+      "m": 6,
+      "l": 6
+     }
+    },
+    {
+     "name": "badge/font-size",
+     "type": "FLOAT",
+     "description": "Кегль числа.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-badge-font-size)"
+     },
+     "valuesByMode": {
+      "s": 12,
+      "m": 12,
+      "l": 12
+     }
+    },
+    {
+     "name": "stepper/s/height",
+     "type": "FLOAT",
+     "description": "Высота S.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-stepper-s-height)"
+     },
+     "valuesByMode": {
+      "s": 32,
+      "m": 32,
+      "l": 32
+     }
+    },
+    {
+     "name": "stepper/s/button",
+     "type": "FLOAT",
+     "description": "Кнопка S.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-stepper-s-button)"
+     },
+     "valuesByMode": {
+      "s": 32,
+      "m": 32,
+      "l": 32
+     }
+    },
+    {
+     "name": "stepper/m/height",
+     "type": "FLOAT",
+     "description": "Высота M.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-stepper-m-height)"
+     },
+     "valuesByMode": {
+      "s": 40,
+      "m": 40,
+      "l": 40
+     }
+    },
+    {
+     "name": "stepper/m/button",
+     "type": "FLOAT",
+     "description": "Кнопка M.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-stepper-m-button)"
+     },
+     "valuesByMode": {
+      "s": 40,
+      "m": 40,
+      "l": 40
+     }
+    },
+    {
+     "name": "stepper/l/height",
+     "type": "FLOAT",
+     "description": "Высота L.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-stepper-l-height)"
+     },
+     "valuesByMode": {
+      "s": 48,
+      "m": 48,
+      "l": 48
+     }
+    },
+    {
+     "name": "stepper/l/button",
+     "type": "FLOAT",
+     "description": "Кнопка L.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-stepper-l-button)"
+     },
+     "valuesByMode": {
+      "s": 48,
+      "m": 48,
+      "l": 48
+     }
+    },
+    {
+     "name": "stepper/value-width",
+     "type": "FLOAT",
+     "description": "Минимальная ширина числа.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-stepper-value-width)"
+     },
+     "valuesByMode": {
+      "s": 28,
+      "m": 28,
+      "l": 28
+     }
+    },
+    {
+     "name": "stepper/font-size",
+     "type": "FLOAT",
+     "description": "Кегль числа.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-stepper-font-size)"
+     },
+     "valuesByMode": {
+      "s": 16,
+      "m": 16,
+      "l": 16
+     }
+    },
+    {
+     "name": "tabbar/height",
+     "type": "FLOAT",
+     "description": "Высота панели.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-tabbar-height)"
+     },
+     "valuesByMode": {
+      "s": 56,
+      "m": 64,
+      "l": 64
+     }
+    },
+    {
+     "name": "tabbar/icon",
+     "type": "FLOAT",
+     "description": "Иконка таба.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-tabbar-icon)"
+     },
+     "valuesByMode": {
+      "s": 24,
+      "m": 24,
+      "l": 24
+     }
+    },
+    {
+     "name": "tabbar/label-size",
+     "type": "FLOAT",
+     "description": "Кегль подписи.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-tabbar-label-size)"
+     },
+     "valuesByMode": {
+      "s": 11,
+      "m": 11,
+      "l": 11
+     }
+    },
+    {
+     "name": "tabbar/gap",
+     "type": "FLOAT",
+     "description": "Шаг иконка — подпись.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-tabbar-gap)"
+     },
+     "valuesByMode": {
+      "s": 2,
+      "m": 2,
+      "l": 2
+     }
+    },
+    {
+     "name": "snackbar/padding-x",
+     "type": "FLOAT",
+     "description": "Отступ.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-snackbar-padding-x)"
+     },
+     "valuesByMode": {
+      "s": 16,
+      "m": 16,
+      "l": 16
+     }
+    },
+    {
+     "name": "snackbar/padding-y",
+     "type": "FLOAT",
+     "description": "Вертикальный отступ.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-snackbar-padding-y)"
+     },
+     "valuesByMode": {
+      "s": 14,
+      "m": 14,
+      "l": 14
+     }
+    },
+    {
+     "name": "snackbar/radius",
+     "type": "FLOAT",
+     "description": "Скругление.",
+     "scopes": [
+      "CORNER_RADIUS"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-snackbar-radius)"
+     },
+     "valuesByMode": {
+      "s": 16,
+      "m": 16,
+      "l": 16
+     }
+    },
+    {
+     "name": "snackbar/gap",
+     "type": "FLOAT",
+     "description": "Шаг между частями.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-snackbar-gap)"
+     },
+     "valuesByMode": {
+      "s": 12,
+      "m": 12,
+      "l": 12
+     }
+    },
+    {
+     "name": "snackbar/width",
+     "type": "FLOAT",
+     "description": "Ширина.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-snackbar-width)"
+     },
+     "valuesByMode": {
+      "s": 343,
+      "m": 400,
+      "l": 400
+     }
+    },
+    {
+     "name": "spinner/s",
+     "type": "FLOAT",
+     "description": "Размер S.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-spinner-s)"
+     },
+     "valuesByMode": {
+      "s": 16,
+      "m": 16,
+      "l": 16
+     }
+    },
+    {
+     "name": "spinner/m",
+     "type": "FLOAT",
+     "description": "Размер M.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-spinner-m)"
+     },
+     "valuesByMode": {
+      "s": 24,
+      "m": 24,
+      "l": 24
+     }
+    },
+    {
+     "name": "spinner/l",
+     "type": "FLOAT",
+     "description": "Размер L.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-spinner-l)"
+     },
+     "valuesByMode": {
+      "s": 40,
+      "m": 40,
+      "l": 40
+     }
+    },
+    {
+     "name": "progress/height",
+     "type": "FLOAT",
+     "description": "Толщина.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-progress-height)"
+     },
+     "valuesByMode": {
+      "s": 4,
+      "m": 4,
+      "l": 4
+     }
+    },
+    {
+     "name": "progress/width",
+     "type": "FLOAT",
+     "description": "Ширина по умолчанию.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-progress-width)"
+     },
+     "valuesByMode": {
+      "s": 343,
+      "m": 343,
+      "l": 343
+     }
+    },
+    {
+     "name": "overlay/tooltip-padding-x",
+     "type": "FLOAT",
+     "description": "Отступ тултипа.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-overlay-tooltip-padding-x)"
+     },
+     "valuesByMode": {
+      "s": 12,
+      "m": 12,
+      "l": 12
+     }
+    },
+    {
+     "name": "overlay/tooltip-padding-y",
+     "type": "FLOAT",
+     "description": "Вертикальный отступ тултипа.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-overlay-tooltip-padding-y)"
+     },
+     "valuesByMode": {
+      "s": 8,
+      "m": 8,
+      "l": 8
+     }
+    },
+    {
+     "name": "overlay/tooltip-radius",
+     "type": "FLOAT",
+     "description": "Скругление тултипа.",
+     "scopes": [
+      "CORNER_RADIUS"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-overlay-tooltip-radius)"
+     },
+     "valuesByMode": {
+      "s": 10,
+      "m": 10,
+      "l": 10
+     }
+    },
+    {
+     "name": "overlay/tooltip-max-width",
+     "type": "FLOAT",
+     "description": "Максимальная ширина тултипа.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-overlay-tooltip-max-width)"
+     },
+     "valuesByMode": {
+      "s": 240,
+      "m": 240,
+      "l": 240
+     }
+    },
+    {
+     "name": "overlay/popover-padding",
+     "type": "FLOAT",
+     "description": "Отступ поповера.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-overlay-popover-padding)"
+     },
+     "valuesByMode": {
+      "s": 16,
+      "m": 16,
+      "l": 16
+     }
+    },
+    {
+     "name": "overlay/popover-radius",
+     "type": "FLOAT",
+     "description": "Скругление поповера.",
+     "scopes": [
+      "CORNER_RADIUS"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-overlay-popover-radius)"
+     },
+     "valuesByMode": {
+      "s": 16,
+      "m": 16,
+      "l": 16
+     }
+    },
+    {
+     "name": "overlay/popover-width",
+     "type": "FLOAT",
+     "description": "Ширина поповера.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-overlay-popover-width)"
+     },
+     "valuesByMode": {
+      "s": 280,
+      "m": 280,
+      "l": 280
+     }
+    },
+    {
+     "name": "overlay/arrow",
+     "type": "FLOAT",
+     "description": "Размер стрелки.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-overlay-arrow)"
+     },
+     "valuesByMode": {
+      "s": 10,
+      "m": 10,
+      "l": 10
+     }
+    },
+    {
+     "name": "code/cell-width",
+     "type": "FLOAT",
+     "description": "Ширина ячейки.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-code-cell-width)"
+     },
+     "valuesByMode": {
+      "s": 48,
+      "m": 48,
+      "l": 48
+     }
+    },
+    {
+     "name": "code/cell-height",
+     "type": "FLOAT",
+     "description": "Высота ячейки.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-code-cell-height)"
+     },
+     "valuesByMode": {
+      "s": 56,
+      "m": 56,
+      "l": 56
+     }
+    },
+    {
+     "name": "code/gap",
+     "type": "FLOAT",
+     "description": "Шаг между ячейками.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-code-gap)"
+     },
+     "valuesByMode": {
+      "s": 8,
+      "m": 8,
+      "l": 8
+     }
+    },
+    {
+     "name": "code/radius",
+     "type": "FLOAT",
+     "description": "Скругление ячейки.",
+     "scopes": [
+      "CORNER_RADIUS"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-code-radius)"
+     },
+     "valuesByMode": {
+      "s": 12,
+      "m": 12,
+      "l": 12
+     }
+    },
+    {
+     "name": "code/font-size",
+     "type": "FLOAT",
+     "description": "Кегль цифры.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-code-font-size)"
+     },
+     "valuesByMode": {
+      "s": 24,
+      "m": 24,
+      "l": 24
+     }
+    },
+    {
+     "name": "datepicker/day",
+     "type": "FLOAT",
+     "description": "Размер дня.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-datepicker-day)"
+     },
+     "valuesByMode": {
+      "s": 40,
+      "m": 40,
+      "l": 40
+     }
+    },
+    {
+     "name": "datepicker/gap",
+     "type": "FLOAT",
+     "description": "Шаг сетки.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-datepicker-gap)"
+     },
+     "valuesByMode": {
+      "s": 4,
+      "m": 4,
+      "l": 4
+     }
+    },
+    {
+     "name": "datepicker/padding",
+     "type": "FLOAT",
+     "description": "Отступ календаря.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-datepicker-padding)"
+     },
+     "valuesByMode": {
+      "s": 16,
+      "m": 16,
+      "l": 16
+     }
+    },
+    {
+     "name": "datepicker/radius",
+     "type": "FLOAT",
+     "description": "Скругление календаря.",
+     "scopes": [
+      "CORNER_RADIUS"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-datepicker-radius)"
+     },
+     "valuesByMode": {
+      "s": 20,
+      "m": 20,
+      "l": 20
+     }
+    },
+    {
+     "name": "datepicker/font-size",
+     "type": "FLOAT",
+     "description": "Кегль дня.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-datepicker-font-size)"
+     },
+     "valuesByMode": {
+      "s": 15,
+      "m": 15,
+      "l": 15
+     }
+    },
+    {
+     "name": "pagination/dot",
+     "type": "FLOAT",
+     "description": "Размер точки.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-pagination-dot)"
+     },
+     "valuesByMode": {
+      "s": 6,
+      "m": 6,
+      "l": 6
+     }
+    },
+    {
+     "name": "pagination/active-width",
+     "type": "FLOAT",
+     "description": "Ширина активной точки.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-pagination-active-width)"
+     },
+     "valuesByMode": {
+      "s": 16,
+      "m": 16,
+      "l": 16
+     }
+    },
+    {
+     "name": "pagination/gap",
+     "type": "FLOAT",
+     "description": "Шаг между точками.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-pagination-gap)"
+     },
+     "valuesByMode": {
+      "s": 6,
+      "m": 6,
+      "l": 6
+     }
+    },
+    {
+     "name": "divider/line",
+     "type": "FLOAT",
+     "description": "Тонкая линия.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-divider-line)"
+     },
+     "valuesByMode": {
+      "s": 1,
+      "m": 1,
+      "l": 1
+     }
+    },
+    {
+     "name": "divider/section",
+     "type": "FLOAT",
+     "description": "Толстый разделитель секций.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-divider-section)"
+     },
+     "valuesByMode": {
+      "s": 8,
+      "m": 8,
+      "l": 8
+     }
+    },
+    {
+     "name": "divider/inset",
+     "type": "FLOAT",
+     "description": "Отступ линии слева.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-divider-inset)"
+     },
+     "valuesByMode": {
+      "s": 16,
+      "m": 16,
+      "l": 16
+     }
     }
    ]
   },
@@ -5952,6 +6802,44 @@
       "overlay": {
        "$alias": "2 · Theme::background/neutral-soft"
       }
+     }
+    }
+   ]
+  },
+  {
+   "name": "6 · Skeleton",
+   "description": "Скелетон: off — контент, on — заглушки загрузки. Мод на фрейме перестраивает все компоненты внутри.",
+   "modes": [
+    "off",
+    "on"
+   ],
+   "variables": [
+    {
+     "name": "visible",
+     "type": "BOOLEAN",
+     "description": "Показать заглушки скелетона. Привязано к видимости слоёв skeleton в компонентах.",
+     "scopes": [],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--skeleton-visible)"
+     },
+     "valuesByMode": {
+      "off": false,
+      "on": true
+     }
+    },
+    {
+     "name": "content",
+     "type": "BOOLEAN",
+     "description": "Показать реальный контент. В скелетоне контент скрыт.",
+     "scopes": [],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--skeleton-content)"
+     },
+     "valuesByMode": {
+      "off": true,
+      "on": false
      }
     }
    ]

@@ -1,0 +1,6 @@
+{
+  "name": "badge",
+  "figmaName": "Badge",
+  "summary": "Бейдж: type dot | number × tone negative | accent | neutral. Заливка background/<смысл>-deep, число content/<смысл>/on-deep. Свойство count.",
+  "layout": "viewport/badge/*"
+}

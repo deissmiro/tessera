@@ -1,0 +1,6 @@
+{
+  "name": "tab-bar",
+  "figmaName": "Tab bar",
+  "summary": "Нижняя навигация: Tab bar/item (active false/true, слот icon, label, badge-точка) и Tab bar (items 3/4/5, ширина экрана брейкпоинта, линия сверху). Активный — content/neutral/primary, остальные — tertiary.",
+  "layout": "viewport/tabbar/*, viewport/screen/width"
+}

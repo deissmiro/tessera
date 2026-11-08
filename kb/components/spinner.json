@@ -1,0 +1,6 @@
+{
+  "name": "spinner",
+  "figmaName": "Spinner",
+  "summary": "Спиннер: size small 16 / medium 24 / large 40 × tone neutral | on-deep. Трек + дуга 270°, в коде — вращение.",
+  "layout": "viewport/spinner/*"
+}
