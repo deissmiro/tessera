@@ -195,6 +195,8 @@
   --viewport-field-width: 343px;
   --viewport-field-text-padding-x: 6px;
   --viewport-field-label-gap: 4px;
+  --viewport-field-textarea-min-height: 120px;
+  --viewport-field-padding-y: 10px;
   --viewport-cell-min-height: 64px;
   --viewport-cell-padding-x: 16px;
   --viewport-cell-padding-y: 12px;
@@ -202,6 +204,20 @@
   --viewport-cell-title-size: 16px;
   --viewport-cell-subtitle-size: 13px;
   --viewport-cell-width: 375px;
+  --viewport-segment-height: 40px;
+  --viewport-segment-inset: 2px;
+  --viewport-segment-radius: 12px;
+  --viewport-segment-item-radius: 10px;
+  --viewport-segment-padding-x: 12px;
+  --viewport-segment-font-size: 14px;
+  --viewport-segment-width: 343px;
+  --viewport-tabs-height: 44px;
+  --viewport-tabs-gap: 24px;
+  --viewport-tabs-underline: 2px;
+  --viewport-tabs-pill-height: 36px;
+  --viewport-tabs-pill-padding-x: 14px;
+  --viewport-tabs-pill-gap: 8px;
+  --viewport-tabs-font-size: 15px;
 }
 
 :root, [data-brand="tessera"] {
@@ -546,6 +562,8 @@
     --viewport-field-width: 343px;
     --viewport-field-text-padding-x: 6px;
     --viewport-field-label-gap: 4px;
+    --viewport-field-textarea-min-height: 120px;
+    --viewport-field-padding-y: 10px;
     --viewport-cell-min-height: 64px;
     --viewport-cell-padding-x: 16px;
     --viewport-cell-padding-y: 12px;
@@ -553,6 +571,20 @@
     --viewport-cell-title-size: 16px;
     --viewport-cell-subtitle-size: 13px;
     --viewport-cell-width: 375px;
+    --viewport-segment-height: 40px;
+    --viewport-segment-inset: 2px;
+    --viewport-segment-radius: 12px;
+    --viewport-segment-item-radius: 10px;
+    --viewport-segment-padding-x: 12px;
+    --viewport-segment-font-size: 14px;
+    --viewport-segment-width: 343px;
+    --viewport-tabs-height: 44px;
+    --viewport-tabs-gap: 24px;
+    --viewport-tabs-underline: 2px;
+    --viewport-tabs-pill-height: 36px;
+    --viewport-tabs-pill-padding-x: 14px;
+    --viewport-tabs-pill-gap: 8px;
+    --viewport-tabs-font-size: 15px;
   }
 }
 
@@ -626,6 +658,8 @@
     --viewport-field-width: 343px;
     --viewport-field-text-padding-x: 6px;
     --viewport-field-label-gap: 4px;
+    --viewport-field-textarea-min-height: 120px;
+    --viewport-field-padding-y: 10px;
     --viewport-cell-min-height: 64px;
     --viewport-cell-padding-x: 16px;
     --viewport-cell-padding-y: 12px;
@@ -633,5 +667,19 @@
     --viewport-cell-title-size: 16px;
     --viewport-cell-subtitle-size: 13px;
     --viewport-cell-width: 375px;
+    --viewport-segment-height: 40px;
+    --viewport-segment-inset: 2px;
+    --viewport-segment-radius: 12px;
+    --viewport-segment-item-radius: 10px;
+    --viewport-segment-padding-x: 12px;
+    --viewport-segment-font-size: 14px;
+    --viewport-segment-width: 343px;
+    --viewport-tabs-height: 44px;
+    --viewport-tabs-gap: 24px;
+    --viewport-tabs-underline: 2px;
+    --viewport-tabs-pill-height: 36px;
+    --viewport-tabs-pill-padding-x: 14px;
+    --viewport-tabs-pill-gap: 8px;
+    --viewport-tabs-font-size: 15px;
   }
 }

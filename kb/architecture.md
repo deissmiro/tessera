@@ -40,7 +40,7 @@ summary: Как устроен цвет кита — коллекции, тон�
 Состояния: ховер и нажатие — соседний тон (pale → soft), затемнение — `background/static-dark-deep` + `opacity/40…60`.
 
 ## Компоненты
-Контракты — `kb/components/<name>.json` (MCP `get_component`). В Figma их собирает плагин: Tessera Sync → «Обновить и пересобрать компоненты». Сейчас есть: `button` (наборы Button/<группа>/<small|medium|large>, варианты scheme × contrast pale|deep × state), `rich-icon` (один компонент RichIcon: size × shape, без цветовых вариантов), `field` и поля той же анатомии (Field/password, number, search, select, phone, date), `switch`, `cell`, `checkbox`, `radio`, `chip`, `navbar` (Navbar/default и Navbar/large, варианты surface), `window`. Основные контролы (чекбокс, радио, чипс) во включённом состоянии — neutral-deep (чёрные).
+Контракты — `kb/components/<name>.json` (MCP `get_component`). В Figma их собирает плагин: Tessera Sync → «Обновить и пересобрать компоненты». Сейчас есть: `button` (наборы Button/<группа>/<small|medium|large>, варианты scheme × contrast pale|deep × state), `rich-icon` (один компонент RichIcon: size × shape, без цветовых вариантов), `field` и поля той же анатомии (Field/password, number, search, select, phone, date), `textarea`, `switch`, `cell`, `segmented-control`, `tabs`, `checkbox`, `radio`, `chip`, `navbar` (Navbar/default и Navbar/large, варианты surface), `window`. Основные контролы (чекбокс, радио, чипс) во включённом состоянии — neutral-deep (чёрные).
 
 ## Правила
 1. Ссылки только вниз по таблице слоёв. Проверяет `tools/build.py`.

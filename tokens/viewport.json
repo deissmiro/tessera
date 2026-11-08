@@ -659,6 +659,24 @@
           "l": 4
         },
         "$description": "Шаг между поднятым лейблом и значением."
+      },
+      "textarea-min-height": {
+        "$type": "number",
+        "$modes": {
+          "s": 120,
+          "m": 120,
+          "l": 120
+        },
+        "$description": "Минимальная высота многострочного поля."
+      },
+      "padding-y": {
+        "$type": "number",
+        "$modes": {
+          "s": 10,
+          "m": 10,
+          "l": 10
+        },
+        "$description": "Вертикальный отступ многострочного поля."
       }
     },
     "cell": {
@@ -725,6 +743,138 @@
           "l": 375
         },
         "$description": "Ширина ячейки по умолчанию."
+      }
+    },
+    "segment": {
+      "$description": "Сегментированный контрол.",
+      "height": {
+        "$type": "number",
+        "$modes": {
+          "s": 40,
+          "m": 40,
+          "l": 40
+        },
+        "$description": "Высота контрола."
+      },
+      "inset": {
+        "$type": "number",
+        "$modes": {
+          "s": 2,
+          "m": 2,
+          "l": 2
+        },
+        "$description": "Отступ сегментов от края трека."
+      },
+      "radius": {
+        "$type": "number",
+        "$modes": {
+          "s": 12,
+          "m": 12,
+          "l": 12
+        },
+        "$description": "Скругление трека."
+      },
+      "item-radius": {
+        "$type": "number",
+        "$modes": {
+          "s": 10,
+          "m": 10,
+          "l": 10
+        },
+        "$description": "Скругление выбранного сегмента."
+      },
+      "padding-x": {
+        "$type": "number",
+        "$modes": {
+          "s": 12,
+          "m": 12,
+          "l": 12
+        },
+        "$description": "Отступ подписи в сегменте."
+      },
+      "font-size": {
+        "$type": "number",
+        "$modes": {
+          "s": 14,
+          "m": 14,
+          "l": 14
+        },
+        "$description": "Кегль подписи."
+      },
+      "width": {
+        "$type": "number",
+        "$modes": {
+          "s": 343,
+          "m": 343,
+          "l": 343
+        },
+        "$description": "Ширина по умолчанию."
+      }
+    },
+    "tabs": {
+      "$description": "Табы.",
+      "height": {
+        "$type": "number",
+        "$modes": {
+          "s": 44,
+          "m": 44,
+          "l": 44
+        },
+        "$description": "Высота линейных табов."
+      },
+      "gap": {
+        "$type": "number",
+        "$modes": {
+          "s": 24,
+          "m": 24,
+          "l": 24
+        },
+        "$description": "Шаг между линейными табами."
+      },
+      "underline": {
+        "$type": "number",
+        "$modes": {
+          "s": 2,
+          "m": 2,
+          "l": 2
+        },
+        "$description": "Толщина подчёркивания активного таба."
+      },
+      "pill-height": {
+        "$type": "number",
+        "$modes": {
+          "s": 36,
+          "m": 36,
+          "l": 36
+        },
+        "$description": "Высота табов-пилюль."
+      },
+      "pill-padding-x": {
+        "$type": "number",
+        "$modes": {
+          "s": 14,
+          "m": 14,
+          "l": 14
+        },
+        "$description": "Отступ в пилюле."
+      },
+      "pill-gap": {
+        "$type": "number",
+        "$modes": {
+          "s": 8,
+          "m": 8,
+          "l": 8
+        },
+        "$description": "Шаг между пилюлями."
+      },
+      "font-size": {
+        "$type": "number",
+        "$modes": {
+          "s": 15,
+          "m": 15,
+          "l": 15
+        },
+        "$description": "Кегль подписи."
       }
     }
   }

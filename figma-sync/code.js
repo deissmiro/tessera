@@ -710,6 +710,164 @@ async function buildComponents(index) {
     cellSet.x = 0; cellSet.y = cursorY + 56; cursorY = cellSet.y + cellSet.height + 160;
     say("✓ Cell: 3 состояния, слоты left / content / right");
   } catch (e) { fail("Cell", e); }
+
+  // ---- Textarea: многострочное поле той же анатомии, что Field
+  try {
+    const parts = [];
+    const comps = FIELD_STATES.map((state, i) => {
+      const comp = figma.createComponent(); comp.name = `state=${state}`;
+      comp.layoutMode = "VERTICAL"; comp.primaryAxisSizingMode = "AUTO"; comp.counterAxisSizingMode = "FIXED";
+      comp.resize(343, 120); bind(comp, "width", VP("field/width")); comp.fills = [];
+      bind(comp, "itemSpacing", VP("field/hint-gap"));
+      const box = frame("field", "VERTICAL"); box.primaryAxisSizingMode = "AUTO";
+      comp.appendChild(box); box.layoutSizingHorizontal = "FILL";
+      bind(box, "minHeight", VP("field/textarea-min-height"));
+      ["paddingLeft", "paddingRight"].forEach((p) => bind(box, p, VP("field/padding-x")));
+      ["paddingTop", "paddingBottom"].forEach((p) => bind(box, p, VP("field/padding-y")));
+      radius(box, ALL, VP("field/radius")); fill(box, "background/neutral-soft");
+      if (state === "error") { const v = T("background/status-negative-deep"); if (v) { box.strokes = [paint(v)]; box.strokeAlign = "INSIDE"; box.strokeWeight = 1.5; } }
+      const col = frame("text", "VERTICAL"); box.appendChild(col); col.layoutSizingHorizontal = "FILL"; col.layoutSizingVertical = "FILL";
+      ["paddingLeft", "paddingRight"].forEach((p) => bind(col, p, VP("field/text-padding-x")));
+      bind(col, "itemSpacing", VP("field/label-gap"));
+      const raised = state !== "empty";
+      const label = text("Комментарий", raised ? 13 : 16, false, state === "error" ? "content/status-negative/primary" : (raised ? "content/neutral/secondary" : "content/neutral/tertiary"));
+      label.fontName = { family: "Inter", style: "Medium" }; label.name = "label";
+      bind(label, "fontSize", VP(raised ? "field/label-size" : "field/value-size"));
+      col.appendChild(label); label.layoutSizingHorizontal = "FILL";
+      const value = text("Позвоните за 10 минут до приезда, домофон не работает", 16, false, "content/neutral/primary"); value.name = "value";
+      bind(value, "fontSize", VP("field/value-size"));
+      col.appendChild(value); value.layoutSizingHorizontal = "FILL"; value.textAutoResize = "HEIGHT";
+      if (state === "empty") value.visible = false;
+      if (state === "focus") value.characters = "|";
+      const counter = text("54 / 500", 13, false, "content/neutral/tertiary"); counter.name = "counter"; counter.textAlignHorizontal = "RIGHT";
+      bind(counter, "fontSize", VP("field/hint-size"));
+      col.appendChild(counter); counter.layoutSizingHorizontal = "FILL";
+      const hint = text(state === "error" ? "Слишком длинный комментарий" : "Подсказка", 13, false, state === "error" ? "content/status-negative/primary" : "content/neutral/secondary");
+      hint.name = "hint"; bind(hint, "fontSize", VP("field/hint-size"));
+      comp.appendChild(hint); hint.layoutSizingHorizontal = "FILL";
+      if (state === "disabled") bind(comp, "opacity", N("opacity/40"));
+      comp.x = i * 400; parts.push({ label, value, counter, hint });
+      return comp;
+    });
+    const set = combine(comps, "Textarea", "Многострочное поле: та же анатомия, что Field — серая заливка, лейбл Medium, ошибка красной обводкой. Растёт по высоте от viewport/field/textarea-min-height. Счётчик символов справа внизу. Контракт: kb/components/textarea.json.");
+    const k = {
+      label: set.addComponentProperty("label", "TEXT", "Комментарий"),
+      value: set.addComponentProperty("value", "TEXT", "Позвоните за 10 минут до приезда, домофон не работает"),
+      counter: set.addComponentProperty("counter", "TEXT", "54 / 500"),
+      hasCounter: set.addComponentProperty("hasCounter", "BOOLEAN", true),
+      hasHint: set.addComponentProperty("hasHint", "BOOLEAN", false),
+    };
+    parts.forEach(({ label, value, counter, hint }) => {
+      label.componentPropertyReferences = { characters: k.label };
+      if (value.characters !== "|") value.componentPropertyReferences = { characters: k.value };
+      counter.componentPropertyReferences = { characters: k.counter, visible: k.hasCounter };
+      hint.componentPropertyReferences = { visible: k.hasHint };
+    });
+    const h = text("Textarea", 32, true, "content/neutral/primary"); h.y = cursorY; page.appendChild(h);
+    set.x = 0; set.y = cursorY + 56; cursorY = set.y + set.height + 160;
+    say("✓ Textarea: 5 состояний");
+  } catch (e) { fail("Textarea", e); }
+
+  // ---- Segmented control: серый трек, выбранный сегмент — белая плашка.
+  try {
+    const segItems = [];
+    ["false", "true"].forEach((sel, i) => {
+      const c = figma.createComponent(); c.name = `selected=${sel}`;
+      c.layoutMode = "HORIZONTAL"; c.primaryAxisSizingMode = "AUTO"; c.counterAxisSizingMode = "FIXED";
+      c.primaryAxisAlignItems = "CENTER"; c.counterAxisAlignItems = "CENTER"; c.resize(100, 36);
+      ["paddingLeft", "paddingRight"].forEach((p) => bind(c, p, VP("segment/padding-x")));
+      radius(c, ALL, VP("segment/item-radius"));
+      if (sel === "true") fill(c, "ground/ground-2"); else c.fills = [];
+      const l = text("Сегмент", 14, false, sel === "true" ? "content/neutral/primary" : "content/neutral/secondary");
+      l.fontName = { family: "Inter", style: sel === "true" ? "Semi Bold" : "Medium" }; l.name = "label";
+      bind(l, "fontSize", VP("segment/font-size")); c.appendChild(l);
+      c.x = i * 140; segItems.push({ c, l });
+    });
+    const segItemSet = combine(segItems.map((x) => x.c), "Segmented control/item", "Сегмент: selected — белая плашка с полужирной подписью.");
+    const segLabel = segItemSet.addComponentProperty("label", "TEXT", "Сегмент");
+    segItems.forEach(({ l }) => (l.componentPropertyReferences = { characters: segLabel }));
+    const segOn = segItemSet.children.find((c) => c.name === "selected=true");
+    const segOff = segItemSet.children.find((c) => c.name === "selected=false");
+    const comps = [];
+    [2, 3, 4].forEach((count, r) => {
+      const c = figma.createComponent(); c.name = `items=${count}`;
+      c.layoutMode = "HORIZONTAL"; c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "FIXED"; c.counterAxisAlignItems = "CENTER";
+      c.resize(343, 40); bind(c, "width", VP("segment/width")); bind(c, "height", VP("segment/height"));
+      ["paddingLeft", "paddingRight", "paddingTop", "paddingBottom"].forEach((p) => bind(c, p, VP("segment/inset")));
+      radius(c, ALL, VP("segment/radius")); fill(c, "background/neutral-soft");
+      const labels = ["Доставка", "Самовывоз", "В зале", "Ещё"];
+      for (let i = 0; i < count; i++) {
+        const inst = (i === 0 ? segOn : segOff).createInstance();
+        c.appendChild(inst); inst.layoutSizingHorizontal = "FILL"; inst.layoutSizingVertical = "FILL";
+        inst.setProperties({ [segLabel]: labels[i] });
+        try { inst.isExposedInstance = true; } catch (e) {}
+      }
+      c.y = r * 60 + 100; comps.push(c);
+    });
+    const set = combine(comps, "Segmented control", "Сегментированный контрол в стиле Яндекса: серый трек, выбранный сегмент — белая плашка. Варианты items: 2, 3, 4. Выбор — свойство selected у вложенных сегментов (они открыты в свойствах). Контракт: kb/components/segmented-control.json.");
+    const h = text("Segmented control", 32, true, "content/neutral/primary"); h.y = cursorY; page.appendChild(h);
+    segItemSet.x = 0; segItemSet.y = cursorY + 56;
+    set.x = 0; set.y = segItemSet.y + segItemSet.height + 40; cursorY = set.y + set.height + 160;
+    say("✓ Segmented control: items 2 / 3 / 4");
+  } catch (e) { fail("Segmented control", e); }
+
+  // ---- Tabs: два стиля — линия (чёрное подчёркивание) и пилюли (выбранная — чёрная).
+  try {
+    const tabParts = [];
+    const tabComps = [];
+    ["line", "pill"].forEach((style, r) => ["false", "true"].forEach((act, ci) => {
+      const c = figma.createComponent(); c.name = `style=${style}, active=${act}`;
+      const on = act === "true";
+      c.layoutMode = style === "line" ? "VERTICAL" : "HORIZONTAL";
+      c.primaryAxisSizingMode = style === "line" ? "FIXED" : "AUTO"; c.counterAxisSizingMode = style === "line" ? "AUTO" : "FIXED";
+      c.counterAxisAlignItems = "CENTER"; c.primaryAxisAlignItems = "CENTER"; c.fills = [];
+      let l;
+      if (style === "line") {
+        c.resize(80, 44); bind(c, "height", VP("tabs/height"));
+        c.primaryAxisAlignItems = "SPACE_BETWEEN";
+        const spacer = frame("spacer"); c.appendChild(spacer); spacer.resize(1, 1);
+        l = text("Таб", 15, false, on ? "content/neutral/primary" : "content/neutral/secondary");
+        c.appendChild(l);
+        const u = figma.createRectangle(); u.name = "underline"; u.resize(40, 2); u.cornerRadius = 1;
+        c.appendChild(u); u.layoutSizingHorizontal = "FILL"; bind(u, "height", VP("tabs/underline"));
+        if (on) fill(u, "background/neutral-deep"); else u.fills = [];
+      } else {
+        c.resize(80, 36); bind(c, "height", VP("tabs/pill-height"));
+        ["paddingLeft", "paddingRight"].forEach((p) => bind(c, p, VP("tabs/pill-padding-x")));
+        c.cornerRadius = 999;
+        if (on) fill(c, "background/neutral-deep"); else c.fills = [];
+        l = text("Таб", 15, false, on ? "content/neutral/on-deep" : "content/neutral/primary");
+        c.appendChild(l);
+      }
+      l.name = "label"; l.fontName = { family: "Inter", style: on ? "Semi Bold" : "Medium" };
+      bind(l, "fontSize", VP("tabs/font-size"));
+      c.x = ci * 140; c.y = r * 70; tabComps.push(c); tabParts.push(l);
+    }));
+    const tabSet = combine(tabComps, "Tabs/item", "Таб: style line — подчёркивание neutral-deep у активного; style pill — активный в чёрной пилюле.");
+    const tl = tabSet.addComponentProperty("label", "TEXT", "Таб");
+    tabParts.forEach((l) => (l.componentPropertyReferences = { characters: tl }));
+    const tabsComps = [];
+    const names = ["Все", "Рестораны", "Магазины", "Аптеки", "Цветы"];
+    ["line", "pill"].forEach((style, r) => [3, 4, 5].forEach((count, ci) => {
+      const c = figma.createComponent(); c.name = `style=${style}, items=${count}`;
+      c.layoutMode = "HORIZONTAL"; c.primaryAxisSizingMode = "AUTO"; c.counterAxisSizingMode = "AUTO"; c.fills = [];
+      c.counterAxisAlignItems = style === "line" ? "MAX" : "CENTER";
+      bind(c, "itemSpacing", VP(style === "line" ? "tabs/gap" : "tabs/pill-gap"));
+      if (style === "line") { const v = T("border/neutral/pale"); if (v) { c.strokes = [paint(v)]; c.strokeAlign = "INSIDE"; c.strokeTopWeight = 0; c.strokeLeftWeight = 0; c.strokeRightWeight = 0; c.strokeBottomWeight = 1; } }
+      for (let i = 0; i < count; i++) {
+        const base = tabSet.children.find((x) => x.name === `style=${style}, active=${i === 0}`);
+        const inst = base.createInstance(); c.appendChild(inst);
+        inst.setProperties({ [tl]: names[i] });
+        try { inst.isExposedInstance = true; } catch (e) {}
+      }
+      c.x = ci * 520; c.y = r * 80 + 200; tabsComps.push(c);
+    }));
+    const tabsSet = combine(tabsComps, "Tabs", "Табы в стиле Яндекса. style: line — текст с чёрным подчёркиванием активного и линией снизу; pill — пилюли, активная чёрная. items: 3 / 4 / 5. Активный таб — свойство active у вложенных табов. Контракт: kb/components/tabs.json.");
+    const h = text("Tabs", 32, true, "content/neutral/primary"); h.y = cursorY; page.appendChild(h);
+    tabSet.x = 0; tabSet.y = cursorY + 56;
+    tabsSet.x = 0; tabsSet.y = tabSet.y + tabSet.height + 40; cursorY = tabsSet.y + tabsSet.height + 160;
+    say("✓ Tabs: line и pill × 3 / 4 / 5");
+  } catch (e) { fail("Tabs", e); }
   // ================= /Поля ввода =================
   } catch (e) { fail("Поля", e); }
   // ================= /Поля ввода =================

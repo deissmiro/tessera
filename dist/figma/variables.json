@@ -5429,6 +5429,40 @@
      }
     },
     {
+     "name": "field/textarea-min-height",
+     "type": "FLOAT",
+     "description": "Минимальная высота многострочного поля.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-field-textarea-min-height)"
+     },
+     "valuesByMode": {
+      "s": 120,
+      "m": 120,
+      "l": 120
+     }
+    },
+    {
+     "name": "field/padding-y",
+     "type": "FLOAT",
+     "description": "Вертикальный отступ многострочного поля.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-field-padding-y)"
+     },
+     "valuesByMode": {
+      "s": 10,
+      "m": 10,
+      "l": 10
+     }
+    },
+    {
      "name": "cell/min-height",
      "type": "FLOAT",
      "description": "Минимальная высота ячейки.",
@@ -5545,6 +5579,244 @@
       "s": 375,
       "m": 375,
       "l": 375
+     }
+    },
+    {
+     "name": "segment/height",
+     "type": "FLOAT",
+     "description": "Высота контрола.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-segment-height)"
+     },
+     "valuesByMode": {
+      "s": 40,
+      "m": 40,
+      "l": 40
+     }
+    },
+    {
+     "name": "segment/inset",
+     "type": "FLOAT",
+     "description": "Отступ сегментов от края трека.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-segment-inset)"
+     },
+     "valuesByMode": {
+      "s": 2,
+      "m": 2,
+      "l": 2
+     }
+    },
+    {
+     "name": "segment/radius",
+     "type": "FLOAT",
+     "description": "Скругление трека.",
+     "scopes": [
+      "CORNER_RADIUS"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-segment-radius)"
+     },
+     "valuesByMode": {
+      "s": 12,
+      "m": 12,
+      "l": 12
+     }
+    },
+    {
+     "name": "segment/item-radius",
+     "type": "FLOAT",
+     "description": "Скругление выбранного сегмента.",
+     "scopes": [
+      "CORNER_RADIUS"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-segment-item-radius)"
+     },
+     "valuesByMode": {
+      "s": 10,
+      "m": 10,
+      "l": 10
+     }
+    },
+    {
+     "name": "segment/padding-x",
+     "type": "FLOAT",
+     "description": "Отступ подписи в сегменте.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-segment-padding-x)"
+     },
+     "valuesByMode": {
+      "s": 12,
+      "m": 12,
+      "l": 12
+     }
+    },
+    {
+     "name": "segment/font-size",
+     "type": "FLOAT",
+     "description": "Кегль подписи.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-segment-font-size)"
+     },
+     "valuesByMode": {
+      "s": 14,
+      "m": 14,
+      "l": 14
+     }
+    },
+    {
+     "name": "segment/width",
+     "type": "FLOAT",
+     "description": "Ширина по умолчанию.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-segment-width)"
+     },
+     "valuesByMode": {
+      "s": 343,
+      "m": 343,
+      "l": 343
+     }
+    },
+    {
+     "name": "tabs/height",
+     "type": "FLOAT",
+     "description": "Высота линейных табов.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-tabs-height)"
+     },
+     "valuesByMode": {
+      "s": 44,
+      "m": 44,
+      "l": 44
+     }
+    },
+    {
+     "name": "tabs/gap",
+     "type": "FLOAT",
+     "description": "Шаг между линейными табами.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-tabs-gap)"
+     },
+     "valuesByMode": {
+      "s": 24,
+      "m": 24,
+      "l": 24
+     }
+    },
+    {
+     "name": "tabs/underline",
+     "type": "FLOAT",
+     "description": "Толщина подчёркивания активного таба.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-tabs-underline)"
+     },
+     "valuesByMode": {
+      "s": 2,
+      "m": 2,
+      "l": 2
+     }
+    },
+    {
+     "name": "tabs/pill-height",
+     "type": "FLOAT",
+     "description": "Высота табов-пилюль.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-tabs-pill-height)"
+     },
+     "valuesByMode": {
+      "s": 36,
+      "m": 36,
+      "l": 36
+     }
+    },
+    {
+     "name": "tabs/pill-padding-x",
+     "type": "FLOAT",
+     "description": "Отступ в пилюле.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-tabs-pill-padding-x)"
+     },
+     "valuesByMode": {
+      "s": 14,
+      "m": 14,
+      "l": 14
+     }
+    },
+    {
+     "name": "tabs/pill-gap",
+     "type": "FLOAT",
+     "description": "Шаг между пилюлями.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-tabs-pill-gap)"
+     },
+     "valuesByMode": {
+      "s": 8,
+      "m": 8,
+      "l": 8
+     }
+    },
+    {
+     "name": "tabs/font-size",
+     "type": "FLOAT",
+     "description": "Кегль подписи.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-tabs-font-size)"
+     },
+     "valuesByMode": {
+      "s": 15,
+      "m": 15,
+      "l": 15
      }
     }
    ]

@@ -1,0 +1,13 @@
+{
+  "name": "segmented-control",
+  "figmaName": "Segmented control",
+  "summary": "Сегментированный контрол в стиле Яндекса: серый трек (background/neutral-soft), выбранный сегмент — белая плашка (ground/ground-2) с полужирной подписью, остальные — подпись content/neutral/secondary.",
+  "structure": "Segmented control/item (selected false/true) — сегмент; Segmented control (items 2/3/4) — собран из инстансов сегментов, они открыты в свойствах (exposed): выбор меняется свойством selected у нужного сегмента.",
+  "layout": {
+    "height": "viewport/segment/height (40)",
+    "inset": "viewport/segment/inset (2)",
+    "radius": "трек viewport/segment/radius, сегмент viewport/segment/item-radius",
+    "font-size": "viewport/segment/font-size",
+    "width": "viewport/segment/width, сегменты делят ширину поровну"
+  }
+}

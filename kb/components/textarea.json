@@ -1,0 +1,40 @@
+{
+  "name": "textarea",
+  "figmaName": "Textarea",
+  "summary": "Многострочное поле той же анатомии, что Field: серая заливка, лейбл Medium сверху, значение в несколько строк, счётчик символов справа внизу. Ошибка — красная обводка и лейбл. Растёт по высоте.",
+  "props": {
+    "state": {
+      "kind": "variant",
+      "values": [
+        "empty",
+        "focus",
+        "filled",
+        "error",
+        "disabled"
+      ]
+    },
+    "label": {
+      "kind": "text"
+    },
+    "value": {
+      "kind": "text"
+    },
+    "counter": {
+      "kind": "text",
+      "default": "54 / 500"
+    },
+    "hasCounter": {
+      "kind": "boolean",
+      "default": true
+    },
+    "hasHint": {
+      "kind": "boolean",
+      "default": false
+    }
+  },
+  "layout": {
+    "min-height": "viewport/field/textarea-min-height (120)",
+    "padding": "viewport/field/padding-x × padding-y, текст — viewport/field/text-padding-x",
+    "label-gap": "viewport/field/label-gap"
+  }
+}
