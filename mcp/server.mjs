@@ -75,7 +75,7 @@ const TOOLS = {
     description: "Поиск токенов по имени и описанию. Используй перед созданием нового токена — возможно, нужная семантика уже есть.",
     inputSchema: { type: "object", properties: {
       query: { type: "string", description: "Слова из пути или описания, например 'text secondary' или 'ошибка'" },
-      layer: { type: "string", enum: ["palette", "brand", "theme"] },
+      layer: { type: "string", enum: ["palette", "brand", "theme", "numbers"] },
             limit: { type: "number", default: 40 } } },
     run({ query = "", layer, type, limit = 40 }) {
       load();
@@ -148,7 +148,7 @@ const TOOLS = {
 
 const handlers = {
   initialize: (p) => ({ protocolVersion: p?.protocolVersion || "2025-06-18", capabilities: { tools: {} },
-    serverInfo: { name: "tessera-kit", version: "0.2.0" },
+    serverInfo: { name: "tessera-kit", version: "0.3.0" },
     instructions: "Это кит Tessera. Вызови kit_overview перед любой работой. Семантика цвета правится только в kb/color-model.json, бренды — через create_brand. Руками не править tokens/palette, tokens/brand, tokens/theme.json. После правок — run_build." }),
   "tools/list": () => ({ tools: Object.entries(TOOLS).map(([name, t]) => ({ name, description: t.description, inputSchema: t.inputSchema })) }),
   "tools/call": (p) => {

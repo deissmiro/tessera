@@ -55,6 +55,15 @@ async function syncVariables(data) {
     }
   }
   if (missing) say(`⚠ не найдено целей алиасов: ${missing}`);
+
+  // чистка: в коллекциях кита удаляем переменные, которых больше нет в репозитории
+  const keep = new Set(Object.values(index).map((v) => v.id));
+  const managed = new Set(ctx.map((c) => c.variable.variableCollectionId));
+  let removed = 0;
+  for (const v of await figma.variables.getLocalVariablesAsync()) {
+    if (managed.has(v.variableCollectionId) && !keep.has(v.id)) { v.remove(); removed++; }
+  }
+  if (removed) say(`− удалено устаревших переменных: ${removed}`);
   return index;
 }
 
@@ -115,14 +124,13 @@ async function buildCheckPage(data, index) {
       const board = stack(`${b.name} · ${t.name}`, "VERTICAL", 28, 40);
       board.setExplicitVariableModeForCollection(brandCol, b.modeId);
       board.setExplicitVariableModeForCollection(themeCol, t.modeId);
-      fill(board, "ground/page");
+      fill(board, "ground/ground-1");
       board.appendChild(text(`${b.name} · ${t.name}`, 22, true));
 
-      // ground — остров на странице
+      // ground — уровни, вложенные друг в друга
       const g = section("ground");
-      let outer = null;
-      const levels = by("ground").filter((n) => n !== "ground/page");
-      const root = stack("islands", "HORIZONTAL", 0, 0);
+      const levels = by("ground").filter((n) => n !== "ground/ground-1");
+      const root = stack("ground", "HORIZONTAL", 0, 0);
       let parent = root;
       for (const n of levels) {
         const isl = stack(short(n), "VERTICAL", 8, 16); isl.cornerRadius = 12; fill(isl, n);
@@ -131,17 +139,10 @@ async function buildCheckPage(data, index) {
       }
       g.grid.appendChild(root); board.appendChild(g.s);
 
-      // background и over-background — плоские наборы
+      // background — плоский набор
       const bg = section("background");
       for (const n of by("background")) bg.grid.appendChild(swatch(short(n), (box) => fill(box, n)));
       board.appendChild(bg.s);
-      const ob = section("over-background");
-      for (const n of by("over-background")) ob.grid.appendChild(swatch(short(n), (box) => {
-        fill(box, n.includes("static-light") ? "background/static-dark-deep" : n.endsWith("/inverse") ? "background/inverse" : "background/neutral-soft");
-        const layer = figma.createRectangle(); layer.resize(88, 44); fill(layer, n);
-        box.appendChild(layer);
-      }));
-      board.appendChild(ob.s);
 
       // content — «Aa» на подходящем фоне
       const ct = section("content");
@@ -149,7 +150,7 @@ async function buildCheckPage(data, index) {
         const [, m, lvl] = n.split("/");
         const under = lvl === "on-deep" ? `background/${m}-deep`
           : m === "static-light" ? "background/static-dark-deep"
-          : m === "inverse" ? "background/inverse" : "ground/island";
+          : m === "inverse" ? "background/inverse" : "ground/ground-2";
         fill(box, under); box.appendChild(text("Aa", 16, true, n));
       }));
       board.appendChild(ct.s);
@@ -157,7 +158,7 @@ async function buildCheckPage(data, index) {
       // border — обводка на острове
       const bd = section("border");
       for (const n of by("border")) bd.grid.appendChild(swatch(short(n), (box) => {
-        fill(box, n.includes("static-light") ? "background/static-dark-deep" : n.endsWith("/inverse") ? "background/inverse" : "ground/island");
+        fill(box, n.includes("static-light") ? "background/static-dark-deep" : n.endsWith("/inverse") ? "background/inverse" : "ground/ground-2");
         if (V(n)) { box.strokes = [paint(n)]; box.strokeWeight = 2; }
       }));
       board.appendChild(bd.s);

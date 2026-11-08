@@ -8,7 +8,7 @@
 Проверяет: направление ссылок между слоями (kit.config.json → references),
 описание у каждого токена, полноту модов, циклы, контраст пар во всех brand × theme.
 Собирает:
-  dist/figma/variables.json — коллекции, моды, переменные с алиасами (для плагина figma-sync)
+  dist/figma/variables.json — коллекции, моды, переменные с алиасами (для плагина figma-sync), включая Numbers
   dist/css/tokens.css       — CSS-переменные с той же слоистостью (data-brand / data-theme)
   dist/tokens.flat.json     — плоский индекс для MCP-сервера
 """
@@ -135,7 +135,8 @@ def figma_name(path):
 SCOPES = [(r"^theme\.border", ["STROKE_COLOR"]),
           (r"^theme\.content", ["TEXT_FILL", "SHAPE_FILL"]),
           (r"^theme\.ground", ["FRAME_FILL"]),
-          (r"^theme\.(background|over-background)", ["FRAME_FILL", "SHAPE_FILL"])]
+          (r"^theme\.background", ["FRAME_FILL", "SHAPE_FILL"]),
+          (r"^numbers\.opacity", ["OPACITY"])]
 
 
 def scopes_for(t):
@@ -163,10 +164,10 @@ def build_figma(cfg, tokens):
         modes = cfg["axes"][axis]["modes"] if axis else ["default"]
         vars_ = [{
             "name": figma_name(t["path"]),
-            "type": "COLOR",
+            "type": "COLOR" if t["type"] == "color" else "FLOAT",
             "description": t["description"],
             "scopes": scopes_for(t),
-            "hiddenFromPublishing": layer["id"] != "theme",
+            "hiddenFromPublishing": layer["id"] in ("palette", "brand"),
             "codeSyntax": {"WEB": f"var(--{t['path'].replace('.', '-')})"},
             "valuesByMode": {m: figma_value(tokens, cfg, t["values"].get(m if axis else "_")) for m in modes},
         } for t in tokens.values() if t["layer"] == layer["id"]]
@@ -185,7 +186,7 @@ def build_css(cfg, tokens):
                 attr = f'[data-{axis}="{mode}"]'
                 sel = f":root, {attr}" if mode == cfg["axes"][axis]["default"] else attr
             m = REF.match(v) if isinstance(v, str) else None
-            val = f"var(--{m.group(1).replace('.', '-')})" if m else v
+            val = f"var(--{m.group(1).replace('.', '-')})" if m else (round(v / 100, 2) if "opacity" in t["path"] else v)
             blocks.setdefault(sel, []).append(f"  --{t['path'].replace('.', '-')}: {val};")
     head = f"/* {cfg['name']} {cfg['version']} — сгенерировано tools/build.py, не править */"
     return head + "\n\n" + "\n\n".join(f"{s} {{\n" + "\n".join(d) + "\n}" for s, d in blocks.items()) + "\n"
@@ -198,7 +199,7 @@ def main():
     tokens = collect(cfg)
     validate(cfg, tokens)
     report = []
-    if not errors:
+    if not errors and cfg["axes"]["brand"]["modes"]:
         try:
             report = check_contrast(cfg, tokens)
         except RecursionError as e:

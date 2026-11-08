@@ -15,8 +15,6 @@ def ref(step, ramp=None):
     """Шаг модели → ссылка на токен бренда."""
     if step in ("white", "black"):
         return f"{{brand.color.{step}}}"
-    if re.match(r"^(white|black)-\d+$", step):
-        return f"{{brand.color.alpha.{step}}}"
     if "." in step:  # neutral.100
         return f"{{brand.color.{step}}}"
     return f"{{brand.color.{ramp}.{step}}}"

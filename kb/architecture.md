@@ -1,32 +1,42 @@
 ---
 id: architecture
-summary: Как устроен цвет кита — слои, оси, направление ссылок. Читать агенту первым.
+summary: Как устроен цвет кита — коллекции, тоны бренда, семантика. Читать агенту первым.
 ---
 # Архитектура цвета
 
 Источник правды — `kit.config.json` и `kb/color-model.json`.
 
-## Три слоя → три коллекции Figma Variables
+## Коллекции Figma Variables
 | Слой | Коллекция | Моды | Что внутри | Ссылается на |
 |---|---|---|---|---|
-| palette | 0 · Palette | — | Прямые цвета без смысла: `<палитра>/<цвет>/<ступень>` — `tessera/gray/100`, `tessera/indigo/600`, `sunny/yellow/200`. Имя шкалы — по тону (gray, red, burgundy, violet…). Плюс `common/` (белый, чёрный, прозрачности). | — |
-| brand | 1 · Brand | бренды | Верхний уровень, собирательный образ бренда. Здесь цвета получают роли: `color/accent-uno/*` → `indigo`, `color/neutral/*` → `gray`; опорные base, dark-base и контент на них. Дальше — типографика, скругления, размеры. | palette |
-| theme | 2 · Theme | light, dark | Семантика цвета по модели. | brand |
+| palette | 0 · Palette | — | Прямые цвета по именам: `<палитра>/<цвет>/<ступень>` — `tessera/gray/100`, `tessera/indigo/600`, `sunny/yellow/200`, плюс `common/white`, `common/black`. Без смыслов и без прозрачностей. | — |
+| brand | 1 · Brand | бренды | Верхний уровень, образ бренда. `color/neutral/*` — нейтральная шкала; на каждую роль (accent-uno/duo, brand-uno/duo, positive, negative) — четыре тона `pale`, `soft`, `pure`, `deep` + `on-pure`. Дальше — типографика, скругления, размеры. | palette |
+| theme | 2 · Theme | light, dark | Семантика цвета. | brand |
+| numbers | 3 · Numbers | — | `opacity/0…90` — прозрачность в процентах. | — |
 
-- Палитра одна на бренд и общая для обеих тем. Тема ничего не хранит, только выбирает ступени.
-- Бренд не хранится в палитре: палитра — библиотека, бренд выбирает из неё. Два бренда могут делить одну палитру (`"palette": "<id>"` в brand.json).
-- Palette и Brand скрыты из пикеров. Дизайнер выбирает только из Theme.
+- Палитра одна на бренд и общая для обеих тем. Тема ничего не хранит, только выбирает тоны.
+- Тоны одинаковой светлоты у всех брендов: pale ≈ 100, soft ≈ 300, deep ≈ 800; pure — ровно исходный цвет.
+- Прозрачности в цветах нет. Нужен полупрозрачный цвет — берёте цвет из Theme и назначаете слою переменную `opacity/N` из Numbers (Figma не умеет хранить переменную прозрачность внутри цветовой переменной).
+- Palette и Brand скрыты из пикеров. Дизайнер выбирает из Theme и Numbers.
 
 ## Семантика (2 · Theme)
-| Группа | Форма | Имена |
-|---|---|---|
-| ground | два цвета | `ground/page` — страница, `ground/island` — острова на ней. Больше ничего |
-| background | плоский набор | `background/<смысл>-<контраст>`: `background/accent-uno-deep` |
-| over-background | плоский набор | `over-background/<смысл>-<контраст>`: `over-background/neutral-soft` |
-| content | смысл/иерархия | `content/<смысл>/<primary\|secondary\|tertiary\|on-deep>` |
-| border | смысл/контраст | `border/<смысл>/<pale\|soft\|deep>` |
+| Группа | Имена |
+|---|---|
+| ground | `ground/ground-1` — страница, `ground/ground-2` — то, что лежит на странице. Больше ничего |
+| background | плоско: `background/<смысл>-<pale\|soft\|deep>` — `background/accent-uno-deep` |
+| content | `content/<смысл>/<primary\|secondary\|tertiary\|on-deep>` |
+| border | `border/<смысл>/<pale\|soft\|deep>` |
 
-Смыслы: neutral, accent-uno/duo, status-positive/negative, brand-uno/duo, static-light/dark, inverse. Inverse в background, over-background и border — один цвет без градаций: `background/inverse`. Какой смысл есть в какой группе — `color-model.json → availability`.
+Смыслы: neutral, accent-uno/duo, status-positive/negative, brand-uno/duo, static-light/dark, inverse. Inverse — один цвет: `background/inverse`, `border/inverse`.
+
+Как тоны бренда ложатся на цветную семантику:
+| | светлая | тёмная |
+|---|---|---|
+| background pale / soft / deep | pale / soft / pure | deep / deep / pure |
+| content primary / secondary / on-deep | deep / pure / on-pure | pale / soft / on-pure |
+| border pale / soft / deep | pale / soft / pure | deep / pure / pure |
+
+Состояния: ховер и нажатие — соседний тон (pale → soft), затемнение — `background/static-dark-deep` + `opacity/40…60`.
 
 ## Правила
 1. Ссылки только вниз по таблице слоёв. Проверяет `tools/build.py`.

@@ -14,8 +14,8 @@
 (переопределяется "names": {"accent-uno": "burgundy"} в brand.json). Смысл шкалам
 (accent-uno, positive…) даёт слой Brand.
 Ступени 50…950 имеют одинаковую светлоту у всех рамп и брендов. Исходный цвет
-ставится точно в ближайшую ступень (base). Для тёмной темы подбирается dark-base —
-ближайшая к base ступень той же рампы, что читается на тёмной земле.
+ставится точно в ближайшую ступень. Бренд берёт из каждой шкалы четыре тона:
+pale, soft, pure (исходный цвет), deep — на них ссылается семантика.
 """
 import json
 import subprocess
@@ -74,6 +74,24 @@ ROLE_DESC = {"accent-uno": "Основной акцент.", "accent-duo": "Вт
              "brand-duo": "Второй фирменный.", "positive": "Статус успеха.", "negative": "Статус ошибки."}
 
 
+TONE_DESC = {"pale": "Самый светлый тон: тихие заливки", "soft": "Светлый тон: заметные заливки",
+             "pure": "Чистый цвет бренда — ровно исходный цвет", "deep": "Тёмный тон: текст и иконки цвета"}
+
+
+def pick_tones(a):
+    """Четыре тона роли. Светлота тонов одинакова у всех брендов (pale 100, soft 300, deep 800),
+    pure — ровно исходный цвет. Если исходный цвет сам светлый или тёмный, соседние тоны сдвигаются,
+    чтобы порядок pale < soft < pure < deep сохранялся."""
+    idx = STEPS.index
+    pale, soft, deep = 100, 300, 800
+    if a <= soft:
+        soft = STEPS[max(idx(a) - 1, 0)]
+        pale = STEPS[max(idx(soft) - 1, 0)]
+    if a >= deep:
+        deep = STEPS[min(idx(a) + 1, len(STEPS) - 1)]
+    return {"pale": pale, "soft": soft, "pure": a, "deep": deep}
+
+
 def tok(value, typ, desc):
     return {"$type": typ, "$value": value, "$description": desc}
 
@@ -123,19 +141,15 @@ def build(spec):
     for s in nsteps:
         pal["gray"][str(s)] = tok(neutral[s], "color", f"gray {s}.")
 
-    bcol = {"$description": f"Цвет бренда: палитра «{pid}» и опорные цвета, подобранные по контрасту."}
+    bcol = {"$description": f"Цвет бренда из палитры «{pid}»: нейтральная шкала и по четыре тона (pale, soft, pure, deep) на каждую роль."}
     P = lambda *p: "{palette." + ".".join(str(x) for x in p) + "}"
     bcol["white"] = tok(P("common", "white"), "color", "Белый.")
     bcol["black"] = tok(P("common", "black"), "color", "Чёрный.")
-    bcol["alpha"] = {"$description": "Прозрачности."}
-    for col in ("black", "white"):
-        for a in (4, 8, 16, 24, 48, 64):
-            bcol["alpha"][f"{col}-{a}"] = tok(P("common", "alpha", f"{col}-{a}"), "color", f"{col} {a}%.")
     bcol["neutral"] = {"$description": "Нейтральный цвет бренда. Шкала палитры: gray."}
     for s in nsteps:
         bcol["neutral"][str(s)] = tok(P(pid, "gray", s), "color", f"neutral {s} → gray {s}.")
 
-    ink, dark_ground = neutral[950], neutral[950]
+    ink = neutral[950]
     best_on = lambda c: WHITE if contrast(WHITE, c) >= contrast(ink, c) else ink
     on_ref = lambda c: P("common", "white") if c == WHITE else P(pid, "gray", 950)
     report = {"gray": (neutral, None, None, nsteps)}
@@ -156,19 +170,13 @@ def build(spec):
                 pal[nm][str(s_)] = tok(vals[s_], "color", f"{nm} {s_}.")
             report[nm] = (vals, a, None, STEPS)
         nm, vals, a = ramp_of_hex[key]
-        j = STEPS.index(a)
-        while j > 0 and (contrast(vals[STEPS[j]], dark_ground) < 3 or contrast(best_on(vals[STEPS[j]]), vals[STEPS[j]]) < 4.5):
-            j -= 1
-        d = STEPS[j]
-        report[nm] = (vals, a, d, STEPS)
-        g = {"$description": f"{ROLE_DESC[name]} Шкала палитры: {nm}."}
-        for s_ in STEPS:
-            g[str(s_)] = tok(P(pid, nm, s_), "color", f"{name} {s_} → {nm} {s_}.")
-        on, don = best_on(vals[a]), best_on(vals[d])
-        g["base"] = tok(P(pid, nm, a), "color", f"Опорный {name} = исходный цвет ({nm} {a}). deep в светлой теме.")
-        g["dark-base"] = tok(P(pid, nm, d), "color", f"Опорный {name} для тёмной темы ({nm} {d}): ближайший к base, что держит 3:1 на тёмной странице и 4.5:1 с контентом.")
-        g["on-base"] = tok(on_ref(on), "color", f"Контент поверх base ({contrast(on, vals[a]):.2f}:1).")
-        g["on-dark-base"] = tok(on_ref(don), "color", f"Контент поверх dark-base ({contrast(don, vals[d]):.2f}:1).")
+        tones = pick_tones(a)
+        report[nm] = (vals, a, None, STEPS)
+        on = best_on(vals[a])
+        g = {"$description": f"{ROLE_DESC[name]} Четыре тона из шкалы палитры {nm}: pale, soft, pure, deep."}
+        for tone, step in tones.items():
+            g[tone] = tok(P(pid, nm, step), "color", f"{TONE_DESC[tone]} ({nm} {step}).")
+        g["on-pure"] = tok(on_ref(on), "color", f"Контент поверх pure, подобран по контрасту ({contrast(on, vals[a]):.2f}:1).")
         bcol[name] = g
 
     palette = {"palette": {pid: pal}}
@@ -200,10 +208,10 @@ def main():
     for name, (vals, a, d, steps) in report.items():
         cells = []
         for s in steps:
-            l, r = ("[", "]") if s == a else (("(", ")") if s == d else (" ", " "))
+            l, r = ("[", "]") if s == a else (" ", " ")
             cells.append(f"{l}{vals[s]}{r}")
         print(f"  {name:11}" + "".join(cells))
-    print("  [ ] — base (светлая тема), ( ) — dark-base (тёмная тема)")
+    print("  [ ] — pure (исходный цвет)")
     if "--check" in sys.argv:
         sys.exit(subprocess.call([sys.executable, str(ROOT / "tools" / "build.py"), "--check"]))
 

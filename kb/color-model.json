@@ -5,16 +5,16 @@
       "order": 0,
       "shape": "levels",
       "levels": [
-        "page",
-        "island"
+        "ground-1",
+        "ground-2"
       ],
-      "description": "Земля: цвет страницы и острова на ней — и больше ничего. Остров — любой крупный блок, лежащий на странице (карточка, панель, секция).",
+      "description": "Земля: два уровня основы. ground-1 — страница, ground-2 — то, что лежит на странице (карточки, панели, секции). Других цветов в земле нет.",
       "steps": {
-        "page": [
+        "ground-1": [
           "neutral.100",
           "neutral.950"
         ],
-        "island": [
+        "ground-2": [
           "white",
           "neutral.900"
         ]
@@ -28,20 +28,10 @@
         "soft",
         "deep"
       ],
-      "description": "Заливки элементов поверх земли: кнопки, чипы, плашки, бейджи. Плоский набор: <смысл>-<контраст>."
-    },
-    "over-background": {
-      "order": 2,
-      "shape": "flat",
-      "levels": [
-        "pale",
-        "soft",
-        "deep"
-      ],
-      "description": "Полупрозрачные слои поверх любой заливки: ховер, нажатие, выделение, затемнение. Плоский набор: <смысл>-<контраст>."
+      "description": "Заливки элементов поверх земли: кнопки, чипы, плашки, бейджи. Плоский набор: <смысл>-<контраст>. Ховер и нажатие — соседний тон; затемнение — static-dark + opacity из Numbers."
     },
     "content": {
-      "order": 3,
+      "order": 2,
       "shape": "nested",
       "levels": [
         "primary",
@@ -52,7 +42,7 @@
       "description": "Текст и иконки: content/<смысл>/<иерархия>. on-deep — контент поверх background/<смысл>-deep."
     },
     "border": {
-      "order": 4,
+      "order": 3,
       "shape": "nested",
       "levels": [
         "pale",
@@ -107,15 +97,11 @@
         null
       ],
       "kind": "inverse",
-      "description": "Инверсный цвет: тосты, тултипы, инверсные плашки. В background, over-background и border — один цвет без градаций контраста.",
+      "description": "Инверсный цвет: тосты, тултипы, инверсные плашки. В background и border — один цвет без градаций.",
       "single": {
         "background": [
           "neutral.900",
           "neutral.100"
-        ],
-        "over-background": [
-          "white-8",
-          "black-8"
         ],
         "border": [
           "neutral.700",
@@ -139,11 +125,6 @@
       "static",
       "inverse"
     ],
-    "over-background": [
-      "neutral",
-      "static",
-      "inverse"
-    ],
     "content": [
       "neutral",
       "accent",
@@ -161,7 +142,7 @@
     ]
   },
   "steps": {
-    "$description": "Пары [светлая, тёмная]: какой цвет бренда берёт комбинация. neutral.N / <рампа>.N — ступень, base / dark-base / on-base / on-dark-base — опорные цвета бренда, white / black-N / white-N — белый, чёрный и прозрачности. Inverse: в background, over-background, border — один цвет (meanings.inverse.single); в content — neutral, поменянный местами.",
+    "$description": "Пары [светлая, тёмная]. Для цветных смыслов — тоны бренда: pale, soft, pure, deep, on-pure. Для нейтральных — ступени neutral.N. white / black — белый и чёрный. Альфы нет: прозрачность — opacity из коллекции Numbers.",
     "neutral": {
       "background": {
         "pale": [
@@ -175,20 +156,6 @@
         "deep": [
           "neutral.900",
           "neutral.100"
-        ]
-      },
-      "over-background": {
-        "pale": [
-          "black-4",
-          "white-4"
-        ],
-        "soft": [
-          "black-8",
-          "white-8"
-        ],
-        "deep": [
-          "black-16",
-          "white-16"
         ]
       },
       "content": {
@@ -227,48 +194,44 @@
     "colored": {
       "background": {
         "pale": [
-          "100",
-          "900"
+          "pale",
+          "deep"
         ],
         "soft": [
-          "200",
-          "800"
+          "soft",
+          "deep"
         ],
         "deep": [
-          "base",
-          "dark-base"
+          "pure",
+          "pure"
         ]
       },
       "content": {
         "primary": [
-          "700",
-          "300"
+          "deep",
+          "pale"
         ],
         "secondary": [
-          "600",
-          "400"
-        ],
-        "tertiary": [
-          "500",
-          "500"
+          "pure",
+          "soft"
         ],
         "on-deep": [
-          "on-base",
-          "on-dark-base"
+          "on-pure",
+          "on-pure"
         ]
       },
       "border": {
         "pale": [
-          "200",
-          "800"
+          "pale",
+          "deep"
         ],
         "soft": [
-          "300",
-          "700"
+          "soft",
+          "pure"
         ],
         "deep": [
-          "base",
-          "dark-base"
+          "pure",
+          "pure"
         ]
       }
     },
@@ -288,32 +251,18 @@
             "neutral.200"
           ]
         },
-        "over-background": {
-          "pale": [
-            "white-16",
-            "white-16"
-          ],
-          "soft": [
-            "white-24",
-            "white-24"
-          ],
-          "deep": [
-            "white-48",
-            "white-48"
-          ]
-        },
         "content": {
           "primary": [
             "white",
             "white"
           ],
           "secondary": [
-            "white-64",
-            "white-64"
+            "neutral.200",
+            "neutral.200"
           ],
           "tertiary": [
-            "white-48",
-            "white-48"
+            "neutral.400",
+            "neutral.400"
           ],
           "on-deep": [
             "neutral.950",
@@ -322,16 +271,16 @@
         },
         "border": {
           "pale": [
-            "white-16",
-            "white-16"
+            "neutral.100",
+            "neutral.100"
           ],
           "soft": [
-            "white-24",
-            "white-24"
+            "neutral.300",
+            "neutral.300"
           ],
           "deep": [
-            "white-48",
-            "white-48"
+            "white",
+            "white"
           ]
         }
       },
@@ -350,32 +299,18 @@
             "neutral.950"
           ]
         },
-        "over-background": {
-          "pale": [
-            "black-16",
-            "black-16"
-          ],
-          "soft": [
-            "black-24",
-            "black-24"
-          ],
-          "deep": [
-            "black-48",
-            "black-48"
-          ]
-        },
         "content": {
           "primary": [
             "neutral.950",
             "neutral.950"
           ],
           "secondary": [
-            "black-64",
-            "black-64"
+            "neutral.800",
+            "neutral.800"
           ],
           "tertiary": [
-            "black-48",
-            "black-48"
+            "neutral.700",
+            "neutral.700"
           ],
           "on-deep": [
             "white",
@@ -384,23 +319,23 @@
         },
         "border": {
           "pale": [
-            "black-8",
-            "black-8"
+            "neutral.800",
+            "neutral.800"
           ],
           "soft": [
-            "black-16",
-            "black-16"
+            "neutral.700",
+            "neutral.700"
           ],
           "deep": [
-            "black-48",
-            "black-48"
+            "neutral.950",
+            "neutral.950"
           ]
         }
       }
     }
   },
   "pairs": {
-    "$description": "Обязательный контраст. Имена — как в Figma. {m} подставляет каждый цветной смысл-схему (accent-uno, status-negative, …), {g} — page и island. severity warn не ломает сборку.",
+    "$description": "Обязательный контраст. Имена — как в Figma. {m} подставляет каждый цветной смысл-схему (accent-uno, status-negative, …), {g} — ground-1 и ground-2. severity warn не ломает сборку.",
     "rules": [
       {
         "fg": "content/neutral/primary",
@@ -444,7 +379,7 @@
       },
       {
         "fg": "content/{m}/primary",
-        "bg": "ground/island",
+        "bg": "ground/ground-2",
         "min": 4.5
       },
       {
@@ -464,12 +399,12 @@
       },
       {
         "fg": "border/neutral/deep",
-        "bg": "ground/island",
+        "bg": "ground/ground-2",
         "min": 3
       },
       {
         "fg": "background/{m}-deep",
-        "bg": "ground/page",
+        "bg": "ground/ground-1",
         "min": 3,
         "severity": "warn",
         "note": "WCAG 1.4.11: заливка контрола отличима от страницы. Для светлых брендов допустимо, если есть читаемый лейбл."

@@ -1,0 +1,58 @@
+{
+  "numbers": {
+    "$description": "Числа кита. Сейчас — прозрачность.",
+    "opacity": {
+      "$description": "Прозрачность слоя в процентах. В Figma назначается на opacity слоя (цвет-переменная не может хранить переменную прозрачность).",
+      "0": {
+        "$type": "number",
+        "$value": 0,
+        "$description": "Непрозрачность 0%."
+      },
+      "10": {
+        "$type": "number",
+        "$value": 10,
+        "$description": "Непрозрачность 10%."
+      },
+      "20": {
+        "$type": "number",
+        "$value": 20,
+        "$description": "Непрозрачность 20%."
+      },
+      "30": {
+        "$type": "number",
+        "$value": 30,
+        "$description": "Непрозрачность 30%."
+      },
+      "40": {
+        "$type": "number",
+        "$value": 40,
+        "$description": "Непрозрачность 40%. Затемнение под модалками — со static-dark."
+      },
+      "50": {
+        "$type": "number",
+        "$value": 50,
+        "$description": "Непрозрачность 50%."
+      },
+      "60": {
+        "$type": "number",
+        "$value": 60,
+        "$description": "Непрозрачность 60%. Затемнение под модалками — со static-dark."
+      },
+      "70": {
+        "$type": "number",
+        "$value": 70,
+        "$description": "Непрозрачность 70%."
+      },
+      "80": {
+        "$type": "number",
+        "$value": 80,
+        "$description": "Непрозрачность 80%."
+      },
+      "90": {
+        "$type": "number",
+        "$value": 90,
+        "$description": "Непрозрачность 90%."
+      }
+    }
+  }
+}

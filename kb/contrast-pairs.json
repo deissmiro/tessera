@@ -3,32 +3,32 @@
   "pairs": [
     {
       "fg": "theme.content.neutral.primary",
-      "bg": "theme.ground.page",
+      "bg": "theme.ground.ground-1",
       "min": 7
     },
     {
       "fg": "theme.content.neutral.primary",
-      "bg": "theme.ground.island",
+      "bg": "theme.ground.ground-2",
       "min": 7
     },
     {
       "fg": "theme.content.neutral.secondary",
-      "bg": "theme.ground.page",
+      "bg": "theme.ground.ground-1",
       "min": 4.5
     },
     {
       "fg": "theme.content.neutral.secondary",
-      "bg": "theme.ground.island",
+      "bg": "theme.ground.ground-2",
       "min": 4.5
     },
     {
       "fg": "theme.content.neutral.tertiary",
-      "bg": "theme.ground.page",
+      "bg": "theme.ground.ground-1",
       "min": 4.5
     },
     {
       "fg": "theme.content.neutral.tertiary",
-      "bg": "theme.ground.island",
+      "bg": "theme.ground.ground-2",
       "min": 4.5
     },
     {
@@ -58,32 +58,32 @@
     },
     {
       "fg": "theme.content.accent-duo.primary",
-      "bg": "theme.ground.island",
+      "bg": "theme.ground.ground-2",
       "min": 4.5
     },
     {
       "fg": "theme.content.accent-uno.primary",
-      "bg": "theme.ground.island",
+      "bg": "theme.ground.ground-2",
       "min": 4.5
     },
     {
       "fg": "theme.content.brand-duo.primary",
-      "bg": "theme.ground.island",
+      "bg": "theme.ground.ground-2",
       "min": 4.5
     },
     {
       "fg": "theme.content.brand-uno.primary",
-      "bg": "theme.ground.island",
+      "bg": "theme.ground.ground-2",
       "min": 4.5
     },
     {
       "fg": "theme.content.status-negative.primary",
-      "bg": "theme.ground.island",
+      "bg": "theme.ground.ground-2",
       "min": 4.5
     },
     {
       "fg": "theme.content.status-positive.primary",
-      "bg": "theme.ground.island",
+      "bg": "theme.ground.ground-2",
       "min": 4.5
     },
     {
@@ -178,42 +178,42 @@
     },
     {
       "fg": "theme.border.neutral.deep",
-      "bg": "theme.ground.island",
+      "bg": "theme.ground.ground-2",
       "min": 3
     },
     {
       "fg": "theme.background.accent-duo-deep",
-      "bg": "theme.ground.page",
+      "bg": "theme.ground.ground-1",
       "min": 3,
       "severity": "warn"
     },
     {
       "fg": "theme.background.accent-uno-deep",
-      "bg": "theme.ground.page",
+      "bg": "theme.ground.ground-1",
       "min": 3,
       "severity": "warn"
     },
     {
       "fg": "theme.background.brand-duo-deep",
-      "bg": "theme.ground.page",
+      "bg": "theme.ground.ground-1",
       "min": 3,
       "severity": "warn"
     },
     {
       "fg": "theme.background.brand-uno-deep",
-      "bg": "theme.ground.page",
+      "bg": "theme.ground.ground-1",
       "min": 3,
       "severity": "warn"
     },
     {
       "fg": "theme.background.status-negative-deep",
-      "bg": "theme.ground.page",
+      "bg": "theme.ground.ground-1",
       "min": 3,
       "severity": "warn"
     },
     {
       "fg": "theme.background.status-positive-deep",
-      "bg": "theme.ground.page",
+      "bg": "theme.ground.ground-1",
       "min": 3,
       "severity": "warn"
     }

@@ -1,7 +1,7 @@
 {
   "palette": {
     "common": {
-      "$description": "Общие для всех палитр значения: белый, чёрный и их прозрачности.",
+      "$description": "Общие для всех палитр значения: белый и чёрный. Прозрачность — переменными коллекции Numbers.",
       "white": {
         "$type": "color",
         "$value": "#ffffff",
@@ -11,69 +11,6 @@
         "$type": "color",
         "$value": "#000000",
         "$description": "Чёрный."
-      },
-      "alpha": {
-        "$description": "Прозрачности для слоёв over-background и static.",
-        "black-4": {
-          "$type": "color",
-          "$value": "#0000000a",
-          "$description": "Чёрный 4%."
-        },
-        "black-8": {
-          "$type": "color",
-          "$value": "#00000014",
-          "$description": "Чёрный 8%."
-        },
-        "black-16": {
-          "$type": "color",
-          "$value": "#00000029",
-          "$description": "Чёрный 16%."
-        },
-        "black-24": {
-          "$type": "color",
-          "$value": "#0000003d",
-          "$description": "Чёрный 24%."
-        },
-        "black-48": {
-          "$type": "color",
-          "$value": "#0000007a",
-          "$description": "Чёрный 48%."
-        },
-        "black-64": {
-          "$type": "color",
-          "$value": "#000000a3",
-          "$description": "Чёрный 64%."
-        },
-        "white-4": {
-          "$type": "color",
-          "$value": "#ffffff0a",
-          "$description": "Белый 4%."
-        },
-        "white-8": {
-          "$type": "color",
-          "$value": "#ffffff14",
-          "$description": "Белый 8%."
-        },
-        "white-16": {
-          "$type": "color",
-          "$value": "#ffffff29",
-          "$description": "Белый 16%."
-        },
-        "white-24": {
-          "$type": "color",
-          "$value": "#ffffff3d",
-          "$description": "Белый 24%."
-        },
-        "white-48": {
-          "$type": "color",
-          "$value": "#ffffff7a",
-          "$description": "Белый 48%."
-        },
-        "white-64": {
-          "$type": "color",
-          "$value": "#ffffffa3",
-          "$description": "Белый 64%."
-        }
       }
     }
   }
