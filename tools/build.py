@@ -115,6 +115,8 @@ def check_contrast(cfg, tokens):
     pairs = load(ROOT / cfg["contrast"]["pairs"])["pairs"]
     report = []
     for ctx in contexts(cfg):
+        if any(ctx[a] != cfg["axes"][a]["default"] for a in cfg["axes"] if a not in ("brand", "theme")):
+            continue
         for p in pairs:
             fg, bg = resolve(tokens, cfg, p["fg"], ctx), resolve(tokens, cfg, p["bg"], ctx)
             r = contrast(fg, bg)
@@ -136,7 +138,10 @@ SCOPES = [(r"^theme\.border", ["STROKE_COLOR"]),
           (r"^theme\.content", ["TEXT_FILL", "SHAPE_FILL"]),
           (r"^theme\.ground", ["FRAME_FILL"]),
           (r"^theme\.background", ["FRAME_FILL", "SHAPE_FILL"]),
-          (r"^numbers\.opacity", ["OPACITY"])]
+          (r"^numbers\.opacity", ["OPACITY"]),
+          (r"radius", ["CORNER_RADIUS"]),
+          (r"(padding|margin|gap)", ["GAP"]),
+          (r"(width|height)", ["WIDTH_HEIGHT"])]
 
 
 def scopes_for(t):
@@ -164,7 +169,7 @@ def build_figma(cfg, tokens):
         modes = cfg["axes"][axis]["modes"] if axis else ["default"]
         vars_ = [{
             "name": figma_name(t["path"]),
-            "type": "COLOR" if t["type"] == "color" else "FLOAT",
+            "type": {"color": "COLOR", "boolean": "BOOLEAN"}.get(t["type"], "FLOAT"),
             "description": t["description"],
             "scopes": scopes_for(t),
             "hiddenFromPublishing": layer["id"] in ("palette", "brand"),
@@ -182,14 +187,32 @@ def build_css(cfg, tokens):
         for mode, v in t["values"].items():
             if not axis:
                 sel = ":root"
+            elif "breakpoints" in cfg["axes"][axis]:
+                px = cfg["axes"][axis]["breakpoints"][mode]
+                sel = ":root" if not px else f"@media (min-width: {px}px)"
             else:
                 attr = f'[data-{axis}="{mode}"]'
                 sel = f":root, {attr}" if mode == cfg["axes"][axis]["default"] else attr
             m = REF.match(v) if isinstance(v, str) else None
-            val = f"var(--{m.group(1).replace('.', '-')})" if m else (round(v / 100, 2) if "opacity" in t["path"] else v)
+            if m:
+                val = f"var(--{m.group(1).replace('.', '-')})"
+            elif "opacity" in t["path"]:
+                val = round(v / 100, 2)
+            elif isinstance(v, bool):
+                val = int(v)
+            elif isinstance(v, (int, float)):
+                val = f"{v}px"
+            else:
+                val = v
             blocks.setdefault(sel, []).append(f"  --{t['path'].replace('.', '-')}: {val};")
     head = f"/* {cfg['name']} {cfg['version']} — сгенерировано tools/build.py, не править */"
-    return head + "\n\n" + "\n\n".join(f"{s} {{\n" + "\n".join(d) + "\n}" for s, d in blocks.items()) + "\n"
+    out = []
+    for s, d in blocks.items():
+        if s.startswith("@media"):
+            out.append(f"{s} {{\n  :root {{\n" + "\n".join("  " + x for x in d) + "\n  }\n}")
+        else:
+            out.append(f"{s} {{\n" + "\n".join(d) + "\n}")
+    return head + "\n\n" + "\n\n".join(out) + "\n"
 
 
 def main():

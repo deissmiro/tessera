@@ -1,4 +1,4 @@
-/* Tessera 0.3.0 — сгенерировано tools/build.py, не править */
+/* Tessera 0.4.0 — сгенерировано tools/build.py, не править */
 
 :root {
   --palette-common-white: #ffffff;
@@ -127,6 +127,20 @@
   --numbers-opacity-70: 0.7;
   --numbers-opacity-80: 0.8;
   --numbers-opacity-90: 0.9;
+  --viewport-screen-width: 390px;
+  --viewport-screen-height: 844px;
+  --viewport-window-padding: 16px;
+  --viewport-window-gap: 12px;
+  --viewport-window-radius: 20px;
+  --viewport-window-margin: 16px;
+  --viewport-window-dialog-max-width: 9999px;
+  --viewport-window-sheet-max-width: 9999px;
+  --viewport-window-side-width: 390px;
+  --viewport-window-adaptive-centered: 0;
+  --viewport-window-adaptive-grabber: 1;
+  --viewport-window-adaptive-margin: 0px;
+  --viewport-window-adaptive-bottom-radius: 0px;
+  --viewport-window-adaptive-max-width: 9999px;
 }
 
 :root, [data-brand="tessera"] {
@@ -399,4 +413,42 @@
   --theme-border-static-dark-soft: var(--brand-color-neutral-700);
   --theme-border-static-dark-deep: var(--brand-color-neutral-950);
   --theme-border-inverse: var(--brand-color-neutral-300);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --viewport-screen-width: 834px;
+    --viewport-screen-height: 1112px;
+    --viewport-window-padding: 24px;
+    --viewport-window-gap: 16px;
+    --viewport-window-radius: 24px;
+    --viewport-window-margin: 24px;
+    --viewport-window-dialog-max-width: 480px;
+    --viewport-window-sheet-max-width: 640px;
+    --viewport-window-side-width: 400px;
+    --viewport-window-adaptive-centered: 1;
+    --viewport-window-adaptive-grabber: 0;
+    --viewport-window-adaptive-margin: 24px;
+    --viewport-window-adaptive-bottom-radius: 24px;
+    --viewport-window-adaptive-max-width: 480px;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --viewport-screen-width: 1440px;
+    --viewport-screen-height: 900px;
+    --viewport-window-padding: 24px;
+    --viewport-window-gap: 16px;
+    --viewport-window-radius: 24px;
+    --viewport-window-margin: 32px;
+    --viewport-window-dialog-max-width: 560px;
+    --viewport-window-sheet-max-width: 640px;
+    --viewport-window-side-width: 480px;
+    --viewport-window-adaptive-centered: 1;
+    --viewport-window-adaptive-grabber: 0;
+    --viewport-window-adaptive-margin: 32px;
+    --viewport-window-adaptive-bottom-radius: 24px;
+    --viewport-window-adaptive-max-width: 560px;
+  }
 }

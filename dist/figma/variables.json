@@ -1,6 +1,6 @@
 {
  "kit": "Tessera",
- "version": "0.3.0",
+ "version": "0.4.0",
  "collections": [
   {
    "name": "0 · Palette",
@@ -4265,6 +4265,251 @@
      },
      "valuesByMode": {
       "default": 90
+     }
+    }
+   ]
+  },
+  {
+   "name": "4 · Viewport",
+   "description": "Брейкпоинты s / m / l: размеры, отступы и поведение компонентов на телефоне, планшете и десктопе. Мод выбирается на фрейме.",
+   "modes": [
+    "s",
+    "m",
+    "l"
+   ],
+   "variables": [
+    {
+     "name": "screen/width",
+     "type": "FLOAT",
+     "description": "Ширина экрана.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-screen-width)"
+     },
+     "valuesByMode": {
+      "s": 390,
+      "m": 834,
+      "l": 1440
+     }
+    },
+    {
+     "name": "screen/height",
+     "type": "FLOAT",
+     "description": "Высота экрана.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-screen-height)"
+     },
+     "valuesByMode": {
+      "s": 844,
+      "m": 1112,
+      "l": 900
+     }
+    },
+    {
+     "name": "window/padding",
+     "type": "FLOAT",
+     "description": "Внутренний отступ окна.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-window-padding)"
+     },
+     "valuesByMode": {
+      "s": 16,
+      "m": 24,
+      "l": 24
+     }
+    },
+    {
+     "name": "window/gap",
+     "type": "FLOAT",
+     "description": "Шаг между шапкой, контентом и действиями.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-window-gap)"
+     },
+     "valuesByMode": {
+      "s": 12,
+      "m": 16,
+      "l": 16
+     }
+    },
+    {
+     "name": "window/radius",
+     "type": "FLOAT",
+     "description": "Скругление окна.",
+     "scopes": [
+      "CORNER_RADIUS"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-window-radius)"
+     },
+     "valuesByMode": {
+      "s": 20,
+      "m": 24,
+      "l": 24
+     }
+    },
+    {
+     "name": "window/margin",
+     "type": "FLOAT",
+     "description": "Отступ диалога от краёв экрана.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-window-margin)"
+     },
+     "valuesByMode": {
+      "s": 16,
+      "m": 24,
+      "l": 32
+     }
+    },
+    {
+     "name": "window/dialog-max-width",
+     "type": "FLOAT",
+     "description": "Максимальная ширина диалога. 9999 — без ограничения (на телефоне диалог тянется на всю ширину минус margin).",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-window-dialog-max-width)"
+     },
+     "valuesByMode": {
+      "s": 9999,
+      "m": 480,
+      "l": 560
+     }
+    },
+    {
+     "name": "window/sheet-max-width",
+     "type": "FLOAT",
+     "description": "Максимальная ширина нижнего шита; на m и l шит центрируется.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-window-sheet-max-width)"
+     },
+     "valuesByMode": {
+      "s": 9999,
+      "m": 640,
+      "l": 640
+     }
+    },
+    {
+     "name": "window/side-width",
+     "type": "FLOAT",
+     "description": "Ширина бокового шита. На телефоне — во весь экран.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-window-side-width)"
+     },
+     "valuesByMode": {
+      "s": 390,
+      "m": 400,
+      "l": 480
+     }
+    },
+    {
+     "name": "window/adaptive/centered",
+     "type": "BOOLEAN",
+     "description": "Окно по центру (диалог). false — прижато к низу (шит).",
+     "scopes": [],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-window-adaptive-centered)"
+     },
+     "valuesByMode": {
+      "s": false,
+      "m": true,
+      "l": true
+     }
+    },
+    {
+     "name": "window/adaptive/grabber",
+     "type": "BOOLEAN",
+     "description": "Показывать грэббер шита.",
+     "scopes": [],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-window-adaptive-grabber)"
+     },
+     "valuesByMode": {
+      "s": true,
+      "m": false,
+      "l": false
+     }
+    },
+    {
+     "name": "window/adaptive/margin",
+     "type": "FLOAT",
+     "description": "Отступ от краёв экрана.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-window-adaptive-margin)"
+     },
+     "valuesByMode": {
+      "s": 0,
+      "m": 24,
+      "l": 32
+     }
+    },
+    {
+     "name": "window/adaptive/bottom-radius",
+     "type": "FLOAT",
+     "description": "Скругление нижних углов: у шита 0.",
+     "scopes": [
+      "CORNER_RADIUS"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-window-adaptive-bottom-radius)"
+     },
+     "valuesByMode": {
+      "s": 0,
+      "m": 24,
+      "l": 24
+     }
+    },
+    {
+     "name": "window/adaptive/max-width",
+     "type": "FLOAT",
+     "description": "Максимальная ширина.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-window-adaptive-max-width)"
+     },
+     "valuesByMode": {
+      "s": 9999,
+      "m": 480,
+      "l": 560
      }
     }
    ]

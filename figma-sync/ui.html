@@ -16,13 +16,13 @@
 <h3>Или из файла</h3>
 <input id="v" type="file" accept=".json">
 <button id="fromFile" class="secondary" disabled>Загрузить файл</button>
-<p><label><input id="cp" type="checkbox" checked> Пересобрать проверочную страницу brand × theme</label></p>
+<p><label><input id="cp" type="checkbox" checked> Пересобрать проверочную страницу brand × theme</label><br><label><input id="cm" type="checkbox"> Пересобрать компоненты (Window)</label></p>
 <pre id="log">—</pre>
 <script>
   const $ = (id) => document.getElementById(id);
   let fileData = null;
   $("v").onchange = async () => { fileData = JSON.parse(await $("v").files[0].text()); $("fromFile").disabled = false; };
-  const send = (m) => { $("log").textContent = "Синхронизация…"; parent.postMessage({ pluginMessage: { checkPage: $("cp").checked, ...m } }, "*"); };
+  const send = (m) => { $("log").textContent = "Синхронизация…"; parent.postMessage({ pluginMessage: { checkPage: $("cp").checked, components: $("cm").checked, ...m } }, "*"); };
   $("fromUrl").onclick = () => send({ type: "sync-url", url: $("url").value.trim() });
   $("fromFile").onclick = () => send({ type: "sync", variables: fileData });
   onmessage = (e) => { const m = e.data.pluginMessage; if (!m) return; if ("url" in m) $("url").value = m.url; if (m.log) $("log").textContent = m.log; };

@@ -4,16 +4,36 @@
   "api": "1.0.0",
   "main": "code.js",
   "ui": "ui.html",
-  "editorType": ["figma"],
+  "editorType": [
+    "figma"
+  ],
   "documentAccess": "dynamic-page",
   "menu": [
-    { "name": "Обновить из репозитория", "command": "update" },
-    { "name": "Обновить и пересобрать проверочную страницу", "command": "update-check" },
-    { "separator": true },
-    { "name": "Настройки и загрузка файла…", "command": "open" }
+    {
+      "name": "Обновить из репозитория",
+      "command": "update"
+    },
+    {
+      "name": "Обновить и пересобрать проверочную страницу",
+      "command": "update-check"
+    },
+    {
+      "name": "Обновить и пересобрать компоненты",
+      "command": "update-components"
+    },
+    {
+      "separator": true
+    },
+    {
+      "name": "Настройки и загрузка файла…",
+      "command": "open"
+    }
   ],
   "networkAccess": {
-    "allowedDomains": ["https://raw.githubusercontent.com", "https://gist.githubusercontent.com"],
+    "allowedDomains": [
+      "https://raw.githubusercontent.com",
+      "https://gist.githubusercontent.com"
+    ],
     "reasoning": "Загружает dist/figma/variables.json из репозитория кита на GitHub."
   }
 }

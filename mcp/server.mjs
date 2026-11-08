@@ -68,6 +68,7 @@ const TOOLS = {
         "## Токенов по слоям\n" + JSON.stringify(counts),
         "## Правила (get_rule)\n" + rules.map((r) => `- ${r.id}: ${r.summary}`).join("\n"),
         "## Модель цвета\nkb/color-model.json — get_rule color-model",
+        "## Компоненты (get_component)\n" + readdirSync(join(ROOT, "kb/components")).map((f) => "- " + f.replace(".json", "")).join("\n"),
       ].join("\n\n"));
     },
   },
@@ -75,7 +76,7 @@ const TOOLS = {
     description: "Поиск токенов по имени и описанию. Используй перед созданием нового токена — возможно, нужная семантика уже есть.",
     inputSchema: { type: "object", properties: {
       query: { type: "string", description: "Слова из пути или описания, например 'text secondary' или 'ошибка'" },
-      layer: { type: "string", enum: ["palette", "brand", "theme", "numbers"] },
+      layer: { type: "string", enum: ["palette", "brand", "theme", "numbers", "viewport"] },
             limit: { type: "number", default: 40 } } },
     run({ query = "", layer, type, limit = 40 }) {
       load();
@@ -99,6 +100,14 @@ const TOOLS = {
       if (id === "architecture") return text(read("kb/architecture.md"));
       if (id === "color-model") return text(read("kb/color-model.json"));
       return text(read(`kb/rules/${id}.md`));
+    },
+  },
+  get_component: {
+    description: "Контракт компонента: виды, свойства, анатомия, слоты, раскладка по брейкпоинтам, привязки к переменным.",
+    inputSchema: { type: "object", required: ["name"], properties: { name: { type: "string" } } },
+    run({ name }) {
+      const f = `kb/components/${name}.json`;
+      return existsSync(join(ROOT, f)) ? text(json(f)) : { ...text(`нет контракта ${f}`), isError: true };
     },
   },
   contrast_report: {
@@ -148,7 +157,7 @@ const TOOLS = {
 
 const handlers = {
   initialize: (p) => ({ protocolVersion: p?.protocolVersion || "2025-06-18", capabilities: { tools: {} },
-    serverInfo: { name: "tessera-kit", version: "0.3.0" },
+    serverInfo: { name: "tessera-kit", version: "0.4.0" },
     instructions: "Это кит Tessera. Вызови kit_overview перед любой работой. Семантика цвета правится только в kb/color-model.json, бренды — через create_brand. Руками не править tokens/palette, tokens/brand, tokens/theme.json. После правок — run_build." }),
   "tools/list": () => ({ tools: Object.entries(TOOLS).map(([name, t]) => ({ name, description: t.description, inputSchema: t.inputSchema })) }),
   "tools/call": (p) => {

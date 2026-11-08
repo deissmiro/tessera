@@ -32,7 +32,7 @@ async function syncVariables(data) {
       let variable = existing.find((x) => x.variableCollectionId === col.id && x.name === v.name);
       if (!variable) variable = figma.variables.createVariable(v.name, col, v.type);
       variable.description = v.description || "";
-      variable.scopes = v.scopes;
+      try { if (v.type !== "BOOLEAN") variable.scopes = v.scopes; } catch (e) { say(`⚠ scopes ${v.name}: ${e.message}`); }
       variable.hiddenFromPublishing = !!v.hiddenFromPublishing;
       if (v.codeSyntax && v.codeSyntax.WEB) variable.setVariableCodeSyntax("WEB", v.codeSyntax.WEB);
       index[`${c.name}::${v.name}`] = variable;
@@ -171,13 +171,164 @@ async function buildCheckPage(data, index) {
   say(`✓ страница «${NAME}»: ${brandCol.modes.length * themeCol.modes.length} досок brand × theme`);
 }
 
+// @components
+// ---- Компоненты кита. Собираются по kb/components/*.json; все значения — привязки к переменным.
+async function buildComponents(index) {
+  await figma.loadFontAsync({ family: "Inter", style: "Regular" });
+  await figma.loadFontAsync({ family: "Inter", style: "Semi Bold" });
+  const cols = await figma.variables.getLocalVariableCollectionsAsync();
+  const col = (part) => cols.find((c) => c.name.includes(part));
+  const V = (coll, name) => {
+    const v = index[`${col(coll).name}::${name}`];
+    if (!v) say(`⚠ нет переменной ${coll}::${name}`);
+    return v;
+  };
+  const T = (n) => V("Theme", n), VP = (n) => V("Viewport", n), N = (n) => V("Numbers", n);
+  const bind = (node, field, v) => { if (v) node.setBoundVariable(field, v); };
+  const paint = (v) => figma.variables.setBoundVariableForPaint({ type: "SOLID", color: { r: 0.5, g: 0.5, b: 0.5 } }, "color", v);
+  const fill = (node, themeName) => { const v = T(themeName); if (v) node.fills = [paint(v)]; };
+  const frame = (name, dir) => {
+    const f = figma.createFrame(); f.name = name; f.fills = [];
+    if (dir) { f.layoutMode = dir; f.primaryAxisSizingMode = "AUTO"; f.counterAxisSizingMode = "AUTO"; }
+    return f;
+  };
+  const text = (chars, size, bold, color) => {
+    const t = figma.createText();
+    t.fontName = { family: "Inter", style: bold ? "Semi Bold" : "Regular" };
+    t.characters = chars; t.fontSize = size; fill(t, color);
+    return t;
+  };
+  const pad = (node, v) => ["paddingLeft", "paddingRight", "paddingTop", "paddingBottom"].forEach((p) => bind(node, p, v));
+  const radius = (node, corners, v) => corners.forEach((c) => bind(node, c + "Radius", v));
+  const ALL = ["topLeft", "topRight", "bottomLeft", "bottomRight"];
+
+  const NAME = "Tessera · Components";
+  let page = figma.root.children.find((p) => p.name === NAME);
+  if (page) page.children.forEach((n) => n.remove()); else { page = figma.createPage(); page.name = NAME; }
+  await figma.setCurrentPageAsync(page);
+
+  function panelFor(type) {
+    const panel = frame("panel", "VERTICAL");
+    fill(panel, "ground/ground-2");
+    pad(panel, VP("window/padding")); bind(panel, "itemSpacing", VP("window/gap"));
+    panel.clipsContent = true;
+    if (type === "dialog") radius(panel, ALL, VP("window/radius"));
+    if (type === "bottom-sheet") radius(panel, ["topLeft", "topRight"], VP("window/radius"));
+    if (type === "side-sheet") radius(panel, ["topLeft", "bottomLeft"], VP("window/radius"));
+    if (type === "adaptive") {
+      radius(panel, ["topLeft", "topRight"], VP("window/radius"));
+      radius(panel, ["bottomLeft", "bottomRight"], VP("window/adaptive/bottom-radius"));
+    }
+    if (type === "bottom-sheet" || type === "adaptive") {
+      const gw = frame("grabber", "HORIZONTAL"); gw.primaryAxisAlignItems = "CENTER";
+      const g = figma.createRectangle(); g.name = "handle"; g.resize(36, 4); g.cornerRadius = 2; fill(g, "border/neutral/soft");
+      gw.appendChild(g); panel.appendChild(gw); gw.layoutSizingHorizontal = "FILL";
+      if (type === "adaptive") bind(gw, "visible", VP("window/adaptive/grabber"));
+    }
+    const header = frame("header", "HORIZONTAL"); header.itemSpacing = 12; header.counterAxisAlignItems = "CENTER";
+    const title = text("Заголовок окна", 18, true, "content/neutral/primary"); title.name = "title";
+    header.appendChild(title); title.layoutSizingHorizontal = "FILL"; title.textAutoResize = "HEIGHT";
+    const close = text("×", 24, false, "content/neutral/secondary"); close.name = "close"; header.appendChild(close);
+    panel.appendChild(header); header.layoutSizingHorizontal = "FILL";
+
+    const content = frame("slot/content", "VERTICAL"); content.itemSpacing = 8;
+    const body = text("Контент окна: текст, форма или список. Замените содержимое слота.", 15, false, "content/neutral/secondary");
+    content.appendChild(body); body.layoutSizingHorizontal = "FILL"; body.textAutoResize = "HEIGHT";
+    panel.appendChild(content); content.layoutSizingHorizontal = "FILL";
+
+    const actions = frame("slot/actions", "HORIZONTAL"); actions.itemSpacing = 8; actions.primaryAxisAlignItems = "MAX";
+    for (const [label, bg, fg] of [["Отмена", "background/neutral-soft", "content/neutral/primary"], ["Продолжить", "background/accent-uno-deep", "content/accent-uno/on-deep"]]) {
+      const b = frame(`button · ${label}`, "HORIZONTAL"); b.paddingLeft = b.paddingRight = 16; b.paddingTop = b.paddingBottom = 12; b.cornerRadius = 12;
+      fill(b, bg); b.appendChild(text(label, 15, true, fg)); actions.appendChild(b);
+    }
+    panel.appendChild(actions); actions.layoutSizingHorizontal = "FILL";
+    return { panel, title };
+  }
+
+  const variants = [];
+  for (const type of ["dialog", "bottom-sheet", "side-sheet", "adaptive"]) {
+    const root = figma.createComponent(); root.name = `type=${type}`; root.fills = [];
+    root.layoutMode = type === "side-sheet" ? "HORIZONTAL" : "VERTICAL";
+    root.primaryAxisSizingMode = "FIXED"; root.counterAxisSizingMode = "FIXED";
+    root.counterAxisAlignItems = "CENTER"; root.clipsContent = true;
+    root.resize(390, 844);
+    bind(root, "width", VP("screen/width")); bind(root, "height", VP("screen/height"));
+    const margin = type === "dialog" ? VP("window/margin") : type === "adaptive" ? VP("window/adaptive/margin") : null;
+    if (margin) pad(root, margin);
+
+    const scrim = figma.createRectangle(); scrim.name = "scrim"; fill(scrim, "background/static-dark-deep");
+    bind(scrim, "opacity", N("opacity/40"));
+    const blocker = figma.createRectangle(); blocker.name = "blocker"; blocker.fills = [];
+    for (const layer of [scrim, blocker]) {
+      root.appendChild(layer); layer.layoutPositioning = "ABSOLUTE";
+      layer.x = 0; layer.y = 0; layer.resize(390, 844); layer.constraints = { horizontal: "STRETCH", vertical: "STRETCH" };
+    }
+
+    const before = frame("spacer-before"); before.layoutMode = "VERTICAL"; root.appendChild(before);
+    const { panel, title } = panelFor(type);
+    root.appendChild(panel);
+    const after = frame("spacer-after"); after.layoutMode = "VERTICAL"; root.appendChild(after);
+    if (type === "side-sheet") {
+      before.layoutSizingHorizontal = "FILL"; before.layoutSizingVertical = "FILL";
+      after.remove();
+      panel.layoutSizingVertical = "FILL"; panel.layoutSizingHorizontal = "FIXED"; panel.resize(390, panel.height);
+      bind(panel, "width", VP("window/side-width"));
+    } else {
+      before.layoutSizingVertical = "FILL"; after.layoutSizingVertical = "FILL";
+      panel.layoutSizingHorizontal = "FILL";
+      const maxW = { dialog: "window/dialog-max-width", "bottom-sheet": "window/sheet-max-width", adaptive: "window/adaptive/max-width" }[type];
+      panel.maxWidth = 9999; bind(panel, "maxWidth", VP(maxW));
+      if (type === "bottom-sheet") after.remove();
+      if (type === "adaptive") bind(after, "visible", VP("window/adaptive/centered"));
+    }
+    variants.push({ root, scrim, blocker, title });
+  }
+
+  const set = figma.combineAsVariants(variants.map((v) => v.root), page);
+  set.name = "Window";
+  set.layoutMode = "HORIZONTAL"; set.itemSpacing = 80; set.paddingLeft = set.paddingRight = set.paddingTop = set.paddingBottom = 80;
+  set.primaryAxisSizingMode = "AUTO"; set.counterAxisSizingMode = "AUTO";
+  set.description = "Окно поверх страницы: dialog, bottom-sheet, side-sheet, adaptive (шит на s, диалог на m/l). modal — блокирует страницу, scrim — затемнение. Размеры и поведение — мод коллекции Viewport. Контракт: kb/components/window.json.";
+  const modalKey = set.addComponentProperty("modal", "BOOLEAN", true);
+  const scrimKey = set.addComponentProperty("scrim", "BOOLEAN", true);
+  const titleKey = set.addComponentProperty("title", "TEXT", "Заголовок окна");
+  for (const v of variants) {
+    v.blocker.componentPropertyReferences = { visible: modalKey };
+    v.scrim.componentPropertyReferences = { visible: scrimKey };
+    v.title.componentPropertyReferences = { characters: titleKey };
+  }
+  say("✓ компонент Window: 4 вида, свойства modal / scrim / title");
+
+  // Демо: каждый вид на трёх брейкпоинтах — инстансы с явным модом Viewport.
+  const vpCol = col("Viewport");
+  const grid = frame("Window · брейкпоинты", "VERTICAL"); grid.itemSpacing = 80;
+  grid.paddingLeft = grid.paddingRight = grid.paddingTop = grid.paddingBottom = 80;
+  for (const comp of set.children) {
+    const row = frame(comp.name, "HORIZONTAL"); row.itemSpacing = 80; row.counterAxisAlignItems = "MIN";
+    for (const mode of vpCol.modes) {
+      const cell = frame(`${comp.name} · ${mode.name}`, "VERTICAL"); cell.itemSpacing = 16;
+      cell.appendChild(text(`${comp.name.replace("type=", "")} · ${mode.name}`, 28, true, "content/neutral/primary"));
+      const screen = frame("screen", "VERTICAL"); fill(screen, "ground/ground-1");
+      const inst = comp.createInstance();
+      screen.appendChild(inst);
+      screen.setExplicitVariableModeForCollection(vpCol, mode.modeId);
+      cell.appendChild(screen); row.appendChild(cell);
+    }
+    grid.appendChild(row);
+  }
+  page.appendChild(grid); grid.y = set.y + set.height + 200; fill(grid, "ground/ground-1");
+  figma.viewport.scrollAndZoomIntoView([set, grid]);
+  say("✓ демо: 4 вида × 3 брейкпоинта на странице «Tessera · Components»");
+}
+
 const URL_KEY = "tessera.sourceUrl";
 
-async function run(variables, checkPage) {
+async function run(variables, checkPage, components) {
   log.length = 0;
   say(`${variables.kit} ${variables.version}`);
   const index = await syncVariables(variables);
   if (checkPage) await buildCheckPage(variables, index);
+  if (components) await buildComponents(index);
   return log.join("\n");
 }
 
@@ -187,11 +338,11 @@ async function fetchVariables(url) {
   return res.json();
 }
 
-async function headless(checkPage) {
+async function headless(checkPage, components) {
   const url = await figma.clientStorage.getAsync(URL_KEY);
   if (!url) { figma.notify("Сначала укажите ссылку на variables.json в «Настройки и загрузка файла…»"); figma.closePlugin(); return; }
   try {
-    const out = await run(await fetchVariables(url), checkPage);
+    const out = await run(await fetchVariables(url), checkPage, components);
     const n = out.split("\n").find((l) => l.startsWith("⚠"));
     figma.closePlugin(n ? `Tessera обновлена, но ${n}` : "Tessera обновлена из репозитория ✓");
   } catch (e) { figma.closePlugin("✗ " + (e.message || e)); }
@@ -199,6 +350,7 @@ async function headless(checkPage) {
 
 if (figma.command === "update") headless(false);
 else if (figma.command === "update-check") headless(true);
+else if (figma.command === "update-components") headless(false, true);
 else {
   figma.showUI(__html__, { width: 360, height: 440 });
   figma.clientStorage.getAsync(URL_KEY).then((url) => figma.ui.postMessage({ url: url || "" }));
@@ -207,10 +359,10 @@ else {
       if (msg.type === "save-url") { await figma.clientStorage.setAsync(URL_KEY, msg.url); figma.ui.postMessage({ log: "Ссылка сохранена." }); return; }
       if (msg.type === "sync-url") {
         await figma.clientStorage.setAsync(URL_KEY, msg.url);
-        figma.ui.postMessage({ log: await run(await fetchVariables(msg.url), msg.checkPage) });
+        figma.ui.postMessage({ log: await run(await fetchVariables(msg.url), msg.checkPage, msg.components) });
         return;
       }
-      if (msg.type === "sync") figma.ui.postMessage({ log: await run(msg.variables, msg.checkPage) });
+      if (msg.type === "sync") figma.ui.postMessage({ log: await run(msg.variables, msg.checkPage, msg.components) });
     } catch (e) { figma.ui.postMessage({ log: "✗ " + (e.message || e) }); }
   };
 }

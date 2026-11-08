@@ -3,7 +3,9 @@
 Сейчас в ките только цвет. Документации нет: знание — в описаниях переменных и в `kb/`, агенты читают его через MCP.
 
 ## Слои
-`0 · Palette` (прямые цвета по именам: gray, indigo, yellow…) → `1 · Brand` (моды = бренды; по четыре тона pale / soft / pure / deep на роль) → `2 · Theme` (light / dark, семантика) + `3 · Numbers` (opacity 0…90).
+`0 · Palette` (прямые цвета по именам: gray, indigo, yellow…) → `1 · Brand` (моды = бренды; по четыре тона pale / soft / pure / deep на роль) → `2 · Theme` (light / dark, семантика) + `3 · Numbers` (opacity 0…90) + `4 · Viewport` (брейкпоинты s / m / l).
+
+Компоненты: `kb/components/` — сейчас Window (диалог, нижний шит, боковой шит, адаптивное окно). В Figma: Tessera Sync → «Обновить и пересобрать компоненты».
 Подробно — `kb/architecture.md`, модель цвета — `kb/color-model.json`.
 
 ## Figma: обновление без скачивания файлов

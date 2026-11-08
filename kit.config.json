@@ -1,6 +1,6 @@
 {
   "name": "Tessera",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Открытый гибкий кит. Сейчас в работе только цвет. Источник правды — этот репозиторий.",
   "layers": [
     {
@@ -30,6 +30,13 @@
       "axis": null,
       "files": "tokens/numbers.json",
       "description": "Числовые переменные. opacity/0…90 — прозрачность слоёв: берёте цвет из Theme и назначаете слою переменную opacity."
+    },
+    {
+      "id": "viewport",
+      "collection": "4 · Viewport",
+      "axis": "breakpoint",
+      "files": "tokens/viewport.json",
+      "description": "Брейкпоинты s / m / l: размеры, отступы и поведение компонентов на телефоне, планшете и десктопе. Мод выбирается на фрейме."
     }
   ],
   "axes": {
@@ -47,6 +54,20 @@
         "dark"
       ],
       "default": "light"
+    },
+    "breakpoint": {
+      "modes": [
+        "s",
+        "m",
+        "l"
+      ],
+      "default": "s",
+      "breakpoints": {
+        "s": 0,
+        "m": 768,
+        "l": 1280
+      },
+      "description": "s — телефон (до 767), m — планшет (768–1279), l — десктоп (от 1280)."
     }
   },
   "references": {
@@ -57,7 +78,8 @@
     "theme": [
       "brand"
     ],
-    "numbers": []
+    "numbers": [],
+    "viewport": []
   },
   "contrast": {
     "pairs": "kb/contrast-pairs.json"
