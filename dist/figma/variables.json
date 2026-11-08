@@ -6674,7 +6674,7 @@
      "type": "FLOAT",
      "description": "Скругление выбранного дня.",
      "scopes": [
-      "WIDTH_HEIGHT"
+      "CORNER_RADIUS"
      ],
      "hiddenFromPublishing": false,
      "codeSyntax": {
