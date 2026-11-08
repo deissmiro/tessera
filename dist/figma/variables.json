@@ -4917,6 +4917,261 @@
       "m": 7,
       "l": 7
      }
+    },
+    {
+     "name": "navbar/height",
+     "type": "FLOAT",
+     "description": "Высота панели.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-navbar-height)"
+     },
+     "valuesByMode": {
+      "s": 56,
+      "m": 64,
+      "l": 72
+     }
+    },
+    {
+     "name": "navbar/padding-x",
+     "type": "FLOAT",
+     "description": "Боковые отступы.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-navbar-padding-x)"
+     },
+     "valuesByMode": {
+      "s": 8,
+      "m": 16,
+      "l": 24
+     }
+    },
+    {
+     "name": "navbar/gap",
+     "type": "FLOAT",
+     "description": "Шаг между слотами.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-navbar-gap)"
+     },
+     "valuesByMode": {
+      "s": 4,
+      "m": 8,
+      "l": 8
+     }
+    },
+    {
+     "name": "navbar/title-size",
+     "type": "FLOAT",
+     "description": "Кегль заголовка в панели.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-navbar-title-size)"
+     },
+     "valuesByMode": {
+      "s": 17,
+      "m": 18,
+      "l": 20
+     }
+    },
+    {
+     "name": "navbar/large-title-size",
+     "type": "FLOAT",
+     "description": "Кегль большого заголовка под панелью.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-navbar-large-title-size)"
+     },
+     "valuesByMode": {
+      "s": 30,
+      "m": 34,
+      "l": 40
+     }
+    },
+    {
+     "name": "navbar/large-title-padding",
+     "type": "FLOAT",
+     "description": "Отступы большого заголовка.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-navbar-large-title-padding)"
+     },
+     "valuesByMode": {
+      "s": 16,
+      "m": 24,
+      "l": 32
+     }
+    },
+    {
+     "name": "rich-icon/s/size",
+     "type": "FLOAT",
+     "description": "Подложка S.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-rich-icon-s-size)"
+     },
+     "valuesByMode": {
+      "s": 32,
+      "m": 32,
+      "l": 32
+     }
+    },
+    {
+     "name": "rich-icon/s/icon",
+     "type": "FLOAT",
+     "description": "Иконка внутри S.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-rich-icon-s-icon)"
+     },
+     "valuesByMode": {
+      "s": 16,
+      "m": 16,
+      "l": 16
+     }
+    },
+    {
+     "name": "rich-icon/s/radius",
+     "type": "FLOAT",
+     "description": "Скругление квадратной подложки S.",
+     "scopes": [
+      "CORNER_RADIUS"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-rich-icon-s-radius)"
+     },
+     "valuesByMode": {
+      "s": 8,
+      "m": 8,
+      "l": 8
+     }
+    },
+    {
+     "name": "rich-icon/m/size",
+     "type": "FLOAT",
+     "description": "Подложка M.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-rich-icon-m-size)"
+     },
+     "valuesByMode": {
+      "s": 40,
+      "m": 40,
+      "l": 40
+     }
+    },
+    {
+     "name": "rich-icon/m/icon",
+     "type": "FLOAT",
+     "description": "Иконка внутри M.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-rich-icon-m-icon)"
+     },
+     "valuesByMode": {
+      "s": 20,
+      "m": 20,
+      "l": 20
+     }
+    },
+    {
+     "name": "rich-icon/m/radius",
+     "type": "FLOAT",
+     "description": "Скругление квадратной подложки M.",
+     "scopes": [
+      "CORNER_RADIUS"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-rich-icon-m-radius)"
+     },
+     "valuesByMode": {
+      "s": 10,
+      "m": 10,
+      "l": 10
+     }
+    },
+    {
+     "name": "rich-icon/l/size",
+     "type": "FLOAT",
+     "description": "Подложка L.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-rich-icon-l-size)"
+     },
+     "valuesByMode": {
+      "s": 48,
+      "m": 48,
+      "l": 48
+     }
+    },
+    {
+     "name": "rich-icon/l/icon",
+     "type": "FLOAT",
+     "description": "Иконка внутри L.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-rich-icon-l-icon)"
+     },
+     "valuesByMode": {
+      "s": 24,
+      "m": 24,
+      "l": 24
+     }
+    },
+    {
+     "name": "rich-icon/l/radius",
+     "type": "FLOAT",
+     "description": "Скругление квадратной подложки L.",
+     "scopes": [
+      "CORNER_RADIUS"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-rich-icon-l-radius)"
+     },
+     "valuesByMode": {
+      "s": 12,
+      "m": 12,
+      "l": 12
+     }
     }
    ]
   }

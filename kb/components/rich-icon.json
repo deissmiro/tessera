@@ -1,0 +1,64 @@
+{
+  "name": "rich-icon",
+  "figmaName": "RichIcon/<meaning>/<small|medium|large>",
+  "summary": "Иконка в цветной подложке: в списках, карточках, пустых состояниях. Устроена как кнопка: отдельный набор на смысл × размер, внутри варианты contrast × shape.",
+  "structure": "RichIcon/accent-uno/medium и т. д.",
+  "props": {
+    "meaning": {
+      "kind": "set",
+      "values": [
+        "neutral",
+        "accent-uno",
+        "accent-duo",
+        "status-positive",
+        "status-negative",
+        "brand-uno",
+        "brand-duo",
+        "static-light",
+        "static-dark",
+        "inverse"
+      ]
+    },
+    "size": {
+      "kind": "set",
+      "values": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "description": "Подложка 32 / 40 / 48, иконка 16 / 20 / 24."
+    },
+    "contrast": {
+      "kind": "variant",
+      "values": [
+        "pale",
+        "deep"
+      ],
+      "default": "pale",
+      "description": "pale — тихая цветная подложка, deep — насыщенная."
+    },
+    "shape": {
+      "kind": "variant",
+      "values": [
+        "circle",
+        "square"
+      ],
+      "default": "circle"
+    }
+  },
+  "slots": {
+    "icon": {
+      "kind": "figma-slot",
+      "description": "Иконка. Цвет иконки задаётся её слоем: pale → content/<meaning>/primary, deep → content/<meaning>/on-deep."
+    }
+  },
+  "colors": {
+    "fill": "background/<meaning>-<contrast> (inverse → background/inverse)",
+    "icon": "как подпись кнопки того же смысла и контраста"
+  },
+  "layout": {
+    "size": "viewport/rich-icon/<size>/size",
+    "icon": "viewport/rich-icon/<size>/icon",
+    "radius": "square → viewport/rich-icon/<size>/radius, circle → полный"
+  }
+}

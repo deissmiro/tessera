@@ -18,7 +18,7 @@
       "command": "update-check"
     },
     {
-      "name": "Обновить и пересобрать компоненты (Button, Checkbox, Radio, Chip, Window)",
+      "name": "Обновить и пересобрать компоненты",
       "command": "update-components"
     },
     {

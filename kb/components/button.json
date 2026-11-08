@@ -1,7 +1,7 @@
 {
   "name": "button",
   "figmaName": "Button/<meaning>/<small|medium|large>",
-  "summary": "Кнопка. Устроена как цвета: смысл × контраст. Смысл — какой цвет (accent-uno, neutral, brand-uno…), контраст — насколько громкая (pale — тихая, soft — средняя, deep — главная).",
+  "summary": "Кнопка. Устроена как цвета: смысл × контраст. Смысл — какой цвет (accent-uno, neutral, brand-uno…), контраст — насколько громкая (pale — второстепенная, deep — главная).",
   "props": {
     "meaning": {
       "kind": "set",
@@ -24,11 +24,10 @@
       "kind": "variant",
       "values": [
         "pale",
-        "soft",
         "deep"
       ],
       "default": "deep",
-      "description": "deep — главное действие (одно на экран), soft — второстепенное, pale — тихое."
+      "description": "deep — главное действие (одно на экран), pale — второстепенное."
     },
     "size": {
       "kind": "set",
@@ -77,7 +76,7 @@
   },
   "colors": {
     "fill": "theme/background/<meaning>-<contrast> (inverse → background/inverse)",
-    "label": "deep → content/<meaning>/on-deep; pale и soft → content/<meaning>/primary; static-light → content/static-dark/primary; static-dark → content/static-light/primary; inverse → content/inverse/primary"
+    "label": "deep → content/<meaning>/on-deep; pale → content/<meaning>/primary; static-light → content/static-dark/primary; static-dark → content/static-light/primary; inverse → content/inverse/primary"
   },
   "states": {
     "hover": "слой state поверх: цвет подписи + numbers/opacity/10",

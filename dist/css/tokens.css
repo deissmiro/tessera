@@ -165,6 +165,21 @@
   --viewport-control-selector-gap: 12px;
   --viewport-control-selector-checkbox-radius: 8px;
   --viewport-control-selector-ring: 7px;
+  --viewport-navbar-height: 56px;
+  --viewport-navbar-padding-x: 8px;
+  --viewport-navbar-gap: 4px;
+  --viewport-navbar-title-size: 17px;
+  --viewport-navbar-large-title-size: 30px;
+  --viewport-navbar-large-title-padding: 16px;
+  --viewport-rich-icon-s-size: 32px;
+  --viewport-rich-icon-s-icon: 16px;
+  --viewport-rich-icon-s-radius: 8px;
+  --viewport-rich-icon-m-size: 40px;
+  --viewport-rich-icon-m-icon: 20px;
+  --viewport-rich-icon-m-radius: 10px;
+  --viewport-rich-icon-l-size: 48px;
+  --viewport-rich-icon-l-icon: 24px;
+  --viewport-rich-icon-l-radius: 12px;
 }
 
 :root, [data-brand="tessera"] {
@@ -479,6 +494,21 @@
     --viewport-control-selector-gap: 12px;
     --viewport-control-selector-checkbox-radius: 8px;
     --viewport-control-selector-ring: 7px;
+    --viewport-navbar-height: 64px;
+    --viewport-navbar-padding-x: 16px;
+    --viewport-navbar-gap: 8px;
+    --viewport-navbar-title-size: 18px;
+    --viewport-navbar-large-title-size: 34px;
+    --viewport-navbar-large-title-padding: 24px;
+    --viewport-rich-icon-s-size: 32px;
+    --viewport-rich-icon-s-icon: 16px;
+    --viewport-rich-icon-s-radius: 8px;
+    --viewport-rich-icon-m-size: 40px;
+    --viewport-rich-icon-m-icon: 20px;
+    --viewport-rich-icon-m-radius: 10px;
+    --viewport-rich-icon-l-size: 48px;
+    --viewport-rich-icon-l-icon: 24px;
+    --viewport-rich-icon-l-radius: 12px;
   }
 }
 
@@ -522,5 +552,20 @@
     --viewport-control-selector-gap: 12px;
     --viewport-control-selector-checkbox-radius: 8px;
     --viewport-control-selector-ring: 7px;
+    --viewport-navbar-height: 72px;
+    --viewport-navbar-padding-x: 24px;
+    --viewport-navbar-gap: 8px;
+    --viewport-navbar-title-size: 20px;
+    --viewport-navbar-large-title-size: 40px;
+    --viewport-navbar-large-title-padding: 32px;
+    --viewport-rich-icon-s-size: 32px;
+    --viewport-rich-icon-s-icon: 16px;
+    --viewport-rich-icon-s-radius: 8px;
+    --viewport-rich-icon-m-size: 40px;
+    --viewport-rich-icon-m-icon: 20px;
+    --viewport-rich-icon-m-radius: 10px;
+    --viewport-rich-icon-l-size: 48px;
+    --viewport-rich-icon-l-icon: 24px;
+    --viewport-rich-icon-l-radius: 12px;
   }
 }

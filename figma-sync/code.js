@@ -253,7 +253,7 @@ async function buildComponents(index) {
     let x = 0, rowH = 0;
     for (const size of ["s", "m", "l"]) {
       const comps = [], labels = [], slots = [];
-      const contrasts = m === "inverse" ? ["deep"] : ["pale", "soft", "deep"];
+      const contrasts = m === "inverse" ? ["deep"] : ["pale", "deep"];
       contrasts.forEach((c, r) => STATES.forEach((state, ci) => {
         const b = figma.createComponent();
         b.name = `contrast=${c}, state=${state}`;
@@ -275,7 +275,7 @@ async function buildComponents(index) {
         comps.push(b); labels.push(label); slots.push([lead, trail]);
       }));
       const set = combine(comps, `Button/${m}/${SIZES[size]}`,
-        `Кнопка ${m}, размер ${SIZES[size]}. Варианты: contrast (pale — тихая, soft — второстепенная, deep — главная) × state. Контракт: kb/components/button.json.`);
+        `Кнопка ${m}, размер ${SIZES[size]}. Варианты: contrast (pale — второстепенная, deep — главная) × state. Контракт: kb/components/button.json.`);
       const lk = set.addComponentProperty("label", "TEXT", "Кнопка");
       const ld = set.addComponentProperty("leading", "BOOLEAN", false);
       const tr = set.addComponentProperty("trailing", "BOOLEAN", false);
@@ -381,6 +381,111 @@ async function buildComponents(index) {
   place(chipSet, "Chip");
   say(`✓ Chip: ${chipComps.length} вариантов`);
 
+
+  // ---- RichIcon: набор на смысл × размер, варианты contrast × shape
+  const glyph = (sizeVar, colorName) => {
+    const box = figma.createFrame(); box.name = "icon"; box.fills = []; box.resize(20, 20);
+    bind(box, "width", VP(sizeVar)); bind(box, "height", VP(sizeVar));
+    const v = figma.createVector(); v.name = "glyph";
+    v.vectorPaths = [{ windingRule: "NONZERO", data: "M 12 3 L 14 10 L 21 12 L 14 14 L 12 21 L 10 14 L 3 12 L 10 10 Z" }];
+    v.resize(20, 20); fill(v, colorName); box.appendChild(v);
+    v.x = 0; v.y = 0; v.constraints = { horizontal: "SCALE", vertical: "SCALE" };
+    return box;
+  };
+  const riHeader = text("RichIcon", 32, true, "content/neutral/primary"); riHeader.y = cursorY; page.appendChild(riHeader);
+  let riY = cursorY + 56, riCount = 0;
+  for (const m of MEANINGS) {
+    let x = 0, rowH = 0;
+    for (const size of ["s", "m", "l"]) {
+      const comps = [];
+      (m === "inverse" ? ["deep"] : ["pale", "deep"]).forEach((c, r) => ["circle", "square"].forEach((shape, ci) => {
+        const comp = figma.createComponent(); comp.name = `contrast=${c}, shape=${shape}`;
+        comp.layoutMode = "HORIZONTAL"; comp.primaryAxisSizingMode = "FIXED"; comp.counterAxisSizingMode = "FIXED";
+        comp.primaryAxisAlignItems = "CENTER"; comp.counterAxisAlignItems = "CENTER"; comp.clipsContent = true;
+        comp.resize(40, 40);
+        bind(comp, "width", VP(`rich-icon/${size}/size`)); bind(comp, "height", VP(`rich-icon/${size}/size`));
+        fill(comp, m === "inverse" ? "background/inverse" : `background/${m}-${c}`);
+        if (shape === "circle") comp.cornerRadius = 999; else radius(comp, ALL, VP(`rich-icon/${size}/radius`));
+        const sl = makeSlot(comp, "icon", comp);
+        sl.appendChild(glyph(`rich-icon/${size}/icon`, labelColor(m, c)));
+        comp.x = ci * 72; comp.y = r * 72; comps.push(comp);
+      }));
+      const set = combine(comps, `RichIcon/${m}/${SIZES[size]}`, `Иконка в подложке ${m}, ${SIZES[size]}. Варианты: contrast × shape. Слот icon. Контракт: kb/components/rich-icon.json.`);
+      set.x = x; set.y = riY; x += set.width + 60; rowH = Math.max(rowH, set.height);
+      riCount += comps.length;
+    }
+    riY += rowH + 60;
+  }
+  cursorY = riY + 100;
+  say(`✓ RichIcon: ${MEANINGS.length * 3} наборов, ${riCount} вариантов`);
+
+  // ---- Navbar: наборы default и large, варианты surface
+  const navHeader = text("Navbar", 32, true, "content/neutral/primary"); navHeader.y = cursorY; page.appendChild(navHeader);
+  let navY = cursorY + 56;
+  for (const kind of ["default", "large"]) {
+    const comps = [], dividers = [];
+    ["ground", "island", "transparent"].forEach((surface, r) => {
+      const fg = surface === "transparent" ? "content/static-light/primary" : "content/neutral/primary";
+      const comp = figma.createComponent(); comp.name = `surface=${surface}`;
+      comp.layoutMode = "VERTICAL"; comp.primaryAxisSizingMode = "AUTO"; comp.counterAxisSizingMode = "FIXED";
+      comp.resize(390, 56); bind(comp, "width", VP("screen/width"));
+      if (surface === "ground") fill(comp, "ground/ground-1");
+      else if (surface === "island") fill(comp, "ground/ground-2");
+      else comp.fills = [];
+      const bar = frame("bar", "HORIZONTAL"); bar.counterAxisAlignItems = "CENTER";
+      bar.counterAxisSizingMode = "FIXED"; bar.resize(390, 56); bind(bar, "height", VP("navbar/height"));
+      ["paddingLeft", "paddingRight"].forEach((p) => bind(bar, p, VP("navbar/padding-x")));
+      bind(bar, "itemSpacing", VP("navbar/gap"));
+      comp.appendChild(bar); bar.layoutSizingHorizontal = "FILL";
+      const left = makeSlot(comp, "left", bar);
+      const back = text("←", 24, false, fg); back.name = "back"; left.appendChild(back);
+      const center = makeSlot(comp, "center", bar); center.layoutSizingHorizontal = "FILL"; center.primaryAxisAlignItems = "CENTER";
+      if (kind === "default") {
+        const title = text("Заголовок", 17, true, fg); title.name = "title"; title.textAlignHorizontal = "CENTER";
+        bind(title, "fontSize", VP("navbar/title-size")); center.appendChild(title);
+      }
+      const right = makeSlot(comp, "right", bar);
+      const more = text("⋯", 24, false, fg); more.name = "action"; right.appendChild(more);
+      if (kind === "large") {
+        const tb = frame("large-title", "HORIZONTAL");
+        ["paddingLeft", "paddingRight"].forEach((p) => bind(tb, p, VP("navbar/large-title-padding")));
+        tb.paddingBottom = 12;
+        const lt = text("Большой заголовок", 30, true, fg); lt.name = "title";
+        bind(lt, "fontSize", VP("navbar/large-title-size")); tb.appendChild(lt);
+        comp.appendChild(tb); tb.layoutSizingHorizontal = "FILL";
+      }
+      const div = figma.createRectangle(); div.name = "divider"; fill(div, "border/neutral/pale");
+      comp.appendChild(div); div.layoutPositioning = "ABSOLUTE"; div.resize(comp.width, 1); div.x = 0; div.y = comp.height - 1;
+      div.constraints = { horizontal: "STRETCH", vertical: "MAX" };
+      comp.x = 0; comp.y = r * (kind === "large" ? 180 : 110);
+      comps.push(comp); dividers.push(div);
+    });
+    const set = combine(comps, `Navbar/${kind}`, kind === "default"
+      ? "Верхняя панель: слоты left / center (заголовок) / right. Варианты surface: ground, island, transparent (поверх фото). Ширина и высота — по Viewport. Контракт: kb/components/navbar.json."
+      : "Верхняя панель с крупным заголовком под ней. Слоты left / center / right. Варианты surface. Контракт: kb/components/navbar.json.");
+    const dk = set.addComponentProperty("divider", "BOOLEAN", false);
+    dividers.forEach((d) => (d.componentPropertyReferences = { visible: dk }));
+    set.x = 0; set.y = navY; navY += set.height + 80;
+  }
+  cursorY = navY + 100;
+  say("✓ Navbar: наборы default и large × surface ground / island / transparent");
+
+  // Демо Navbar на трёх брейкпоинтах
+  {
+    const vpCol = col("Viewport");
+    const demo = frame("Navbar · брейкпоинты", "VERTICAL"); demo.itemSpacing = 40;
+    demo.paddingLeft = demo.paddingRight = demo.paddingTop = demo.paddingBottom = 40; fill(demo, "ground/ground-1");
+    const navSet = page.children.find((n) => n.name === "Navbar/default");
+    for (const mode of vpCol.modes) {
+      const cell = frame(mode.name, "VERTICAL"); cell.itemSpacing = 12;
+      cell.appendChild(text(`Navbar · ${mode.name}`, 20, true, "content/neutral/primary"));
+      const inst = navSet.children.find((c) => c.name === "surface=island").createInstance();
+      cell.appendChild(inst); cell.setExplicitVariableModeForCollection(vpCol, mode.modeId);
+      demo.appendChild(cell);
+    }
+    page.appendChild(demo); demo.x = 0; demo.y = cursorY; cursorY = demo.y + demo.height + 160;
+  }
+
   const buttonInstance = (meaning, contrast, size, label) => {
     const { set, labelKey } = buttonSets[`${meaning}/${size}`];
     const comp = set.children.find((c) => c.name === `contrast=${contrast}, state=default`);
@@ -437,7 +542,7 @@ async function buildComponents(index) {
     // 3. Футер: слот. По умолчанию — две кнопки во всю ширину, высота 56.
     const footer = slot("footer", "VERTICAL", panel); bind(footer, "itemSpacing", VP("window/footer-gap"));
     footer.layoutSizingHorizontal = "FILL";
-    for (const [label, m, c] of [["Продолжить", "accent-uno", "deep"], ["Отмена", "neutral", "soft"]]) {
+    for (const [label, m, c] of [["Продолжить", "accent-uno", "deep"], ["Отмена", "neutral", "pale"]]) {
       const b = buttonInstance(m, c, "l", label);
       footer.appendChild(b); b.layoutSizingHorizontal = "FILL";
     }

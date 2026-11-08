@@ -369,6 +369,156 @@
           "$description": "Толщина кольца выбранного радио."
         }
       }
+    },
+    "navbar": {
+      "$description": "Navbar — верхняя панель экрана.",
+      "height": {
+        "$type": "number",
+        "$modes": {
+          "s": 56,
+          "m": 64,
+          "l": 72
+        },
+        "$description": "Высота панели."
+      },
+      "padding-x": {
+        "$type": "number",
+        "$modes": {
+          "s": 8,
+          "m": 16,
+          "l": 24
+        },
+        "$description": "Боковые отступы."
+      },
+      "gap": {
+        "$type": "number",
+        "$modes": {
+          "s": 4,
+          "m": 8,
+          "l": 8
+        },
+        "$description": "Шаг между слотами."
+      },
+      "title-size": {
+        "$type": "number",
+        "$modes": {
+          "s": 17,
+          "m": 18,
+          "l": 20
+        },
+        "$description": "Кегль заголовка в панели."
+      },
+      "large-title-size": {
+        "$type": "number",
+        "$modes": {
+          "s": 30,
+          "m": 34,
+          "l": 40
+        },
+        "$description": "Кегль большого заголовка под панелью."
+      },
+      "large-title-padding": {
+        "$type": "number",
+        "$modes": {
+          "s": 16,
+          "m": 24,
+          "l": 32
+        },
+        "$description": "Отступы большого заголовка."
+      }
+    },
+    "rich-icon": {
+      "$description": "Rich icon — иконка в цветной подложке.",
+      "s": {
+        "$description": "Размер S.",
+        "size": {
+          "$type": "number",
+          "$modes": {
+            "s": 32,
+            "m": 32,
+            "l": 32
+          },
+          "$description": "Подложка S."
+        },
+        "icon": {
+          "$type": "number",
+          "$modes": {
+            "s": 16,
+            "m": 16,
+            "l": 16
+          },
+          "$description": "Иконка внутри S."
+        },
+        "radius": {
+          "$type": "number",
+          "$modes": {
+            "s": 8,
+            "m": 8,
+            "l": 8
+          },
+          "$description": "Скругление квадратной подложки S."
+        }
+      },
+      "m": {
+        "$description": "Размер M.",
+        "size": {
+          "$type": "number",
+          "$modes": {
+            "s": 40,
+            "m": 40,
+            "l": 40
+          },
+          "$description": "Подложка M."
+        },
+        "icon": {
+          "$type": "number",
+          "$modes": {
+            "s": 20,
+            "m": 20,
+            "l": 20
+          },
+          "$description": "Иконка внутри M."
+        },
+        "radius": {
+          "$type": "number",
+          "$modes": {
+            "s": 10,
+            "m": 10,
+            "l": 10
+          },
+          "$description": "Скругление квадратной подложки M."
+        }
+      },
+      "l": {
+        "$description": "Размер L.",
+        "size": {
+          "$type": "number",
+          "$modes": {
+            "s": 48,
+            "m": 48,
+            "l": 48
+          },
+          "$description": "Подложка L."
+        },
+        "icon": {
+          "$type": "number",
+          "$modes": {
+            "s": 24,
+            "m": 24,
+            "l": 24
+          },
+          "$description": "Иконка внутри L."
+        },
+        "radius": {
+          "$type": "number",
+          "$modes": {
+            "s": 12,
+            "m": 12,
+            "l": 12
+          },
+          "$description": "Скругление квадратной подложки L."
+        }
+      }
     }
   }
 }

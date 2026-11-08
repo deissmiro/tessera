@@ -1,0 +1,51 @@
+{
+  "name": "navbar",
+  "figmaName": "Navbar/<default|large>",
+  "summary": "Верхняя панель экрана. Шапка из трёх слотов, как у окна: слева (назад), по центру (заголовок), справа (действия). Ширина — экран брейкпоинта, высота и отступы меняются по Viewport.",
+  "structure": "Два набора: Navbar/default (заголовок в панели) и Navbar/large (крупный заголовок под панелью). Внутри варианты surface.",
+  "props": {
+    "surface": {
+      "kind": "variant",
+      "values": [
+        "ground",
+        "island",
+        "transparent"
+      ],
+      "default": "ground",
+      "description": "ground — цвет страницы (ground-1), island — цвет острова (ground-2), transparent — без подложки поверх фото, контент static-light."
+    },
+    "divider": {
+      "kind": "boolean",
+      "default": false,
+      "description": "Линия снизу (border/neutral/pale)."
+    }
+  },
+  "slots": {
+    "left": {
+      "kind": "figma-slot",
+      "default": "назад"
+    },
+    "center": {
+      "kind": "figma-slot",
+      "default": "заголовок (у large — пусто, заголовок ниже)"
+    },
+    "right": {
+      "kind": "figma-slot",
+      "default": "действие"
+    }
+  },
+  "layout": {
+    "width": "viewport/screen/width",
+    "height": "viewport/navbar/height",
+    "padding-x": "viewport/navbar/padding-x",
+    "gap": "viewport/navbar/gap",
+    "title": "viewport/navbar/title-size",
+    "large-title": "viewport/navbar/large-title-size, отступы viewport/navbar/large-title-padding"
+  },
+  "colors": {
+    "ground": "ground/ground-1",
+    "island": "ground/ground-2",
+    "content": "content/neutral/primary; transparent → content/static-light/primary",
+    "divider": "border/neutral/pale"
+  }
+}
