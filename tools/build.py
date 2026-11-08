@@ -139,7 +139,9 @@ SCOPES = [(r"^theme\.border", ["STROKE_COLOR"]),
           (r"^theme\.ground", ["FRAME_FILL"]),
           (r"^theme\.background", ["FRAME_FILL", "SHAPE_FILL"]),
           (r"^numbers\.opacity", ["OPACITY"]),
+          (r"font-size", ["FONT_SIZE"]),
           (r"radius", ["CORNER_RADIUS"]),
+          (r"\.size$", ["WIDTH_HEIGHT"]),
           (r"(padding|margin|gap)", ["GAP"]),
           (r"(width|height)", ["WIDTH_HEIGHT"])]
 

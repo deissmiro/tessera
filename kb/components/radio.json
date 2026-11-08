@@ -1,0 +1,47 @@
+{
+  "name": "radio",
+  "figmaName": "Radio",
+  "summary": "Радиокнопка. Мягкий стиль в духе Яндекса: без обводок, выключенный — серая заливка, включённый — чёрный. Размер 24.",
+  "props": {
+    "selected": {
+      "kind": "variant",
+      "values": [
+        "false",
+        "true"
+      ],
+      "default": "false"
+    },
+    "state": {
+      "kind": "variant",
+      "values": [
+        "default",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "default": "default"
+    },
+    "label": {
+      "kind": "text",
+      "default": "Подпись"
+    },
+    "hasLabel": {
+      "kind": "boolean",
+      "default": true
+    }
+  },
+  "colors": {
+    "on": "кольцо background/neutral-deep толщиной viewport/control/selector/ring вокруг белого центра (ground/ground-2)",
+    "off": "background/neutral-soft, без обводки",
+    "label": "content/neutral/primary"
+  },
+  "states": {
+    "hover/pressed": "ореол: content/neutral/primary + opacity/10 и /20",
+    "disabled": "opacity/40"
+  },
+  "layout": {
+    "size": "viewport/control/selector/size",
+    "gap": "viewport/control/selector/gap"
+  },
+  "style": "Мягкий стиль в духе Яндекса: без обводок, выключенный — серая заливка, включённый — чёрный. Размер 24."
+}

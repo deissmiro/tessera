@@ -40,7 +40,7 @@ summary: Как устроен цвет кита — коллекции, тон�
 Состояния: ховер и нажатие — соседний тон (pale → soft), затемнение — `background/static-dark-deep` + `opacity/40…60`.
 
 ## Компоненты
-Контракты — `kb/components/<name>.json` (MCP `get_component`). В Figma их собирает плагин: Tessera Sync → «Обновить и пересобрать компоненты». Сейчас есть `window`.
+Контракты — `kb/components/<name>.json` (MCP `get_component`). В Figma их собирает плагин: Tessera Sync → «Обновить и пересобрать компоненты». Сейчас есть: `button` (наборы Button/<смысл>/<small|medium|large>, варианты contrast × state), `checkbox`, `radio`, `chip`, `window`. Основные контролы (чекбокс, радио, чипс) во включённом состоянии — neutral-deep (чёрные).
 
 ## Правила
 1. Ссылки только вниз по таблице слоёв. Проверяет `tools/build.py`.

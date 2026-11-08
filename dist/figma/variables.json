@@ -4515,7 +4515,7 @@
     {
      "name": "window/action-height",
      "type": "FLOAT",
-     "description": "Высота кнопок в футере окна.",
+     "description": "Высота кнопок в футере окна (= control/l/height).",
      "scopes": [
       "WIDTH_HEIGHT"
      ],
@@ -4544,6 +4544,378 @@
       "s": 8,
       "m": 8,
       "l": 8
+     }
+    },
+    {
+     "name": "control/s/height",
+     "type": "FLOAT",
+     "description": "Высота контрола S.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-control-s-height)"
+     },
+     "valuesByMode": {
+      "s": 32,
+      "m": 32,
+      "l": 32
+     }
+    },
+    {
+     "name": "control/s/padding-x",
+     "type": "FLOAT",
+     "description": "Горизонтальный отступ S.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-control-s-padding-x)"
+     },
+     "valuesByMode": {
+      "s": 12,
+      "m": 12,
+      "l": 12
+     }
+    },
+    {
+     "name": "control/s/gap",
+     "type": "FLOAT",
+     "description": "Шаг между иконкой и текстом S.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-control-s-gap)"
+     },
+     "valuesByMode": {
+      "s": 6,
+      "m": 6,
+      "l": 6
+     }
+    },
+    {
+     "name": "control/s/font-size",
+     "type": "FLOAT",
+     "description": "Кегль подписи S.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-control-s-font-size)"
+     },
+     "valuesByMode": {
+      "s": 14,
+      "m": 14,
+      "l": 14
+     }
+    },
+    {
+     "name": "control/s/radius",
+     "type": "FLOAT",
+     "description": "Скругление S. Позже переедет в бренд.",
+     "scopes": [
+      "CORNER_RADIUS"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-control-s-radius)"
+     },
+     "valuesByMode": {
+      "s": 8,
+      "m": 8,
+      "l": 8
+     }
+    },
+    {
+     "name": "control/m/height",
+     "type": "FLOAT",
+     "description": "Высота контрола M.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-control-m-height)"
+     },
+     "valuesByMode": {
+      "s": 44,
+      "m": 44,
+      "l": 44
+     }
+    },
+    {
+     "name": "control/m/padding-x",
+     "type": "FLOAT",
+     "description": "Горизонтальный отступ M.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-control-m-padding-x)"
+     },
+     "valuesByMode": {
+      "s": 16,
+      "m": 16,
+      "l": 16
+     }
+    },
+    {
+     "name": "control/m/gap",
+     "type": "FLOAT",
+     "description": "Шаг между иконкой и текстом M.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-control-m-gap)"
+     },
+     "valuesByMode": {
+      "s": 8,
+      "m": 8,
+      "l": 8
+     }
+    },
+    {
+     "name": "control/m/font-size",
+     "type": "FLOAT",
+     "description": "Кегль подписи M.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-control-m-font-size)"
+     },
+     "valuesByMode": {
+      "s": 15,
+      "m": 15,
+      "l": 15
+     }
+    },
+    {
+     "name": "control/m/radius",
+     "type": "FLOAT",
+     "description": "Скругление M. Позже переедет в бренд.",
+     "scopes": [
+      "CORNER_RADIUS"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-control-m-radius)"
+     },
+     "valuesByMode": {
+      "s": 12,
+      "m": 12,
+      "l": 12
+     }
+    },
+    {
+     "name": "control/l/height",
+     "type": "FLOAT",
+     "description": "Высота контрола L.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-control-l-height)"
+     },
+     "valuesByMode": {
+      "s": 56,
+      "m": 56,
+      "l": 56
+     }
+    },
+    {
+     "name": "control/l/padding-x",
+     "type": "FLOAT",
+     "description": "Горизонтальный отступ L.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-control-l-padding-x)"
+     },
+     "valuesByMode": {
+      "s": 20,
+      "m": 20,
+      "l": 20
+     }
+    },
+    {
+     "name": "control/l/gap",
+     "type": "FLOAT",
+     "description": "Шаг между иконкой и текстом L.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-control-l-gap)"
+     },
+     "valuesByMode": {
+      "s": 8,
+      "m": 8,
+      "l": 8
+     }
+    },
+    {
+     "name": "control/l/font-size",
+     "type": "FLOAT",
+     "description": "Кегль подписи L.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-control-l-font-size)"
+     },
+     "valuesByMode": {
+      "s": 16,
+      "m": 16,
+      "l": 16
+     }
+    },
+    {
+     "name": "control/l/radius",
+     "type": "FLOAT",
+     "description": "Скругление L. Позже переедет в бренд.",
+     "scopes": [
+      "CORNER_RADIUS"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-control-l-radius)"
+     },
+     "valuesByMode": {
+      "s": 14,
+      "m": 14,
+      "l": 14
+     }
+    },
+    {
+     "name": "control/chip/height",
+     "type": "FLOAT",
+     "description": "Высота чипса.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-control-chip-height)"
+     },
+     "valuesByMode": {
+      "s": 36,
+      "m": 36,
+      "l": 36
+     }
+    },
+    {
+     "name": "control/chip/padding-x",
+     "type": "FLOAT",
+     "description": "Отступ чипса.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-control-chip-padding-x)"
+     },
+     "valuesByMode": {
+      "s": 14,
+      "m": 14,
+      "l": 14
+     }
+    },
+    {
+     "name": "control/chip/radius",
+     "type": "FLOAT",
+     "description": "Скругление чипса — пилюля.",
+     "scopes": [
+      "CORNER_RADIUS"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-control-chip-radius)"
+     },
+     "valuesByMode": {
+      "s": 18,
+      "m": 18,
+      "l": 18
+     }
+    },
+    {
+     "name": "control/selector/size",
+     "type": "FLOAT",
+     "description": "Размер чекбокса и радио.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-control-selector-size)"
+     },
+     "valuesByMode": {
+      "s": 24,
+      "m": 24,
+      "l": 24
+     }
+    },
+    {
+     "name": "control/selector/gap",
+     "type": "FLOAT",
+     "description": "Шаг до подписи.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-control-selector-gap)"
+     },
+     "valuesByMode": {
+      "s": 12,
+      "m": 12,
+      "l": 12
+     }
+    },
+    {
+     "name": "control/selector/checkbox-radius",
+     "type": "FLOAT",
+     "description": "Скругление чекбокса.",
+     "scopes": [
+      "CORNER_RADIUS"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-control-selector-checkbox-radius)"
+     },
+     "valuesByMode": {
+      "s": 8,
+      "m": 8,
+      "l": 8
+     }
+    },
+    {
+     "name": "control/selector/ring",
+     "type": "FLOAT",
+     "description": "Толщина кольца выбранного радио.",
+     "scopes": [],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-control-selector-ring)"
+     },
+     "valuesByMode": {
+      "s": 7,
+      "m": 7,
+      "l": 7
      }
     }
    ]

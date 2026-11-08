@@ -1,0 +1,65 @@
+{
+  "name": "chip",
+  "figmaName": "Chip",
+  "summary": "Чипс — фильтр или выбор. Выбранный — чёрный (background/neutral-deep), невыбранный — тихий (background/neutral-pale с обводкой).",
+  "props": {
+    "selected": {
+      "kind": "variant",
+      "values": [
+        "false",
+        "true"
+      ],
+      "default": "false"
+    },
+    "state": {
+      "kind": "variant",
+      "values": [
+        "default",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "default": "default"
+    },
+    "label": {
+      "kind": "text",
+      "default": "Чипс"
+    },
+    "leading": {
+      "kind": "boolean",
+      "default": false,
+      "controls": "slot leading"
+    },
+    "trailing": {
+      "kind": "boolean",
+      "default": false,
+      "controls": "slot trailing"
+    }
+  },
+  "slots": {
+    "leading": {
+      "kind": "figma-slot",
+      "description": "Иконка, аватар."
+    },
+    "trailing": {
+      "kind": "figma-slot",
+      "description": "Счётчик, крестик."
+    }
+  },
+  "colors": {
+    "off": "background/neutral-pale + border/neutral/soft, подпись content/neutral/primary",
+    "on": "background/neutral-deep, подпись content/neutral/on-deep"
+  },
+  "states": {
+    "hover": "слой state: цвет подписи + opacity/10",
+    "pressed": "opacity/20",
+    "disabled": "opacity/40"
+  },
+  "layout": {
+    "height": "viewport/control/chip/height",
+    "padding-x": "viewport/control/chip/padding-x",
+    "radius": "viewport/control/chip/radius",
+    "gap": "viewport/control/m/gap",
+    "font-size": "viewport/control/m/font-size"
+  }
+}

@@ -142,7 +142,7 @@
           "m": 56,
           "l": 56
         },
-        "$description": "Высота кнопок в футере окна."
+        "$description": "Высота кнопок в футере окна (= control/l/height)."
       },
       "footer-gap": {
         "$type": "number",
@@ -152,6 +152,222 @@
           "l": 8
         },
         "$description": "Шаг между элементами футера окна."
+      }
+    },
+    "control": {
+      "$description": "Размеры контролов: кнопки, чипсы, чекбоксы, радио. Пока одинаковы на всех брейкпоинтах — можно развести.",
+      "s": {
+        "$description": "Размер S.",
+        "height": {
+          "$type": "number",
+          "$modes": {
+            "s": 32,
+            "m": 32,
+            "l": 32
+          },
+          "$description": "Высота контрола S."
+        },
+        "padding-x": {
+          "$type": "number",
+          "$modes": {
+            "s": 12,
+            "m": 12,
+            "l": 12
+          },
+          "$description": "Горизонтальный отступ S."
+        },
+        "gap": {
+          "$type": "number",
+          "$modes": {
+            "s": 6,
+            "m": 6,
+            "l": 6
+          },
+          "$description": "Шаг между иконкой и текстом S."
+        },
+        "font-size": {
+          "$type": "number",
+          "$modes": {
+            "s": 14,
+            "m": 14,
+            "l": 14
+          },
+          "$description": "Кегль подписи S."
+        },
+        "radius": {
+          "$type": "number",
+          "$modes": {
+            "s": 8,
+            "m": 8,
+            "l": 8
+          },
+          "$description": "Скругление S. Позже переедет в бренд."
+        }
+      },
+      "m": {
+        "$description": "Размер M.",
+        "height": {
+          "$type": "number",
+          "$modes": {
+            "s": 44,
+            "m": 44,
+            "l": 44
+          },
+          "$description": "Высота контрола M."
+        },
+        "padding-x": {
+          "$type": "number",
+          "$modes": {
+            "s": 16,
+            "m": 16,
+            "l": 16
+          },
+          "$description": "Горизонтальный отступ M."
+        },
+        "gap": {
+          "$type": "number",
+          "$modes": {
+            "s": 8,
+            "m": 8,
+            "l": 8
+          },
+          "$description": "Шаг между иконкой и текстом M."
+        },
+        "font-size": {
+          "$type": "number",
+          "$modes": {
+            "s": 15,
+            "m": 15,
+            "l": 15
+          },
+          "$description": "Кегль подписи M."
+        },
+        "radius": {
+          "$type": "number",
+          "$modes": {
+            "s": 12,
+            "m": 12,
+            "l": 12
+          },
+          "$description": "Скругление M. Позже переедет в бренд."
+        }
+      },
+      "l": {
+        "$description": "Размер L.",
+        "height": {
+          "$type": "number",
+          "$modes": {
+            "s": 56,
+            "m": 56,
+            "l": 56
+          },
+          "$description": "Высота контрола L."
+        },
+        "padding-x": {
+          "$type": "number",
+          "$modes": {
+            "s": 20,
+            "m": 20,
+            "l": 20
+          },
+          "$description": "Горизонтальный отступ L."
+        },
+        "gap": {
+          "$type": "number",
+          "$modes": {
+            "s": 8,
+            "m": 8,
+            "l": 8
+          },
+          "$description": "Шаг между иконкой и текстом L."
+        },
+        "font-size": {
+          "$type": "number",
+          "$modes": {
+            "s": 16,
+            "m": 16,
+            "l": 16
+          },
+          "$description": "Кегль подписи L."
+        },
+        "radius": {
+          "$type": "number",
+          "$modes": {
+            "s": 14,
+            "m": 14,
+            "l": 14
+          },
+          "$description": "Скругление L. Позже переедет в бренд."
+        }
+      },
+      "chip": {
+        "$description": "Чипсы.",
+        "height": {
+          "$type": "number",
+          "$modes": {
+            "s": 36,
+            "m": 36,
+            "l": 36
+          },
+          "$description": "Высота чипса."
+        },
+        "padding-x": {
+          "$type": "number",
+          "$modes": {
+            "s": 14,
+            "m": 14,
+            "l": 14
+          },
+          "$description": "Отступ чипса."
+        },
+        "radius": {
+          "$type": "number",
+          "$modes": {
+            "s": 18,
+            "m": 18,
+            "l": 18
+          },
+          "$description": "Скругление чипса — пилюля."
+        }
+      },
+      "selector": {
+        "$description": "Чекбокс и радио.",
+        "size": {
+          "$type": "number",
+          "$modes": {
+            "s": 24,
+            "m": 24,
+            "l": 24
+          },
+          "$description": "Размер чекбокса и радио."
+        },
+        "gap": {
+          "$type": "number",
+          "$modes": {
+            "s": 12,
+            "m": 12,
+            "l": 12
+          },
+          "$description": "Шаг до подписи."
+        },
+        "checkbox-radius": {
+          "$type": "number",
+          "$modes": {
+            "s": 8,
+            "m": 8,
+            "l": 8
+          },
+          "$description": "Скругление чекбокса."
+        },
+        "ring": {
+          "$type": "number",
+          "$modes": {
+            "s": 7,
+            "m": 7,
+            "l": 7
+          },
+          "$description": "Толщина кольца выбранного радио."
+        }
       }
     }
   }

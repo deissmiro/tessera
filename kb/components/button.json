@@ -1,0 +1,99 @@
+{
+  "name": "button",
+  "figmaName": "Button/<meaning>/<small|medium|large>",
+  "summary": "Кнопка. Устроена как цвета: смысл × контраст. Смысл — какой цвет (accent-uno, neutral, brand-uno…), контраст — насколько громкая (pale — тихая, soft — средняя, deep — главная).",
+  "props": {
+    "meaning": {
+      "kind": "set",
+      "values": [
+        "neutral",
+        "accent-uno",
+        "accent-duo",
+        "status-positive",
+        "status-negative",
+        "brand-uno",
+        "brand-duo",
+        "static-light",
+        "static-dark",
+        "inverse"
+      ],
+      "default": "accent-uno",
+      "description": "Смысл кнопки — как у цветов. inverse есть только в одном контрасте (deep)."
+    },
+    "contrast": {
+      "kind": "variant",
+      "values": [
+        "pale",
+        "soft",
+        "deep"
+      ],
+      "default": "deep",
+      "description": "deep — главное действие (одно на экран), soft — второстепенное, pale — тихое."
+    },
+    "size": {
+      "kind": "set",
+      "values": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "default": "medium",
+      "description": "Высота 32 / 44 / 56 (viewport/control/<size>/height)."
+    },
+    "state": {
+      "kind": "variant",
+      "values": [
+        "default",
+        "hover",
+        "pressed",
+        "disabled"
+      ],
+      "default": "default"
+    },
+    "label": {
+      "kind": "text",
+      "default": "Кнопка"
+    },
+    "leading": {
+      "kind": "boolean",
+      "default": false,
+      "controls": "slot leading"
+    },
+    "trailing": {
+      "kind": "boolean",
+      "default": false,
+      "controls": "slot trailing"
+    }
+  },
+  "slots": {
+    "leading": {
+      "kind": "figma-slot",
+      "description": "Иконка слева."
+    },
+    "trailing": {
+      "kind": "figma-slot",
+      "description": "Иконка, счётчик или стрелка справа."
+    }
+  },
+  "colors": {
+    "fill": "theme/background/<meaning>-<contrast> (inverse → background/inverse)",
+    "label": "deep → content/<meaning>/on-deep; pale и soft → content/<meaning>/primary; static-light → content/static-dark/primary; static-dark → content/static-light/primary; inverse → content/inverse/primary"
+  },
+  "states": {
+    "hover": "слой state поверх: цвет подписи + numbers/opacity/10",
+    "pressed": "слой state: цвет подписи + numbers/opacity/20",
+    "disabled": "вся кнопка: numbers/opacity/40"
+  },
+  "layout": {
+    "height": "viewport/control/<size>/height",
+    "padding-x": "viewport/control/<size>/padding-x",
+    "gap": "viewport/control/<size>/gap",
+    "radius": "viewport/control/<size>/radius",
+    "font-size": "viewport/control/<size>/font-size"
+  },
+  "a11y": [
+    "Подпись обязательна; кнопка только с иконкой — отдельный вид позже (icon-button) с aria-label.",
+    "Минимальная зона нажатия 44 — у s добавляйте поля вокруг."
+  ],
+  "structure": "Отдельный набор компонентов на каждое сочетание смысл × размер: Button/accent-uno/large, Button/neutral/small… Внутри набора варианты contrast × state. Так в ассетах кнопки ищутся по смыслу и размеру, а настройки — в свойствах."
+}

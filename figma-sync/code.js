@@ -207,6 +207,189 @@ async function buildComponents(index) {
   if (page) page.children.forEach((n) => n.remove()); else { page = figma.createPage(); page.name = NAME; }
   await figma.setCurrentPageAsync(page);
 
+  // ================= Контролы =================
+  const STATES = ["default", "hover", "pressed", "disabled"];
+  const stateOpacity = { hover: "opacity/10", pressed: "opacity/20" };
+  let cursorY = 0;
+  const place = (set, title) => {
+    const h = text(title, 32, true, "content/neutral/primary"); h.y = cursorY; page.appendChild(h);
+    set.x = 0; set.y = cursorY + 56; cursorY = set.y + set.height + 160;
+  };
+  const makeSlot = (comp, name, parent, key) => {
+    const sl = comp.createSlot(); sl.name = name; sl.fills = [];
+    sl.layoutMode = "HORIZONTAL"; sl.primaryAxisSizingMode = "AUTO"; sl.counterAxisSizingMode = "AUTO";
+    sl.counterAxisAlignItems = "CENTER";
+    try { parent.appendChild(sl); } catch (e) { say(`⚠ слот ${name}: ${e.message}`); }
+    return sl;
+  };
+  const stateLayer = (comp, state, colorName) => {
+    if (!stateOpacity[state]) return;
+    const r = figma.createRectangle(); r.name = "state"; fill(r, colorName);
+    comp.appendChild(r); r.layoutPositioning = "ABSOLUTE"; r.x = 0; r.y = 0; r.resize(comp.width, comp.height);
+    r.constraints = { horizontal: "STRETCH", vertical: "STRETCH" };
+    bind(r, "opacity", N(stateOpacity[state]));
+  };
+  const combine = (comps, name, description) => {
+    const set = figma.combineAsVariants(comps, page);
+    set.name = name; set.description = description;
+    return set;
+  };
+
+  // ---- Button: смысл × контраст × размер × состояние
+  const MEANINGS = ["neutral", "accent-uno", "accent-duo", "status-positive", "status-negative", "brand-uno", "brand-duo", "static-light", "static-dark", "inverse"];
+  const labelColor = (m, c) => m === "inverse" ? "content/inverse/primary"
+    : m === "static-light" ? "content/static-dark/primary"
+    : m === "static-dark" ? "content/static-light/primary"
+    : c === "deep" ? `content/${m}/on-deep` : `content/${m}/primary`;
+  // Отдельный набор на каждое сочетание смысл × размер: Button/accent-uno/large.
+  // Внутри набора варианты: contrast × state.
+  const SIZES = { s: "small", m: "medium", l: "large" };
+  const buttonSets = {};
+  let btnTotal = 0;
+  const btnRowStart = cursorY;
+  const btnHeader = text("Button", 32, true, "content/neutral/primary"); btnHeader.y = cursorY; page.appendChild(btnHeader);
+  let rowY = cursorY + 56;
+  for (const m of MEANINGS) {
+    let x = 0, rowH = 0;
+    for (const size of ["s", "m", "l"]) {
+      const comps = [], labels = [], slots = [];
+      const contrasts = m === "inverse" ? ["deep"] : ["pale", "soft", "deep"];
+      contrasts.forEach((c, r) => STATES.forEach((state, ci) => {
+        const b = figma.createComponent();
+        b.name = `contrast=${c}, state=${state}`;
+        b.layoutMode = "HORIZONTAL"; b.primaryAxisSizingMode = "AUTO"; b.counterAxisSizingMode = "FIXED";
+        b.primaryAxisAlignItems = "CENTER"; b.counterAxisAlignItems = "CENTER"; b.clipsContent = true;
+        fill(b, m === "inverse" ? "background/inverse" : `background/${m}-${c}`);
+        b.resize(120, 44); bind(b, "height", VP(`control/${size}/height`));
+        ["paddingLeft", "paddingRight"].forEach((p) => bind(b, p, VP(`control/${size}/padding-x`)));
+        bind(b, "itemSpacing", VP(`control/${size}/gap`));
+        radius(b, ALL, VP(`control/${size}/radius`));
+        const lc = labelColor(m, c);
+        const lead = makeSlot(b, "leading", b);
+        const label = text("Кнопка", 15, true, lc); label.name = "label"; b.appendChild(label);
+        bind(label, "fontSize", VP(`control/${size}/font-size`));
+        const trail = makeSlot(b, "trailing", b);
+        stateLayer(b, state, lc);
+        if (state === "disabled") bind(b, "opacity", N("opacity/40"));
+        b.x = ci * 150; b.y = r * 76;
+        comps.push(b); labels.push(label); slots.push([lead, trail]);
+      }));
+      const set = combine(comps, `Button/${m}/${SIZES[size]}`,
+        `Кнопка ${m}, размер ${SIZES[size]}. Варианты: contrast (pale — тихая, soft — второстепенная, deep — главная) × state. Контракт: kb/components/button.json.`);
+      const lk = set.addComponentProperty("label", "TEXT", "Кнопка");
+      const ld = set.addComponentProperty("leading", "BOOLEAN", false);
+      const tr = set.addComponentProperty("trailing", "BOOLEAN", false);
+      labels.forEach((l) => (l.componentPropertyReferences = { characters: lk }));
+      slots.forEach(([l, t]) => { try { l.componentPropertyReferences = { visible: ld }; t.componentPropertyReferences = { visible: tr }; } catch (e) { say(`⚠ слоты кнопки: ${e.message}`); } });
+      set.x = x; set.y = rowY; x += set.width + 80; rowH = Math.max(rowH, set.height);
+      buttonSets[`${m}/${size}`] = { set, labelKey: lk };
+      btnTotal += comps.length;
+    }
+    rowY += rowH + 80;
+  }
+  cursorY = rowY + 80;
+  say(`✓ Button: ${Object.keys(buttonSets).length} наборов (смысл × размер), ${btnTotal} вариантов`);
+
+  // ---- Checkbox и Radio
+  function selector(kind, value, state) {
+    const comp = figma.createComponent();
+    comp.name = `${kind === "checkbox" ? "checked" : "selected"}=${value}, state=${state}`;
+    comp.layoutMode = "HORIZONTAL"; comp.primaryAxisSizingMode = "AUTO"; comp.counterAxisSizingMode = "AUTO";
+    comp.counterAxisAlignItems = "CENTER"; comp.fills = [];
+    bind(comp, "itemSpacing", VP("control/selector/gap"));
+    const hit = frame("hit", "HORIZONTAL"); hit.primaryAxisAlignItems = "CENTER"; hit.counterAxisAlignItems = "CENTER";
+    hit.primaryAxisSizingMode = "FIXED"; hit.counterAxisSizingMode = "FIXED"; hit.resize(36, 36);
+    comp.appendChild(hit);
+    if (stateOpacity[state]) {
+      const halo = figma.createEllipse(); halo.name = "state"; fill(halo, "content/neutral/primary");
+      hit.appendChild(halo); halo.layoutPositioning = "ABSOLUTE"; halo.resize(36, 36); halo.x = 0; halo.y = 0;
+      bind(halo, "opacity", N(stateOpacity[state]));
+    }
+    const on = value !== "false";
+    const box = figma.createFrame(); box.name = "box"; box.resize(24, 24);
+    bind(box, "width", VP("control/selector/size")); bind(box, "height", VP("control/selector/size"));
+    if (kind === "checkbox") radius(box, ALL, VP("control/selector/checkbox-radius")); else box.cornerRadius = 999;
+    // Мягкий стиль: без обводок. Выключен — серая заливка, включён — чёрный.
+    // Радио включено — толстое чёрное кольцо с белым центром; чекбокс включён — чёрный с белой галкой.
+    if (!on) fill(box, "background/neutral-soft");
+    else if (kind === "checkbox") fill(box, "background/neutral-deep");
+    else {
+      fill(box, "ground/ground-2");
+      const v = T("background/neutral-deep");
+      if (v) { box.strokes = [paint(v)]; box.strokeAlign = "INSIDE"; bind(box, "strokeWeight", VP("control/selector/ring")); }
+    }
+    hit.appendChild(box);
+    if (kind === "checkbox" && value === "true") {
+      const mark = figma.createVector(); mark.name = "check";
+      mark.vectorPaths = [{ windingRule: "NONE", data: "M 6.5 12.5 L 10.5 16.5 L 17.5 8" }];
+      mark.fills = []; const v = T("content/neutral/on-deep"); if (v) mark.strokes = [paint(v)];
+      mark.strokeWeight = 2.5; mark.strokeCap = "ROUND"; mark.strokeJoin = "ROUND";
+      box.appendChild(mark); mark.constraints = { horizontal: "SCALE", vertical: "SCALE" };
+    }
+    if (kind === "checkbox" && value === "indeterminate") {
+      const dash = figma.createRectangle(); dash.name = "dash"; dash.resize(12, 2.5); dash.x = 6; dash.y = 10.75; dash.cornerRadius = 1.25;
+      fill(dash, "content/neutral/on-deep"); box.appendChild(dash); dash.constraints = { horizontal: "SCALE", vertical: "SCALE" };
+    }
+    const label = text("Подпись", 15, false, "content/neutral/primary"); label.name = "label"; comp.appendChild(label);
+    bind(label, "fontSize", VP("control/m/font-size"));
+    if (state === "disabled") bind(comp, "opacity", N("opacity/40"));
+    return { comp, label };
+  }
+  for (const [kind, values, title] of [["checkbox", ["false", "true", "indeterminate"], "Checkbox"], ["radio", ["false", "true"], "Radio"]]) {
+    const comps = [], labels = [];
+    values.forEach((v, r) => STATES.forEach((s, c) => {
+      const { comp, label } = selector(kind, v, s); comp.x = c * 180; comp.y = r * 56; comps.push(comp); labels.push(label);
+    }));
+    const set = combine(comps, title, kind === "checkbox"
+      ? "Чекбокс. Мягкий стиль: выключенный — серый без обводки, отмеченный — чёрный с белой галкой. Контракт: kb/components/checkbox.json."
+      : "Радио. Мягкий стиль: выключенное — серое, выбранное — толстое чёрное кольцо. Контракт: kb/components/radio.json.");
+    const lk = set.addComponentProperty("label", "TEXT", "Подпись");
+    const hk = set.addComponentProperty("hasLabel", "BOOLEAN", true);
+    labels.forEach((l) => (l.componentPropertyReferences = { characters: lk, visible: hk }));
+    place(set, title);
+    say(`✓ ${title}: ${comps.length} вариантов`);
+  }
+
+  // ---- Chip
+  const chipComps = [], chipLabels = [], chipSlots = [];
+  ["false", "true"].forEach((sel, r) => STATES.forEach((state, c) => {
+    const ch = figma.createComponent(); ch.name = `selected=${sel}, state=${state}`;
+    ch.layoutMode = "HORIZONTAL"; ch.primaryAxisSizingMode = "AUTO"; ch.counterAxisSizingMode = "FIXED";
+    ch.primaryAxisAlignItems = "CENTER"; ch.counterAxisAlignItems = "CENTER"; ch.clipsContent = true;
+    ch.resize(80, 36); bind(ch, "height", VP("control/chip/height"));
+    ["paddingLeft", "paddingRight"].forEach((p) => bind(ch, p, VP("control/chip/padding-x")));
+    bind(ch, "itemSpacing", VP("control/m/gap")); radius(ch, ALL, VP("control/chip/radius"));
+    const on = sel === "true";
+    const lc = on ? "content/neutral/on-deep" : "content/neutral/primary";
+    if (on) fill(ch, "background/neutral-deep");
+    else { fill(ch, "background/neutral-pale"); const v = T("border/neutral/soft"); if (v) { ch.strokes = [paint(v)]; ch.strokeWeight = 1; ch.strokeAlign = "INSIDE"; } }
+    const lead = makeSlot(ch, "leading", ch);
+    const label = text("Чипс", 15, true, lc); label.name = "label"; ch.appendChild(label);
+    bind(label, "fontSize", VP("control/m/font-size"));
+    const trail = makeSlot(ch, "trailing", ch);
+    stateLayer(ch, state, lc);
+    if (state === "disabled") bind(ch, "opacity", N("opacity/40"));
+    ch.x = c * 160; ch.y = r * 60;
+    chipComps.push(ch); chipLabels.push(label); chipSlots.push([lead, trail]);
+  }));
+  const chipSet = combine(chipComps, "Chip", "Чипс: фильтр или выбор. Выбранный — чёрный (background/neutral-deep). Контракт: kb/components/chip.json.");
+  const chLk = chipSet.addComponentProperty("label", "TEXT", "Чипс");
+  const chLead = chipSet.addComponentProperty("leading", "BOOLEAN", false);
+  const chTrail = chipSet.addComponentProperty("trailing", "BOOLEAN", false);
+  chipLabels.forEach((l) => (l.componentPropertyReferences = { characters: chLk }));
+  chipSlots.forEach(([l, t]) => { try { l.componentPropertyReferences = { visible: chLead }; t.componentPropertyReferences = { visible: chTrail }; } catch (e) {} });
+  place(chipSet, "Chip");
+  say(`✓ Chip: ${chipComps.length} вариантов`);
+
+  const buttonInstance = (meaning, contrast, size, label) => {
+    const { set, labelKey } = buttonSets[`${meaning}/${size}`];
+    const comp = set.children.find((c) => c.name === `contrast=${contrast}, state=default`);
+    const inst = comp.createInstance();
+    inst.setProperties({ [labelKey]: label });
+    return inst;
+  };
+  // ================= /Контролы =================
+
   function panelFor(type, root) {
     const panel = frame("panel", "VERTICAL");
     fill(panel, "ground/ground-2");
@@ -254,13 +437,9 @@ async function buildComponents(index) {
     // 3. Футер: слот. По умолчанию — две кнопки во всю ширину, высота 56.
     const footer = slot("footer", "VERTICAL", panel); bind(footer, "itemSpacing", VP("window/footer-gap"));
     footer.layoutSizingHorizontal = "FILL";
-    for (const [label, bg, fg] of [["Продолжить", "background/accent-uno-deep", "content/accent-uno/on-deep"], ["Отмена", "background/neutral-soft", "content/neutral/primary"]]) {
-      const b = frame(`button · ${label}`, "HORIZONTAL");
-      b.primaryAxisAlignItems = "CENTER"; b.counterAxisAlignItems = "CENTER"; b.cornerRadius = 12;
-      fill(b, bg); b.appendChild(text(label, 16, true, fg));
-      footer.appendChild(b);
-      b.layoutSizingHorizontal = "FILL"; b.layoutSizingVertical = "FIXED"; b.resize(b.width, 56);
-      bind(b, "height", VP("window/action-height"));
+    for (const [label, m, c] of [["Продолжить", "accent-uno", "deep"], ["Отмена", "neutral", "soft"]]) {
+      const b = buttonInstance(m, c, "l", label);
+      footer.appendChild(b); b.layoutSizingHorizontal = "FILL";
     }
     return { panel };
   }
@@ -305,7 +484,9 @@ async function buildComponents(index) {
   }
 
   const set = figma.combineAsVariants(variants.map((v) => v.root), page);
+  set.x = 0; set.y = cursorY + 56;
   set.name = "Window";
+  const wh = text("Window", 32, true, "content/neutral/primary"); wh.y = cursorY; page.appendChild(wh);
   set.layoutMode = "HORIZONTAL"; set.itemSpacing = 80; set.paddingLeft = set.paddingRight = set.paddingTop = set.paddingBottom = 80;
   set.primaryAxisSizingMode = "AUTO"; set.counterAxisSizingMode = "AUTO";
   set.description = "Окно поверх страницы: dialog, bottom-sheet, side-sheet, adaptive (шит на s, диалог на m/l). modal — блокирует страницу, scrim — затемнение. Размеры и поведение — мод коллекции Viewport. Слоты: header-left, header-center, header-right, content, footer. Контракт: kb/components/window.json.";
@@ -335,7 +516,7 @@ async function buildComponents(index) {
     grid.appendChild(row);
   }
   page.appendChild(grid); grid.y = set.y + set.height + 200; fill(grid, "ground/ground-1");
-  figma.viewport.scrollAndZoomIntoView([set, grid]);
+  figma.viewport.scrollAndZoomIntoView(page.children);
   say("✓ демо: 4 вида × 3 брейкпоинта на странице «Tessera · Components»");
 }
 

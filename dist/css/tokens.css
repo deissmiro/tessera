@@ -143,6 +143,28 @@
   --viewport-window-adaptive-max-width: 9999px;
   --viewport-window-action-height: 56px;
   --viewport-window-footer-gap: 8px;
+  --viewport-control-s-height: 32px;
+  --viewport-control-s-padding-x: 12px;
+  --viewport-control-s-gap: 6px;
+  --viewport-control-s-font-size: 14px;
+  --viewport-control-s-radius: 8px;
+  --viewport-control-m-height: 44px;
+  --viewport-control-m-padding-x: 16px;
+  --viewport-control-m-gap: 8px;
+  --viewport-control-m-font-size: 15px;
+  --viewport-control-m-radius: 12px;
+  --viewport-control-l-height: 56px;
+  --viewport-control-l-padding-x: 20px;
+  --viewport-control-l-gap: 8px;
+  --viewport-control-l-font-size: 16px;
+  --viewport-control-l-radius: 14px;
+  --viewport-control-chip-height: 36px;
+  --viewport-control-chip-padding-x: 14px;
+  --viewport-control-chip-radius: 18px;
+  --viewport-control-selector-size: 24px;
+  --viewport-control-selector-gap: 12px;
+  --viewport-control-selector-checkbox-radius: 8px;
+  --viewport-control-selector-ring: 7px;
 }
 
 :root, [data-brand="tessera"] {
@@ -435,6 +457,28 @@
     --viewport-window-adaptive-max-width: 480px;
     --viewport-window-action-height: 56px;
     --viewport-window-footer-gap: 8px;
+    --viewport-control-s-height: 32px;
+    --viewport-control-s-padding-x: 12px;
+    --viewport-control-s-gap: 6px;
+    --viewport-control-s-font-size: 14px;
+    --viewport-control-s-radius: 8px;
+    --viewport-control-m-height: 44px;
+    --viewport-control-m-padding-x: 16px;
+    --viewport-control-m-gap: 8px;
+    --viewport-control-m-font-size: 15px;
+    --viewport-control-m-radius: 12px;
+    --viewport-control-l-height: 56px;
+    --viewport-control-l-padding-x: 20px;
+    --viewport-control-l-gap: 8px;
+    --viewport-control-l-font-size: 16px;
+    --viewport-control-l-radius: 14px;
+    --viewport-control-chip-height: 36px;
+    --viewport-control-chip-padding-x: 14px;
+    --viewport-control-chip-radius: 18px;
+    --viewport-control-selector-size: 24px;
+    --viewport-control-selector-gap: 12px;
+    --viewport-control-selector-checkbox-radius: 8px;
+    --viewport-control-selector-ring: 7px;
   }
 }
 
@@ -456,5 +500,27 @@
     --viewport-window-adaptive-max-width: 560px;
     --viewport-window-action-height: 56px;
     --viewport-window-footer-gap: 8px;
+    --viewport-control-s-height: 32px;
+    --viewport-control-s-padding-x: 12px;
+    --viewport-control-s-gap: 6px;
+    --viewport-control-s-font-size: 14px;
+    --viewport-control-s-radius: 8px;
+    --viewport-control-m-height: 44px;
+    --viewport-control-m-padding-x: 16px;
+    --viewport-control-m-gap: 8px;
+    --viewport-control-m-font-size: 15px;
+    --viewport-control-m-radius: 12px;
+    --viewport-control-l-height: 56px;
+    --viewport-control-l-padding-x: 20px;
+    --viewport-control-l-gap: 8px;
+    --viewport-control-l-font-size: 16px;
+    --viewport-control-l-radius: 14px;
+    --viewport-control-chip-height: 36px;
+    --viewport-control-chip-padding-x: 14px;
+    --viewport-control-chip-radius: 18px;
+    --viewport-control-selector-size: 24px;
+    --viewport-control-selector-gap: 12px;
+    --viewport-control-selector-checkbox-radius: 8px;
+    --viewport-control-selector-ring: 7px;
   }
 }
