@@ -6,12 +6,12 @@
         "$description": "Серая шкала: 13 ступеней (150 и 850 — промежуточные для земли).",
         "50": {
           "$type": "color",
-          "$value": "#f7f7f6",
+          "$value": "#f5f5f4",
           "$description": "gray 50."
         },
         "100": {
           "$type": "color",
-          "$value": "#ededeb",
+          "$value": "#eae9e8",
           "$description": "gray 100."
         },
         "150": {
@@ -21,12 +21,12 @@
         },
         "200": {
           "$type": "color",
-          "$value": "#dad9d7",
+          "$value": "#d5d4d2",
           "$description": "gray 200."
         },
         "300": {
           "$type": "color",
-          "$value": "#c0bfbb",
+          "$value": "#bbbab7",
           "$description": "gray 300."
         },
         "400": {
@@ -74,12 +74,12 @@
         "$description": "yellow: шкала из #ffd400.",
         "50": {
           "$type": "color",
-          "$value": "#fff7db",
+          "$value": "#fff5d3",
           "$description": "yellow 50."
         },
         "100": {
           "$type": "color",
-          "$value": "#ffedad",
+          "$value": "#ffe99c",
           "$description": "yellow 100."
         },
         "200": {
@@ -89,7 +89,7 @@
         },
         "300": {
           "$type": "color",
-          "$value": "#e2bc00",
+          "$value": "#ddb700",
           "$description": "yellow 300."
         },
         "400": {
@@ -132,22 +132,22 @@
         "$description": "orange: шкала из #ff7a00.",
         "50": {
           "$type": "color",
-          "$value": "#fff4ef",
+          "$value": "#fff2eb",
           "$description": "orange 50."
         },
         "100": {
           "$type": "color",
-          "$value": "#ffe7db",
+          "$value": "#ffe3d4",
           "$description": "orange 100."
         },
         "200": {
           "$type": "color",
-          "$value": "#ffcdb1",
+          "$value": "#ffc6a6",
           "$description": "orange 200."
         },
         "300": {
           "$type": "color",
-          "$value": "#ffa774",
+          "$value": "#ffa067",
           "$description": "orange 300."
         },
         "400": {
@@ -187,118 +187,118 @@
         }
       },
       "green": {
-        "$description": "green: шкала из #16884a.",
+        "$description": "green: шкала из #16a34a.",
         "50": {
           "$type": "color",
-          "$value": "#effaf2",
+          "$value": "#dfffe4",
           "$description": "green 50."
         },
         "100": {
           "$type": "color",
-          "$value": "#dff3e4",
+          "$value": "#b7fec3",
           "$description": "green 100."
         },
         "200": {
           "$type": "color",
-          "$value": "#bee5c8",
+          "$value": "#8aef9e",
           "$description": "green 200."
         },
         "300": {
           "$type": "color",
-          "$value": "#93d0a4",
+          "$value": "#50da76",
           "$description": "green 300."
         },
         "400": {
           "$type": "color",
-          "$value": "#65b880",
+          "$value": "#00c456",
           "$description": "green 400."
         },
         "500": {
           "$type": "color",
-          "$value": "#369f5f",
+          "$value": "#16a34a",
           "$description": "green 500."
         },
         "600": {
           "$type": "color",
-          "$value": "#16884a",
+          "$value": "#008739",
           "$description": "green 600."
         },
         "700": {
           "$type": "color",
-          "$value": "#006c37",
+          "$value": "#006c2d",
           "$description": "green 700."
         },
         "800": {
           "$type": "color",
-          "$value": "#005228",
+          "$value": "#005320",
           "$description": "green 800."
         },
         "900": {
           "$type": "color",
-          "$value": "#003a1b",
+          "$value": "#003a15",
           "$description": "green 900."
         },
         "950": {
           "$type": "color",
-          "$value": "#00230e",
+          "$value": "#00230a",
           "$description": "green 950."
         }
       },
       "red": {
-        "$description": "red: шкала из #d92d20.",
+        "$description": "red: шкала из #dc2626.",
         "50": {
           "$type": "color",
-          "$value": "#fff4f2",
+          "$value": "#fff2f0",
           "$description": "red 50."
         },
         "100": {
           "$type": "color",
-          "$value": "#ffe6e2",
+          "$value": "#ffe2de",
           "$description": "red 100."
         },
         "200": {
           "$type": "color",
-          "$value": "#ffcbc2",
+          "$value": "#ffc4bc",
           "$description": "red 200."
         },
         "300": {
           "$type": "color",
-          "$value": "#ffa495",
+          "$value": "#ff9b90",
           "$description": "red 300."
         },
         "400": {
           "$type": "color",
-          "$value": "#ff6f5d",
+          "$value": "#ff6f63",
           "$description": "red 400."
         },
         "500": {
           "$type": "color",
-          "$value": "#eb4131",
+          "$value": "#fd001a",
           "$description": "red 500."
         },
         "600": {
           "$type": "color",
-          "$value": "#d92d20",
+          "$value": "#dc2626",
           "$description": "red 600."
         },
         "700": {
           "$type": "color",
-          "$value": "#aa0300",
+          "$value": "#aa000e",
           "$description": "red 700."
         },
         "800": {
           "$type": "color",
-          "$value": "#840200",
+          "$value": "#840008",
           "$description": "red 800."
         },
         "900": {
           "$type": "color",
-          "$value": "#5f0100",
+          "$value": "#5f0004",
           "$description": "red 900."
         },
         "950": {
           "$type": "color",
-          "$value": "#3c0000",
+          "$value": "#3c0002",
           "$description": "red 950."
         }
       }

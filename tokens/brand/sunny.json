@@ -515,23 +515,23 @@
         },
         "base": {
           "$type": "color",
-          "$value": "{palette.sunny.green.600}",
-          "$description": "Опорный positive = исходный цвет (green 600). deep в светлой теме."
+          "$value": "{palette.sunny.green.500}",
+          "$description": "Опорный positive = исходный цвет (green 500). deep в светлой теме."
         },
         "dark-base": {
           "$type": "color",
-          "$value": "{palette.sunny.green.600}",
-          "$description": "Опорный positive для тёмной темы (green 600): ближайший к base, что держит 3:1 на тёмной странице и 4.5:1 с контентом."
+          "$value": "{palette.sunny.green.500}",
+          "$description": "Опорный positive для тёмной темы (green 500): ближайший к base, что держит 3:1 на тёмной странице и 4.5:1 с контентом."
         },
         "on-base": {
           "$type": "color",
-          "$value": "{palette.common.white}",
-          "$description": "Контент поверх base (4.51:1)."
+          "$value": "{palette.sunny.gray.950}",
+          "$description": "Контент поверх base (5.18:1)."
         },
         "on-dark-base": {
           "$type": "color",
-          "$value": "{palette.common.white}",
-          "$description": "Контент поверх dark-base (4.51:1)."
+          "$value": "{palette.sunny.gray.950}",
+          "$description": "Контент поверх dark-base (5.18:1)."
         }
       },
       "negative": {

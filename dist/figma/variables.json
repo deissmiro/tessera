@@ -201,7 +201,7 @@
       "WEB": "var(--palette-sunny-gray-50)"
      },
      "valuesByMode": {
-      "default": "#f7f7f6"
+      "default": "#f5f5f4"
      }
     },
     {
@@ -214,7 +214,7 @@
       "WEB": "var(--palette-sunny-gray-100)"
      },
      "valuesByMode": {
-      "default": "#ededeb"
+      "default": "#eae9e8"
      }
     },
     {
@@ -240,7 +240,7 @@
       "WEB": "var(--palette-sunny-gray-200)"
      },
      "valuesByMode": {
-      "default": "#dad9d7"
+      "default": "#d5d4d2"
      }
     },
     {
@@ -253,7 +253,7 @@
       "WEB": "var(--palette-sunny-gray-300)"
      },
      "valuesByMode": {
-      "default": "#c0bfbb"
+      "default": "#bbbab7"
      }
     },
     {
@@ -370,7 +370,7 @@
       "WEB": "var(--palette-sunny-yellow-50)"
      },
      "valuesByMode": {
-      "default": "#fff7db"
+      "default": "#fff5d3"
      }
     },
     {
@@ -383,7 +383,7 @@
       "WEB": "var(--palette-sunny-yellow-100)"
      },
      "valuesByMode": {
-      "default": "#ffedad"
+      "default": "#ffe99c"
      }
     },
     {
@@ -409,7 +409,7 @@
       "WEB": "var(--palette-sunny-yellow-300)"
      },
      "valuesByMode": {
-      "default": "#e2bc00"
+      "default": "#ddb700"
      }
     },
     {
@@ -513,7 +513,7 @@
       "WEB": "var(--palette-sunny-orange-50)"
      },
      "valuesByMode": {
-      "default": "#fff4ef"
+      "default": "#fff2eb"
      }
     },
     {
@@ -526,7 +526,7 @@
       "WEB": "var(--palette-sunny-orange-100)"
      },
      "valuesByMode": {
-      "default": "#ffe7db"
+      "default": "#ffe3d4"
      }
     },
     {
@@ -539,7 +539,7 @@
       "WEB": "var(--palette-sunny-orange-200)"
      },
      "valuesByMode": {
-      "default": "#ffcdb1"
+      "default": "#ffc6a6"
      }
     },
     {
@@ -552,7 +552,7 @@
       "WEB": "var(--palette-sunny-orange-300)"
      },
      "valuesByMode": {
-      "default": "#ffa774"
+      "default": "#ffa067"
      }
     },
     {
@@ -656,7 +656,7 @@
       "WEB": "var(--palette-sunny-green-50)"
      },
      "valuesByMode": {
-      "default": "#effaf2"
+      "default": "#dfffe4"
      }
     },
     {
@@ -669,7 +669,7 @@
       "WEB": "var(--palette-sunny-green-100)"
      },
      "valuesByMode": {
-      "default": "#dff3e4"
+      "default": "#b7fec3"
      }
     },
     {
@@ -682,7 +682,7 @@
       "WEB": "var(--palette-sunny-green-200)"
      },
      "valuesByMode": {
-      "default": "#bee5c8"
+      "default": "#8aef9e"
      }
     },
     {
@@ -695,7 +695,7 @@
       "WEB": "var(--palette-sunny-green-300)"
      },
      "valuesByMode": {
-      "default": "#93d0a4"
+      "default": "#50da76"
      }
     },
     {
@@ -708,7 +708,7 @@
       "WEB": "var(--palette-sunny-green-400)"
      },
      "valuesByMode": {
-      "default": "#65b880"
+      "default": "#00c456"
      }
     },
     {
@@ -721,7 +721,7 @@
       "WEB": "var(--palette-sunny-green-500)"
      },
      "valuesByMode": {
-      "default": "#369f5f"
+      "default": "#16a34a"
      }
     },
     {
@@ -734,7 +734,7 @@
       "WEB": "var(--palette-sunny-green-600)"
      },
      "valuesByMode": {
-      "default": "#16884a"
+      "default": "#008739"
      }
     },
     {
@@ -747,7 +747,7 @@
       "WEB": "var(--palette-sunny-green-700)"
      },
      "valuesByMode": {
-      "default": "#006c37"
+      "default": "#006c2d"
      }
     },
     {
@@ -760,7 +760,7 @@
       "WEB": "var(--palette-sunny-green-800)"
      },
      "valuesByMode": {
-      "default": "#005228"
+      "default": "#005320"
      }
     },
     {
@@ -773,7 +773,7 @@
       "WEB": "var(--palette-sunny-green-900)"
      },
      "valuesByMode": {
-      "default": "#003a1b"
+      "default": "#003a15"
      }
     },
     {
@@ -786,7 +786,7 @@
       "WEB": "var(--palette-sunny-green-950)"
      },
      "valuesByMode": {
-      "default": "#00230e"
+      "default": "#00230a"
      }
     },
     {
@@ -799,7 +799,7 @@
       "WEB": "var(--palette-sunny-red-50)"
      },
      "valuesByMode": {
-      "default": "#fff4f2"
+      "default": "#fff2f0"
      }
     },
     {
@@ -812,7 +812,7 @@
       "WEB": "var(--palette-sunny-red-100)"
      },
      "valuesByMode": {
-      "default": "#ffe6e2"
+      "default": "#ffe2de"
      }
     },
     {
@@ -825,7 +825,7 @@
       "WEB": "var(--palette-sunny-red-200)"
      },
      "valuesByMode": {
-      "default": "#ffcbc2"
+      "default": "#ffc4bc"
      }
     },
     {
@@ -838,7 +838,7 @@
       "WEB": "var(--palette-sunny-red-300)"
      },
      "valuesByMode": {
-      "default": "#ffa495"
+      "default": "#ff9b90"
      }
     },
     {
@@ -851,7 +851,7 @@
       "WEB": "var(--palette-sunny-red-400)"
      },
      "valuesByMode": {
-      "default": "#ff6f5d"
+      "default": "#ff6f63"
      }
     },
     {
@@ -864,7 +864,7 @@
       "WEB": "var(--palette-sunny-red-500)"
      },
      "valuesByMode": {
-      "default": "#eb4131"
+      "default": "#fd001a"
      }
     },
     {
@@ -877,7 +877,7 @@
       "WEB": "var(--palette-sunny-red-600)"
      },
      "valuesByMode": {
-      "default": "#d92d20"
+      "default": "#dc2626"
      }
     },
     {
@@ -890,7 +890,7 @@
       "WEB": "var(--palette-sunny-red-700)"
      },
      "valuesByMode": {
-      "default": "#aa0300"
+      "default": "#aa000e"
      }
     },
     {
@@ -903,7 +903,7 @@
       "WEB": "var(--palette-sunny-red-800)"
      },
      "valuesByMode": {
-      "default": "#840200"
+      "default": "#840008"
      }
     },
     {
@@ -916,7 +916,7 @@
       "WEB": "var(--palette-sunny-red-900)"
      },
      "valuesByMode": {
-      "default": "#5f0100"
+      "default": "#5f0004"
      }
     },
     {
@@ -929,7 +929,7 @@
       "WEB": "var(--palette-sunny-red-950)"
      },
      "valuesByMode": {
-      "default": "#3c0000"
+      "default": "#3c0002"
      }
     },
     {
@@ -942,7 +942,7 @@
       "WEB": "var(--palette-tessera-gray-50)"
      },
      "valuesByMode": {
-      "default": "#f6f7f8"
+      "default": "#f5f5f6"
      }
     },
     {
@@ -955,7 +955,7 @@
       "WEB": "var(--palette-tessera-gray-100)"
      },
      "valuesByMode": {
-      "default": "#ecedee"
+      "default": "#e9e9eb"
      }
     },
     {
@@ -981,7 +981,7 @@
       "WEB": "var(--palette-tessera-gray-200)"
      },
      "valuesByMode": {
-      "default": "#d8d9dc"
+      "default": "#d3d4d8"
      }
     },
     {
@@ -994,7 +994,7 @@
       "WEB": "var(--palette-tessera-gray-300)"
      },
      "valuesByMode": {
-      "default": "#bebfc4"
+      "default": "#b9bac0"
      }
     },
     {
@@ -1111,7 +1111,7 @@
       "WEB": "var(--palette-tessera-indigo-50)"
      },
      "valuesByMode": {
-      "default": "#f4f6ff"
+      "default": "#f2f4ff"
      }
     },
     {
@@ -1124,7 +1124,7 @@
       "WEB": "var(--palette-tessera-indigo-100)"
      },
      "valuesByMode": {
-      "default": "#e8ecff"
+      "default": "#e4e8ff"
      }
     },
     {
@@ -1137,7 +1137,7 @@
       "WEB": "var(--palette-tessera-indigo-200)"
      },
      "valuesByMode": {
-      "default": "#cfd7ff"
+      "default": "#c9d1ff"
      }
     },
     {
@@ -1150,7 +1150,7 @@
       "WEB": "var(--palette-tessera-indigo-300)"
      },
      "valuesByMode": {
-      "default": "#afbaff"
+      "default": "#a9b4ff"
      }
     },
     {
@@ -1202,7 +1202,7 @@
       "WEB": "var(--palette-tessera-indigo-700)"
      },
      "valuesByMode": {
-      "default": "#453ccb"
+      "default": "#4621e8"
      }
     },
     {
@@ -1215,7 +1215,7 @@
       "WEB": "var(--palette-tessera-indigo-800)"
      },
      "valuesByMode": {
-      "default": "#3329a2"
+      "default": "#3500bd"
      }
     },
     {
@@ -1228,7 +1228,7 @@
       "WEB": "var(--palette-tessera-indigo-900)"
      },
      "valuesByMode": {
-      "default": "#231978"
+      "default": "#24008a"
      }
     },
     {
@@ -1241,7 +1241,7 @@
       "WEB": "var(--palette-tessera-indigo-950)"
      },
      "valuesByMode": {
-      "default": "#140a51"
+      "default": "#14005a"
      }
     },
     {
@@ -1254,7 +1254,7 @@
       "WEB": "var(--palette-tessera-magenta-50)"
      },
      "valuesByMode": {
-      "default": "#fff3fb"
+      "default": "#fff0fa"
      }
     },
     {
@@ -1267,7 +1267,7 @@
       "WEB": "var(--palette-tessera-magenta-100)"
      },
      "valuesByMode": {
-      "default": "#ffe3f6"
+      "default": "#ffdef5"
      }
     },
     {
@@ -1280,7 +1280,7 @@
       "WEB": "var(--palette-tessera-magenta-200)"
      },
      "valuesByMode": {
-      "default": "#ffc4ee"
+      "default": "#ffbcec"
      }
     },
     {
@@ -1293,7 +1293,7 @@
       "WEB": "var(--palette-tessera-magenta-300)"
      },
      "valuesByMode": {
-      "default": "#fc98e2"
+      "default": "#ff8be2"
      }
     },
     {
@@ -1306,7 +1306,7 @@
       "WEB": "var(--palette-tessera-magenta-400)"
      },
      "valuesByMode": {
-      "default": "#ec6cce"
+      "default": "#ff4cdb"
      }
     },
     {
@@ -1319,7 +1319,7 @@
       "WEB": "var(--palette-tessera-magenta-500)"
      },
      "valuesByMode": {
-      "default": "#d63eb7"
+      "default": "#e210c0"
      }
     },
     {
@@ -1397,7 +1397,7 @@
       "WEB": "var(--palette-tessera-green-50)"
      },
      "valuesByMode": {
-      "default": "#effaf2"
+      "default": "#dfffe4"
      }
     },
     {
@@ -1410,7 +1410,7 @@
       "WEB": "var(--palette-tessera-green-100)"
      },
      "valuesByMode": {
-      "default": "#dff3e4"
+      "default": "#b7fec3"
      }
     },
     {
@@ -1423,7 +1423,7 @@
       "WEB": "var(--palette-tessera-green-200)"
      },
      "valuesByMode": {
-      "default": "#bee5c8"
+      "default": "#8aef9e"
      }
     },
     {
@@ -1436,7 +1436,7 @@
       "WEB": "var(--palette-tessera-green-300)"
      },
      "valuesByMode": {
-      "default": "#93d0a4"
+      "default": "#50da76"
      }
     },
     {
@@ -1449,7 +1449,7 @@
       "WEB": "var(--palette-tessera-green-400)"
      },
      "valuesByMode": {
-      "default": "#65b880"
+      "default": "#00c456"
      }
     },
     {
@@ -1462,7 +1462,7 @@
       "WEB": "var(--palette-tessera-green-500)"
      },
      "valuesByMode": {
-      "default": "#369f5f"
+      "default": "#16a34a"
      }
     },
     {
@@ -1475,7 +1475,7 @@
       "WEB": "var(--palette-tessera-green-600)"
      },
      "valuesByMode": {
-      "default": "#16884a"
+      "default": "#008739"
      }
     },
     {
@@ -1488,7 +1488,7 @@
       "WEB": "var(--palette-tessera-green-700)"
      },
      "valuesByMode": {
-      "default": "#006c37"
+      "default": "#006c2d"
      }
     },
     {
@@ -1501,7 +1501,7 @@
       "WEB": "var(--palette-tessera-green-800)"
      },
      "valuesByMode": {
-      "default": "#005228"
+      "default": "#005320"
      }
     },
     {
@@ -1514,7 +1514,7 @@
       "WEB": "var(--palette-tessera-green-900)"
      },
      "valuesByMode": {
-      "default": "#003a1b"
+      "default": "#003a15"
      }
     },
     {
@@ -1527,7 +1527,7 @@
       "WEB": "var(--palette-tessera-green-950)"
      },
      "valuesByMode": {
-      "default": "#00230e"
+      "default": "#00230a"
      }
     },
     {
@@ -1540,7 +1540,7 @@
       "WEB": "var(--palette-tessera-red-50)"
      },
      "valuesByMode": {
-      "default": "#fff4f2"
+      "default": "#fff2f0"
      }
     },
     {
@@ -1553,7 +1553,7 @@
       "WEB": "var(--palette-tessera-red-100)"
      },
      "valuesByMode": {
-      "default": "#ffe6e2"
+      "default": "#ffe2de"
      }
     },
     {
@@ -1566,7 +1566,7 @@
       "WEB": "var(--palette-tessera-red-200)"
      },
      "valuesByMode": {
-      "default": "#ffcbc2"
+      "default": "#ffc4bc"
      }
     },
     {
@@ -1579,7 +1579,7 @@
       "WEB": "var(--palette-tessera-red-300)"
      },
      "valuesByMode": {
-      "default": "#ffa495"
+      "default": "#ff9b90"
      }
     },
     {
@@ -1592,7 +1592,7 @@
       "WEB": "var(--palette-tessera-red-400)"
      },
      "valuesByMode": {
-      "default": "#ff6f5d"
+      "default": "#ff6f63"
      }
     },
     {
@@ -1605,7 +1605,7 @@
       "WEB": "var(--palette-tessera-red-500)"
      },
      "valuesByMode": {
-      "default": "#eb4131"
+      "default": "#fd001a"
      }
     },
     {
@@ -1618,7 +1618,7 @@
       "WEB": "var(--palette-tessera-red-600)"
      },
      "valuesByMode": {
-      "default": "#d92d20"
+      "default": "#dc2626"
      }
     },
     {
@@ -1631,7 +1631,7 @@
       "WEB": "var(--palette-tessera-red-700)"
      },
      "valuesByMode": {
-      "default": "#aa0300"
+      "default": "#aa000e"
      }
     },
     {
@@ -1644,7 +1644,7 @@
       "WEB": "var(--palette-tessera-red-800)"
      },
      "valuesByMode": {
-      "default": "#840200"
+      "default": "#840008"
      }
     },
     {
@@ -1657,7 +1657,7 @@
       "WEB": "var(--palette-tessera-red-900)"
      },
      "valuesByMode": {
-      "default": "#5f0100"
+      "default": "#5f0004"
      }
     },
     {
@@ -1670,7 +1670,7 @@
       "WEB": "var(--palette-tessera-red-950)"
      },
      "valuesByMode": {
-      "default": "#3c0000"
+      "default": "#3c0002"
      }
     }
    ]
@@ -2694,7 +2694,7 @@
     {
      "name": "color/accent-duo/on-dark-base",
      "type": "COLOR",
-     "description": "Контент поверх dark-base (6.17:1).",
+     "description": "Контент поверх dark-base (5.93:1).",
      "scopes": [],
      "hiddenFromPublishing": true,
      "codeSyntax": {
@@ -3234,7 +3234,7 @@
     {
      "name": "color/brand-duo/on-dark-base",
      "type": "COLOR",
-     "description": "Контент поверх dark-base (6.17:1).",
+     "description": "Контент поверх dark-base (5.93:1).",
      "scopes": [],
      "hiddenFromPublishing": true,
      "codeSyntax": {
@@ -3450,7 +3450,7 @@
     {
      "name": "color/positive/base",
      "type": "COLOR",
-     "description": "Опорный positive = исходный цвет (green 600). deep в светлой теме.",
+     "description": "Опорный positive = исходный цвет (green 500). deep в светлой теме.",
      "scopes": [],
      "hiddenFromPublishing": true,
      "codeSyntax": {
@@ -3458,17 +3458,17 @@
      },
      "valuesByMode": {
       "tessera": {
-       "$alias": "0 · Palette::tessera/green/600"
+       "$alias": "0 · Palette::tessera/green/500"
       },
       "sunny": {
-       "$alias": "0 · Palette::sunny/green/600"
+       "$alias": "0 · Palette::sunny/green/500"
       }
      }
     },
     {
      "name": "color/positive/dark-base",
      "type": "COLOR",
-     "description": "Опорный positive для тёмной темы (green 600): ближайший к base, что держит 3:1 на тёмной странице и 4.5:1 с контентом.",
+     "description": "Опорный positive для тёмной темы (green 500): ближайший к base, что держит 3:1 на тёмной странице и 4.5:1 с контентом.",
      "scopes": [],
      "hiddenFromPublishing": true,
      "codeSyntax": {
@@ -3476,17 +3476,17 @@
      },
      "valuesByMode": {
       "tessera": {
-       "$alias": "0 · Palette::tessera/green/600"
+       "$alias": "0 · Palette::tessera/green/500"
       },
       "sunny": {
-       "$alias": "0 · Palette::sunny/green/600"
+       "$alias": "0 · Palette::sunny/green/500"
       }
      }
     },
     {
      "name": "color/positive/on-base",
      "type": "COLOR",
-     "description": "Контент поверх base (4.51:1).",
+     "description": "Контент поверх base (5.17:1).",
      "scopes": [],
      "hiddenFromPublishing": true,
      "codeSyntax": {
@@ -3494,17 +3494,17 @@
      },
      "valuesByMode": {
       "tessera": {
-       "$alias": "0 · Palette::common/white"
+       "$alias": "0 · Palette::tessera/gray/950"
       },
       "sunny": {
-       "$alias": "0 · Palette::common/white"
+       "$alias": "0 · Palette::sunny/gray/950"
       }
      }
     },
     {
      "name": "color/positive/on-dark-base",
      "type": "COLOR",
-     "description": "Контент поверх dark-base (4.51:1).",
+     "description": "Контент поверх dark-base (5.17:1).",
      "scopes": [],
      "hiddenFromPublishing": true,
      "codeSyntax": {
@@ -3512,10 +3512,10 @@
      },
      "valuesByMode": {
       "tessera": {
-       "$alias": "0 · Palette::common/white"
+       "$alias": "0 · Palette::tessera/gray/950"
       },
       "sunny": {
-       "$alias": "0 · Palette::common/white"
+       "$alias": "0 · Palette::sunny/gray/950"
       }
      }
     },
@@ -3916,10 +3916,10 @@
      },
      "valuesByMode": {
       "light": {
-       "$alias": "1 · Brand::color/accent-uno/50"
+       "$alias": "1 · Brand::color/accent-uno/100"
       },
       "dark": {
-       "$alias": "1 · Brand::color/accent-uno/950"
+       "$alias": "1 · Brand::color/accent-uno/900"
       }
      }
     },
@@ -3937,10 +3937,10 @@
      },
      "valuesByMode": {
       "light": {
-       "$alias": "1 · Brand::color/accent-uno/100"
+       "$alias": "1 · Brand::color/accent-uno/200"
       },
       "dark": {
-       "$alias": "1 · Brand::color/accent-uno/900"
+       "$alias": "1 · Brand::color/accent-uno/800"
       }
      }
     },
@@ -3979,10 +3979,10 @@
      },
      "valuesByMode": {
       "light": {
-       "$alias": "1 · Brand::color/accent-duo/50"
+       "$alias": "1 · Brand::color/accent-duo/100"
       },
       "dark": {
-       "$alias": "1 · Brand::color/accent-duo/950"
+       "$alias": "1 · Brand::color/accent-duo/900"
       }
      }
     },
@@ -4000,10 +4000,10 @@
      },
      "valuesByMode": {
       "light": {
-       "$alias": "1 · Brand::color/accent-duo/100"
+       "$alias": "1 · Brand::color/accent-duo/200"
       },
       "dark": {
-       "$alias": "1 · Brand::color/accent-duo/900"
+       "$alias": "1 · Brand::color/accent-duo/800"
       }
      }
     },
@@ -4042,10 +4042,10 @@
      },
      "valuesByMode": {
       "light": {
-       "$alias": "1 · Brand::color/positive/50"
+       "$alias": "1 · Brand::color/positive/100"
       },
       "dark": {
-       "$alias": "1 · Brand::color/positive/950"
+       "$alias": "1 · Brand::color/positive/900"
       }
      }
     },
@@ -4063,10 +4063,10 @@
      },
      "valuesByMode": {
       "light": {
-       "$alias": "1 · Brand::color/positive/100"
+       "$alias": "1 · Brand::color/positive/200"
       },
       "dark": {
-       "$alias": "1 · Brand::color/positive/900"
+       "$alias": "1 · Brand::color/positive/800"
       }
      }
     },
@@ -4105,10 +4105,10 @@
      },
      "valuesByMode": {
       "light": {
-       "$alias": "1 · Brand::color/negative/50"
+       "$alias": "1 · Brand::color/negative/100"
       },
       "dark": {
-       "$alias": "1 · Brand::color/negative/950"
+       "$alias": "1 · Brand::color/negative/900"
       }
      }
     },
@@ -4126,10 +4126,10 @@
      },
      "valuesByMode": {
       "light": {
-       "$alias": "1 · Brand::color/negative/100"
+       "$alias": "1 · Brand::color/negative/200"
       },
       "dark": {
-       "$alias": "1 · Brand::color/negative/900"
+       "$alias": "1 · Brand::color/negative/800"
       }
      }
     },
@@ -4168,10 +4168,10 @@
      },
      "valuesByMode": {
       "light": {
-       "$alias": "1 · Brand::color/brand-uno/50"
+       "$alias": "1 · Brand::color/brand-uno/100"
       },
       "dark": {
-       "$alias": "1 · Brand::color/brand-uno/950"
+       "$alias": "1 · Brand::color/brand-uno/900"
       }
      }
     },
@@ -4189,10 +4189,10 @@
      },
      "valuesByMode": {
       "light": {
-       "$alias": "1 · Brand::color/brand-uno/100"
+       "$alias": "1 · Brand::color/brand-uno/200"
       },
       "dark": {
-       "$alias": "1 · Brand::color/brand-uno/900"
+       "$alias": "1 · Brand::color/brand-uno/800"
       }
      }
     },
@@ -4231,10 +4231,10 @@
      },
      "valuesByMode": {
       "light": {
-       "$alias": "1 · Brand::color/brand-duo/50"
+       "$alias": "1 · Brand::color/brand-duo/100"
       },
       "dark": {
-       "$alias": "1 · Brand::color/brand-duo/950"
+       "$alias": "1 · Brand::color/brand-duo/900"
       }
      }
     },
@@ -4252,10 +4252,10 @@
      },
      "valuesByMode": {
       "light": {
-       "$alias": "1 · Brand::color/brand-duo/100"
+       "$alias": "1 · Brand::color/brand-duo/200"
       },
       "dark": {
-       "$alias": "1 · Brand::color/brand-duo/900"
+       "$alias": "1 · Brand::color/brand-duo/800"
       }
      }
     },
@@ -5529,10 +5529,10 @@
      },
      "valuesByMode": {
       "light": {
-       "$alias": "1 · Brand::color/accent-uno/100"
+       "$alias": "1 · Brand::color/accent-uno/200"
       },
       "dark": {
-       "$alias": "1 · Brand::color/accent-uno/900"
+       "$alias": "1 · Brand::color/accent-uno/800"
       }
      }
     },
@@ -5589,10 +5589,10 @@
      },
      "valuesByMode": {
       "light": {
-       "$alias": "1 · Brand::color/accent-duo/100"
+       "$alias": "1 · Brand::color/accent-duo/200"
       },
       "dark": {
-       "$alias": "1 · Brand::color/accent-duo/900"
+       "$alias": "1 · Brand::color/accent-duo/800"
       }
      }
     },
@@ -5649,10 +5649,10 @@
      },
      "valuesByMode": {
       "light": {
-       "$alias": "1 · Brand::color/positive/100"
+       "$alias": "1 · Brand::color/positive/200"
       },
       "dark": {
-       "$alias": "1 · Brand::color/positive/900"
+       "$alias": "1 · Brand::color/positive/800"
       }
      }
     },
@@ -5709,10 +5709,10 @@
      },
      "valuesByMode": {
       "light": {
-       "$alias": "1 · Brand::color/negative/100"
+       "$alias": "1 · Brand::color/negative/200"
       },
       "dark": {
-       "$alias": "1 · Brand::color/negative/900"
+       "$alias": "1 · Brand::color/negative/800"
       }
      }
     },

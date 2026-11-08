@@ -27,9 +27,12 @@ from colorlib import hex_to_oklch, oklch_to_hex, contrast  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]
-LIGHTNESS = dict(zip(STEPS, [0.975, 0.945, 0.885, 0.805, 0.715, 0.625, 0.545, 0.465, 0.385, 0.305, 0.225]))
-CHROMA_PROFILE = dict(zip(STEPS, [0.12, 0.22, 0.42, 0.66, 0.86, 1.0, 1.0, 0.92, 0.8, 0.66, 0.52]))
-STATUS = {"positive": "#16884a", "negative": "#d92d20"}
+LIGHTNESS = dict(zip(STEPS, [0.97, 0.935, 0.87, 0.79, 0.715, 0.625, 0.545, 0.465, 0.385, 0.305, 0.225]))
+# Профиль хромы по ступеням: светлые тинты и тёмные тона держат насыщенность, а не выцветают в серый.
+# Реальный предел задаёт гамут sRGB — oklch_to_hex сам срезает хрому там, где цвет невозможен.
+CHROMA_PROFILE = dict(zip(STEPS, [0.38, 0.52, 0.72, 0.9, 1.0, 1.0, 1.0, 0.96, 0.88, 0.76, 0.62]))
+DEFAULT_VIBRANCE = 1.2  # во сколько раз шкала сочнее исходного цвета (сам исходный цвет не меняется)
+STATUS = {"positive": "#16a34a", "negative": "#dc2626"}
 WHITE = "#ffffff"
 
 
@@ -58,10 +61,10 @@ def nearest(L):
     return min(STEPS, key=lambda s: abs(LIGHTNESS[s] - L))
 
 
-def ramp_from(hex_):
+def ramp_from(hex_, vibrance=DEFAULT_VIBRANCE):
     L, C, H = hex_to_oklch(hex_)
     a = nearest(L)
-    peak = max(C, 0.04) / CHROMA_PROFILE[a]
+    peak = max(C, 0.04) / CHROMA_PROFILE[a] * vibrance
     vals = {s: oklch_to_hex(LIGHTNESS[s], peak * CHROMA_PROFILE[s], H) for s in STEPS}
     vals[a] = hex_.lower()
     return vals, a
@@ -110,7 +113,8 @@ def build(spec):
     tint = spec.get("neutral", {}).get("tint", 0.012)
     nh = spec.get("neutral", {}).get("hue", H)
     nl = {**LIGHTNESS, **NEUTRAL_EXTRA}
-    nprof = {**CHROMA_PROFILE, 150: 0.3, 850: 0.72}
+    # нейтраль остаётся нейтралью: тонировка не растёт вместе с сочностью цветных шкал
+    nprof = {**dict(zip(STEPS, [0.12, 0.22, 0.42, 0.66, 0.86, 1.0, 1.0, 0.92, 0.8, 0.66, 0.52])), 150: 0.3, 850: 0.72}
     nsteps = sorted(nl)
     neutral = {s: oklch_to_hex(nl[s], tint * nprof[s], nh) for s in nsteps}
 
@@ -145,7 +149,7 @@ def build(spec):
             while nm in used:
                 nm, k = f"{base_nm}-{k}", k + 1
             used.add(nm)
-            vals, a = ramp_from(hex_)
+            vals, a = ramp_from(hex_, spec.get("vibrance", DEFAULT_VIBRANCE))
             ramp_of_hex[key] = (nm, vals, a)
             pal[nm] = {"$description": f"{nm}: шкала из {hex_}."}
             for s_ in STEPS:

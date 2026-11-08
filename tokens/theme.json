@@ -49,16 +49,16 @@
       "accent-uno-pale": {
         "$type": "color",
         "$modes": {
-          "light": "{brand.color.accent-uno.50}",
-          "dark": "{brand.color.accent-uno.950}"
+          "light": "{brand.color.accent-uno.100}",
+          "dark": "{brand.color.accent-uno.900}"
         },
         "$description": "Заливки элементов поверх земли · accent-uno · pale. Интерактивный акцент."
       },
       "accent-uno-soft": {
         "$type": "color",
         "$modes": {
-          "light": "{brand.color.accent-uno.100}",
-          "dark": "{brand.color.accent-uno.900}"
+          "light": "{brand.color.accent-uno.200}",
+          "dark": "{brand.color.accent-uno.800}"
         },
         "$description": "Заливки элементов поверх земли · accent-uno · soft. Интерактивный акцент."
       },
@@ -73,16 +73,16 @@
       "accent-duo-pale": {
         "$type": "color",
         "$modes": {
-          "light": "{brand.color.accent-duo.50}",
-          "dark": "{brand.color.accent-duo.950}"
+          "light": "{brand.color.accent-duo.100}",
+          "dark": "{brand.color.accent-duo.900}"
         },
         "$description": "Заливки элементов поверх земли · accent-duo · pale. Интерактивный акцент."
       },
       "accent-duo-soft": {
         "$type": "color",
         "$modes": {
-          "light": "{brand.color.accent-duo.100}",
-          "dark": "{brand.color.accent-duo.900}"
+          "light": "{brand.color.accent-duo.200}",
+          "dark": "{brand.color.accent-duo.800}"
         },
         "$description": "Заливки элементов поверх земли · accent-duo · soft. Интерактивный акцент."
       },
@@ -97,16 +97,16 @@
       "status-positive-pale": {
         "$type": "color",
         "$modes": {
-          "light": "{brand.color.positive.50}",
-          "dark": "{brand.color.positive.950}"
+          "light": "{brand.color.positive.100}",
+          "dark": "{brand.color.positive.900}"
         },
         "$description": "Заливки элементов поверх земли · status-positive · pale. Статусы: успех и ошибка."
       },
       "status-positive-soft": {
         "$type": "color",
         "$modes": {
-          "light": "{brand.color.positive.100}",
-          "dark": "{brand.color.positive.900}"
+          "light": "{brand.color.positive.200}",
+          "dark": "{brand.color.positive.800}"
         },
         "$description": "Заливки элементов поверх земли · status-positive · soft. Статусы: успех и ошибка."
       },
@@ -121,16 +121,16 @@
       "status-negative-pale": {
         "$type": "color",
         "$modes": {
-          "light": "{brand.color.negative.50}",
-          "dark": "{brand.color.negative.950}"
+          "light": "{brand.color.negative.100}",
+          "dark": "{brand.color.negative.900}"
         },
         "$description": "Заливки элементов поверх земли · status-negative · pale. Статусы: успех и ошибка."
       },
       "status-negative-soft": {
         "$type": "color",
         "$modes": {
-          "light": "{brand.color.negative.100}",
-          "dark": "{brand.color.negative.900}"
+          "light": "{brand.color.negative.200}",
+          "dark": "{brand.color.negative.800}"
         },
         "$description": "Заливки элементов поверх земли · status-negative · soft. Статусы: успех и ошибка."
       },
@@ -145,16 +145,16 @@
       "brand-uno-pale": {
         "$type": "color",
         "$modes": {
-          "light": "{brand.color.brand-uno.50}",
-          "dark": "{brand.color.brand-uno.950}"
+          "light": "{brand.color.brand-uno.100}",
+          "dark": "{brand.color.brand-uno.900}"
         },
         "$description": "Заливки элементов поверх земли · brand-uno · pale. Фирменные цвета для промо и айдентики, не для интерактива."
       },
       "brand-uno-soft": {
         "$type": "color",
         "$modes": {
-          "light": "{brand.color.brand-uno.100}",
-          "dark": "{brand.color.brand-uno.900}"
+          "light": "{brand.color.brand-uno.200}",
+          "dark": "{brand.color.brand-uno.800}"
         },
         "$description": "Заливки элементов поверх земли · brand-uno · soft. Фирменные цвета для промо и айдентики, не для интерактива."
       },
@@ -169,16 +169,16 @@
       "brand-duo-pale": {
         "$type": "color",
         "$modes": {
-          "light": "{brand.color.brand-duo.50}",
-          "dark": "{brand.color.brand-duo.950}"
+          "light": "{brand.color.brand-duo.100}",
+          "dark": "{brand.color.brand-duo.900}"
         },
         "$description": "Заливки элементов поверх земли · brand-duo · pale. Фирменные цвета для промо и айдентики, не для интерактива."
       },
       "brand-duo-soft": {
         "$type": "color",
         "$modes": {
-          "light": "{brand.color.brand-duo.100}",
-          "dark": "{brand.color.brand-duo.900}"
+          "light": "{brand.color.brand-duo.200}",
+          "dark": "{brand.color.brand-duo.800}"
         },
         "$description": "Заливки элементов поверх земли · brand-duo · soft. Фирменные цвета для промо и айдентики, не для интерактива."
       },
@@ -709,8 +709,8 @@
         "pale": {
           "$type": "color",
           "$modes": {
-            "light": "{brand.color.accent-uno.100}",
-            "dark": "{brand.color.accent-uno.900}"
+            "light": "{brand.color.accent-uno.200}",
+            "dark": "{brand.color.accent-uno.800}"
           },
           "$description": "Обводки и разделители · accent-uno · pale. Интерактивный акцент."
         },
@@ -736,8 +736,8 @@
         "pale": {
           "$type": "color",
           "$modes": {
-            "light": "{brand.color.accent-duo.100}",
-            "dark": "{brand.color.accent-duo.900}"
+            "light": "{brand.color.accent-duo.200}",
+            "dark": "{brand.color.accent-duo.800}"
           },
           "$description": "Обводки и разделители · accent-duo · pale. Интерактивный акцент."
         },
@@ -763,8 +763,8 @@
         "pale": {
           "$type": "color",
           "$modes": {
-            "light": "{brand.color.positive.100}",
-            "dark": "{brand.color.positive.900}"
+            "light": "{brand.color.positive.200}",
+            "dark": "{brand.color.positive.800}"
           },
           "$description": "Обводки и разделители · status-positive · pale. Статусы: успех и ошибка."
         },
@@ -790,8 +790,8 @@
         "pale": {
           "$type": "color",
           "$modes": {
-            "light": "{brand.color.negative.100}",
-            "dark": "{brand.color.negative.900}"
+            "light": "{brand.color.negative.200}",
+            "dark": "{brand.color.negative.800}"
           },
           "$description": "Обводки и разделители · status-negative · pale. Статусы: успех и ошибка."
         },
