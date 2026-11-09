@@ -1,7 +1,7 @@
 {
   "name": "chip",
   "figmaName": "Chip",
-  "summary": "Чипс — фильтр или выбор. Выбранный — чёрный (background/neutral-deep), невыбранный — тихий (background/neutral-pale с обводкой).",
+  "summary": "Чипс — фильтр или выбор, без обводки. Невыбранный — серый (preset/chip/fill; в пресете overlay — белый), выбранный — чёрный (background/neutral-deep) с белой подписью.",
   "props": {
     "selected": {
       "kind": "variant",
@@ -47,7 +47,7 @@
     }
   },
   "colors": {
-    "off": "preset/chip/fill + preset/chip/border, подпись content/neutral/primary",
+    "off": "preset/chip/fill, подпись content/neutral/primary",
     "on": "background/neutral-deep, подпись content/neutral/on-deep"
   },
   "states": {

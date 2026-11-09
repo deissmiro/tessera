@@ -1,6 +1,0 @@
-{
-  "name": "popover",
-  "figmaName": "Popover",
-  "summary": "Белая карточка ground/ground-2, скругление 20, тень. Заголовок + закрыть, слот content, слот footer (по умолчанию серая кнопка «Понятно»), стрелка со скруглённым кончиком. placement bottom/top. Свойства: title, hasClose, hasFooter.",
-  "layout": "viewport/overlay/popover-*"
-}

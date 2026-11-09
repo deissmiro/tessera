@@ -1,7 +1,7 @@
 {
   "name": "radio",
   "figmaName": "Radio",
-  "summary": "Радиокнопка. Мягкий стиль в духе Яндекса: без обводок, выключенный — серая заливка, включённый — чёрный. Размер 24.",
+  "summary": "Радио без подписи: только сам контрол 24. Выключенное — серое, выбранное — толстое чёрное кольцо с белым центром.",
   "props": {
     "selected": {
       "kind": "variant",
@@ -20,14 +20,6 @@
         "disabled"
       ],
       "default": "default"
-    },
-    "label": {
-      "kind": "text",
-      "default": "Подпись"
-    },
-    "hasLabel": {
-      "kind": "boolean",
-      "default": true
     }
   },
   "colors": {
@@ -40,8 +32,7 @@
     "disabled": "opacity/40"
   },
   "layout": {
-    "size": "viewport/control/selector/size",
-    "gap": "viewport/control/selector/gap"
+    "size": "viewport/control/selector/size"
   },
   "style": "Мягкий стиль в духе Яндекса: без обводок, выключенный — серая заливка, включённый — чёрный. Размер 24."
 }

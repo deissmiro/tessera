@@ -17,18 +17,10 @@
       "fill": {
         "$type": "color",
         "$modes": {
-          "default": "{theme.background.neutral-pale}",
+          "default": "{theme.background.neutral-soft}",
           "overlay": "{theme.ground.ground-2}"
         },
-        "$description": "Заливка невыбранного чипса."
-      },
-      "border": {
-        "$type": "color",
-        "$modes": {
-          "default": "{theme.border.neutral.soft}",
-          "overlay": "{theme.ground.ground-2}"
-        },
-        "$description": "Обводка невыбранного чипса: на цветном фоне сливается с заливкой."
+        "$description": "Невыбранный чипс: на ground — серый, на цветном фоне — белый. Выбранный всегда чёрный."
       }
     },
     "segment": {

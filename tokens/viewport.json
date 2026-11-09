@@ -341,15 +341,6 @@
           },
           "$description": "Размер чекбокса и радио."
         },
-        "gap": {
-          "$type": "number",
-          "$modes": {
-            "s": 12,
-            "m": 12,
-            "l": 12
-          },
-          "$description": "Шаг до подписи."
-        },
         "checkbox-radius": {
           "$type": "number",
           "$modes": {
@@ -679,72 +670,6 @@
         "$description": "Вертикальный отступ многострочного поля."
       }
     },
-    "cell": {
-      "$description": "Ячейка списка.",
-      "min-height": {
-        "$type": "number",
-        "$modes": {
-          "s": 64,
-          "m": 64,
-          "l": 64
-        },
-        "$description": "Минимальная высота ячейки."
-      },
-      "padding-x": {
-        "$type": "number",
-        "$modes": {
-          "s": 16,
-          "m": 16,
-          "l": 16
-        },
-        "$description": "Горизонтальный отступ."
-      },
-      "padding-y": {
-        "$type": "number",
-        "$modes": {
-          "s": 12,
-          "m": 12,
-          "l": 12
-        },
-        "$description": "Вертикальный отступ."
-      },
-      "gap": {
-        "$type": "number",
-        "$modes": {
-          "s": 12,
-          "m": 12,
-          "l": 12
-        },
-        "$description": "Шаг между слотами."
-      },
-      "title-size": {
-        "$type": "number",
-        "$modes": {
-          "s": 16,
-          "m": 16,
-          "l": 16
-        },
-        "$description": "Кегль заголовка."
-      },
-      "subtitle-size": {
-        "$type": "number",
-        "$modes": {
-          "s": 13,
-          "m": 13,
-          "l": 13
-        },
-        "$description": "Кегль подзаголовка."
-      },
-      "width": {
-        "$type": "number",
-        "$modes": {
-          "s": 375,
-          "m": 375,
-          "l": 375
-        },
-        "$description": "Ширина ячейки по умолчанию."
-      }
-    },
     "segment": {
       "$description": "Сегментированный контрол.",
       "height": {
@@ -809,72 +734,6 @@
           "l": 343
         },
         "$description": "Ширина по умолчанию."
-      }
-    },
-    "tabs": {
-      "$description": "Табы.",
-      "height": {
-        "$type": "number",
-        "$modes": {
-          "s": 44,
-          "m": 44,
-          "l": 44
-        },
-        "$description": "Высота линейных табов."
-      },
-      "gap": {
-        "$type": "number",
-        "$modes": {
-          "s": 24,
-          "m": 24,
-          "l": 24
-        },
-        "$description": "Шаг между линейными табами."
-      },
-      "underline": {
-        "$type": "number",
-        "$modes": {
-          "s": 2,
-          "m": 2,
-          "l": 2
-        },
-        "$description": "Толщина подчёркивания активного таба."
-      },
-      "pill-height": {
-        "$type": "number",
-        "$modes": {
-          "s": 36,
-          "m": 36,
-          "l": 36
-        },
-        "$description": "Высота табов-пилюль."
-      },
-      "pill-padding-x": {
-        "$type": "number",
-        "$modes": {
-          "s": 14,
-          "m": 14,
-          "l": 14
-        },
-        "$description": "Отступ в пилюле."
-      },
-      "pill-gap": {
-        "$type": "number",
-        "$modes": {
-          "s": 8,
-          "m": 8,
-          "l": 8
-        },
-        "$description": "Шаг между пилюлями."
-      },
-      "font-size": {
-        "$type": "number",
-        "$modes": {
-          "s": 15,
-          "m": 15,
-          "l": 15
-        },
-        "$description": "Кегль подписи."
       }
     },
     "badge": {
@@ -1192,81 +1051,6 @@
         "$description": "Ширина по умолчанию."
       }
     },
-    "overlay": {
-      "$description": "Тултип и поповер.",
-      "tooltip-padding-x": {
-        "$type": "number",
-        "$modes": {
-          "s": 14,
-          "m": 14,
-          "l": 14
-        },
-        "$description": "Отступ тултипа."
-      },
-      "tooltip-padding-y": {
-        "$type": "number",
-        "$modes": {
-          "s": 10,
-          "m": 10,
-          "l": 10
-        },
-        "$description": "Вертикальный отступ тултипа."
-      },
-      "tooltip-radius": {
-        "$type": "number",
-        "$modes": {
-          "s": 14,
-          "m": 14,
-          "l": 14
-        },
-        "$description": "Скругление тултипа."
-      },
-      "tooltip-max-width": {
-        "$type": "number",
-        "$modes": {
-          "s": 240,
-          "m": 240,
-          "l": 240
-        },
-        "$description": "Максимальная ширина тултипа."
-      },
-      "popover-padding": {
-        "$type": "number",
-        "$modes": {
-          "s": 20,
-          "m": 20,
-          "l": 20
-        },
-        "$description": "Отступ поповера."
-      },
-      "popover-radius": {
-        "$type": "number",
-        "$modes": {
-          "s": 20,
-          "m": 20,
-          "l": 20
-        },
-        "$description": "Скругление поповера."
-      },
-      "popover-width": {
-        "$type": "number",
-        "$modes": {
-          "s": 280,
-          "m": 280,
-          "l": 280
-        },
-        "$description": "Ширина поповера."
-      },
-      "arrow": {
-        "$type": "number",
-        "$modes": {
-          "s": 10,
-          "m": 10,
-          "l": 10
-        },
-        "$description": "Размер стрелки."
-      }
-    },
     "code": {
       "$description": "Ввод кода.",
       "cell-width": {
@@ -1313,72 +1097,6 @@
           "l": 24
         },
         "$description": "Кегль цифры."
-      }
-    },
-    "datepicker": {
-      "$description": "Календарь.",
-      "day": {
-        "$type": "number",
-        "$modes": {
-          "s": 44,
-          "m": 44,
-          "l": 44
-        },
-        "$description": "Размер дня."
-      },
-      "gap": {
-        "$type": "number",
-        "$modes": {
-          "s": 0,
-          "m": 0,
-          "l": 0
-        },
-        "$description": "Шаг по горизонтали: 0, чтобы диапазон шёл сплошной полосой."
-      },
-      "padding": {
-        "$type": "number",
-        "$modes": {
-          "s": 16,
-          "m": 16,
-          "l": 16
-        },
-        "$description": "Отступ календаря."
-      },
-      "radius": {
-        "$type": "number",
-        "$modes": {
-          "s": 24,
-          "m": 24,
-          "l": 24
-        },
-        "$description": "Скругление календаря."
-      },
-      "font-size": {
-        "$type": "number",
-        "$modes": {
-          "s": 15,
-          "m": 15,
-          "l": 15
-        },
-        "$description": "Кегль дня."
-      },
-      "day-radius": {
-        "$type": "number",
-        "$modes": {
-          "s": 12,
-          "m": 12,
-          "l": 12
-        },
-        "$description": "Скругление выбранного дня."
-      },
-      "row-gap": {
-        "$type": "number",
-        "$modes": {
-          "s": 4,
-          "m": 4,
-          "l": 4
-        },
-        "$description": "Шаг между неделями."
       }
     },
     "pagination": {

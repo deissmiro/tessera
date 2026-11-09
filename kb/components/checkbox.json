@@ -1,7 +1,7 @@
 {
   "name": "checkbox",
   "figmaName": "Checkbox",
-  "summary": "Чекбокс. Мягкий стиль в духе Яндекса: без обводок, выключенный — серая заливка, включённый — чёрный. Размер 24.",
+  "summary": "Чекбокс без подписи: только сам контрол 24 (подпись — снаружи, например в ячейке). Выключенный — серый без обводки, отмеченный — чёрный с белой галкой, есть indeterminate.",
   "props": {
     "checked": {
       "kind": "variant",
@@ -21,14 +21,6 @@
         "disabled"
       ],
       "default": "default"
-    },
-    "label": {
-      "kind": "text",
-      "default": "Подпись"
-    },
-    "hasLabel": {
-      "kind": "boolean",
-      "default": true
     }
   },
   "colors": {
@@ -42,8 +34,7 @@
   },
   "layout": {
     "box": "viewport/control/selector/size",
-    "radius": "viewport/control/selector/checkbox-radius",
-    "gap": "viewport/control/selector/gap"
+    "radius": "viewport/control/selector/checkbox-radius"
   },
   "style": "Мягкий стиль в духе Яндекса: без обводок, выключенный — серая заливка, включённый — чёрный. Размер 24."
 }

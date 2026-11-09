@@ -1,6 +1,0 @@
-{
-  "name": "tooltip",
-  "figmaName": "Tooltip",
-  "summary": "Тёмный background/inverse, скругление 14, заголовок (по желанию, hasTitle) + текст (content/inverse/secondary), стрелка со скруглённым кончиком. placement top/bottom/left/right.",
-  "layout": "viewport/overlay/tooltip-*"
-}
