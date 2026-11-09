@@ -45,6 +45,11 @@ def generate():
                 name = mean if scheme is None else f"{mean}-{scheme}"
                 kind = mdef["kind"]
                 ramp, swap = None, kind == "inverse"
+                if kind == "static" and g in mdef.get("single", {}):
+                    light, dark = mdef["single"][g][scheme]
+                    node[name] = color(light, dark, f"{short} · {name}. {mdef['description'].split('.')[0]}.")
+                    figma_names.add(f"{g}/{name}")
+                    continue
                 if kind == "inverse" and g in mdef.get("single", {}):
                     light, dark = mdef["single"][g]
                     node[name] = color(light, dark, f"{short} · {name}. {mdef['description'].split('.')[0]}.")
@@ -74,7 +79,7 @@ def generate():
 
     colored = sorted({n.split("/")[1].rsplit("-", 1)[0] for n in figma_names
                       if n.startswith("background/") and n.split("/")[1].startswith(("accent", "status", "brand"))})
-    levels = groups["ground"]["levels"]
+    levels = [l for l in groups["ground"]["levels"] if l != "scrim"]
     pairs = []
     for r in m["pairs"]["rules"]:
         both = r["fg"] + r["bg"]

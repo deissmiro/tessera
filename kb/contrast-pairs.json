@@ -47,13 +47,13 @@
       "min": 7
     },
     {
-      "fg": "theme.content.static-light.primary",
-      "bg": "theme.background.static-dark-deep",
+      "fg": "theme.content.static-light",
+      "bg": "theme.background.static-dark",
       "min": 7
     },
     {
-      "fg": "theme.content.static-dark.primary",
-      "bg": "theme.background.static-light-pale",
+      "fg": "theme.content.static-dark",
+      "bg": "theme.background.static-light",
       "min": 7
     },
     {

@@ -2388,6 +2388,26 @@
      }
     },
     {
+     "name": "ground/scrim",
+     "type": "COLOR",
+     "description": "Земля · scrim.",
+     "scopes": [
+      "FRAME_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--theme-ground-scrim)"
+     },
+     "valuesByMode": {
+      "light": {
+       "$alias": "1 · Brand::color/black"
+      },
+      "dark": {
+       "$alias": "1 · Brand::color/black"
+      }
+     }
+    },
+    {
      "name": "background/neutral-pale",
      "type": "COLOR",
      "description": "Заливки элементов поверх земли · neutral · pale. Основной нейтральный цвет интерфейса.",
@@ -2829,16 +2849,16 @@
      }
     },
     {
-     "name": "background/static-light-pale",
+     "name": "background/static-light",
      "type": "COLOR",
-     "description": "Заливки элементов поверх земли · static-light · pale. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "description": "Заливки элементов поверх земли · static-light. Не меняются от темы: static-light — всегда белый, static-dark — всегда чёрный.",
      "scopes": [
       "FRAME_FILL",
       "SHAPE_FILL"
      ],
      "hiddenFromPublishing": false,
      "codeSyntax": {
-      "WEB": "var(--theme-background-static-light-pale)"
+      "WEB": "var(--theme-background-static-light)"
      },
      "valuesByMode": {
       "light": {
@@ -2850,107 +2870,23 @@
      }
     },
     {
-     "name": "background/static-light-soft",
+     "name": "background/static-dark",
      "type": "COLOR",
-     "description": "Заливки элементов поверх земли · static-light · soft. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "description": "Заливки элементов поверх земли · static-dark. Не меняются от темы: static-light — всегда белый, static-dark — всегда чёрный.",
      "scopes": [
       "FRAME_FILL",
       "SHAPE_FILL"
      ],
      "hiddenFromPublishing": false,
      "codeSyntax": {
-      "WEB": "var(--theme-background-static-light-soft)"
+      "WEB": "var(--theme-background-static-dark)"
      },
      "valuesByMode": {
       "light": {
-       "$alias": "1 · Brand::color/neutral/100"
+       "$alias": "1 · Brand::color/black"
       },
       "dark": {
-       "$alias": "1 · Brand::color/neutral/100"
-      }
-     }
-    },
-    {
-     "name": "background/static-light-deep",
-     "type": "COLOR",
-     "description": "Заливки элементов поверх земли · static-light · deep. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
-     "scopes": [
-      "FRAME_FILL",
-      "SHAPE_FILL"
-     ],
-     "hiddenFromPublishing": false,
-     "codeSyntax": {
-      "WEB": "var(--theme-background-static-light-deep)"
-     },
-     "valuesByMode": {
-      "light": {
-       "$alias": "1 · Brand::color/neutral/200"
-      },
-      "dark": {
-       "$alias": "1 · Brand::color/neutral/200"
-      }
-     }
-    },
-    {
-     "name": "background/static-dark-pale",
-     "type": "COLOR",
-     "description": "Заливки элементов поверх земли · static-dark · pale. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
-     "scopes": [
-      "FRAME_FILL",
-      "SHAPE_FILL"
-     ],
-     "hiddenFromPublishing": false,
-     "codeSyntax": {
-      "WEB": "var(--theme-background-static-dark-pale)"
-     },
-     "valuesByMode": {
-      "light": {
-       "$alias": "1 · Brand::color/neutral/800"
-      },
-      "dark": {
-       "$alias": "1 · Brand::color/neutral/800"
-      }
-     }
-    },
-    {
-     "name": "background/static-dark-soft",
-     "type": "COLOR",
-     "description": "Заливки элементов поверх земли · static-dark · soft. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
-     "scopes": [
-      "FRAME_FILL",
-      "SHAPE_FILL"
-     ],
-     "hiddenFromPublishing": false,
-     "codeSyntax": {
-      "WEB": "var(--theme-background-static-dark-soft)"
-     },
-     "valuesByMode": {
-      "light": {
-       "$alias": "1 · Brand::color/neutral/900"
-      },
-      "dark": {
-       "$alias": "1 · Brand::color/neutral/900"
-      }
-     }
-    },
-    {
-     "name": "background/static-dark-deep",
-     "type": "COLOR",
-     "description": "Заливки элементов поверх земли · static-dark · deep. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
-     "scopes": [
-      "FRAME_FILL",
-      "SHAPE_FILL"
-     ],
-     "hiddenFromPublishing": false,
-     "codeSyntax": {
-      "WEB": "var(--theme-background-static-dark-deep)"
-     },
-     "valuesByMode": {
-      "light": {
-       "$alias": "1 · Brand::color/neutral/950"
-      },
-      "dark": {
-       "$alias": "1 · Brand::color/neutral/950"
+       "$alias": "1 · Brand::color/black"
       }
      }
     },
@@ -3438,16 +3374,16 @@
      }
     },
     {
-     "name": "content/static-light/primary",
+     "name": "content/static-light",
      "type": "COLOR",
-     "description": "Текст и иконки · static-light · primary. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "description": "Текст и иконки · static-light. Не меняются от темы: static-light — всегда белый, static-dark — всегда чёрный.",
      "scopes": [
       "TEXT_FILL",
       "SHAPE_FILL"
      ],
      "hiddenFromPublishing": false,
      "codeSyntax": {
-      "WEB": "var(--theme-content-static-light-primary)"
+      "WEB": "var(--theme-content-static-light)"
      },
      "valuesByMode": {
       "light": {
@@ -3459,149 +3395,23 @@
      }
     },
     {
-     "name": "content/static-light/secondary",
+     "name": "content/static-dark",
      "type": "COLOR",
-     "description": "Текст и иконки · static-light · secondary. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "description": "Текст и иконки · static-dark. Не меняются от темы: static-light — всегда белый, static-dark — всегда чёрный.",
      "scopes": [
       "TEXT_FILL",
       "SHAPE_FILL"
      ],
      "hiddenFromPublishing": false,
      "codeSyntax": {
-      "WEB": "var(--theme-content-static-light-secondary)"
+      "WEB": "var(--theme-content-static-dark)"
      },
      "valuesByMode": {
       "light": {
-       "$alias": "1 · Brand::color/neutral/200"
+       "$alias": "1 · Brand::color/black"
       },
       "dark": {
-       "$alias": "1 · Brand::color/neutral/200"
-      }
-     }
-    },
-    {
-     "name": "content/static-light/tertiary",
-     "type": "COLOR",
-     "description": "Текст и иконки · static-light · tertiary. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
-     "scopes": [
-      "TEXT_FILL",
-      "SHAPE_FILL"
-     ],
-     "hiddenFromPublishing": false,
-     "codeSyntax": {
-      "WEB": "var(--theme-content-static-light-tertiary)"
-     },
-     "valuesByMode": {
-      "light": {
-       "$alias": "1 · Brand::color/neutral/400"
-      },
-      "dark": {
-       "$alias": "1 · Brand::color/neutral/400"
-      }
-     }
-    },
-    {
-     "name": "content/static-light/on-deep",
-     "type": "COLOR",
-     "description": "Текст и иконки · static-light · on-deep. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
-     "scopes": [
-      "TEXT_FILL",
-      "SHAPE_FILL"
-     ],
-     "hiddenFromPublishing": false,
-     "codeSyntax": {
-      "WEB": "var(--theme-content-static-light-on-deep)"
-     },
-     "valuesByMode": {
-      "light": {
-       "$alias": "1 · Brand::color/neutral/950"
-      },
-      "dark": {
-       "$alias": "1 · Brand::color/neutral/950"
-      }
-     }
-    },
-    {
-     "name": "content/static-dark/primary",
-     "type": "COLOR",
-     "description": "Текст и иконки · static-dark · primary. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
-     "scopes": [
-      "TEXT_FILL",
-      "SHAPE_FILL"
-     ],
-     "hiddenFromPublishing": false,
-     "codeSyntax": {
-      "WEB": "var(--theme-content-static-dark-primary)"
-     },
-     "valuesByMode": {
-      "light": {
-       "$alias": "1 · Brand::color/neutral/950"
-      },
-      "dark": {
-       "$alias": "1 · Brand::color/neutral/950"
-      }
-     }
-    },
-    {
-     "name": "content/static-dark/secondary",
-     "type": "COLOR",
-     "description": "Текст и иконки · static-dark · secondary. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
-     "scopes": [
-      "TEXT_FILL",
-      "SHAPE_FILL"
-     ],
-     "hiddenFromPublishing": false,
-     "codeSyntax": {
-      "WEB": "var(--theme-content-static-dark-secondary)"
-     },
-     "valuesByMode": {
-      "light": {
-       "$alias": "1 · Brand::color/neutral/800"
-      },
-      "dark": {
-       "$alias": "1 · Brand::color/neutral/800"
-      }
-     }
-    },
-    {
-     "name": "content/static-dark/tertiary",
-     "type": "COLOR",
-     "description": "Текст и иконки · static-dark · tertiary. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
-     "scopes": [
-      "TEXT_FILL",
-      "SHAPE_FILL"
-     ],
-     "hiddenFromPublishing": false,
-     "codeSyntax": {
-      "WEB": "var(--theme-content-static-dark-tertiary)"
-     },
-     "valuesByMode": {
-      "light": {
-       "$alias": "1 · Brand::color/neutral/700"
-      },
-      "dark": {
-       "$alias": "1 · Brand::color/neutral/700"
-      }
-     }
-    },
-    {
-     "name": "content/static-dark/on-deep",
-     "type": "COLOR",
-     "description": "Текст и иконки · static-dark · on-deep. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
-     "scopes": [
-      "TEXT_FILL",
-      "SHAPE_FILL"
-     ],
-     "hiddenFromPublishing": false,
-     "codeSyntax": {
-      "WEB": "var(--theme-content-static-dark-on-deep)"
-     },
-     "valuesByMode": {
-      "light": {
-       "$alias": "1 · Brand::color/white"
-      },
-      "dark": {
-       "$alias": "1 · Brand::color/white"
+       "$alias": "1 · Brand::color/black"
       }
      }
     },
@@ -3969,55 +3779,15 @@
      }
     },
     {
-     "name": "border/static-light/pale",
+     "name": "border/static-light",
      "type": "COLOR",
-     "description": "Обводки и разделители · static-light · pale. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "description": "Обводки и разделители · static-light. Не меняются от темы: static-light — всегда белый, static-dark — всегда чёрный.",
      "scopes": [
       "STROKE_COLOR"
      ],
      "hiddenFromPublishing": false,
      "codeSyntax": {
-      "WEB": "var(--theme-border-static-light-pale)"
-     },
-     "valuesByMode": {
-      "light": {
-       "$alias": "1 · Brand::color/neutral/100"
-      },
-      "dark": {
-       "$alias": "1 · Brand::color/neutral/100"
-      }
-     }
-    },
-    {
-     "name": "border/static-light/soft",
-     "type": "COLOR",
-     "description": "Обводки и разделители · static-light · soft. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
-     "scopes": [
-      "STROKE_COLOR"
-     ],
-     "hiddenFromPublishing": false,
-     "codeSyntax": {
-      "WEB": "var(--theme-border-static-light-soft)"
-     },
-     "valuesByMode": {
-      "light": {
-       "$alias": "1 · Brand::color/neutral/300"
-      },
-      "dark": {
-       "$alias": "1 · Brand::color/neutral/300"
-      }
-     }
-    },
-    {
-     "name": "border/static-light/deep",
-     "type": "COLOR",
-     "description": "Обводки и разделители · static-light · deep. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
-     "scopes": [
-      "STROKE_COLOR"
-     ],
-     "hiddenFromPublishing": false,
-     "codeSyntax": {
-      "WEB": "var(--theme-border-static-light-deep)"
+      "WEB": "var(--theme-border-static-light)"
      },
      "valuesByMode": {
       "light": {
@@ -4029,62 +3799,22 @@
      }
     },
     {
-     "name": "border/static-dark/pale",
+     "name": "border/static-dark",
      "type": "COLOR",
-     "description": "Обводки и разделители · static-dark · pale. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
+     "description": "Обводки и разделители · static-dark. Не меняются от темы: static-light — всегда белый, static-dark — всегда чёрный.",
      "scopes": [
       "STROKE_COLOR"
      ],
      "hiddenFromPublishing": false,
      "codeSyntax": {
-      "WEB": "var(--theme-border-static-dark-pale)"
+      "WEB": "var(--theme-border-static-dark)"
      },
      "valuesByMode": {
       "light": {
-       "$alias": "1 · Brand::color/neutral/800"
+       "$alias": "1 · Brand::color/black"
       },
       "dark": {
-       "$alias": "1 · Brand::color/neutral/800"
-      }
-     }
-    },
-    {
-     "name": "border/static-dark/soft",
-     "type": "COLOR",
-     "description": "Обводки и разделители · static-dark · soft. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
-     "scopes": [
-      "STROKE_COLOR"
-     ],
-     "hiddenFromPublishing": false,
-     "codeSyntax": {
-      "WEB": "var(--theme-border-static-dark-soft)"
-     },
-     "valuesByMode": {
-      "light": {
-       "$alias": "1 · Brand::color/neutral/700"
-      },
-      "dark": {
-       "$alias": "1 · Brand::color/neutral/700"
-      }
-     }
-    },
-    {
-     "name": "border/static-dark/deep",
-     "type": "COLOR",
-     "description": "Обводки и разделители · static-dark · deep. Не меняются от темы: light всегда светлый, dark всегда тёмный.",
-     "scopes": [
-      "STROKE_COLOR"
-     ],
-     "hiddenFromPublishing": false,
-     "codeSyntax": {
-      "WEB": "var(--theme-border-static-dark-deep)"
-     },
-     "valuesByMode": {
-      "light": {
-       "$alias": "1 · Brand::color/neutral/950"
-      },
-      "dark": {
-       "$alias": "1 · Brand::color/neutral/950"
+       "$alias": "1 · Brand::color/black"
       }
      }
     },

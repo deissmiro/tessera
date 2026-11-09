@@ -25,12 +25,12 @@ summary: Как устроен цвет кита — коллекции, тон�
 ## Семантика (2 · Theme)
 | Группа | Имена |
 |---|---|
-| ground | `ground/ground-1` — страница, `ground/ground-2` — то, что лежит на странице. Больше ничего |
+| ground | `ground/ground-1` — страница, `ground/ground-2` — то, что лежит на странице, `ground/scrim` — затемнение под модальными окнами (чёрный + opacity). Больше ничего |
 | background | плоско: `background/<смысл>-<pale\|soft\|deep>` — `background/accent-uno-deep` |
 | content | `content/<смысл>/<primary\|secondary\|tertiary\|on-deep>` |
 | border | `border/<смысл>/<pale\|soft\|deep>` |
 
-Смыслы: neutral, accent-uno/duo, status-positive/negative, brand-uno/duo, static-light/dark, inverse. Inverse — один цвет: `background/inverse`, `border/inverse`.
+Смыслы: neutral, accent-uno/duo, status-positive/negative, brand-uno/duo, static-light/dark, inverse. Inverse — один цвет: `background/inverse`, `border/inverse`. Static — тоже один цвет на группу, не зависит от темы: `static-light` — белый, `static-dark` — чёрный (`background/static-light`, `content/static-dark`…).
 
 Как тоны бренда ложатся на цветную семантику:
 | | светлая | тёмная |
@@ -39,7 +39,7 @@ summary: Как устроен цвет кита — коллекции, тон�
 | content primary / secondary / on-deep | deep / pure / on-pure | pale / soft / on-pure |
 | border pale / soft / deep | pale / soft / pure | deep / pure / pure |
 
-Состояния: ховер и нажатие — соседний тон (pale → soft), затемнение — `background/static-dark-deep` + `opacity/40…60`.
+Состояния: ховер и нажатие — соседний тон (pale → soft), затемнение — `ground/scrim` + `opacity/40…60`.
 
 ## Компоненты
 Контракты — `kb/components/<name>.json` (MCP `get_component`). В Figma их собирает плагин: Tessera Sync → «Обновить и пересобрать компоненты». Сейчас есть: `icon` (библиотека Icon/*), `button` (наборы Button/<группа>/<small|medium|large>, варианты scheme × contrast pale|deep × state), `rich-icon` (один компонент RichIcon: size × shape, без цветовых вариантов), `field` и поля той же анатомии (Field/password, number, search, select, phone, date), `textarea`, `switch`, `cell`, `segmented-control`, `tabs`, `badge`, `stepper`, `tab-bar`, `divider`, `snackbar`, `spinner`, `progress-bar`, `tooltip`, `popover`, `code-input`, `date-picker`, `pagination`; скелетон — мод (`skeleton`), `checkbox`, `radio`, `chip`, `navbar` (Navbar/default и Navbar/large, варианты surface), `window`. Основные контролы (чекбокс, радио, чипс) во включённом состоянии — neutral-deep (чёрные).

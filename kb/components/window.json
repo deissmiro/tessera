@@ -33,7 +33,7 @@
   },
   "anatomy": [
     "root — экран брейкпоинта (viewport/screen/width × height)",
-    "scrim — затемнение: background/static-dark-deep + opacity/40",
+    "scrim — затемнение: ground/scrim + opacity/40",
     "blocker — прозрачный слой модальности",
     "panel — само окно",
     "panel/grabber — только у шитов",
@@ -105,7 +105,7 @@
   },
   "colors": {
     "panel": "theme/ground/ground-2",
-    "scrim": "theme/background/static-dark-deep + numbers/opacity/40",
+    "scrim": "theme/ground/scrim + numbers/opacity/40",
     "title": "theme/content/neutral/primary",
     "body": "theme/content/neutral/secondary",
     "grabber": "theme/border/neutral/soft",

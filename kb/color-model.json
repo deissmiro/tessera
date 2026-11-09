@@ -6,9 +6,10 @@
       "shape": "levels",
       "levels": [
         "ground-1",
-        "ground-2"
+        "ground-2",
+        "scrim"
       ],
-      "description": "Земля: два уровня основы. ground-1 — страница, ground-2 — то, что лежит на странице (карточки, панели, секции). Других цветов в земле нет.",
+      "description": "Земля: ground-1 — страница, ground-2 — то, что лежит на странице; scrim — затемнение под модальными окнами (чёрный, прозрачность — opacity из Numbers на слое). Других цветов в земле нет.",
       "steps": {
         "ground-1": [
           "neutral.100",
@@ -17,6 +18,10 @@
         "ground-2": [
           "white",
           "neutral.900"
+        ],
+        "scrim": [
+          "black",
+          "black"
         ]
       }
     },
@@ -28,7 +33,7 @@
         "soft",
         "deep"
       ],
-      "description": "Заливки элементов поверх земли: кнопки, чипы, плашки, бейджи. Плоский набор: <смысл>-<контраст>. Ховер и нажатие — соседний тон; затемнение — static-dark + opacity из Numbers."
+      "description": "Заливки элементов поверх земли: кнопки, чипы, плашки, бейджи. Плоский набор: <смысл>-<контраст>. Ховер и нажатие — соседний тон; затемнение — ground/scrim + opacity из Numbers."
     },
     "content": {
       "order": 2,
@@ -90,7 +95,39 @@
         "dark"
       ],
       "kind": "static",
-      "description": "Не меняются от темы: light всегда светлый, dark всегда тёмный. Для контента поверх фото и медиа."
+      "description": "Не меняются от темы: static-light — всегда белый, static-dark — всегда чёрный. Один цвет на группу, без градаций.",
+      "single": {
+        "background": {
+          "light": [
+            "white",
+            "white"
+          ],
+          "dark": [
+            "black",
+            "black"
+          ]
+        },
+        "content": {
+          "light": [
+            "white",
+            "white"
+          ],
+          "dark": [
+            "black",
+            "black"
+          ]
+        },
+        "border": {
+          "light": [
+            "white",
+            "white"
+          ],
+          "dark": [
+            "black",
+            "black"
+          ]
+        }
+      }
     },
     "inverse": {
       "schemes": [
@@ -142,7 +179,7 @@
     ]
   },
   "steps": {
-    "$description": "Пары [светлая, тёмная]. Для цветных смыслов — тоны бренда: pale, soft, pure, deep, on-pure. Для нейтральных — ступени neutral.N. white / black — белый и чёрный. Альфы нет: прозрачность — opacity из коллекции Numbers.",
+    "$description": "Пары [светлая, тёмная]. Для цветных смыслов — тоны бренда: pale, soft, pure, deep, on-pure. Static — один цвет на группу (meanings.static.single). Для нейтральных — ступени neutral.N. white / black — белый и чёрный. Альфы нет: прозрачность — opacity из коллекции Numbers.",
     "neutral": {
       "background": {
         "pale": [
@@ -234,104 +271,6 @@
           "pure"
         ]
       }
-    },
-    "static": {
-      "light": {
-        "background": {
-          "pale": [
-            "white",
-            "white"
-          ],
-          "soft": [
-            "neutral.100",
-            "neutral.100"
-          ],
-          "deep": [
-            "neutral.200",
-            "neutral.200"
-          ]
-        },
-        "content": {
-          "primary": [
-            "white",
-            "white"
-          ],
-          "secondary": [
-            "neutral.200",
-            "neutral.200"
-          ],
-          "tertiary": [
-            "neutral.400",
-            "neutral.400"
-          ],
-          "on-deep": [
-            "neutral.950",
-            "neutral.950"
-          ]
-        },
-        "border": {
-          "pale": [
-            "neutral.100",
-            "neutral.100"
-          ],
-          "soft": [
-            "neutral.300",
-            "neutral.300"
-          ],
-          "deep": [
-            "white",
-            "white"
-          ]
-        }
-      },
-      "dark": {
-        "background": {
-          "pale": [
-            "neutral.800",
-            "neutral.800"
-          ],
-          "soft": [
-            "neutral.900",
-            "neutral.900"
-          ],
-          "deep": [
-            "neutral.950",
-            "neutral.950"
-          ]
-        },
-        "content": {
-          "primary": [
-            "neutral.950",
-            "neutral.950"
-          ],
-          "secondary": [
-            "neutral.800",
-            "neutral.800"
-          ],
-          "tertiary": [
-            "neutral.700",
-            "neutral.700"
-          ],
-          "on-deep": [
-            "white",
-            "white"
-          ]
-        },
-        "border": {
-          "pale": [
-            "neutral.800",
-            "neutral.800"
-          ],
-          "soft": [
-            "neutral.700",
-            "neutral.700"
-          ],
-          "deep": [
-            "neutral.950",
-            "neutral.950"
-          ]
-        }
-      }
     }
   },
   "pairs": {
@@ -368,13 +307,13 @@
         "min": 7
       },
       {
-        "fg": "content/static-light/primary",
-        "bg": "background/static-dark-deep",
+        "fg": "content/static-light",
+        "bg": "background/static-dark",
         "min": 7
       },
       {
-        "fg": "content/static-dark/primary",
-        "bg": "background/static-light-pale",
+        "fg": "content/static-dark",
+        "bg": "background/static-light",
         "min": 7
       },
       {

@@ -148,8 +148,9 @@ async function buildCheckPage(data, index) {
       const ct = section("content");
       for (const n of by("content")) ct.grid.appendChild(swatch(short(n), (box) => {
         const [, m, lvl] = n.split("/");
+        if (m === "static-dark") { fill(box, "background/static-light"); box.appendChild(text("Aa", 16, true, n)); return; }
         const under = lvl === "on-deep" ? `background/${m}-deep`
-          : m === "static-light" ? "background/static-dark-deep"
+          : m === "static-light" ? "background/static-dark"
           : m === "inverse" ? "background/inverse" : "ground/ground-2";
         fill(box, under); box.appendChild(text("Aa", 16, true, n));
       }));
@@ -158,7 +159,7 @@ async function buildCheckPage(data, index) {
       // border — обводка на острове
       const bd = section("border");
       for (const n of by("border")) bd.grid.appendChild(swatch(short(n), (box) => {
-        fill(box, n.includes("static-light") ? "background/static-dark-deep" : n.endsWith("/inverse") ? "background/inverse" : "ground/ground-2");
+        fill(box, n.includes("static-light") ? "background/static-dark" : n.endsWith("/inverse") ? "background/inverse" : "ground/ground-2");
         if (V(n)) { box.strokes = [paint(n)]; box.strokeWeight = 2; }
       }));
       board.appendChild(bd.s);
@@ -312,8 +313,8 @@ async function buildComponents(index) {
   // ---- Button: смысл × контраст × размер × состояние
 
   var labelColor = (m, c) => m === "inverse" ? "content/inverse/primary"
-    : m === "static-light" ? "content/static-dark/primary"
-    : m === "static-dark" ? "content/static-light/primary"
+    : m === "static-light" ? "content/static-dark"
+    : m === "static-dark" ? "content/static-light"
     : c === "deep" ? `content/${m}/on-deep` : `content/${m}/primary`;
   try {
   // Набор на группу смысла × размер: Button/accent/large. Внутри варианты scheme (uno/duo…) × contrast × state.
@@ -332,13 +333,13 @@ async function buildComponents(index) {
       let r = 0;
       for (const sc of schemes) {
         const m = meaningOf(g, sc);
-        for (const c of (g === "inverse" ? ["deep"] : ["pale", "deep"])) {
+        for (const c of (g === "inverse" || g === "static" ? ["deep"] : ["pale", "deep"])) {
           STATES.forEach((state, ci) => {
             const b = figma.createComponent();
             b.name = (sc ? `scheme=${sc}, ` : "") + `contrast=${c}, state=${state}`;
             b.layoutMode = "HORIZONTAL"; b.primaryAxisSizingMode = "AUTO"; b.counterAxisSizingMode = "FIXED";
             b.primaryAxisAlignItems = "CENTER"; b.counterAxisAlignItems = "CENTER"; b.clipsContent = true;
-            fill(b, g === "inverse" ? "background/inverse" : `background/${m}-${c}`);
+            fill(b, g === "inverse" ? "background/inverse" : g === "static" ? `background/${m}` : `background/${m}-${c}`);
             b.resize(120, 44); bind(b, "height", VP(`control/${size}/height`));
             ["paddingLeft", "paddingRight"].forEach((p) => bind(b, p, VP(`control/${size}/padding-x`)));
             bind(b, "itemSpacing", VP(`control/${size}/gap`));
@@ -536,7 +537,7 @@ async function buildComponents(index) {
   for (const kind of ["default", "large"]) {
     const comps = [], dividers = [];
     ["ground", "island", "transparent"].forEach((surface, r) => {
-      const fg = surface === "transparent" ? "content/static-light/primary" : "content/neutral/primary";
+      const fg = surface === "transparent" ? "content/static-light" : "content/neutral/primary";
       const comp = figma.createComponent(); comp.name = `surface=${surface}`;
       comp.layoutMode = "VERTICAL"; comp.primaryAxisSizingMode = "AUTO"; comp.counterAxisSizingMode = "FIXED";
       comp.resize(390, 56); bind(comp, "width", VP("screen/width"));
@@ -587,7 +588,7 @@ async function buildComponents(index) {
   // Кнопка внутри поля — инстанс Button/static (light, pale, small): белая на сером поле.
   var fieldBtn = (iconName, label) => {
     try {
-      return iconName ? buttonInstance("static-light", "pale", "s", "", { icon: iconName, iconOnly: true }) : buttonInstance("static-light", "pale", "s", label);
+      return iconName ? buttonInstance("static-light", "deep", "s", "", { icon: iconName, iconOnly: true }) : buttonInstance("static-light", "deep", "s", label);
     } catch (e) { say(`⚠ кнопка в поле: ${e.message}`); return iconName ? icon(iconName, "content/neutral/primary") : text(label, 16, true, "content/neutral/primary"); }
   };
 
@@ -1084,7 +1085,7 @@ async function buildComponents(index) {
       const desc = text(tone === "error" ? "Проверьте соединение и попробуйте ещё раз" : "Курьер приедет через 25–35 минут", 13, false, "content/inverse/secondary");
       desc.name = "description"; col.appendChild(desc); desc.layoutSizingHorizontal = "FILL"; desc.textAutoResize = "HEIGHT";
       let act;
-      try { act = buttonInstance("static-light", "pale", "s", "Отменить"); }
+      try { act = buttonInstance("static-light", "deep", "s", "Отменить"); }
       catch (e) { act = frame("action", "HORIZONTAL"); act.appendChild(text("Отменить", 14, true, "content/inverse/primary")); }
       act.name = "action"; c.appendChild(act);
       const close = icon("clear", "content/inverse/secondary"); close.name = "close"; c.appendChild(close);
@@ -1401,7 +1402,7 @@ async function buildComponents(index) {
     const margin = type === "dialog" ? VP("window/margin") : type === "adaptive" ? VP("window/adaptive/margin") : null;
     if (margin) pad(root, margin);
 
-    const scrim = figma.createRectangle(); scrim.name = "scrim"; fill(scrim, "background/static-dark-deep");
+    const scrim = figma.createRectangle(); scrim.name = "scrim"; fill(scrim, "ground/scrim");
     bind(scrim, "opacity", N("opacity/40"));
     const blocker = figma.createRectangle(); blocker.name = "blocker"; blocker.fills = [];
     for (const layer of [scrim, blocker]) {

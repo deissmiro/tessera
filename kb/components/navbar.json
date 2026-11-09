@@ -45,7 +45,7 @@
   "colors": {
     "ground": "ground/ground-1",
     "island": "ground/ground-2",
-    "content": "content/neutral/primary; transparent → content/static-light/primary",
+    "content": "content/neutral/primary; transparent → content/static-light",
     "divider": "border/neutral/pale"
   }
 }

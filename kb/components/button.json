@@ -97,7 +97,7 @@
   },
   "colors": {
     "fill": "theme/background/<meaning>-<contrast> (inverse → background/inverse)",
-    "label": "deep → content/<meaning>/on-deep; pale → content/<meaning>/primary; static-light → content/static-dark/primary; static-dark → content/static-light/primary; inverse → content/inverse/primary"
+    "label": "deep → content/<meaning>/on-deep; pale → content/<meaning>/primary; static-light → content/static-dark; static-dark → content/static-light (static и inverse — только deep); inverse → content/inverse/primary"
   },
   "states": {
     "hover": "слой state поверх: цвет подписи + numbers/opacity/10",

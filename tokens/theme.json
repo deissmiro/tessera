@@ -2,7 +2,7 @@
   "theme": {
     "$description": "Семантика цвета. Сгенерировано tools/theme_gen.py из kb/color-model.json — руками не править.",
     "ground": {
-      "$description": "Земля: два уровня основы. ground-1 — страница, ground-2 — то, что лежит на странице (карточки, панели, секции). Других цветов в земле нет.",
+      "$description": "Земля: ground-1 — страница, ground-2 — то, что лежит на странице; scrim — затемнение под модальными окнами (чёрный, прозрачность — opacity из Numbers на слое). Других цветов в земле нет.",
       "ground-1": {
         "$type": "color",
         "$modes": {
@@ -18,10 +18,18 @@
           "dark": "{brand.color.neutral.900}"
         },
         "$description": "Земля · ground-2."
+      },
+      "scrim": {
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.black}",
+          "dark": "{brand.color.black}"
+        },
+        "$description": "Земля · scrim."
       }
     },
     "background": {
-      "$description": "Заливки элементов поверх земли: кнопки, чипы, плашки, бейджи. Плоский набор: <смысл>-<контраст>. Ховер и нажатие — соседний тон; затемнение — static-dark + opacity из Numbers.",
+      "$description": "Заливки элементов поверх земли: кнопки, чипы, плашки, бейджи. Плоский набор: <смысл>-<контраст>. Ховер и нажатие — соседний тон; затемнение — ground/scrim + opacity из Numbers.",
       "neutral-pale": {
         "$type": "color",
         "$modes": {
@@ -190,53 +198,21 @@
         },
         "$description": "Заливки элементов поверх земли · brand-duo · deep. Фирменные цвета для промо и айдентики, не для интерактива."
       },
-      "static-light-pale": {
+      "static-light": {
         "$type": "color",
         "$modes": {
           "light": "{brand.color.white}",
           "dark": "{brand.color.white}"
         },
-        "$description": "Заливки элементов поверх земли · static-light · pale. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+        "$description": "Заливки элементов поверх земли · static-light. Не меняются от темы: static-light — всегда белый, static-dark — всегда чёрный."
       },
-      "static-light-soft": {
+      "static-dark": {
         "$type": "color",
         "$modes": {
-          "light": "{brand.color.neutral.100}",
-          "dark": "{brand.color.neutral.100}"
+          "light": "{brand.color.black}",
+          "dark": "{brand.color.black}"
         },
-        "$description": "Заливки элементов поверх земли · static-light · soft. Не меняются от темы: light всегда светлый, dark всегда тёмный."
-      },
-      "static-light-deep": {
-        "$type": "color",
-        "$modes": {
-          "light": "{brand.color.neutral.200}",
-          "dark": "{brand.color.neutral.200}"
-        },
-        "$description": "Заливки элементов поверх земли · static-light · deep. Не меняются от темы: light всегда светлый, dark всегда тёмный."
-      },
-      "static-dark-pale": {
-        "$type": "color",
-        "$modes": {
-          "light": "{brand.color.neutral.800}",
-          "dark": "{brand.color.neutral.800}"
-        },
-        "$description": "Заливки элементов поверх земли · static-dark · pale. Не меняются от темы: light всегда светлый, dark всегда тёмный."
-      },
-      "static-dark-soft": {
-        "$type": "color",
-        "$modes": {
-          "light": "{brand.color.neutral.900}",
-          "dark": "{brand.color.neutral.900}"
-        },
-        "$description": "Заливки элементов поверх земли · static-dark · soft. Не меняются от темы: light всегда светлый, dark всегда тёмный."
-      },
-      "static-dark-deep": {
-        "$type": "color",
-        "$modes": {
-          "light": "{brand.color.neutral.950}",
-          "dark": "{brand.color.neutral.950}"
-        },
-        "$description": "Заливки элементов поверх земли · static-dark · deep. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+        "$description": "Заливки элементов поверх земли · static-dark. Не меняются от темы: static-light — всегда белый, static-dark — всегда чёрный."
       },
       "inverse": {
         "$type": "color",
@@ -447,74 +423,20 @@
         }
       },
       "static-light": {
-        "$description": "Не меняются от темы: light всегда светлый, dark всегда тёмный. Для контента поверх фото и медиа.",
-        "primary": {
-          "$type": "color",
-          "$modes": {
-            "light": "{brand.color.white}",
-            "dark": "{brand.color.white}"
-          },
-          "$description": "Текст и иконки · static-light · primary. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.white}",
+          "dark": "{brand.color.white}"
         },
-        "secondary": {
-          "$type": "color",
-          "$modes": {
-            "light": "{brand.color.neutral.200}",
-            "dark": "{brand.color.neutral.200}"
-          },
-          "$description": "Текст и иконки · static-light · secondary. Не меняются от темы: light всегда светлый, dark всегда тёмный."
-        },
-        "tertiary": {
-          "$type": "color",
-          "$modes": {
-            "light": "{brand.color.neutral.400}",
-            "dark": "{brand.color.neutral.400}"
-          },
-          "$description": "Текст и иконки · static-light · tertiary. Не меняются от темы: light всегда светлый, dark всегда тёмный."
-        },
-        "on-deep": {
-          "$type": "color",
-          "$modes": {
-            "light": "{brand.color.neutral.950}",
-            "dark": "{brand.color.neutral.950}"
-          },
-          "$description": "Текст и иконки · static-light · on-deep. Не меняются от темы: light всегда светлый, dark всегда тёмный."
-        }
+        "$description": "Текст и иконки · static-light. Не меняются от темы: static-light — всегда белый, static-dark — всегда чёрный."
       },
       "static-dark": {
-        "$description": "Не меняются от темы: light всегда светлый, dark всегда тёмный. Для контента поверх фото и медиа.",
-        "primary": {
-          "$type": "color",
-          "$modes": {
-            "light": "{brand.color.neutral.950}",
-            "dark": "{brand.color.neutral.950}"
-          },
-          "$description": "Текст и иконки · static-dark · primary. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.black}",
+          "dark": "{brand.color.black}"
         },
-        "secondary": {
-          "$type": "color",
-          "$modes": {
-            "light": "{brand.color.neutral.800}",
-            "dark": "{brand.color.neutral.800}"
-          },
-          "$description": "Текст и иконки · static-dark · secondary. Не меняются от темы: light всегда светлый, dark всегда тёмный."
-        },
-        "tertiary": {
-          "$type": "color",
-          "$modes": {
-            "light": "{brand.color.neutral.700}",
-            "dark": "{brand.color.neutral.700}"
-          },
-          "$description": "Текст и иконки · static-dark · tertiary. Не меняются от темы: light всегда светлый, dark всегда тёмный."
-        },
-        "on-deep": {
-          "$type": "color",
-          "$modes": {
-            "light": "{brand.color.white}",
-            "dark": "{brand.color.white}"
-          },
-          "$description": "Текст и иконки · static-dark · on-deep. Не меняются от темы: light всегда светлый, dark всегда тёмный."
-        }
+        "$description": "Текст и иконки · static-dark. Не меняются от темы: static-light — всегда белый, static-dark — всегда чёрный."
       },
       "inverse": {
         "$description": "Инверсный цвет: тосты, тултипы, инверсные плашки. В background и border — один цвет без градаций.",
@@ -682,58 +604,20 @@
         }
       },
       "static-light": {
-        "$description": "Не меняются от темы: light всегда светлый, dark всегда тёмный. Для контента поверх фото и медиа.",
-        "pale": {
-          "$type": "color",
-          "$modes": {
-            "light": "{brand.color.neutral.100}",
-            "dark": "{brand.color.neutral.100}"
-          },
-          "$description": "Обводки и разделители · static-light · pale. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.white}",
+          "dark": "{brand.color.white}"
         },
-        "soft": {
-          "$type": "color",
-          "$modes": {
-            "light": "{brand.color.neutral.300}",
-            "dark": "{brand.color.neutral.300}"
-          },
-          "$description": "Обводки и разделители · static-light · soft. Не меняются от темы: light всегда светлый, dark всегда тёмный."
-        },
-        "deep": {
-          "$type": "color",
-          "$modes": {
-            "light": "{brand.color.white}",
-            "dark": "{brand.color.white}"
-          },
-          "$description": "Обводки и разделители · static-light · deep. Не меняются от темы: light всегда светлый, dark всегда тёмный."
-        }
+        "$description": "Обводки и разделители · static-light. Не меняются от темы: static-light — всегда белый, static-dark — всегда чёрный."
       },
       "static-dark": {
-        "$description": "Не меняются от темы: light всегда светлый, dark всегда тёмный. Для контента поверх фото и медиа.",
-        "pale": {
-          "$type": "color",
-          "$modes": {
-            "light": "{brand.color.neutral.800}",
-            "dark": "{brand.color.neutral.800}"
-          },
-          "$description": "Обводки и разделители · static-dark · pale. Не меняются от темы: light всегда светлый, dark всегда тёмный."
+        "$type": "color",
+        "$modes": {
+          "light": "{brand.color.black}",
+          "dark": "{brand.color.black}"
         },
-        "soft": {
-          "$type": "color",
-          "$modes": {
-            "light": "{brand.color.neutral.700}",
-            "dark": "{brand.color.neutral.700}"
-          },
-          "$description": "Обводки и разделители · static-dark · soft. Не меняются от темы: light всегда светлый, dark всегда тёмный."
-        },
-        "deep": {
-          "$type": "color",
-          "$modes": {
-            "light": "{brand.color.neutral.950}",
-            "dark": "{brand.color.neutral.950}"
-          },
-          "$description": "Обводки и разделители · static-dark · deep. Не меняются от темы: light всегда светлый, dark всегда тёмный."
-        }
+        "$description": "Обводки и разделители · static-dark. Не меняются от темы: static-light — всегда белый, static-dark — всегда чёрный."
       },
       "inverse": {
         "$type": "color",

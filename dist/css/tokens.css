@@ -377,6 +377,7 @@
 :root, [data-theme="light"] {
   --theme-ground-ground-1: var(--brand-color-neutral-100);
   --theme-ground-ground-2: var(--brand-color-white);
+  --theme-ground-scrim: var(--brand-color-black);
   --theme-background-neutral-pale: var(--brand-color-neutral-50);
   --theme-background-neutral-soft: var(--brand-color-neutral-100);
   --theme-background-neutral-deep: var(--brand-color-neutral-900);
@@ -398,12 +399,8 @@
   --theme-background-brand-duo-pale: var(--brand-color-brand-duo-pale);
   --theme-background-brand-duo-soft: var(--brand-color-brand-duo-soft);
   --theme-background-brand-duo-deep: var(--brand-color-brand-duo-pure);
-  --theme-background-static-light-pale: var(--brand-color-white);
-  --theme-background-static-light-soft: var(--brand-color-neutral-100);
-  --theme-background-static-light-deep: var(--brand-color-neutral-200);
-  --theme-background-static-dark-pale: var(--brand-color-neutral-800);
-  --theme-background-static-dark-soft: var(--brand-color-neutral-900);
-  --theme-background-static-dark-deep: var(--brand-color-neutral-950);
+  --theme-background-static-light: var(--brand-color-white);
+  --theme-background-static-dark: var(--brand-color-black);
   --theme-background-inverse: var(--brand-color-neutral-900);
   --theme-content-neutral-primary: var(--brand-color-neutral-950);
   --theme-content-neutral-secondary: var(--brand-color-neutral-800);
@@ -427,14 +424,8 @@
   --theme-content-brand-duo-primary: var(--brand-color-brand-duo-deep);
   --theme-content-brand-duo-secondary: var(--brand-color-brand-duo-pure);
   --theme-content-brand-duo-on-deep: var(--brand-color-brand-duo-on-pure);
-  --theme-content-static-light-primary: var(--brand-color-white);
-  --theme-content-static-light-secondary: var(--brand-color-neutral-200);
-  --theme-content-static-light-tertiary: var(--brand-color-neutral-400);
-  --theme-content-static-light-on-deep: var(--brand-color-neutral-950);
-  --theme-content-static-dark-primary: var(--brand-color-neutral-950);
-  --theme-content-static-dark-secondary: var(--brand-color-neutral-800);
-  --theme-content-static-dark-tertiary: var(--brand-color-neutral-700);
-  --theme-content-static-dark-on-deep: var(--brand-color-white);
+  --theme-content-static-light: var(--brand-color-white);
+  --theme-content-static-dark: var(--brand-color-black);
   --theme-content-inverse-primary: var(--brand-color-neutral-50);
   --theme-content-inverse-secondary: var(--brand-color-neutral-200);
   --theme-content-inverse-tertiary: var(--brand-color-neutral-300);
@@ -453,18 +444,15 @@
   --theme-border-status-negative-pale: var(--brand-color-negative-pale);
   --theme-border-status-negative-soft: var(--brand-color-negative-soft);
   --theme-border-status-negative-deep: var(--brand-color-negative-pure);
-  --theme-border-static-light-pale: var(--brand-color-neutral-100);
-  --theme-border-static-light-soft: var(--brand-color-neutral-300);
-  --theme-border-static-light-deep: var(--brand-color-white);
-  --theme-border-static-dark-pale: var(--brand-color-neutral-800);
-  --theme-border-static-dark-soft: var(--brand-color-neutral-700);
-  --theme-border-static-dark-deep: var(--brand-color-neutral-950);
+  --theme-border-static-light: var(--brand-color-white);
+  --theme-border-static-dark: var(--brand-color-black);
   --theme-border-inverse: var(--brand-color-neutral-700);
 }
 
 [data-theme="dark"] {
   --theme-ground-ground-1: var(--brand-color-neutral-950);
   --theme-ground-ground-2: var(--brand-color-neutral-900);
+  --theme-ground-scrim: var(--brand-color-black);
   --theme-background-neutral-pale: var(--brand-color-neutral-850);
   --theme-background-neutral-soft: var(--brand-color-neutral-800);
   --theme-background-neutral-deep: var(--brand-color-neutral-100);
@@ -486,12 +474,8 @@
   --theme-background-brand-duo-pale: var(--brand-color-brand-duo-deep);
   --theme-background-brand-duo-soft: var(--brand-color-brand-duo-deep);
   --theme-background-brand-duo-deep: var(--brand-color-brand-duo-pure);
-  --theme-background-static-light-pale: var(--brand-color-white);
-  --theme-background-static-light-soft: var(--brand-color-neutral-100);
-  --theme-background-static-light-deep: var(--brand-color-neutral-200);
-  --theme-background-static-dark-pale: var(--brand-color-neutral-800);
-  --theme-background-static-dark-soft: var(--brand-color-neutral-900);
-  --theme-background-static-dark-deep: var(--brand-color-neutral-950);
+  --theme-background-static-light: var(--brand-color-white);
+  --theme-background-static-dark: var(--brand-color-black);
   --theme-background-inverse: var(--brand-color-neutral-100);
   --theme-content-neutral-primary: var(--brand-color-neutral-50);
   --theme-content-neutral-secondary: var(--brand-color-neutral-200);
@@ -515,14 +499,8 @@
   --theme-content-brand-duo-primary: var(--brand-color-brand-duo-pale);
   --theme-content-brand-duo-secondary: var(--brand-color-brand-duo-soft);
   --theme-content-brand-duo-on-deep: var(--brand-color-brand-duo-on-pure);
-  --theme-content-static-light-primary: var(--brand-color-white);
-  --theme-content-static-light-secondary: var(--brand-color-neutral-200);
-  --theme-content-static-light-tertiary: var(--brand-color-neutral-400);
-  --theme-content-static-light-on-deep: var(--brand-color-neutral-950);
-  --theme-content-static-dark-primary: var(--brand-color-neutral-950);
-  --theme-content-static-dark-secondary: var(--brand-color-neutral-800);
-  --theme-content-static-dark-tertiary: var(--brand-color-neutral-700);
-  --theme-content-static-dark-on-deep: var(--brand-color-white);
+  --theme-content-static-light: var(--brand-color-white);
+  --theme-content-static-dark: var(--brand-color-black);
   --theme-content-inverse-primary: var(--brand-color-neutral-950);
   --theme-content-inverse-secondary: var(--brand-color-neutral-800);
   --theme-content-inverse-tertiary: var(--brand-color-neutral-700);
@@ -541,12 +519,8 @@
   --theme-border-status-negative-pale: var(--brand-color-negative-deep);
   --theme-border-status-negative-soft: var(--brand-color-negative-pure);
   --theme-border-status-negative-deep: var(--brand-color-negative-pure);
-  --theme-border-static-light-pale: var(--brand-color-neutral-100);
-  --theme-border-static-light-soft: var(--brand-color-neutral-300);
-  --theme-border-static-light-deep: var(--brand-color-white);
-  --theme-border-static-dark-pale: var(--brand-color-neutral-800);
-  --theme-border-static-dark-soft: var(--brand-color-neutral-700);
-  --theme-border-static-dark-deep: var(--brand-color-neutral-950);
+  --theme-border-static-light: var(--brand-color-white);
+  --theme-border-static-dark: var(--brand-color-black);
   --theme-border-inverse: var(--brand-color-neutral-300);
 }
 
