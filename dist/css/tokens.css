@@ -246,6 +246,22 @@
   --viewport-divider-line: 1px;
   --viewport-divider-section: 8px;
   --viewport-divider-inset: 16px;
+  --viewport-text-display-font-size: 32px;
+  --viewport-text-display-line-height: 40px;
+  --viewport-text-title-l-font-size: 24px;
+  --viewport-text-title-l-line-height: 30px;
+  --viewport-text-title-m-font-size: 20px;
+  --viewport-text-title-m-line-height: 26px;
+  --viewport-text-title-s-font-size: 17px;
+  --viewport-text-title-s-line-height: 22px;
+  --viewport-text-body-l-font-size: 17px;
+  --viewport-text-body-l-line-height: 24px;
+  --viewport-text-body-m-font-size: 15px;
+  --viewport-text-body-m-line-height: 20px;
+  --viewport-text-body-s-font-size: 13px;
+  --viewport-text-body-s-line-height: 18px;
+  --viewport-text-caption-font-size: 11px;
+  --viewport-text-caption-line-height: 14px;
 }
 
 :root, [data-brand="tessera"] {
@@ -615,6 +631,22 @@
     --viewport-divider-line: 1px;
     --viewport-divider-section: 8px;
     --viewport-divider-inset: 16px;
+    --viewport-text-display-font-size: 40px;
+    --viewport-text-display-line-height: 48px;
+    --viewport-text-title-l-font-size: 28px;
+    --viewport-text-title-l-line-height: 34px;
+    --viewport-text-title-m-font-size: 22px;
+    --viewport-text-title-m-line-height: 28px;
+    --viewport-text-title-s-font-size: 18px;
+    --viewport-text-title-s-line-height: 24px;
+    --viewport-text-body-l-font-size: 17px;
+    --viewport-text-body-l-line-height: 24px;
+    --viewport-text-body-m-font-size: 15px;
+    --viewport-text-body-m-line-height: 20px;
+    --viewport-text-body-s-font-size: 13px;
+    --viewport-text-body-s-line-height: 18px;
+    --viewport-text-caption-font-size: 12px;
+    --viewport-text-caption-line-height: 16px;
   }
 }
 
@@ -739,6 +771,22 @@
     --viewport-divider-line: 1px;
     --viewport-divider-section: 8px;
     --viewport-divider-inset: 16px;
+    --viewport-text-display-font-size: 48px;
+    --viewport-text-display-line-height: 56px;
+    --viewport-text-title-l-font-size: 32px;
+    --viewport-text-title-l-line-height: 40px;
+    --viewport-text-title-m-font-size: 24px;
+    --viewport-text-title-m-line-height: 30px;
+    --viewport-text-title-s-font-size: 18px;
+    --viewport-text-title-s-line-height: 24px;
+    --viewport-text-body-l-font-size: 18px;
+    --viewport-text-body-l-line-height: 26px;
+    --viewport-text-body-m-font-size: 16px;
+    --viewport-text-body-m-line-height: 22px;
+    --viewport-text-body-s-font-size: 14px;
+    --viewport-text-body-s-line-height: 20px;
+    --viewport-text-caption-font-size: 12px;
+    --viewport-text-caption-line-height: 16px;
   }
 }
 

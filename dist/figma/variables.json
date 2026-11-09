@@ -6024,6 +6024,278 @@
       "m": 16,
       "l": 16
      }
+    },
+    {
+     "name": "text/display/font-size",
+     "type": "FLOAT",
+     "description": "Кегль — Промо-заголовок, герой.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-text-display-font-size)"
+     },
+     "valuesByMode": {
+      "s": 32,
+      "m": 40,
+      "l": 48
+     }
+    },
+    {
+     "name": "text/display/line-height",
+     "type": "FLOAT",
+     "description": "Интерлиньяж — Промо-заголовок, герой.",
+     "scopes": [
+      "LINE_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-text-display-line-height)"
+     },
+     "valuesByMode": {
+      "s": 40,
+      "m": 48,
+      "l": 56
+     }
+    },
+    {
+     "name": "text/title-l/font-size",
+     "type": "FLOAT",
+     "description": "Кегль — Заголовок экрана.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-text-title-l-font-size)"
+     },
+     "valuesByMode": {
+      "s": 24,
+      "m": 28,
+      "l": 32
+     }
+    },
+    {
+     "name": "text/title-l/line-height",
+     "type": "FLOAT",
+     "description": "Интерлиньяж — Заголовок экрана.",
+     "scopes": [
+      "LINE_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-text-title-l-line-height)"
+     },
+     "valuesByMode": {
+      "s": 30,
+      "m": 34,
+      "l": 40
+     }
+    },
+    {
+     "name": "text/title-m/font-size",
+     "type": "FLOAT",
+     "description": "Кегль — Заголовок секции.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-text-title-m-font-size)"
+     },
+     "valuesByMode": {
+      "s": 20,
+      "m": 22,
+      "l": 24
+     }
+    },
+    {
+     "name": "text/title-m/line-height",
+     "type": "FLOAT",
+     "description": "Интерлиньяж — Заголовок секции.",
+     "scopes": [
+      "LINE_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-text-title-m-line-height)"
+     },
+     "valuesByMode": {
+      "s": 26,
+      "m": 28,
+      "l": 30
+     }
+    },
+    {
+     "name": "text/title-s/font-size",
+     "type": "FLOAT",
+     "description": "Кегль — Заголовок карточки, элемента списка.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-text-title-s-font-size)"
+     },
+     "valuesByMode": {
+      "s": 17,
+      "m": 18,
+      "l": 18
+     }
+    },
+    {
+     "name": "text/title-s/line-height",
+     "type": "FLOAT",
+     "description": "Интерлиньяж — Заголовок карточки, элемента списка.",
+     "scopes": [
+      "LINE_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-text-title-s-line-height)"
+     },
+     "valuesByMode": {
+      "s": 22,
+      "m": 24,
+      "l": 24
+     }
+    },
+    {
+     "name": "text/body-l/font-size",
+     "type": "FLOAT",
+     "description": "Кегль — Крупный текст, лиды.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-text-body-l-font-size)"
+     },
+     "valuesByMode": {
+      "s": 17,
+      "m": 17,
+      "l": 18
+     }
+    },
+    {
+     "name": "text/body-l/line-height",
+     "type": "FLOAT",
+     "description": "Интерлиньяж — Крупный текст, лиды.",
+     "scopes": [
+      "LINE_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-text-body-l-line-height)"
+     },
+     "valuesByMode": {
+      "s": 24,
+      "m": 24,
+      "l": 26
+     }
+    },
+    {
+     "name": "text/body-m/font-size",
+     "type": "FLOAT",
+     "description": "Кегль — Основной текст.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-text-body-m-font-size)"
+     },
+     "valuesByMode": {
+      "s": 15,
+      "m": 15,
+      "l": 16
+     }
+    },
+    {
+     "name": "text/body-m/line-height",
+     "type": "FLOAT",
+     "description": "Интерлиньяж — Основной текст.",
+     "scopes": [
+      "LINE_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-text-body-m-line-height)"
+     },
+     "valuesByMode": {
+      "s": 20,
+      "m": 20,
+      "l": 22
+     }
+    },
+    {
+     "name": "text/body-s/font-size",
+     "type": "FLOAT",
+     "description": "Кегль — Подписи, подсказки.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-text-body-s-font-size)"
+     },
+     "valuesByMode": {
+      "s": 13,
+      "m": 13,
+      "l": 14
+     }
+    },
+    {
+     "name": "text/body-s/line-height",
+     "type": "FLOAT",
+     "description": "Интерлиньяж — Подписи, подсказки.",
+     "scopes": [
+      "LINE_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-text-body-s-line-height)"
+     },
+     "valuesByMode": {
+      "s": 18,
+      "m": 18,
+      "l": 20
+     }
+    },
+    {
+     "name": "text/caption/font-size",
+     "type": "FLOAT",
+     "description": "Кегль — Мелкие метки, бейджи.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-text-caption-font-size)"
+     },
+     "valuesByMode": {
+      "s": 11,
+      "m": 12,
+      "l": 12
+     }
+    },
+    {
+     "name": "text/caption/line-height",
+     "type": "FLOAT",
+     "description": "Интерлиньяж — Мелкие метки, бейджи.",
+     "scopes": [
+      "LINE_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--viewport-text-caption-line-height)"
+     },
+     "valuesByMode": {
+      "s": 14,
+      "m": 16,
+      "l": 16
+     }
     }
    ]
   },

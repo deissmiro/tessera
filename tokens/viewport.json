@@ -1158,6 +1158,177 @@
         },
         "$description": "Отступ линии слева."
       }
+    },
+    "text": {
+      "$description": "Семантическая типографика: кегль и интерлиньяж по брейкпоинтам. Используется компонентом Text.",
+      "display": {
+        "$description": "Промо-заголовок, герой.",
+        "font-size": {
+          "$type": "number",
+          "$modes": {
+            "s": 32,
+            "m": 40,
+            "l": 48
+          },
+          "$description": "Кегль — Промо-заголовок, герой."
+        },
+        "line-height": {
+          "$type": "number",
+          "$modes": {
+            "s": 40,
+            "m": 48,
+            "l": 56
+          },
+          "$description": "Интерлиньяж — Промо-заголовок, герой."
+        }
+      },
+      "title-l": {
+        "$description": "Заголовок экрана.",
+        "font-size": {
+          "$type": "number",
+          "$modes": {
+            "s": 24,
+            "m": 28,
+            "l": 32
+          },
+          "$description": "Кегль — Заголовок экрана."
+        },
+        "line-height": {
+          "$type": "number",
+          "$modes": {
+            "s": 30,
+            "m": 34,
+            "l": 40
+          },
+          "$description": "Интерлиньяж — Заголовок экрана."
+        }
+      },
+      "title-m": {
+        "$description": "Заголовок секции.",
+        "font-size": {
+          "$type": "number",
+          "$modes": {
+            "s": 20,
+            "m": 22,
+            "l": 24
+          },
+          "$description": "Кегль — Заголовок секции."
+        },
+        "line-height": {
+          "$type": "number",
+          "$modes": {
+            "s": 26,
+            "m": 28,
+            "l": 30
+          },
+          "$description": "Интерлиньяж — Заголовок секции."
+        }
+      },
+      "title-s": {
+        "$description": "Заголовок карточки, элемента списка.",
+        "font-size": {
+          "$type": "number",
+          "$modes": {
+            "s": 17,
+            "m": 18,
+            "l": 18
+          },
+          "$description": "Кегль — Заголовок карточки, элемента списка."
+        },
+        "line-height": {
+          "$type": "number",
+          "$modes": {
+            "s": 22,
+            "m": 24,
+            "l": 24
+          },
+          "$description": "Интерлиньяж — Заголовок карточки, элемента списка."
+        }
+      },
+      "body-l": {
+        "$description": "Крупный текст, лиды.",
+        "font-size": {
+          "$type": "number",
+          "$modes": {
+            "s": 17,
+            "m": 17,
+            "l": 18
+          },
+          "$description": "Кегль — Крупный текст, лиды."
+        },
+        "line-height": {
+          "$type": "number",
+          "$modes": {
+            "s": 24,
+            "m": 24,
+            "l": 26
+          },
+          "$description": "Интерлиньяж — Крупный текст, лиды."
+        }
+      },
+      "body-m": {
+        "$description": "Основной текст.",
+        "font-size": {
+          "$type": "number",
+          "$modes": {
+            "s": 15,
+            "m": 15,
+            "l": 16
+          },
+          "$description": "Кегль — Основной текст."
+        },
+        "line-height": {
+          "$type": "number",
+          "$modes": {
+            "s": 20,
+            "m": 20,
+            "l": 22
+          },
+          "$description": "Интерлиньяж — Основной текст."
+        }
+      },
+      "body-s": {
+        "$description": "Подписи, подсказки.",
+        "font-size": {
+          "$type": "number",
+          "$modes": {
+            "s": 13,
+            "m": 13,
+            "l": 14
+          },
+          "$description": "Кегль — Подписи, подсказки."
+        },
+        "line-height": {
+          "$type": "number",
+          "$modes": {
+            "s": 18,
+            "m": 18,
+            "l": 20
+          },
+          "$description": "Интерлиньяж — Подписи, подсказки."
+        }
+      },
+      "caption": {
+        "$description": "Мелкие метки, бейджи.",
+        "font-size": {
+          "$type": "number",
+          "$modes": {
+            "s": 11,
+            "m": 12,
+            "l": 12
+          },
+          "$description": "Кегль — Мелкие метки, бейджи."
+        },
+        "line-height": {
+          "$type": "number",
+          "$modes": {
+            "s": 14,
+            "m": 16,
+            "l": 16
+          },
+          "$description": "Интерлиньяж — Мелкие метки, бейджи."
+        }
+      }
     }
   }
 }

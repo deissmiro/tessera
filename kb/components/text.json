@@ -1,0 +1,40 @@
+{
+  "name": "text",
+  "figmaName": "Text",
+  "summary": "Семантический текст. Стиль задаёт роль, а не размер: display, title-l, title-m, title-s, body-l, body-m, body-s, caption. Кегль и интерлиньяж — viewport/text/<style>/* и меняются по брейкпоинтам. tone: primary / secondary / tertiary — цвет content/neutral/<tone> (можно переопределить любым content/*). Внутри вложен Skeleton/line: видимость текста привязана к skeleton/content, видимость полосы — к skeleton/visible, поэтому мод Skeleton = on сам превращает текст в заглушку высотой в строку.",
+  "props": {
+    "style": {
+      "kind": "variant",
+      "values": [
+        "display",
+        "title-l",
+        "title-m",
+        "title-s",
+        "body-l",
+        "body-m",
+        "body-s",
+        "caption"
+      ]
+    },
+    "tone": {
+      "kind": "variant",
+      "values": [
+        "primary",
+        "secondary",
+        "tertiary"
+      ]
+    },
+    "text": {
+      "kind": "text"
+    }
+  },
+  "weights": {
+    "display": "Bold",
+    "title-l": "Bold",
+    "title-m": "Semi Bold",
+    "title-s": "Semi Bold",
+    "body-*": "Regular",
+    "caption": "Medium"
+  },
+  "layout": "Ширина фиксированная (растягивайте или ставьте FILL в автолэйауте), высота — по тексту."
+}

@@ -310,6 +310,58 @@ async function buildComponents(index) {
     return n;
   };
 
+  // ================= Skeleton и Text =================
+  // Skeleton: заглушка загрузки — line (полоса по высоте строки), rect, circle.
+  var skeletonSet = null;
+  try {
+    const comps = [];
+    [["line", 240, 20], ["rect", 120, 80], ["circle", 40, 40]].forEach(([shape, w, h], ci) => {
+      const c = figma.createComponent(); c.name = `shape=${shape}`; c.resize(w, h); c.fills = [];
+      const r = figma.createRectangle(); r.name = "fill"; fill(r, "background/neutral-soft");
+      c.appendChild(r);
+      if (shape === "line") { r.resize(w, h * 0.6); r.x = 0; r.y = h * 0.2; r.cornerRadius = 6; r.constraints = { horizontal: "STRETCH", vertical: "SCALE" }; }
+      else { r.resize(w, h); r.x = 0; r.y = 0; r.cornerRadius = shape === "circle" ? 999 : 12; r.constraints = { horizontal: "STRETCH", vertical: "STRETCH" }; }
+      c.x = ci * 280; comps.push(c);
+    });
+    skeletonSet = combine(comps, "Skeleton", "Заглушка загрузки: line — полоса по высоте строки (60% высоты, вложена в Text), rect, circle. Цвет background/neutral-soft. Обычно показывается модом коллекции «6 · Skeleton». Контракт: kb/components/skeleton.json.");
+    const h = text("Skeleton", 32, true, "content/neutral/primary"); h.y = cursorY; page.appendChild(h);
+    skeletonSet.x = 0; skeletonSet.y = cursorY + 56; cursorY = skeletonSet.y + skeletonSet.height + 160;
+    say("✓ Skeleton: line / rect / circle");
+  } catch (e) { fail("Skeleton", e); }
+
+  // Text: семантический текст. style × tone. Внутри — Skeleton/line: при моде Skeleton = on текст скрывается, видна полоса.
+  try {
+    const STYLES = [["display", "Bold"], ["title-l", "Bold"], ["title-m", "Semi Bold"], ["title-s", "Semi Bold"],
+                    ["body-l", "Regular"], ["body-m", "Regular"], ["body-s", "Regular"], ["caption", "Medium"]];
+    const TONES = ["primary", "secondary", "tertiary"];
+    await figma.loadFontAsync({ family: "Inter", style: "Bold" });
+    const comps = [], labels = [];
+    const line = skeletonSet && skeletonSet.children.find((c) => c.name === "shape=line");
+    const SKC = V("Skeleton", "content"), SKV2 = V("Skeleton", "visible");
+    STYLES.forEach(([st, weight], r) => TONES.forEach((tone, ci) => {
+      const c = figma.createComponent(); c.name = `style=${st}, tone=${tone}`;
+      c.layoutMode = "VERTICAL"; c.primaryAxisSizingMode = "AUTO"; c.counterAxisSizingMode = "FIXED"; c.resize(320, 20); c.fills = [];
+      const t = figma.createText(); t.fontName = { family: "Inter", style: weight };
+      t.characters = st.startsWith("body") || st === "caption" ? "Семантический текст: стиль и тон берутся из токенов" : "Заголовок";
+      t.name = "text"; fill(t, `content/neutral/${tone}`);
+      c.appendChild(t); t.layoutSizingHorizontal = "FILL"; t.textAutoResize = "HEIGHT";
+      bind(t, "fontSize", VP(`text/${st}/font-size`)); bind(t, "lineHeight", VP(`text/${st}/line-height`));
+      if (SKC) t.setBoundVariable("visible", SKC);
+      if (line) {
+        const sk = line.createInstance(); sk.name = "skeleton"; c.appendChild(sk);
+        sk.layoutSizingHorizontal = "FILL"; bind(sk, "height", VP(`text/${st}/line-height`));
+        if (SKV2) sk.setBoundVariable("visible", SKV2); else sk.visible = false;
+      }
+      c.x = ci * 360; c.y = r * 90; comps.push(c); labels.push(t);
+    }));
+    const set = combine(comps, "Text", "Семантический текст. style: display, title-l/m/s, body-l/m/s, caption — кегль и интерлиньяж из viewport/text/* (меняются по брейкпоинтам). tone: primary / secondary / tertiary (content/neutral/*). Внутри Skeleton/line: при моде Skeleton = on текст скрывается, показывается полоса высотой в строку. Контракт: kb/components/text.json.");
+    const k = set.addComponentProperty("text", "TEXT", "Семантический текст");
+    labels.forEach((l) => (l.componentPropertyReferences = { characters: k }));
+    const h = text("Text", 32, true, "content/neutral/primary"); h.y = cursorY; page.appendChild(h);
+    set.x = 0; set.y = cursorY + 56; cursorY = set.y + set.height + 160;
+    say(`✓ Text: ${comps.length} вариантов (style × tone), со скелетоном`);
+  } catch (e) { fail("Text", e); }
+
   // ---- Button: смысл × контраст × размер × состояние
 
   var labelColor = (m, c) => m === "inverse" ? "content/inverse/primary"
