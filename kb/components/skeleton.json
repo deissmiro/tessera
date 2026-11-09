@@ -1,7 +1,7 @@
 {
   "name": "skeleton",
   "figmaName": "Skeleton (компонент) + мод коллекции «6 · Skeleton»",
-  "summary": "Скелетон — не компонент, а мод. Поставьте фрейму мод Skeleton = on: Button, Chip, RichIcon, Field и Field/*, Segmented control, Switch, Stepper покрываются серой заглушкой своей формы, Cell показывает круг и две полосы. off — обычный контент.",
+  "summary": "Скелетон — не компонент, а мод. Поставьте фрейму мод Skeleton = on: Button, Chip, RichIcon, Field и Field/*, Segmented control, Switch покрываются серой заглушкой своей формы, Cell показывает круг и две полосы. off — обычный контент.",
   "variables": {
     "skeleton/visible": "off false, on true — видимость слоёв skeleton",
     "skeleton/content": "off true, on false — для будущих компонентов, где контент нужно скрыть"

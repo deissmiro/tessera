@@ -1,0 +1,16 @@
+{
+  "name": "native",
+  "figmaName": "Native/*",
+  "summary": "Нативные компоненты платформ. Вид задаёт мод коллекции «7 · Platform» на фрейме: ios, ios-glass (Liquid Glass), android.",
+  "components": {
+    "Native/Status bar": "Время, сеть, Wi-Fi, батарея. iOS — Dynamic Island, высота 54; Android — точка камеры, высота 36. Варианты content: dark / light.",
+    "Native/Home indicator": "iOS — полоска 134×5 в зоне 34; Android — полоса жестов 108×4 в зоне 24. Варианты content: dark / light.",
+    "Native/Keyboard": "ЙЦУКЕН. ios — плоская подложка, клавиши r5; ios-glass — скруглённый верх 28, подложка полупрозрачная (opacity 80) с размытием и светлой кромкой, клавиши r10; android — клавиши выше (46), r6. Цвета из Theme."
+  },
+  "tokens": "tokens/platform.json — is-ios / is-android / glass (видимость слоёв), размеры статус-бара, индикатора, клавиатуры, цвета клавиш.",
+  "planned": [
+    "Нативные системные шиты и алерты",
+    "Пикеры даты/времени платформ",
+    "Android navigation bar с кнопками (3-button)"
+  ]
+}

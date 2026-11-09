@@ -856,7 +856,7 @@ async function buildComponents(index) {
     say("✓ Segmented control: items 2 / 3 / 4");
   } catch (e) { fail("Segmented control", e); }
 
-  // ================= Пакет: Badge, Stepper, Tab bar, Divider, Snackbar, Spinner, Progress, Code input, Pagination =================
+  // ================= Пакет: Badge, Tab bar, Divider, Snackbar, Spinner, Progress, Code input, Pagination =================
   var section = (title, set) => { const h = text(title, 32, true, "content/neutral/primary"); h.y = cursorY; page.appendChild(h); set.x = 0; set.y = cursorY + 56; cursorY = set.y + set.height + 160; };
   var shadow = (node) => { node.effects = [{ type: "DROP_SHADOW", color: { r: 0, g: 0, b: 0, a: 0.12 }, offset: { x: 0, y: 8 }, radius: 24, spread: 0, visible: true, blendMode: "NORMAL" }]; };
 
@@ -884,35 +884,6 @@ async function buildComponents(index) {
     labels.forEach((l) => (l.componentPropertyReferences = { characters: k }));
     section("Badge", set); say("✓ Badge");
   } catch (e) { fail("Badge", e); }
-
-  // ---- Stepper: size × state. Серый трек (пресет поля), белые кнопки − +.
-  try {
-    const comps = [], vals = [];
-    ["s", "m", "l"].forEach((size, r) => ["default", "min", "disabled"].forEach((state, ci) => {
-      const c = figma.createComponent(); c.name = `size=${SIZES[size]}, state=${state}`;
-      c.layoutMode = "HORIZONTAL"; c.primaryAxisSizingMode = "AUTO"; c.counterAxisSizingMode = "FIXED"; c.counterAxisAlignItems = "CENTER";
-      c.resize(120, 40); bind(c, "height", VP(`stepper/${size}/height`)); c.cornerRadius = 999; c.clipsContent = true;
-      fillP(c, "field/fill");
-      const btn = (iconName, dim) => {
-        const b = frame(iconName, "HORIZONTAL"); b.primaryAxisAlignItems = "CENTER"; b.counterAxisAlignItems = "CENTER";
-        b.primaryAxisSizingMode = "FIXED"; b.counterAxisSizingMode = "FIXED"; b.resize(40, 40); b.cornerRadius = 999;
-        bind(b, "width", VP(`stepper/${size}/button`)); bind(b, "height", VP(`stepper/${size}/button`));
-        b.appendChild(icon(iconName, "content/neutral/primary")); if (dim) bind(b, "opacity", N("opacity/40"));
-        return b;
-      };
-      c.appendChild(btn("minus", state === "min"));
-      const v = text(state === "min" ? "1" : "2", 16, true, "content/neutral/primary"); v.name = "value"; v.textAlignHorizontal = "CENTER";
-      bind(v, "fontSize", VP("stepper/font-size")); c.appendChild(v); bind(v, "minWidth", VP("stepper/value-width"));
-      c.appendChild(btn("plus", false));
-      if (state === "disabled") bind(c, "opacity", N("opacity/40"));
-      skeletonOverlay(c);
-      c.x = ci * 180; c.y = r * 64; comps.push(c); vals.push(v);
-    }));
-    const set = combine(comps, "Stepper", "Степпер количества: − число +. Трек — preset/field/fill (на цветном фоне белый). state: default, min (минус приглушён), disabled. Контракт: kb/components/stepper.json.");
-    const k = set.addComponentProperty("value", "TEXT", "2");
-    vals.forEach((v) => (v.componentPropertyReferences = { characters: k }));
-    section("Stepper", set); say("✓ Stepper");
-  } catch (e) { fail("Stepper", e); }
 
   // ---- Tab bar: плавающая круглая капсула. Tab bar/item (active) + Tab bar (items 3/4/5)
   try {
@@ -1116,6 +1087,142 @@ async function buildComponents(index) {
     section("Pagination", dotSet); section("", set); say("✓ Pagination");
   } catch (e) { fail("Pagination", e); }
 
+
+  // ================= Native: статус-бар, домашний индикатор, клавиатура. Перестраиваются модом Platform =================
+  var PL = (n) => V("Platform", n);
+  var showIf = (node, varName) => { const v = PL(varName); if (v) node.setBoundVariable("visible", v); };
+  var nativeSets = {};
+  // Статус-бар: tone dark (тёмный контент на светлом) / light (светлый контент на тёмном)
+  try {
+    const comps = [];
+    ["dark", "light"].forEach((tone, r) => {
+      const fg = tone === "dark" ? "content/static-dark" : "content/static-light";
+      const c = figma.createComponent(); c.name = `content=${tone}`;
+      c.layoutMode = "HORIZONTAL"; c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "FIXED"; c.counterAxisAlignItems = "CENTER";
+      c.primaryAxisAlignItems = "SPACE_BETWEEN"; c.resize(390, 54); c.fills = [];
+      bind(c, "width", VP("screen/width")); bind(c, "height", PL("status-bar/height"));
+      ["paddingLeft", "paddingRight"].forEach((p) => bind(c, p, PL("status-bar/padding-x")));
+      const time = text("9:41", 17, true, fg); time.name = "time"; bind(time, "fontSize", PL("status-bar/font-size")); c.appendChild(time);
+      // iOS: остров по центру (абсолютно), Android: камера-точка
+      const island = figma.createRectangle(); island.name = "island"; island.resize(124, 36); island.cornerRadius = 999; fill(island, "background/static-dark");
+      c.appendChild(island); island.layoutPositioning = "ABSOLUTE"; island.x = 133; island.y = 11; island.constraints = { horizontal: "CENTER", vertical: "TOP" }; showIf(island, "is-ios");
+      const cam = figma.createEllipse(); cam.name = "camera"; cam.resize(12, 12); fill(cam, "background/static-dark");
+      c.appendChild(cam); cam.layoutPositioning = "ABSOLUTE"; cam.x = 189; cam.y = 12; cam.constraints = { horizontal: "CENTER", vertical: "TOP" }; showIf(cam, "is-android");
+      const icons = frame("icons", "HORIZONTAL"); icons.itemSpacing = 6; icons.counterAxisAlignItems = "CENTER"; c.appendChild(icons);
+      // сеть, wi-fi, батарея — простые формы
+      const bars = frame("signal", "HORIZONTAL"); bars.itemSpacing = 2; bars.counterAxisAlignItems = "MAX";
+      for (const h of [4, 6, 8, 10]) { const b = figma.createRectangle(); b.resize(3, h); b.cornerRadius = 1; fill(b, fg); bars.appendChild(b); }
+      icons.appendChild(bars);
+      const wifi = figma.createVector(); wifi.name = "wifi"; wifi.vectorPaths = [{ windingRule: "NONE", data: "M 1 4 C 5 0 11 0 15 4 M 4 7 C 6.5 4.8 9.5 4.8 12 7 M 7 10 C 7.6 9.4 8.4 9.4 9 10" }];
+      wifi.fills = []; const fv = T(fg); if (fv) wifi.strokes = [paint(fv)]; wifi.strokeWeight = 1.8; wifi.strokeCap = "ROUND"; icons.appendChild(wifi);
+      const bat = frame("battery", "HORIZONTAL"); bat.paddingLeft = bat.paddingRight = bat.paddingTop = bat.paddingBottom = 2;
+      bat.cornerRadius = 4; if (fv) { bat.strokes = [paint(fv)]; bat.strokeWeight = 1; bat.strokeAlign = "INSIDE"; }
+      const lvl = figma.createRectangle(); lvl.resize(18, 8); lvl.cornerRadius = 2; fill(lvl, fg); bat.appendChild(lvl); icons.appendChild(bat);
+      c.y = r * 80; comps.push(c);
+    });
+    const set = combine(comps, "Native/Status bar", "Статус-бар. Платформа — мод «7 · Platform»: iOS — Dynamic Island по центру, высота 54; Android — точка камеры, высота 36. content: dark (тёмный контент на светлом фоне) / light. Контракт: kb/components/native.json.");
+    nativeSets.status = set;
+    const h = text("Native", 32, true, "content/neutral/primary"); h.y = cursorY; page.appendChild(h);
+    set.x = 0; set.y = cursorY + 56; cursorY = set.y + set.height + 80;
+    say("✓ Native/Status bar");
+  } catch (e) { fail("Native/Status bar", e); }
+
+  // Домашний индикатор (iOS) / навигационная полоса жестов (Android)
+  try {
+    const comps = [];
+    ["dark", "light"].forEach((tone, r) => {
+      const c = figma.createComponent(); c.name = `content=${tone}`;
+      c.layoutMode = "HORIZONTAL"; c.primaryAxisAlignItems = "CENTER"; c.counterAxisAlignItems = "CENTER";
+      c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "FIXED"; c.resize(390, 34); c.fills = [];
+      bind(c, "width", VP("screen/width")); bind(c, "height", PL("home-indicator/height"));
+      const bar = figma.createRectangle(); bar.name = "indicator"; bar.cornerRadius = 999; bar.resize(134, 5);
+      fill(bar, tone === "dark" ? "content/static-dark" : "content/static-light"); c.appendChild(bar);
+      bind(bar, "width", PL("home-indicator/width")); bind(bar, "height", PL("home-indicator/thickness"));
+      c.y = r * 60; comps.push(c);
+    });
+    const set = combine(comps, "Native/Home indicator", "Домашний индикатор iOS / полоса жестов Android: размеры из «7 · Platform». content: dark / light.");
+    nativeSets.home = set;
+    set.x = 0; set.y = cursorY; cursorY = set.y + set.height + 80;
+    say("✓ Native/Home indicator");
+  } catch (e) { fail("Native/Home indicator", e); }
+
+  // Клавиатура: ЙЦУКЕН. iOS / Liquid Glass / Android — от мода Platform.
+  try {
+    const c = figma.createComponent(); c.name = "Native/Keyboard";
+    c.layoutMode = "VERTICAL"; c.primaryAxisSizingMode = "AUTO"; c.counterAxisSizingMode = "FIXED"; c.resize(390, 260); c.fills = []; c.clipsContent = true;
+    bind(c, "width", VP("screen/width"));
+    ["paddingLeft", "paddingRight"].forEach((p) => bind(c, p, PL("keyboard/padding-x")));
+    bind(c, "paddingTop", PL("keyboard/padding-top")); bind(c, "paddingBottom", PL("keyboard/padding-bottom"));
+    bind(c, "itemSpacing", PL("keyboard/row-gap"));
+    bind(c, "topLeftRadius", PL("keyboard/radius")); bind(c, "topRightRadius", PL("keyboard/radius"));
+    // подложка: отдельный слой, чтобы у Liquid Glass она была полупрозрачной с размытием, а клавиши — нет
+    const bg = figma.createRectangle(); bg.name = "background"; c.appendChild(bg);
+    bg.layoutPositioning = "ABSOLUTE"; bg.x = 0; bg.y = 0; bg.resize(390, 260); bg.constraints = { horizontal: "STRETCH", vertical: "STRETCH" };
+    { const v = PL("keyboard/background"); if (v) bg.fills = [paint(v)]; }
+    bind(bg, "opacity", PL("keyboard/bg-opacity"));
+    bg.effects = [{ type: "BACKGROUND_BLUR", radius: 24, visible: true }];
+    const rim = figma.createRectangle(); rim.name = "glass-rim"; c.appendChild(rim);
+    rim.layoutPositioning = "ABSOLUTE"; rim.x = 0; rim.y = 0; rim.resize(390, 260); rim.constraints = { horizontal: "STRETCH", vertical: "STRETCH" };
+    rim.fills = []; { const v = T("border/static-light"); if (v) { rim.strokes = [paint(v)]; rim.strokeWeight = 1; rim.strokeAlign = "INSIDE"; } }
+    bind(rim, "topLeftRadius", PL("keyboard/radius")); bind(rim, "topRightRadius", PL("keyboard/radius")); showIf(rim, "glass");
+    const key = (label, opt = {}) => {
+      const k = frame(`key ${label}`, "HORIZONTAL"); k.primaryAxisAlignItems = "CENTER"; k.counterAxisAlignItems = "CENTER";
+      k.counterAxisSizingMode = "FIXED"; k.resize(32, 42);
+      { const v = PL(opt.special ? "keyboard/key-special" : "keyboard/key"); if (v) k.fills = [paint(v)]; }
+      bind(k, "height", PL("keyboard/key-height")); radius(k, ALL, PL("keyboard/key-radius"));
+      if (opt.icon) k.appendChild(icon(opt.icon, "content/neutral/primary"));
+      else { const t = text(label, opt.small ? 16 : 22, false, "content/neutral/primary"); if (!opt.small) bind(t, "fontSize", PL("keyboard/font-size")); k.appendChild(t); }
+      return k;
+    };
+    const row = (keys, opt = {}) => {
+      const r = frame("row", "HORIZONTAL"); bind(r, "itemSpacing", PL("keyboard/key-gap"));
+      if (opt.inset) { r.paddingLeft = r.paddingRight = opt.inset; }
+      c.appendChild(r); r.layoutSizingHorizontal = "FILL";
+      for (const k of keys) { const node = typeof k === "string" ? key(k) : key(k.l, k); r.appendChild(node); node.layoutSizingHorizontal = "FILL"; if (k.grow) node.layoutGrow = k.grow; }
+      return r;
+    };
+    row("ЙЦУКЕНГШЩЗХ".split(""));
+    row("ФЫВАПРОЛДЖЭ".split(""));
+    row([{ l: "shift", icon: "chevron-up", special: true, grow: 1.4 }, ..."ЯЧСМИТЬБЮ".split(""), { l: "delete", icon: "close", special: true, grow: 1.4 }]);
+    row([{ l: "123", small: true, special: true, grow: 1.3 }, { l: "🌐", icon: "home", special: true }, { l: "пробел", small: true, grow: 5 }, { l: "Ввод", small: true, special: true, grow: 2 }]);
+    c.description = "Клавиатура ЙЦУКЕН. Мод «7 · Platform»: ios — плоская подложка, клавиши со скруглением 5; ios-glass — Liquid Glass: скруглённый верх, полупрозрачная подложка с размытием и светлой кромкой, клавиши скругление 10; android — клавиши выше, скругление 6. Цвета — из Theme, работают в светлой и тёмной теме. Контракт: kb/components/native.json.";
+    nativeSets.keyboard = c;
+    c.x = 0; c.y = cursorY; cursorY = c.y + c.height + 160;
+    say("✓ Native/Keyboard");
+  } catch (e) { fail("Native/Keyboard", e); }
+
+  // ================= Layout: стартовый фрейм экрана =================
+  try {
+    const c = figma.createComponent(); c.name = "Layout";
+    c.layoutMode = "VERTICAL"; c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "FIXED"; c.resize(390, 844); c.clipsContent = true;
+    bind(c, "width", VP("screen/width")); bind(c, "height", VP("screen/height"));
+    fill(c, "ground/ground-1");
+    const parts = {};
+    if (nativeSets.status) { const i = nativeSets.status.children.find((x) => x.name === "content=dark").createInstance(); c.appendChild(i); i.layoutSizingHorizontal = "FILL"; parts.status = i; }
+    const navSet = page.children.find((n) => n.name === "Navbar/default" && n.type === "COMPONENT_SET");
+    if (navSet) { const i = navSet.children.find((x) => x.name === "surface=ground").createInstance(); c.appendChild(i); i.layoutSizingHorizontal = "FILL"; parts.header = i; }
+    const content = makeSlot(c, "content", c); content.layoutMode = "VERTICAL"; content.itemSpacing = 16;
+    content.layoutSizingHorizontal = "FILL"; content.layoutSizingVertical = "FILL";
+    content.paddingLeft = content.paddingRight = 16; content.paddingTop = 8;
+    const ph = figma.createRectangle(); ph.name = "placeholder"; ph.resize(358, 200); ph.cornerRadius = 20; fill(ph, "ground/ground-2");
+    content.appendChild(ph); ph.layoutSizingHorizontal = "FILL";
+    const tbSet = page.children.find((n) => n.name === "Tab bar" && n.type === "COMPONENT_SET");
+    if (tbSet) { const i = tbSet.children.find((x) => x.name === "items=4").createInstance(); c.appendChild(i); i.layoutSizingHorizontal = "FILL"; parts.tabbar = i; }
+    if (nativeSets.keyboard) { const i = nativeSets.keyboard.createInstance(); c.appendChild(i); i.layoutSizingHorizontal = "FILL"; parts.keyboard = i; }
+    if (nativeSets.home) { const i = nativeSets.home.children.find((x) => x.name === "content=dark").createInstance(); c.appendChild(i); i.layoutSizingHorizontal = "FILL"; parts.home = i; }
+    const k = {
+      status: c.addComponentProperty("statusBar", "BOOLEAN", true),
+      header: c.addComponentProperty("header", "BOOLEAN", true),
+      tabbar: c.addComponentProperty("tabBar", "BOOLEAN", true),
+      keyboard: c.addComponentProperty("keyboard", "BOOLEAN", false),
+      home: c.addComponentProperty("homeIndicator", "BOOLEAN", true),
+    };
+    for (const [nm, node] of Object.entries(parts)) { try { node.componentPropertyReferences = { visible: k[nm] }; } catch (e) {} }
+    c.description = "Стартовый фрейм экрана: статус-бар, header (Navbar), слот content, Tab bar, клавиатура (выключена), домашний индикатор. Размер — экран брейкпоинта (Viewport), вид нативных частей — мод «7 · Platform» (ios / ios-glass / android), тема и бренд — как у всего кита. Части включаются свойствами. Контракт: kb/components/layout.json.";
+    const h = text("Layout", 32, true, "content/neutral/primary"); h.y = cursorY; page.appendChild(h);
+    c.x = 0; c.y = cursorY + 56; cursorY = c.y + c.height + 160;
+    say("✓ Layout: status bar, header, content, tab bar, keyboard, home indicator");
+  } catch (e) { fail("Layout", e); }
   // ================= /Поля ввода =================
   } catch (e) { fail("Поля", e); }
   // ================= /Поля ввода =================

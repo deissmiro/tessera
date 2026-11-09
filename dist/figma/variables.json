@@ -1,6 +1,6 @@
 {
  "kit": "Tessera",
- "version": "0.6.0",
+ "version": "0.7.0",
  "collections": [
   {
    "name": "0 · Palette",
@@ -5363,142 +5363,6 @@
      }
     },
     {
-     "name": "stepper/s/height",
-     "type": "FLOAT",
-     "description": "Высота S.",
-     "scopes": [
-      "WIDTH_HEIGHT"
-     ],
-     "hiddenFromPublishing": false,
-     "codeSyntax": {
-      "WEB": "var(--viewport-stepper-s-height)"
-     },
-     "valuesByMode": {
-      "s": 32,
-      "m": 32,
-      "l": 32
-     }
-    },
-    {
-     "name": "stepper/s/button",
-     "type": "FLOAT",
-     "description": "Кнопка S.",
-     "scopes": [
-      "WIDTH_HEIGHT"
-     ],
-     "hiddenFromPublishing": false,
-     "codeSyntax": {
-      "WEB": "var(--viewport-stepper-s-button)"
-     },
-     "valuesByMode": {
-      "s": 32,
-      "m": 32,
-      "l": 32
-     }
-    },
-    {
-     "name": "stepper/m/height",
-     "type": "FLOAT",
-     "description": "Высота M.",
-     "scopes": [
-      "WIDTH_HEIGHT"
-     ],
-     "hiddenFromPublishing": false,
-     "codeSyntax": {
-      "WEB": "var(--viewport-stepper-m-height)"
-     },
-     "valuesByMode": {
-      "s": 40,
-      "m": 40,
-      "l": 40
-     }
-    },
-    {
-     "name": "stepper/m/button",
-     "type": "FLOAT",
-     "description": "Кнопка M.",
-     "scopes": [
-      "WIDTH_HEIGHT"
-     ],
-     "hiddenFromPublishing": false,
-     "codeSyntax": {
-      "WEB": "var(--viewport-stepper-m-button)"
-     },
-     "valuesByMode": {
-      "s": 40,
-      "m": 40,
-      "l": 40
-     }
-    },
-    {
-     "name": "stepper/l/height",
-     "type": "FLOAT",
-     "description": "Высота L.",
-     "scopes": [
-      "WIDTH_HEIGHT"
-     ],
-     "hiddenFromPublishing": false,
-     "codeSyntax": {
-      "WEB": "var(--viewport-stepper-l-height)"
-     },
-     "valuesByMode": {
-      "s": 48,
-      "m": 48,
-      "l": 48
-     }
-    },
-    {
-     "name": "stepper/l/button",
-     "type": "FLOAT",
-     "description": "Кнопка L.",
-     "scopes": [
-      "WIDTH_HEIGHT"
-     ],
-     "hiddenFromPublishing": false,
-     "codeSyntax": {
-      "WEB": "var(--viewport-stepper-l-button)"
-     },
-     "valuesByMode": {
-      "s": 48,
-      "m": 48,
-      "l": 48
-     }
-    },
-    {
-     "name": "stepper/value-width",
-     "type": "FLOAT",
-     "description": "Минимальная ширина числа.",
-     "scopes": [
-      "WIDTH_HEIGHT"
-     ],
-     "hiddenFromPublishing": false,
-     "codeSyntax": {
-      "WEB": "var(--viewport-stepper-value-width)"
-     },
-     "valuesByMode": {
-      "s": 28,
-      "m": 28,
-      "l": 28
-     }
-    },
-    {
-     "name": "stepper/font-size",
-     "type": "FLOAT",
-     "description": "Кегль числа.",
-     "scopes": [
-      "FONT_SIZE"
-     ],
-     "hiddenFromPublishing": false,
-     "codeSyntax": {
-      "WEB": "var(--viewport-stepper-font-size)"
-     },
-     "valuesByMode": {
-      "s": 16,
-      "m": 16,
-      "l": 16
-     }
-    },
-    {
      "name": "tabbar/height",
      "type": "FLOAT",
      "description": "Высота плавающей панели.",
@@ -6427,6 +6291,407 @@
      "valuesByMode": {
       "off": true,
       "on": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "7 · Platform",
+   "description": "Платформа: ios, ios-glass (Liquid Glass), android. Нативные компоненты (статус-бар, домашний индикатор, клавиатура) и Layout перестраиваются от мода на фрейме.",
+   "modes": [
+    "ios",
+    "ios-glass",
+    "android"
+   ],
+   "variables": [
+    {
+     "name": "is-ios",
+     "type": "BOOLEAN",
+     "description": "Слои iOS видимы.",
+     "scopes": [],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--platform-is-ios)"
+     },
+     "valuesByMode": {
+      "ios": true,
+      "ios-glass": true,
+      "android": false
+     }
+    },
+    {
+     "name": "is-android",
+     "type": "BOOLEAN",
+     "description": "Слои Android видимы.",
+     "scopes": [],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--platform-is-android)"
+     },
+     "valuesByMode": {
+      "ios": false,
+      "ios-glass": false,
+      "android": true
+     }
+    },
+    {
+     "name": "glass",
+     "type": "BOOLEAN",
+     "description": "Liquid Glass: полупрозрачные поверхности с размытием и светлой кромкой.",
+     "scopes": [],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--platform-glass)"
+     },
+     "valuesByMode": {
+      "ios": false,
+      "ios-glass": true,
+      "android": false
+     }
+    },
+    {
+     "name": "status-bar/height",
+     "type": "FLOAT",
+     "description": "Высота статус-бара.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--platform-status-bar-height)"
+     },
+     "valuesByMode": {
+      "ios": 54,
+      "ios-glass": 54,
+      "android": 36
+     }
+    },
+    {
+     "name": "status-bar/padding-x",
+     "type": "FLOAT",
+     "description": "Боковой отступ.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--platform-status-bar-padding-x)"
+     },
+     "valuesByMode": {
+      "ios": 32,
+      "ios-glass": 32,
+      "android": 16
+     }
+    },
+    {
+     "name": "status-bar/font-size",
+     "type": "FLOAT",
+     "description": "Кегль времени.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--platform-status-bar-font-size)"
+     },
+     "valuesByMode": {
+      "ios": 17,
+      "ios-glass": 17,
+      "android": 14
+     }
+    },
+    {
+     "name": "home-indicator/height",
+     "type": "FLOAT",
+     "description": "Высота зоны.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--platform-home-indicator-height)"
+     },
+     "valuesByMode": {
+      "ios": 34,
+      "ios-glass": 34,
+      "android": 24
+     }
+    },
+    {
+     "name": "home-indicator/width",
+     "type": "FLOAT",
+     "description": "Длина полоски.",
+     "scopes": [
+      "WIDTH_HEIGHT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--platform-home-indicator-width)"
+     },
+     "valuesByMode": {
+      "ios": 134,
+      "ios-glass": 134,
+      "android": 108
+     }
+    },
+    {
+     "name": "home-indicator/thickness",
+     "type": "FLOAT",
+     "description": "Толщина полоски.",
+     "scopes": [],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--platform-home-indicator-thickness)"
+     },
+     "valuesByMode": {
+      "ios": 5,
+      "ios-glass": 5,
+      "android": 4
+     }
+    },
+    {
+     "name": "keyboard/padding-x",
+     "type": "FLOAT",
+     "description": "Боковой отступ.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--platform-keyboard-padding-x)"
+     },
+     "valuesByMode": {
+      "ios": 3,
+      "ios-glass": 6,
+      "android": 4
+     }
+    },
+    {
+     "name": "keyboard/padding-top",
+     "type": "FLOAT",
+     "description": "Верхний отступ.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--platform-keyboard-padding-top)"
+     },
+     "valuesByMode": {
+      "ios": 8,
+      "ios-glass": 10,
+      "android": 8
+     }
+    },
+    {
+     "name": "keyboard/padding-bottom",
+     "type": "FLOAT",
+     "description": "Нижний отступ.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--platform-keyboard-padding-bottom)"
+     },
+     "valuesByMode": {
+      "ios": 4,
+      "ios-glass": 8,
+      "android": 6
+     }
+    },
+    {
+     "name": "keyboard/row-gap",
+     "type": "FLOAT",
+     "description": "Шаг между рядами.",
+     "scopes": [
+      "GAP"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--platform-keyboard-row-gap)"
+     },
+     "valuesByMode": {
+      "ios": 11,
+      "ios-glass": 10,
+      "android": 8
+     }
+    },
+    {
+     "name": "keyboard/key-gap",
+     "type": "FLOAT",
+     "description": "Шаг между клавишами.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--platform-keyboard-key-gap)"
+     },
+     "valuesByMode": {
+      "ios": 6,
+      "ios-glass": 6,
+      "android": 5
+     }
+    },
+    {
+     "name": "keyboard/key-height",
+     "type": "FLOAT",
+     "description": "Высота клавиши.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--platform-keyboard-key-height)"
+     },
+     "valuesByMode": {
+      "ios": 42,
+      "ios-glass": 44,
+      "android": 46
+     }
+    },
+    {
+     "name": "keyboard/key-radius",
+     "type": "FLOAT",
+     "description": "Скругление клавиши.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--platform-keyboard-key-radius)"
+     },
+     "valuesByMode": {
+      "ios": 5,
+      "ios-glass": 10,
+      "android": 6
+     }
+    },
+    {
+     "name": "keyboard/radius",
+     "type": "FLOAT",
+     "description": "Скругление верхних углов клавиатуры.",
+     "scopes": [
+      "CORNER_RADIUS"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--platform-keyboard-radius)"
+     },
+     "valuesByMode": {
+      "ios": 0,
+      "ios-glass": 28,
+      "android": 0
+     }
+    },
+    {
+     "name": "keyboard/font-size",
+     "type": "FLOAT",
+     "description": "Кегль букв.",
+     "scopes": [
+      "FONT_SIZE"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--platform-keyboard-font-size)"
+     },
+     "valuesByMode": {
+      "ios": 22,
+      "ios-glass": 22,
+      "android": 20
+     }
+    },
+    {
+     "name": "keyboard/bg-opacity",
+     "type": "FLOAT",
+     "description": "Непрозрачность подложки (у Liquid Glass — полупрозрачная).",
+     "scopes": [
+      "OPACITY"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--platform-keyboard-bg-opacity)"
+     },
+     "valuesByMode": {
+      "ios": 100,
+      "ios-glass": 80,
+      "android": 100
+     }
+    },
+    {
+     "name": "keyboard/background",
+     "type": "COLOR",
+     "description": "Подложка клавиатуры.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--platform-keyboard-background)"
+     },
+     "valuesByMode": {
+      "ios": {
+       "$alias": "2 · Theme::background/neutral-soft"
+      },
+      "ios-glass": {
+       "$alias": "2 · Theme::background/neutral-soft"
+      },
+      "android": {
+       "$alias": "2 · Theme::background/neutral-soft"
+      }
+     }
+    },
+    {
+     "name": "keyboard/key",
+     "type": "COLOR",
+     "description": "Клавиша.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--platform-keyboard-key)"
+     },
+     "valuesByMode": {
+      "ios": {
+       "$alias": "2 · Theme::ground/ground-2"
+      },
+      "ios-glass": {
+       "$alias": "2 · Theme::ground/ground-2"
+      },
+      "android": {
+       "$alias": "2 · Theme::ground/ground-2"
+      }
+     }
+    },
+    {
+     "name": "keyboard/key-special",
+     "type": "COLOR",
+     "description": "Служебная клавиша: shift, удалить, 123.",
+     "scopes": [
+      "FRAME_FILL",
+      "SHAPE_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--platform-keyboard-key-special)"
+     },
+     "valuesByMode": {
+      "ios": {
+       "$alias": "2 · Theme::border/neutral/soft"
+      },
+      "ios-glass": {
+       "$alias": "2 · Theme::border/neutral/soft"
+      },
+      "android": {
+       "$alias": "2 · Theme::border/neutral/pale"
+      }
      }
     }
    ]
