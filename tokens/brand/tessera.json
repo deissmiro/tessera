@@ -79,6 +79,26 @@
           "$type": "color",
           "$value": "{palette.tessera.gray.950}",
           "$description": "neutral 950 → gray 950."
+        },
+        "pale": {
+          "$type": "color",
+          "$value": "{palette.tessera.gray.50}",
+          "$description": "Самый светлый серый: тихие заливки на белом. (gray 50)."
+        },
+        "soft": {
+          "$type": "color",
+          "$value": "{palette.tessera.gray.100}",
+          "$description": "Серый страницы и контролов (#F5F5F5): ground-1 и поля на белой карточке. (gray 100)."
+        },
+        "pure": {
+          "$type": "color",
+          "$value": "{palette.tessera.gray.500}",
+          "$description": "Средний серый: неактивные иконки, разделители посильнее. (gray 500)."
+        },
+        "deep": {
+          "$type": "color",
+          "$value": "{palette.tessera.gray.950}",
+          "$description": "Почти чёрный: основной текст и чёрные контролы. (gray 950)."
         }
       },
       "accent-uno": {
@@ -218,7 +238,7 @@
         "on-pure": {
           "$type": "color",
           "$value": "{palette.tessera.gray.950}",
-          "$description": "Контент поверх pure, подобран по контрасту (5.17:1)."
+          "$description": "Контент поверх pure, подобран по контрасту (5.90:1)."
         }
       },
       "negative": {

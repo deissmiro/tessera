@@ -45,7 +45,7 @@
       "WEB": "var(--palette-sunny-gray-50)"
      },
      "valuesByMode": {
-      "default": "#f5f5f4"
+      "default": "#fafafa"
      }
     },
     {
@@ -58,7 +58,7 @@
       "WEB": "var(--palette-sunny-gray-100)"
      },
      "valuesByMode": {
-      "default": "#eae9e8"
+      "default": "#f5f5f5"
      }
     },
     {
@@ -71,7 +71,7 @@
       "WEB": "var(--palette-sunny-gray-150)"
      },
      "valuesByMode": {
-      "default": "#e3e3e1"
+      "default": "#ededed"
      }
     },
     {
@@ -84,7 +84,7 @@
       "WEB": "var(--palette-sunny-gray-200)"
      },
      "valuesByMode": {
-      "default": "#d5d4d2"
+      "default": "#e3e3e3"
      }
     },
     {
@@ -97,7 +97,7 @@
       "WEB": "var(--palette-sunny-gray-300)"
      },
      "valuesByMode": {
-      "default": "#bbbab7"
+      "default": "#cecece"
      }
     },
     {
@@ -110,7 +110,7 @@
       "WEB": "var(--palette-sunny-gray-400)"
      },
      "valuesByMode": {
-      "default": "#a4a39e"
+      "default": "#b1b1b1"
      }
     },
     {
@@ -123,7 +123,7 @@
       "WEB": "var(--palette-sunny-gray-500)"
      },
      "valuesByMode": {
-      "default": "#898882"
+      "default": "#949494"
      }
     },
     {
@@ -136,7 +136,7 @@
       "WEB": "var(--palette-sunny-gray-600)"
      },
      "valuesByMode": {
-      "default": "#71706b"
+      "default": "#777777"
      }
     },
     {
@@ -149,7 +149,7 @@
       "WEB": "var(--palette-sunny-gray-700)"
      },
      "valuesByMode": {
-      "default": "#5b5955"
+      "default": "#5d5d5d"
      }
     },
     {
@@ -162,7 +162,7 @@
       "WEB": "var(--palette-sunny-gray-800)"
      },
      "valuesByMode": {
-      "default": "#454440"
+      "default": "#454545"
      }
     },
     {
@@ -175,7 +175,7 @@
       "WEB": "var(--palette-sunny-gray-850)"
      },
      "valuesByMode": {
-      "default": "#3a3936"
+      "default": "#383838"
      }
     },
     {
@@ -188,7 +188,7 @@
       "WEB": "var(--palette-sunny-gray-900)"
      },
      "valuesByMode": {
-      "default": "#302f2c"
+      "default": "#2b2b2b"
      }
     },
     {
@@ -201,7 +201,7 @@
       "WEB": "var(--palette-sunny-gray-950)"
      },
      "valuesByMode": {
-      "default": "#1c1c1a"
+      "default": "#0d0d0d"
      }
     },
     {
@@ -786,7 +786,7 @@
       "WEB": "var(--palette-tessera-gray-50)"
      },
      "valuesByMode": {
-      "default": "#f5f5f6"
+      "default": "#fafafa"
      }
     },
     {
@@ -799,7 +799,7 @@
       "WEB": "var(--palette-tessera-gray-100)"
      },
      "valuesByMode": {
-      "default": "#e9e9eb"
+      "default": "#f5f5f5"
      }
     },
     {
@@ -812,7 +812,7 @@
       "WEB": "var(--palette-tessera-gray-150)"
      },
      "valuesByMode": {
-      "default": "#e2e3e5"
+      "default": "#ededed"
      }
     },
     {
@@ -825,7 +825,7 @@
       "WEB": "var(--palette-tessera-gray-200)"
      },
      "valuesByMode": {
-      "default": "#d3d4d8"
+      "default": "#e3e3e3"
      }
     },
     {
@@ -838,7 +838,7 @@
       "WEB": "var(--palette-tessera-gray-300)"
      },
      "valuesByMode": {
-      "default": "#b9bac0"
+      "default": "#cecece"
      }
     },
     {
@@ -851,7 +851,7 @@
       "WEB": "var(--palette-tessera-gray-400)"
      },
      "valuesByMode": {
-      "default": "#a1a3aa"
+      "default": "#b1b1b1"
      }
     },
     {
@@ -864,7 +864,7 @@
       "WEB": "var(--palette-tessera-gray-500)"
      },
      "valuesByMode": {
-      "default": "#86878f"
+      "default": "#949494"
      }
     },
     {
@@ -877,7 +877,7 @@
       "WEB": "var(--palette-tessera-gray-600)"
      },
      "valuesByMode": {
-      "default": "#6e7077"
+      "default": "#777777"
      }
     },
     {
@@ -890,7 +890,7 @@
       "WEB": "var(--palette-tessera-gray-700)"
      },
      "valuesByMode": {
-      "default": "#585960"
+      "default": "#5d5d5d"
      }
     },
     {
@@ -903,7 +903,7 @@
       "WEB": "var(--palette-tessera-gray-800)"
      },
      "valuesByMode": {
-      "default": "#424349"
+      "default": "#454545"
      }
     },
     {
@@ -916,7 +916,7 @@
       "WEB": "var(--palette-tessera-gray-850)"
      },
      "valuesByMode": {
-      "default": "#38393e"
+      "default": "#383838"
      }
     },
     {
@@ -929,7 +929,7 @@
       "WEB": "var(--palette-tessera-gray-900)"
      },
      "valuesByMode": {
-      "default": "#2e2f33"
+      "default": "#2b2b2b"
      }
     },
     {
@@ -942,7 +942,7 @@
       "WEB": "var(--palette-tessera-gray-950)"
      },
      "valuesByMode": {
-      "default": "#1b1c1f"
+      "default": "#0d0d0d"
      }
     },
     {
@@ -1798,6 +1798,78 @@
      }
     },
     {
+     "name": "color/neutral/pale",
+     "type": "COLOR",
+     "description": "Самый светлый серый: тихие заливки на белом. (gray 50).",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-neutral-pale)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/gray/50"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/gray/50"
+      }
+     }
+    },
+    {
+     "name": "color/neutral/soft",
+     "type": "COLOR",
+     "description": "Серый страницы и контролов (#F5F5F5): ground-1 и поля на белой карточке. (gray 100).",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-neutral-soft)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/gray/100"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/gray/100"
+      }
+     }
+    },
+    {
+     "name": "color/neutral/pure",
+     "type": "COLOR",
+     "description": "Средний серый: неактивные иконки, разделители посильнее. (gray 500).",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-neutral-pure)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/gray/500"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/gray/500"
+      }
+     }
+    },
+    {
+     "name": "color/neutral/deep",
+     "type": "COLOR",
+     "description": "Почти чёрный: основной текст и чёрные контролы. (gray 950).",
+     "scopes": [],
+     "hiddenFromPublishing": true,
+     "codeSyntax": {
+      "WEB": "var(--brand-color-neutral-deep)"
+     },
+     "valuesByMode": {
+      "tessera": {
+       "$alias": "0 · Palette::tessera/gray/950"
+      },
+      "sunny": {
+       "$alias": "0 · Palette::sunny/gray/950"
+      }
+     }
+    },
+    {
      "name": "color/accent-uno/pale",
      "type": "COLOR",
      "description": "Самый светлый тон: тихие заливки (indigo 100).",
@@ -2232,7 +2304,7 @@
     {
      "name": "color/positive/on-pure",
      "type": "COLOR",
-     "description": "Контент поверх pure, подобран по контрасту (5.17:1).",
+     "description": "Контент поверх pure, подобран по контрасту (5.90:1).",
      "scopes": [],
      "hiddenFromPublishing": true,
      "codeSyntax": {
@@ -2360,7 +2432,7 @@
      },
      "valuesByMode": {
       "light": {
-       "$alias": "1 · Brand::color/neutral/100"
+       "$alias": "1 · Brand::color/neutral/soft"
       },
       "dark": {
        "$alias": "1 · Brand::color/neutral/950"
@@ -2421,7 +2493,7 @@
      },
      "valuesByMode": {
       "light": {
-       "$alias": "1 · Brand::color/neutral/50"
+       "$alias": "1 · Brand::color/neutral/pale"
       },
       "dark": {
        "$alias": "1 · Brand::color/neutral/850"
@@ -2442,7 +2514,7 @@
      },
      "valuesByMode": {
       "light": {
-       "$alias": "1 · Brand::color/neutral/100"
+       "$alias": "1 · Brand::color/neutral/soft"
       },
       "dark": {
        "$alias": "1 · Brand::color/neutral/800"
@@ -2463,7 +2535,7 @@
      },
      "valuesByMode": {
       "light": {
-       "$alias": "1 · Brand::color/neutral/900"
+       "$alias": "1 · Brand::color/neutral/deep"
       },
       "dark": {
        "$alias": "1 · Brand::color/neutral/100"
@@ -2925,7 +2997,7 @@
      },
      "valuesByMode": {
       "light": {
-       "$alias": "1 · Brand::color/neutral/950"
+       "$alias": "1 · Brand::color/neutral/deep"
       },
       "dark": {
        "$alias": "1 · Brand::color/neutral/50"
@@ -2991,7 +3063,7 @@
        "$alias": "1 · Brand::color/neutral/50"
       },
       "dark": {
-       "$alias": "1 · Brand::color/neutral/950"
+       "$alias": "1 · Brand::color/neutral/deep"
       }
      }
     },
@@ -3432,7 +3504,7 @@
        "$alias": "1 · Brand::color/neutral/50"
       },
       "dark": {
-       "$alias": "1 · Brand::color/neutral/950"
+       "$alias": "1 · Brand::color/neutral/deep"
       }
      }
     },

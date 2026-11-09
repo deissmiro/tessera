@@ -10,7 +10,7 @@ summary: Как устроен цвет кита — коллекции, тон�
 | Слой | Коллекция | Моды | Что внутри | Ссылается на |
 |---|---|---|---|---|
 | palette | 0 · Palette | — | Прямые цвета по именам: `<палитра>/<цвет>/<ступень>` — `tessera/gray/100`, `tessera/indigo/600`, `sunny/yellow/200`, плюс `common/white`, `common/black`. Без смыслов и без прозрачностей. | — |
-| brand | 1 · Brand | бренды | Верхний уровень, образ бренда. `color/neutral/*` — нейтральная шкала; на каждую роль (accent-uno/duo, brand-uno/duo, positive, negative) — четыре тона `pale`, `soft`, `pure`, `deep` + `on-pure`. Дальше — типографика, скругления, размеры. | palette |
+| brand | 1 · Brand | бренды | Верхний уровень, образ бренда. `color/neutral/*` — нейтральная шкала (опора soft = #F5F5F5) и её тоны pale / soft / pure / deep; на каждую роль (accent-uno/duo, brand-uno/duo, positive, negative) — четыре тона `pale`, `soft`, `pure`, `deep` + `on-pure`. Дальше — типографика, скругления, размеры. | palette |
 | theme | 2 · Theme | light, dark | Семантика цвета. | brand |
 | numbers | 3 · Numbers | — | `opacity/0…90` — прозрачность в процентах. | — |
 | preset | 5 · Preset | default, overlay | Пресеты — адаптация компонентов к поверхности: default — на ground, overlay — на цветном фоне. Заливки полей, Textarea, Code input, чипсов, Segmented control. | theme |

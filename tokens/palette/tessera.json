@@ -6,67 +6,67 @@
         "$description": "Серая шкала: 13 ступеней (150 и 850 — промежуточные для земли).",
         "50": {
           "$type": "color",
-          "$value": "#f5f5f6",
+          "$value": "#fafafa",
           "$description": "gray 50."
         },
         "100": {
           "$type": "color",
-          "$value": "#e9e9eb",
+          "$value": "#f5f5f5",
           "$description": "gray 100."
         },
         "150": {
           "$type": "color",
-          "$value": "#e2e3e5",
+          "$value": "#ededed",
           "$description": "gray 150."
         },
         "200": {
           "$type": "color",
-          "$value": "#d3d4d8",
+          "$value": "#e3e3e3",
           "$description": "gray 200."
         },
         "300": {
           "$type": "color",
-          "$value": "#b9bac0",
+          "$value": "#cecece",
           "$description": "gray 300."
         },
         "400": {
           "$type": "color",
-          "$value": "#a1a3aa",
+          "$value": "#b1b1b1",
           "$description": "gray 400."
         },
         "500": {
           "$type": "color",
-          "$value": "#86878f",
+          "$value": "#949494",
           "$description": "gray 500."
         },
         "600": {
           "$type": "color",
-          "$value": "#6e7077",
+          "$value": "#777777",
           "$description": "gray 600."
         },
         "700": {
           "$type": "color",
-          "$value": "#585960",
+          "$value": "#5d5d5d",
           "$description": "gray 700."
         },
         "800": {
           "$type": "color",
-          "$value": "#424349",
+          "$value": "#454545",
           "$description": "gray 800."
         },
         "850": {
           "$type": "color",
-          "$value": "#38393e",
+          "$value": "#383838",
           "$description": "gray 850."
         },
         "900": {
           "$type": "color",
-          "$value": "#2e2f33",
+          "$value": "#2b2b2b",
           "$description": "gray 900."
         },
         "950": {
           "$type": "color",
-          "$value": "#1b1c1f",
+          "$value": "#0d0d0d",
           "$description": "gray 950."
         }
       },

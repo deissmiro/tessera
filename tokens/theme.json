@@ -6,7 +6,7 @@
       "ground-1": {
         "$type": "color",
         "$modes": {
-          "light": "{brand.color.neutral.100}",
+          "light": "{brand.color.neutral.soft}",
           "dark": "{brand.color.neutral.950}"
         },
         "$description": "Земля · ground-1."
@@ -33,7 +33,7 @@
       "neutral-pale": {
         "$type": "color",
         "$modes": {
-          "light": "{brand.color.neutral.50}",
+          "light": "{brand.color.neutral.pale}",
           "dark": "{brand.color.neutral.850}"
         },
         "$description": "Заливки элементов поверх земли · neutral · pale. Основной нейтральный цвет интерфейса."
@@ -41,7 +41,7 @@
       "neutral-soft": {
         "$type": "color",
         "$modes": {
-          "light": "{brand.color.neutral.100}",
+          "light": "{brand.color.neutral.soft}",
           "dark": "{brand.color.neutral.800}"
         },
         "$description": "Заливки элементов поверх земли · neutral · soft. Основной нейтральный цвет интерфейса."
@@ -49,7 +49,7 @@
       "neutral-deep": {
         "$type": "color",
         "$modes": {
-          "light": "{brand.color.neutral.900}",
+          "light": "{brand.color.neutral.deep}",
           "dark": "{brand.color.neutral.100}"
         },
         "$description": "Заливки элементов поверх земли · neutral · deep. Основной нейтральный цвет интерфейса."
@@ -230,7 +230,7 @@
         "primary": {
           "$type": "color",
           "$modes": {
-            "light": "{brand.color.neutral.950}",
+            "light": "{brand.color.neutral.deep}",
             "dark": "{brand.color.neutral.50}"
           },
           "$description": "Текст и иконки · neutral · primary. Основной нейтральный цвет интерфейса."
@@ -255,7 +255,7 @@
           "$type": "color",
           "$modes": {
             "light": "{brand.color.neutral.50}",
-            "dark": "{brand.color.neutral.950}"
+            "dark": "{brand.color.neutral.deep}"
           },
           "$description": "Текст и иконки · neutral · on-deep. Основной нейтральный цвет интерфейса."
         }
@@ -444,7 +444,7 @@
           "$type": "color",
           "$modes": {
             "light": "{brand.color.neutral.50}",
-            "dark": "{brand.color.neutral.950}"
+            "dark": "{brand.color.neutral.deep}"
           },
           "$description": "Текст и иконки · inverse · primary. Инверсный цвет: тосты, тултипы, инверсные плашки."
         },

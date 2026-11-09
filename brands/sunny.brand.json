@@ -7,6 +7,11 @@
     "duo": "#ff7a00"
   },
   "neutral": {
-    "tint": 0.008
+    "tint": 0,
+    "anchors": {
+      "50": "#fafafa",
+      "100": "#f5f5f5",
+      "950": "#0d0d0d"
+    }
   }
 }

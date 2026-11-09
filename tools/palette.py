@@ -118,7 +118,11 @@ def colors_of(spec):
     return src, notes
 
 
-NEUTRAL_EXTRA = {150: 0.915, 850: 0.345}  # промежуточные ступени для уровней ground
+# Нейтральная шкала — своя кривая светлоты. Опора: soft (100) = #F5F5F5 — серый страницы и контролов
+# (как у Яндекса: одна и та же светлота у фона страницы и у поля на белой карточке).
+NEUTRAL_LIGHTNESS = {50: 0.985, 100: 0.97, 150: 0.945, 200: 0.915, 300: 0.85, 400: 0.76, 500: 0.665, 600: 0.57,
+                     700: 0.48, 800: 0.39, 850: 0.34, 900: 0.29, 950: 0.165}
+NEUTRAL_TONES = {"pale": 50, "soft": 100, "pure": 500, "deep": 950}
 
 
 def build(spec):
@@ -128,13 +132,15 @@ def build(spec):
     pid = spec.get("palette", spec["id"])
     src, notes = colors_of(spec)
     L, C, H = hex_to_oklch(src["accent-uno"])
-    tint = spec.get("neutral", {}).get("tint", 0.012)
+    tint = spec.get("neutral", {}).get("tint", 0)
     nh = spec.get("neutral", {}).get("hue", H)
-    nl = {**LIGHTNESS, **NEUTRAL_EXTRA}
+    nl = NEUTRAL_LIGHTNESS
     # нейтраль остаётся нейтралью: тонировка не растёт вместе с сочностью цветных шкал
     nprof = {**dict(zip(STEPS, [0.12, 0.22, 0.42, 0.66, 0.86, 1.0, 1.0, 0.92, 0.8, 0.66, 0.52])), 150: 0.3, 850: 0.72}
     nsteps = sorted(nl)
     neutral = {s: oklch_to_hex(nl[s], tint * nprof[s], nh) for s in nsteps}
+    for step, hx in (spec.get("neutral", {}).get("anchors") or {}).items():  # точные цвета из макета
+        neutral[int(step)] = hx.lower()
 
     pal = {"$description": f"Палитра «{pid}». Сгенерировано tools/palette.py из brands/{spec['id']}.brand.json; руками не править."}
     pal["gray"] = {"$description": "Серая шкала: 13 ступеней (150 и 850 — промежуточные для земли)."}
@@ -148,6 +154,12 @@ def build(spec):
     bcol["neutral"] = {"$description": "Нейтральный цвет бренда. Шкала палитры: gray."}
     for s in nsteps:
         bcol["neutral"][str(s)] = tok(P(pid, "gray", s), "color", f"neutral {s} → gray {s}.")
+    for tone, step in NEUTRAL_TONES.items():
+        bcol["neutral"][tone] = tok(P(pid, "gray", step), "color", {
+            "pale": "Самый светлый серый: тихие заливки на белом.",
+            "soft": "Серый страницы и контролов (#F5F5F5): ground-1 и поля на белой карточке.",
+            "pure": "Средний серый: неактивные иконки, разделители посильнее.",
+            "deep": "Почти чёрный: основной текст и чёрные контролы."}[tone] + f" (gray {step}).")
 
     ink = neutral[950]
     best_on = lambda c: WHITE if contrast(WHITE, c) >= contrast(ink, c) else ink
