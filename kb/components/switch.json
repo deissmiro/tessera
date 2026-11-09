@@ -11,11 +11,14 @@
       ]
     },
     "state": {
-      "kind": "variant",
+      "kind": "mode",
+      "collection": "7 · State",
       "values": [
         "default",
         "disabled"
-      ]
+      ],
+      "default": "default",
+      "description": "disabled — state/opacity (40%). Мод на инстансе."
     }
   },
   "layout": {

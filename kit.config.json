@@ -1,6 +1,6 @@
 {
   "name": "Tessera",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Открытый гибкий кит. Сейчас в работе только цвет. Источник правды — этот репозиторий.",
   "layers": [
     {
@@ -51,6 +51,13 @@
       "axis": "skeleton",
       "files": "tokens/skeleton.json",
       "description": "Скелетон: off — контент, on — заглушки загрузки. Мод на фрейме перестраивает все компоненты внутри."
+    },
+    {
+      "id": "state",
+      "collection": "7 · State",
+      "axis": "state",
+      "files": "tokens/state.json",
+      "description": "Состояния компонентов: default, hover, pressed, focus, error, disabled. Мод ставится на инстанс или фрейм — варианты под состояния не нужны. Ссылается на Numbers и Theme."
     }
   ],
   "axes": {
@@ -98,6 +105,18 @@
       ],
       "default": "off",
       "description": "Состояние загрузки."
+    },
+    "state": {
+      "modes": [
+        "default",
+        "hover",
+        "pressed",
+        "focus",
+        "error",
+        "disabled"
+      ],
+      "default": "default",
+      "description": "Интерактивное состояние. Значение (выбран, заполнен) — вариант компонента, состояние — мод."
     }
   },
   "references": {
@@ -113,7 +132,11 @@
     "preset": [
       "theme"
     ],
-    "skeleton": []
+    "skeleton": [],
+    "state": [
+      "numbers",
+      "theme"
+    ]
   },
   "contrast": {
     "pairs": "kb/contrast-pairs.json"

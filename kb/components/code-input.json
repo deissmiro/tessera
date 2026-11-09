@@ -1,6 +1,34 @@
 {
   "name": "code-input",
   "figmaName": "Code input",
-  "summary": "Ввод кода: Code input/cell (empty, active с курсором, filled, error с красной обводкой) и Code input (length 4/6 × state empty/filling/filled/error). Ячейки — preset/field/fill.",
-  "layout": "viewport/code/*"
+  "summary": "Ввод кода: Code input/cell (filled = false / true) и Code input (length 4 / 6 × progress empty / filling / filled). Активная ячейка — мод State = focus на её инстансе (каретка). Ошибка — мод State = error на всём поле: красная обводка ячеек и цифры. Ячейки — preset/field/fill.",
+  "layout": "viewport/code/*",
+  "props": {
+    "length": {
+      "kind": "variant",
+      "values": [
+        "4",
+        "6"
+      ]
+    },
+    "progress": {
+      "kind": "variant",
+      "values": [
+        "empty",
+        "filling",
+        "filled"
+      ]
+    },
+    "state": {
+      "kind": "mode",
+      "collection": "7 · State",
+      "values": [
+        "default",
+        "error",
+        "disabled"
+      ],
+      "default": "default",
+      "description": "error — на всём поле; focus — на одной ячейке."
+    }
+  }
 }

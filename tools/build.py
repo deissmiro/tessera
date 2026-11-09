@@ -135,6 +135,10 @@ def figma_name(path):
 
 
 SCOPES = [(r"^theme\.border", ["STROKE_COLOR"]),
+          (r"^state\.(overlay|opacity)$", ["OPACITY"]),
+          (r"^state\.border-width", ["STROKE_FLOAT"]),
+          (r"^state\.border", ["STROKE_COLOR"]),
+          (r"^state\.field", ["TEXT_FILL"]),
           (r"^theme\.content", ["TEXT_FILL", "SHAPE_FILL"]),
           (r"^theme\.ground", ["FRAME_FILL"]),
           (r"^theme\.background", ["FRAME_FILL", "SHAPE_FILL"]),

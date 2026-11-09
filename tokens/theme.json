@@ -60,7 +60,7 @@
           "light": "{brand.color.accent-uno.pale}",
           "dark": "{brand.color.accent-uno.deep}"
         },
-        "$description": "Заливки элементов поверх земли · accent-uno · pale. Интерактивный акцент."
+        "$description": "Заливки элементов поверх земли · accent-uno · pale. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться."
       },
       "accent-uno-soft": {
         "$type": "color",
@@ -68,7 +68,7 @@
           "light": "{brand.color.accent-uno.soft}",
           "dark": "{brand.color.accent-uno.deep}"
         },
-        "$description": "Заливки элементов поверх земли · accent-uno · soft. Интерактивный акцент."
+        "$description": "Заливки элементов поверх земли · accent-uno · soft. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться."
       },
       "accent-uno-deep": {
         "$type": "color",
@@ -76,7 +76,7 @@
           "light": "{brand.color.accent-uno.pure}",
           "dark": "{brand.color.accent-uno.pure}"
         },
-        "$description": "Заливки элементов поверх земли · accent-uno · deep. Интерактивный акцент."
+        "$description": "Заливки элементов поверх земли · accent-uno · deep. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться."
       },
       "accent-duo-pale": {
         "$type": "color",
@@ -84,7 +84,7 @@
           "light": "{brand.color.accent-duo.pale}",
           "dark": "{brand.color.accent-duo.deep}"
         },
-        "$description": "Заливки элементов поверх земли · accent-duo · pale. Интерактивный акцент."
+        "$description": "Заливки элементов поверх земли · accent-duo · pale. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться."
       },
       "accent-duo-soft": {
         "$type": "color",
@@ -92,7 +92,7 @@
           "light": "{brand.color.accent-duo.soft}",
           "dark": "{brand.color.accent-duo.deep}"
         },
-        "$description": "Заливки элементов поверх земли · accent-duo · soft. Интерактивный акцент."
+        "$description": "Заливки элементов поверх земли · accent-duo · soft. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться."
       },
       "accent-duo-deep": {
         "$type": "color",
@@ -100,7 +100,7 @@
           "light": "{brand.color.accent-duo.pure}",
           "dark": "{brand.color.accent-duo.pure}"
         },
-        "$description": "Заливки элементов поверх земли · accent-duo · deep. Интерактивный акцент."
+        "$description": "Заливки элементов поверх земли · accent-duo · deep. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться."
       },
       "status-positive-pale": {
         "$type": "color",
@@ -156,7 +156,7 @@
           "light": "{brand.color.brand-uno.pale}",
           "dark": "{brand.color.brand-uno.deep}"
         },
-        "$description": "Заливки элементов поверх земли · brand-uno · pale. Фирменные цвета для промо и айдентики, не для интерактива."
+        "$description": "Заливки элементов поверх земли · brand-uno · pale. Брендовое действие: главный CTA экрана — кнопка «Заказать», «Оплатить», ключевой путь."
       },
       "brand-uno-soft": {
         "$type": "color",
@@ -164,7 +164,7 @@
           "light": "{brand.color.brand-uno.soft}",
           "dark": "{brand.color.brand-uno.deep}"
         },
-        "$description": "Заливки элементов поверх земли · brand-uno · soft. Фирменные цвета для промо и айдентики, не для интерактива."
+        "$description": "Заливки элементов поверх земли · brand-uno · soft. Брендовое действие: главный CTA экрана — кнопка «Заказать», «Оплатить», ключевой путь."
       },
       "brand-uno-deep": {
         "$type": "color",
@@ -172,7 +172,7 @@
           "light": "{brand.color.brand-uno.pure}",
           "dark": "{brand.color.brand-uno.pure}"
         },
-        "$description": "Заливки элементов поверх земли · brand-uno · deep. Фирменные цвета для промо и айдентики, не для интерактива."
+        "$description": "Заливки элементов поверх земли · brand-uno · deep. Брендовое действие: главный CTA экрана — кнопка «Заказать», «Оплатить», ключевой путь."
       },
       "brand-duo-pale": {
         "$type": "color",
@@ -180,7 +180,7 @@
           "light": "{brand.color.brand-duo.pale}",
           "dark": "{brand.color.brand-duo.deep}"
         },
-        "$description": "Заливки элементов поверх земли · brand-duo · pale. Фирменные цвета для промо и айдентики, не для интерактива."
+        "$description": "Заливки элементов поверх земли · brand-duo · pale. Брендовое действие: главный CTA экрана — кнопка «Заказать», «Оплатить», ключевой путь."
       },
       "brand-duo-soft": {
         "$type": "color",
@@ -188,7 +188,7 @@
           "light": "{brand.color.brand-duo.soft}",
           "dark": "{brand.color.brand-duo.deep}"
         },
-        "$description": "Заливки элементов поверх земли · brand-duo · soft. Фирменные цвета для промо и айдентики, не для интерактива."
+        "$description": "Заливки элементов поверх земли · brand-duo · soft. Брендовое действие: главный CTA экрана — кнопка «Заказать», «Оплатить», ключевой путь."
       },
       "brand-duo-deep": {
         "$type": "color",
@@ -196,7 +196,7 @@
           "light": "{brand.color.brand-duo.pure}",
           "dark": "{brand.color.brand-duo.pure}"
         },
-        "$description": "Заливки элементов поверх земли · brand-duo · deep. Фирменные цвета для промо и айдентики, не для интерактива."
+        "$description": "Заливки элементов поверх земли · brand-duo · deep. Брендовое действие: главный CTA экрана — кнопка «Заказать», «Оплатить», ключевой путь."
       },
       "static-light": {
         "$type": "color",
@@ -261,14 +261,14 @@
         }
       },
       "accent-uno": {
-        "$description": "Интерактивный акцент. uno — основной, duo — второй.",
+        "$description": "Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться. Не для главного действия. uno — основной, duo — второй.",
         "primary": {
           "$type": "color",
           "$modes": {
             "light": "{brand.color.accent-uno.deep}",
             "dark": "{brand.color.accent-uno.pale}"
           },
-          "$description": "Текст и иконки · accent-uno · primary. Интерактивный акцент."
+          "$description": "Текст и иконки · accent-uno · primary. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться."
         },
         "secondary": {
           "$type": "color",
@@ -276,7 +276,7 @@
             "light": "{brand.color.accent-uno.pure}",
             "dark": "{brand.color.accent-uno.soft}"
           },
-          "$description": "Текст и иконки · accent-uno · secondary. Интерактивный акцент."
+          "$description": "Текст и иконки · accent-uno · secondary. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться."
         },
         "on-deep": {
           "$type": "color",
@@ -284,18 +284,18 @@
             "light": "{brand.color.accent-uno.on-pure}",
             "dark": "{brand.color.accent-uno.on-pure}"
           },
-          "$description": "Текст и иконки · accent-uno · on-deep. Интерактивный акцент."
+          "$description": "Текст и иконки · accent-uno · on-deep. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться."
         }
       },
       "accent-duo": {
-        "$description": "Интерактивный акцент. uno — основной, duo — второй.",
+        "$description": "Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться. Не для главного действия. uno — основной, duo — второй.",
         "primary": {
           "$type": "color",
           "$modes": {
             "light": "{brand.color.accent-duo.deep}",
             "dark": "{brand.color.accent-duo.pale}"
           },
-          "$description": "Текст и иконки · accent-duo · primary. Интерактивный акцент."
+          "$description": "Текст и иконки · accent-duo · primary. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться."
         },
         "secondary": {
           "$type": "color",
@@ -303,7 +303,7 @@
             "light": "{brand.color.accent-duo.pure}",
             "dark": "{brand.color.accent-duo.soft}"
           },
-          "$description": "Текст и иконки · accent-duo · secondary. Интерактивный акцент."
+          "$description": "Текст и иконки · accent-duo · secondary. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться."
         },
         "on-deep": {
           "$type": "color",
@@ -311,7 +311,7 @@
             "light": "{brand.color.accent-duo.on-pure}",
             "dark": "{brand.color.accent-duo.on-pure}"
           },
-          "$description": "Текст и иконки · accent-duo · on-deep. Интерактивный акцент."
+          "$description": "Текст и иконки · accent-duo · on-deep. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться."
         }
       },
       "status-positive": {
@@ -369,14 +369,14 @@
         }
       },
       "brand-uno": {
-        "$description": "Фирменные цвета для промо и айдентики, не для интерактива.",
+        "$description": "Брендовое действие: главный CTA экрана — кнопка «Заказать», «Оплатить», ключевой путь. Один на экран. uno — основной, duo — второй.",
         "primary": {
           "$type": "color",
           "$modes": {
             "light": "{brand.color.brand-uno.deep}",
             "dark": "{brand.color.brand-uno.pale}"
           },
-          "$description": "Текст и иконки · brand-uno · primary. Фирменные цвета для промо и айдентики, не для интерактива."
+          "$description": "Текст и иконки · brand-uno · primary. Брендовое действие: главный CTA экрана — кнопка «Заказать», «Оплатить», ключевой путь."
         },
         "secondary": {
           "$type": "color",
@@ -384,7 +384,7 @@
             "light": "{brand.color.brand-uno.pure}",
             "dark": "{brand.color.brand-uno.soft}"
           },
-          "$description": "Текст и иконки · brand-uno · secondary. Фирменные цвета для промо и айдентики, не для интерактива."
+          "$description": "Текст и иконки · brand-uno · secondary. Брендовое действие: главный CTA экрана — кнопка «Заказать», «Оплатить», ключевой путь."
         },
         "on-deep": {
           "$type": "color",
@@ -392,18 +392,18 @@
             "light": "{brand.color.brand-uno.on-pure}",
             "dark": "{brand.color.brand-uno.on-pure}"
           },
-          "$description": "Текст и иконки · brand-uno · on-deep. Фирменные цвета для промо и айдентики, не для интерактива."
+          "$description": "Текст и иконки · brand-uno · on-deep. Брендовое действие: главный CTA экрана — кнопка «Заказать», «Оплатить», ключевой путь."
         }
       },
       "brand-duo": {
-        "$description": "Фирменные цвета для промо и айдентики, не для интерактива.",
+        "$description": "Брендовое действие: главный CTA экрана — кнопка «Заказать», «Оплатить», ключевой путь. Один на экран. uno — основной, duo — второй.",
         "primary": {
           "$type": "color",
           "$modes": {
             "light": "{brand.color.brand-duo.deep}",
             "dark": "{brand.color.brand-duo.pale}"
           },
-          "$description": "Текст и иконки · brand-duo · primary. Фирменные цвета для промо и айдентики, не для интерактива."
+          "$description": "Текст и иконки · brand-duo · primary. Брендовое действие: главный CTA экрана — кнопка «Заказать», «Оплатить», ключевой путь."
         },
         "secondary": {
           "$type": "color",
@@ -411,7 +411,7 @@
             "light": "{brand.color.brand-duo.pure}",
             "dark": "{brand.color.brand-duo.soft}"
           },
-          "$description": "Текст и иконки · brand-duo · secondary. Фирменные цвета для промо и айдентики, не для интерактива."
+          "$description": "Текст и иконки · brand-duo · secondary. Брендовое действие: главный CTA экрана — кнопка «Заказать», «Оплатить», ключевой путь."
         },
         "on-deep": {
           "$type": "color",
@@ -419,7 +419,7 @@
             "light": "{brand.color.brand-duo.on-pure}",
             "dark": "{brand.color.brand-duo.on-pure}"
           },
-          "$description": "Текст и иконки · brand-duo · on-deep. Фирменные цвета для промо и айдентики, не для интерактива."
+          "$description": "Текст и иконки · brand-duo · on-deep. Брендовое действие: главный CTA экрана — кнопка «Заказать», «Оплатить», ключевой путь."
         }
       },
       "static-light": {
@@ -496,14 +496,14 @@
         }
       },
       "accent-uno": {
-        "$description": "Интерактивный акцент. uno — основной, duo — второй.",
+        "$description": "Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться. Не для главного действия. uno — основной, duo — второй.",
         "pale": {
           "$type": "color",
           "$modes": {
             "light": "{brand.color.accent-uno.pale}",
             "dark": "{brand.color.accent-uno.deep}"
           },
-          "$description": "Обводки и разделители · accent-uno · pale. Интерактивный акцент."
+          "$description": "Обводки и разделители · accent-uno · pale. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться."
         },
         "soft": {
           "$type": "color",
@@ -511,7 +511,7 @@
             "light": "{brand.color.accent-uno.soft}",
             "dark": "{brand.color.accent-uno.pure}"
           },
-          "$description": "Обводки и разделители · accent-uno · soft. Интерактивный акцент."
+          "$description": "Обводки и разделители · accent-uno · soft. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться."
         },
         "deep": {
           "$type": "color",
@@ -519,18 +519,18 @@
             "light": "{brand.color.accent-uno.pure}",
             "dark": "{brand.color.accent-uno.pure}"
           },
-          "$description": "Обводки и разделители · accent-uno · deep. Интерактивный акцент."
+          "$description": "Обводки и разделители · accent-uno · deep. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться."
         }
       },
       "accent-duo": {
-        "$description": "Интерактивный акцент. uno — основной, duo — второй.",
+        "$description": "Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться. Не для главного действия. uno — основной, duo — второй.",
         "pale": {
           "$type": "color",
           "$modes": {
             "light": "{brand.color.accent-duo.pale}",
             "dark": "{brand.color.accent-duo.deep}"
           },
-          "$description": "Обводки и разделители · accent-duo · pale. Интерактивный акцент."
+          "$description": "Обводки и разделители · accent-duo · pale. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться."
         },
         "soft": {
           "$type": "color",
@@ -538,7 +538,7 @@
             "light": "{brand.color.accent-duo.soft}",
             "dark": "{brand.color.accent-duo.pure}"
           },
-          "$description": "Обводки и разделители · accent-duo · soft. Интерактивный акцент."
+          "$description": "Обводки и разделители · accent-duo · soft. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться."
         },
         "deep": {
           "$type": "color",
@@ -546,7 +546,7 @@
             "light": "{brand.color.accent-duo.pure}",
             "dark": "{brand.color.accent-duo.pure}"
           },
-          "$description": "Обводки и разделители · accent-duo · deep. Интерактивный акцент."
+          "$description": "Обводки и разделители · accent-duo · deep. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться."
         }
       },
       "status-positive": {

@@ -3,16 +3,25 @@
   "figmaName": "Field",
   "summary": "Поле ввода. Мягкий стиль: серая заливка без обводки, скругление 16, высота 56, плавающий лейбл (Medium). Фокус — только курсор, без обводки. Ошибка — красная обводка и красный лейбл, заливка обычная. Поля Field/* — отдельные компоненты той же анатомии; кнопки внутри поля белые (ground/ground-2).",
   "props": {
-    "state": {
+    "filled": {
       "kind": "variant",
       "values": [
-        "empty",
+        "false",
+        "true"
+      ],
+      "description": "false — лейбл крупно на месте значения (state/field/placeholder); true — лейбл поднят (state/field/label) и есть значение."
+    },
+    "state": {
+      "kind": "mode",
+      "collection": "7 · State",
+      "values": [
+        "default",
         "focus",
-        "filled",
         "error",
         "disabled"
       ],
-      "description": "empty — лейбл крупно как плейсхолдер; focus — лейбл поднят, курсор; filled — лейбл поднят + значение; error — красная обводка (background/status-negative-deep, 1.5) и красный лейбл и подсказка; disabled — opacity/40."
+      "default": "default",
+      "description": "focus — каретка (state/focus), без обводки; error — красная обводка (state/border × state/border-width = 1.5), красные лейбл и подсказка (state/field/*); disabled — state/opacity. Мод на инстансе."
     },
     "label": {
       "kind": "text",
@@ -52,10 +61,10 @@
     }
   },
   "colors": {
-    "error-stroke": "background/status-negative-deep",
-    "label": "empty → content/neutral/tertiary; поднятый → content/neutral/secondary; error → content/status-negative/primary",
+    "error-stroke": "state/border, толщина state/border-width (видна только в моде error)",
+    "label": "state/field/placeholder (пустое) или state/field/label (поднятый); в моде error оба красные",
     "value": "content/neutral/primary",
-    "hint": "content/neutral/secondary; error → content/status-negative/primary",
+    "hint": "state/field/hint; в моде error красная",
     "button": "Кнопки в полях — инстансы Button/static (scheme light, contrast pale, size small): белые; только иконка — hasIcon + icon, hasLabel = нет; у +7 — подпись.",
     "field": "preset/field/fill"
   },
@@ -64,9 +73,9 @@
     "radius": "viewport/field/radius",
     "padding-x": "viewport/field/padding-x (10)",
     "gap": "viewport/field/gap (0)",
-    "label": "viewport/field/label-size (поднятый) / value-size (empty)",
+    "label": "state/field/placeholder (пустое) или state/field/label (поднятый); в моде error оба красные",
     "value": "viewport/field/value-size",
-    "hint": "viewport/field/hint-size, отступ viewport/field/hint-gap",
+    "hint": "state/field/hint; в моде error красная",
     "width": "viewport/field/width",
     "text-padding": "viewport/field/text-padding-x (6) — боковой отступ текстового блока",
     "label-gap": "viewport/field/label-gap (4) — между лейблом и значением"

@@ -3,15 +3,25 @@
   "figmaName": "Textarea",
   "summary": "Многострочное поле той же анатомии, что Field: серая заливка, лейбл Medium сверху, значение в несколько строк, счётчик символов справа внизу. Ошибка — красная обводка и лейбл. Растёт по высоте.",
   "props": {
-    "state": {
+    "filled": {
       "kind": "variant",
       "values": [
-        "empty",
+        "false",
+        "true"
+      ],
+      "description": "false — лейбл крупно на месте значения (state/field/placeholder); true — лейбл поднят (state/field/label) и есть значение."
+    },
+    "state": {
+      "kind": "mode",
+      "collection": "7 · State",
+      "values": [
+        "default",
         "focus",
-        "filled",
         "error",
         "disabled"
-      ]
+      ],
+      "default": "default",
+      "description": "focus — каретка (state/focus), без обводки; error — красная обводка (state/border × state/border-width = 1.5), красные лейбл и подсказка (state/field/*); disabled — state/opacity. Мод на инстансе."
     },
     "label": {
       "kind": "text"

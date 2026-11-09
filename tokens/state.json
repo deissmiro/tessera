@@ -1,0 +1,128 @@
+{
+  "state": {
+    "$description": "Состояния интерактивных компонентов. Мод ставится на инстанс (или на фрейм — тогда на всё внутри). Варианты компонентов описывают только значение (выбран, заполнен), а hover, pressed, focus, error и disabled — это мод.",
+    "overlay": {
+      "$type": "number",
+      "$modes": {
+        "default": "{numbers.opacity.0}",
+        "hover": "{numbers.opacity.10}",
+        "pressed": "{numbers.opacity.20}",
+        "focus": "{numbers.opacity.0}",
+        "error": "{numbers.opacity.0}",
+        "disabled": "{numbers.opacity.0}"
+      },
+      "$description": "Прозрачность слоя-подсветки state поверх контрола: hover 10%, pressed 20%, в остальных модах 0."
+    },
+    "opacity": {
+      "$type": "number",
+      "$modes": {
+        "default": "{numbers.opacity.100}",
+        "hover": "{numbers.opacity.100}",
+        "pressed": "{numbers.opacity.100}",
+        "focus": "{numbers.opacity.100}",
+        "error": "{numbers.opacity.100}",
+        "disabled": "{numbers.opacity.40}"
+      },
+      "$description": "Прозрачность всего компонента: disabled — 40%, остальные — 100%."
+    },
+    "focus": {
+      "$type": "boolean",
+      "$modes": {
+        "default": false,
+        "hover": false,
+        "pressed": false,
+        "focus": true,
+        "error": false,
+        "disabled": false
+      },
+      "$description": "Фокус: показывает каретку в полях и активную ячейку кода."
+    },
+    "error": {
+      "$type": "boolean",
+      "$modes": {
+        "default": false,
+        "hover": false,
+        "pressed": false,
+        "focus": false,
+        "error": true,
+        "disabled": false
+      },
+      "$description": "Ошибка: показывает красную обводку у полей и ячеек кода."
+    },
+    "field": {
+      "$description": "Цвета текста полей, зависящие от состояния (Field, Field/*, Textarea, Code input).",
+      "label": {
+        "$type": "color",
+        "$modes": {
+          "default": "{theme.content.neutral.secondary}",
+          "hover": "{theme.content.neutral.secondary}",
+          "pressed": "{theme.content.neutral.secondary}",
+          "focus": "{theme.content.neutral.secondary}",
+          "error": "{theme.content.status-negative.primary}",
+          "disabled": "{theme.content.neutral.secondary}"
+        },
+        "$description": "Поднятый лейбл заполненного поля. В error — красный."
+      },
+      "placeholder": {
+        "$type": "color",
+        "$modes": {
+          "default": "{theme.content.neutral.tertiary}",
+          "hover": "{theme.content.neutral.tertiary}",
+          "pressed": "{theme.content.neutral.tertiary}",
+          "focus": "{theme.content.neutral.tertiary}",
+          "error": "{theme.content.status-negative.primary}",
+          "disabled": "{theme.content.neutral.tertiary}"
+        },
+        "$description": "Лейбл пустого поля (стоит на месте значения). В error — красный."
+      },
+      "hint": {
+        "$type": "color",
+        "$modes": {
+          "default": "{theme.content.neutral.secondary}",
+          "hover": "{theme.content.neutral.secondary}",
+          "pressed": "{theme.content.neutral.secondary}",
+          "focus": "{theme.content.neutral.secondary}",
+          "error": "{theme.content.status-negative.primary}",
+          "disabled": "{theme.content.neutral.secondary}"
+        },
+        "$description": "Подсказка под полем. В error — красная."
+      },
+      "digit": {
+        "$type": "color",
+        "$modes": {
+          "default": "{theme.content.neutral.primary}",
+          "hover": "{theme.content.neutral.primary}",
+          "pressed": "{theme.content.neutral.primary}",
+          "focus": "{theme.content.neutral.primary}",
+          "error": "{theme.content.status-negative.primary}",
+          "disabled": "{theme.content.neutral.primary}"
+        },
+        "$description": "Цифра в ячейке кода. В error — красная."
+      }
+    },
+    "border": {
+      "$type": "color",
+      "$modes": {
+        "default": "{theme.border.status-negative.deep}",
+        "hover": "{theme.border.status-negative.deep}",
+        "pressed": "{theme.border.status-negative.deep}",
+        "focus": "{theme.border.status-negative.deep}",
+        "error": "{theme.border.status-negative.deep}",
+        "disabled": "{theme.border.status-negative.deep}"
+      },
+      "$description": "Цвет обводки ошибки. Слой обводки виден только в моде error (state/error)."
+    },
+    "border-width": {
+      "$type": "number",
+      "$modes": {
+        "default": 0,
+        "hover": 0,
+        "pressed": 0,
+        "focus": 0,
+        "error": 1.5,
+        "disabled": 0
+      },
+      "$description": "Толщина обводки ошибки: 1.5 в моде error, 0 в остальных."
+    }
+  }
+}

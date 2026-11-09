@@ -12,24 +12,22 @@
       "default": "false"
     },
     "state": {
-      "kind": "variant",
+      "kind": "mode",
+      "collection": "7 · State",
       "values": [
         "default",
         "hover",
         "pressed",
         "disabled"
       ],
-      "default": "default"
+      "default": "default",
+      "description": "hover / pressed — ореол (content/neutral/primary, state/overlay); disabled — state/opacity. Мод на инстансе."
     }
   },
   "colors": {
     "on": "кольцо background/neutral-deep толщиной viewport/control/selector/ring вокруг белого центра (ground/ground-2)",
     "off": "background/neutral-soft, без обводки",
     "label": "content/neutral/primary"
-  },
-  "states": {
-    "hover/pressed": "ореол: content/neutral/primary + opacity/10 и /20",
-    "disabled": "opacity/40"
   },
   "layout": {
     "size": "viewport/control/selector/size"

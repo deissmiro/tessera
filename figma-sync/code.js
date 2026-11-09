@@ -208,6 +208,20 @@ async function buildComponents(index) {
     const v = SKV(); if (v) r.setBoundVariable("visible", v); else r.visible = false;
     return r;
   };
+  // Состояния — мод коллекции «7 · State» (default, hover, pressed, focus, error, disabled), а не варианты.
+  var S = (n) => V("State", n);
+  var stateCol = col("State");
+  var setState = (node, name) => {
+    try { const m = stateCol && stateCol.modes.find((x) => x.name === name); if (m) node.setExplicitVariableModeForCollection(stateCol, m.modeId); }
+    catch (e) { say(`⚠ мод State ${name}: ${e.message}`); }
+  };
+  var fillS = (node, name) => { const v = S(name); if (v) node.fills = [paint(v)]; };
+  var stateful = (node) => bind(node, "opacity", S("opacity"));
+  // Обводка ошибки: цвет state/border, толщина state/border-width (1.5 только в моде error).
+  var errorStroke = (node) => {
+    const v = S("border"); if (!v) return;
+    node.strokes = [paint(v)]; node.strokeAlign = "INSIDE"; node.strokeWeight = 0; bind(node, "strokeWeight", S("border-width"));
+  };
   var fillP = (node, presetName) => { const v = PR(presetName); if (v) node.fills = [paint(v)]; };
   var frame = (name, dir) => {
     const f = figma.createFrame(); f.name = name; f.fills = [];
@@ -230,8 +244,6 @@ async function buildComponents(index) {
   await figma.setCurrentPageAsync(page);
 
   // ================= Контролы =================
-  var STATES = ["default", "hover", "pressed", "disabled"];
-  var stateOpacity = { hover: "opacity/10", pressed: "opacity/20" };
   var cursorY = 0;
   var failures = [];
   var fail = (name, e) => {
@@ -250,12 +262,12 @@ async function buildComponents(index) {
     try { parent.appendChild(sl); } catch (e) { say(`⚠ слот ${name}: ${e.message}`); }
     return sl;
   };
-  var stateLayer = (comp, state, colorName) => {
-    if (!stateOpacity[state]) return;
+  // Слой подсветки: всегда в компоненте, прозрачность — state/overlay (hover 10%, pressed 20%, иначе 0).
+  var stateLayer = (comp, colorName) => {
     const r = figma.createRectangle(); r.name = "state"; fill(r, colorName);
     comp.appendChild(r); r.layoutPositioning = "ABSOLUTE"; r.x = 0; r.y = 0; sz(r, comp.width, comp.height);
     r.constraints = { horizontal: "STRETCH", vertical: "STRETCH" };
-    bind(r, "opacity", N(stateOpacity[state]));
+    bind(r, "opacity", S("overlay"));
   };
   var combine = (comps, name, description) => {
     const set = figma.combineAsVariants(comps, page);
@@ -378,7 +390,7 @@ async function buildComponents(index) {
     : m === "static-dark" ? "content/static-light"
     : c === "deep" ? `content/${m}/on-deep` : `content/${m}/primary`;
   try {
-  // Набор на группу смысла × размер: Button/accent/large. Внутри варианты scheme (uno/duo…) × contrast × state.
+  // Набор на группу смысла × размер: Button/accent/large. Внутри варианты scheme (uno/duo…) × contrast. Состояние — мод State.
   var GROUPS = [["neutral", [null]], ["accent", ["uno", "duo"]], ["status", ["positive", "negative"]],
                   ["brand", ["uno", "duo"]], ["static", ["light", "dark"]], ["inverse", [null]]];
   var meaningOf = (g, sc) => (sc ? `${g}-${sc}` : g);
@@ -395,9 +407,10 @@ async function buildComponents(index) {
       for (const sc of schemes) {
         const m = meaningOf(g, sc);
         for (const c of (g === "inverse" || g === "static" ? ["deep"] : ["pale", "deep"])) {
-          STATES.forEach((state, ci) => {
+          {
+            const ci = 0;
             const b = figma.createComponent();
-            b.name = (sc ? `scheme=${sc}, ` : "") + `contrast=${c}, state=${state}`;
+            b.name = (sc ? `scheme=${sc}, ` : "") + `contrast=${c}`;
             b.layoutMode = "HORIZONTAL"; b.primaryAxisSizingMode = "AUTO"; b.counterAxisSizingMode = "FIXED";
             b.primaryAxisAlignItems = "CENTER"; b.counterAxisAlignItems = "CENTER"; b.clipsContent = true;
             fill(b, g === "inverse" ? "background/inverse" : g === "static" ? `background/${m}` : `background/${m}-${c}`);
@@ -411,18 +424,17 @@ async function buildComponents(index) {
             const label = text("Кнопка", 15, true, lc); label.name = "label"; b.appendChild(label);
             bind(label, "fontSize", VP(`control/${size}/font-size`));
             const trail = makeSlot(b, "trailing", b);
-            stateLayer(b, state, lc);
-            if (state === "disabled") bind(b, "opacity", N("opacity/40"));
+            stateLayer(b, lc); stateful(b);
             skeletonOverlay(b);
             b.x = ci * 150; b.y = r * 76;
             comps.push(b); labels.push(label); slots.push([lead, trail]); icons.push(ic);
-          });
+          }
           r++;
         }
       }
       const set = combine(comps, `Button/${g}/${SIZES[size]}`,
         `Кнопка ${g}, ${SIZES[size]}. Варианты: ` + (schemes[0] ? `scheme (${schemes.join(" / ")}) × ` : "") +
-        "contrast (pale — второстепенная, deep — главная) × state. Свойства: label, hasLabel, hasIcon, icon (иконка из Icon/*), слоты leading / trailing. Только иконка: hasIcon = да, hasLabel = нет. Контракт: kb/components/button.json.");
+        "contrast (pale — второстепенная, deep — главная). Состояния hover / pressed / disabled — мод коллекции «7 · State» на инстансе. Свойства: label, hasLabel, hasIcon, icon (иконка из Icon/*), слоты leading / trailing. Только иконка: hasIcon = да, hasLabel = нет. Контракт: kb/components/button.json.");
       const lk = set.addComponentProperty("label", "TEXT", "Кнопка");
       const hl = set.addComponentProperty("hasLabel", "BOOLEAN", true);
       const hi = set.addComponentProperty("hasIcon", "BOOLEAN", false);
@@ -447,7 +459,7 @@ async function buildComponents(index) {
   var buttonInstance = (meaning, contrast, size, label, opt) => {
     const [g, sc] = meaning.includes("-") ? meaning.split("-") : [meaning, null];
     const bs = buttonSets[`${g}/${size}`];
-    const name = (sc ? `scheme=${sc}, ` : "") + `contrast=${contrast}, state=default`;
+    const name = (sc ? `scheme=${sc}, ` : "") + `contrast=${contrast}`;
     const inst = bs.set.children.find((c) => c.name === name).createInstance();
     const props = { [bs.labelKey]: label };
     if (opt && opt.icon) {
@@ -461,18 +473,18 @@ async function buildComponents(index) {
     return inst;
   };  try {
   // ---- Checkbox и Radio
-  function selector(kind, value, state) {
+  function selector(kind, value) {
     const comp = figma.createComponent();
-    comp.name = `${kind === "checkbox" ? "checked" : "selected"}=${value}, state=${state}`;
+    comp.name = `${kind === "checkbox" ? "checked" : "selected"}=${value}`;
     comp.layoutMode = "HORIZONTAL"; comp.primaryAxisSizingMode = "AUTO"; comp.counterAxisSizingMode = "AUTO";
     comp.counterAxisAlignItems = "CENTER"; comp.fills = [];
     const hit = frame("hit", "HORIZONTAL"); hit.primaryAxisAlignItems = "CENTER"; hit.counterAxisAlignItems = "CENTER";
     hit.primaryAxisSizingMode = "FIXED"; hit.counterAxisSizingMode = "FIXED"; sz(hit, 36, 36);
     comp.appendChild(hit);
-    if (stateOpacity[state]) {
+    {
       const halo = figma.createEllipse(); halo.name = "state"; fill(halo, "content/neutral/primary");
       hit.appendChild(halo); halo.layoutPositioning = "ABSOLUTE"; sz(halo, 36, 36); halo.x = 0; halo.y = 0;
-      bind(halo, "opacity", N(stateOpacity[state]));
+      bind(halo, "opacity", S("overlay"));
     }
     const on = value !== "false";
     const box = figma.createFrame(); box.name = "box"; sz(box, 24, 24);
@@ -500,17 +512,17 @@ async function buildComponents(index) {
       const dash = figma.createRectangle(); dash.name = "dash"; sz(dash, 12, 2.5); dash.x = 6; dash.y = 10.75; dash.cornerRadius = 1.25;
       fill(dash, "content/neutral/on-deep"); box.appendChild(dash); dash.constraints = { horizontal: "SCALE", vertical: "SCALE" };
     }
-    if (state === "disabled") bind(comp, "opacity", N("opacity/40"));
+    stateful(comp);
     return { comp };
   }
   for (const [kind, values, title] of [["checkbox", ["false", "true", "indeterminate"], "Checkbox"], ["radio", ["false", "true"], "Radio"]]) {
     const comps = [];
-    values.forEach((v, r) => STATES.forEach((s, c) => {
-      const { comp } = selector(kind, v, s); comp.x = c * 60; comp.y = r * 56; comps.push(comp);
-    }));
+    values.forEach((v, r) => {
+      const { comp } = selector(kind, v); comp.x = r * 60; comps.push(comp);
+    });
     const set = combine(comps, title, kind === "checkbox"
-      ? "Чекбокс. Мягкий стиль: выключенный — серый без обводки, отмеченный — чёрный с белой галкой. Контракт: kb/components/checkbox.json."
-      : "Радио. Мягкий стиль: выключенное — серое, выбранное — толстое чёрное кольцо. Контракт: kb/components/radio.json.");
+      ? "Чекбокс. Мягкий стиль: выключенный — серый без обводки, отмеченный — чёрный с белой галкой. Состояния — мод State. Контракт: kb/components/checkbox.json."
+      : "Радио. Мягкий стиль: выключенное — серое, выбранное — толстое чёрное кольцо. Состояния — мод State. Контракт: kb/components/radio.json.");
     place(set, title);
     say(`✓ ${title}: ${comps.length} вариантов`);
   }
@@ -519,8 +531,9 @@ async function buildComponents(index) {
   try {
   // ---- Chip
   var chipComps = [], chipLabels = [], chipSlots = [];
-  ["false", "true"].forEach((sel, r) => STATES.forEach((state, c) => {
-    const ch = figma.createComponent(); ch.name = `selected=${sel}, state=${state}`;
+  ["false", "true"].forEach((sel, c) => {
+    const r = 0;
+    const ch = figma.createComponent(); ch.name = `selected=${sel}`;
     ch.layoutMode = "HORIZONTAL"; ch.primaryAxisSizingMode = "AUTO"; ch.counterAxisSizingMode = "FIXED";
     ch.primaryAxisAlignItems = "CENTER"; ch.counterAxisAlignItems = "CENTER"; ch.clipsContent = true;
     sz(ch, 80, 36); bind(ch, "height", VP("control/chip/height"));
@@ -534,13 +547,12 @@ async function buildComponents(index) {
     const label = text("Чипс", 15, true, lc); label.name = "label"; ch.appendChild(label);
     bind(label, "fontSize", VP("control/m/font-size"));
     const trail = makeSlot(ch, "trailing", ch);
-    stateLayer(ch, state, lc);
-    if (state === "disabled") bind(ch, "opacity", N("opacity/40"));
+    stateLayer(ch, lc); stateful(ch);
     skeletonOverlay(ch);
     ch.x = c * 160; ch.y = r * 60;
     chipComps.push(ch); chipLabels.push(label); chipSlots.push([lead, trail]);
-  }));
-  var chipSet = combine(chipComps, "Chip", "Чипс: фильтр или выбор, без обводки. Невыбранный — preset/chip/fill (серый; в пресете overlay — белый), выбранный — чёрный. Контракт: kb/components/chip.json.");
+  });
+  var chipSet = combine(chipComps, "Chip", "Чипс: фильтр или выбор, без обводки. Невыбранный — preset/chip/fill (серый; в пресете overlay — белый), выбранный — чёрный. Состояния — мод State. Контракт: kb/components/chip.json.");
   var chLk = chipSet.addComponentProperty("label", "TEXT", "Чипс");
   var chLead = chipSet.addComponentProperty("leading", "BOOLEAN", false);
   var chTrail = chipSet.addComponentProperty("trailing", "BOOLEAN", false);
@@ -648,12 +660,12 @@ async function buildComponents(index) {
     } catch (e) { say(`⚠ кнопка в поле: ${e.message}`); return iconName ? icon(iconName, "content/neutral/primary") : text(label, 16, true, "content/neutral/primary"); }
   };
 
-  // Одно поле = отдельный набор компонентов (state × 5). Содержимое слотов кладётся прямо в компонент.
-  var FIELD_STATES = ["empty", "focus", "filled", "error", "disabled"];
+  // Одно поле = отдельный набор компонентов (filled = false / true). Focus, error, disabled — мод State.
+  var FIELD_STATES = ["empty", "filled"];
   var buildField = (setName, opt) => {
     const parts = [];
     const comps = FIELD_STATES.map((state, i) => {
-      const comp = figma.createComponent(); comp.name = `state=${state}`;
+      const comp = figma.createComponent(); comp.name = `filled=${state === "filled"}`;
       comp.layoutMode = "VERTICAL"; comp.primaryAxisSizingMode = "AUTO"; comp.counterAxisSizingMode = "FIXED";
       sz(comp, 343, 56); bind(comp, "width", VP("field/width")); comp.fills = [];
       bind(comp, "itemSpacing", VP("field/hint-gap"));
@@ -664,7 +676,7 @@ async function buildComponents(index) {
       ["paddingLeft", "paddingRight"].forEach((p) => bind(box, p, VP("field/padding-x")));
       bind(box, "itemSpacing", VP("field/gap")); radius(box, ALL, VP("field/radius"));
       fillP(box, "field/fill");
-      if (state === "error") { const v = T("background/status-negative-deep"); if (v) { box.strokes = [paint(v)]; box.strokeAlign = "INSIDE"; box.strokeWeight = 1.5; } }
+      errorStroke(box);
       const lead = makeSlot(comp, "leading", box);
       if (opt.leading) lead.appendChild(opt.leading());
       const col = frame("text", "VERTICAL"); col.primaryAxisAlignItems = "CENTER";
@@ -672,22 +684,25 @@ async function buildComponents(index) {
       ["paddingLeft", "paddingRight"].forEach((p) => bind(col, p, VP("field/text-padding-x")));
       bind(col, "itemSpacing", VP("field/label-gap"));
       const raised = state !== "empty";
-      const label = text(opt.label, raised ? 13 : 16, false, state === "error" ? "content/status-negative/primary" : (raised ? "content/neutral/secondary" : "content/neutral/tertiary"));
+      const label = text(opt.label, raised ? 13 : 16, false, "content/neutral/secondary");
+      fillS(label, raised ? "field/label" : "field/placeholder");
       label.fontName = { family: "Inter", style: "Medium" }; label.name = "label"; bind(label, "fontSize", VP(raised ? "field/label-size" : "field/value-size"));
       col.appendChild(label); label.layoutSizingHorizontal = "FILL";
       const valueRow = frame("value-row", "HORIZONTAL"); valueRow.counterAxisAlignItems = "CENTER"; valueRow.itemSpacing = 1;
       col.appendChild(valueRow);
       const value = text(opt.value, 16, false, "content/neutral/primary"); value.name = "value";
       bind(value, "fontSize", VP("field/value-size")); valueRow.appendChild(value);
-      if (state === "focus") { const caret = figma.createRectangle(); caret.name = "caret"; sz(caret, 2, 20); fill(caret, "content/neutral/primary"); valueRow.appendChild(caret); value.visible = false; }
-      if (state === "empty") valueRow.visible = false;
+      const caret = figma.createRectangle(); caret.name = "caret"; sz(caret, 2, 20); fill(caret, "content/neutral/primary"); valueRow.appendChild(caret);
+      bind(caret, "visible", S("focus"));
+      // Пустое поле: строки значения нет, в фокусе появляется только каретка.
+      if (state === "empty") { value.visible = false; bind(valueRow, "visible", S("focus")); }
       const trail = makeSlot(comp, "trailing", box);
       if (opt.trailing) trail.appendChild(opt.trailing());
       skeletonOverlay(box);
-      const hint = text(state === "error" ? "Проверьте значение" : (opt.hint || "Подсказка"), 13, false, state === "error" ? "content/status-negative/primary" : "content/neutral/secondary");
+      const hint = text(opt.hint || "Подсказка", 13, false, "content/neutral/secondary"); fillS(hint, "field/hint");
       hint.name = "hint"; bind(hint, "fontSize", VP("field/hint-size"));
       comp.appendChild(hint); hint.layoutSizingHorizontal = "FILL";
-      if (state === "disabled") bind(comp, "opacity", N("opacity/40"));
+      stateful(comp);
       comp.x = i * 400; comp.y = 0;
       parts.push({ label, value, hint, lead, trail });
       return comp;
@@ -696,6 +711,7 @@ async function buildComponents(index) {
     const k = {
       label: set.addComponentProperty("label", "TEXT", opt.label),
       value: set.addComponentProperty("value", "TEXT", opt.value),
+      hint: set.addComponentProperty("hint", "TEXT", opt.hint || "Подсказка"),
       hasHint: set.addComponentProperty("hasHint", "BOOLEAN", !!opt.hint),
       leading: set.addComponentProperty("leading", "BOOLEAN", !!opt.leading),
       trailing: set.addComponentProperty("trailing", "BOOLEAN", !!opt.trailing),
@@ -703,7 +719,7 @@ async function buildComponents(index) {
     parts.forEach(({ label, value, hint, lead, trail }) => {
       label.componentPropertyReferences = { characters: k.label };
       value.componentPropertyReferences = { characters: k.value };
-      hint.componentPropertyReferences = { visible: k.hasHint };
+      hint.componentPropertyReferences = { characters: k.hint, visible: k.hasHint };
       try { lead.componentPropertyReferences = { visible: k.leading }; trail.componentPropertyReferences = { visible: k.trailing }; } catch (e) { say(`⚠ слоты ${setName}: ${e.message}`); }
     });
     return set;
@@ -712,7 +728,7 @@ async function buildComponents(index) {
   var fieldHeader = text("Field", 32, true, "content/neutral/primary"); fieldHeader.y = cursorY; page.appendChild(fieldHeader);
   var fieldY = cursorY + 56;
   var FIELDS = [
-    ["Field", { label: "Лейбл", value: "Значение", description: "Поле ввода: серая заливка, плавающий лейбл, пустые слоты leading / trailing, подсказка. Состояния: empty, focus, filled, error (красная обводка и лейбл), disabled. Контракт: kb/components/field.json." }],
+    ["Field", { label: "Лейбл", value: "Значение", description: "Поле ввода: серая заливка, плавающий лейбл, пустые слоты leading / trailing, подсказка. Вариант filled = false / true; focus, error (красная обводка, лейбл и подсказка), disabled — мод State. Контракт: kb/components/field.json." }],
     ["Field/password", { label: "Пароль", value: "••••••••", hint: "Минимум 8 символов", trailing: () => fieldBtn("eye"), description: "Пароль: значение точками, справа кнопка-иконка «показать» (Button/static light pale small)." }],
     ["Field/number", { label: "Количество", value: "2", description: "Число: справа белые кнопки − и +.", trailing: () => {
         const g = frame("stepper", "HORIZONTAL"); g.itemSpacing = 6;
@@ -735,11 +751,12 @@ async function buildComponents(index) {
   cursorY = fieldY + 100;
   say(`✓ Поля: ${builtFields.join(", ")}`);
 
-  // ---- Switch: checked × state. Включённый — чёрный, как остальные контролы.
+  // ---- Switch: checked; disabled — мод State. Включённый — чёрный, как остальные контролы.
   try {
     const swComps = [];
-    ["false", "true"].forEach((on, r) => ["default", "disabled"].forEach((state, ci) => {
-      const comp = figma.createComponent(); comp.name = `checked=${on}, state=${state}`;
+    ["false", "true"].forEach((on, r) => {
+      const ci = 0;
+      const comp = figma.createComponent(); comp.name = `checked=${on}`;
       comp.layoutMode = "HORIZONTAL"; comp.primaryAxisSizingMode = "AUTO"; comp.counterAxisSizingMode = "AUTO";
       comp.counterAxisAlignItems = "CENTER"; comp.fills = [];
       const track = frame("track", "HORIZONTAL"); track.counterAxisAlignItems = "CENTER";
@@ -756,20 +773,20 @@ async function buildComponents(index) {
       fill(knob, "ground/ground-2");
       knob.effects = [{ type: "DROP_SHADOW", color: { r: 0, g: 0, b: 0, a: 0.15 }, offset: { x: 0, y: 2 }, radius: 4, spread: 0, visible: true, blendMode: "NORMAL" }];
       skeletonOverlay(track);
-      if (state === "disabled") bind(comp, "opacity", N("opacity/40"));
+      stateful(comp);
       comp.x = ci * 80; comp.y = r * 56; swComps.push(comp);
-    }));
-    const swSet = combine(swComps, "Switch", "Свитч. Выключенный — серый трек, включённый — чёрный, ручка белая. Контракт: kb/components/switch.json.");
+    });
+    const swSet = combine(swComps, "Switch", "Свитч. Выключенный — серый трек, включённый — чёрный, ручка белая. Disabled — мод State. Контракт: kb/components/switch.json.");
     const h = text("Switch", 32, true, "content/neutral/primary"); h.y = cursorY; page.appendChild(h);
     swSet.x = 0; swSet.y = cursorY + 56; cursorY = swSet.y + swSet.height + 160;
-    say("✓ Switch: 4 варианта");
+    say("✓ Switch: 2 варианта");
   } catch (e) { fail("Switch", e); }
 
   // ---- Textarea: многострочное поле той же анатомии, что Field
   try {
     const parts = [];
     const comps = FIELD_STATES.map((state, i) => {
-      const comp = figma.createComponent(); comp.name = `state=${state}`;
+      const comp = figma.createComponent(); comp.name = `filled=${state === "filled"}`;
       comp.layoutMode = "VERTICAL"; comp.primaryAxisSizingMode = "AUTO"; comp.counterAxisSizingMode = "FIXED";
       sz(comp, 343, 120); bind(comp, "width", VP("field/width")); comp.fills = [];
       bind(comp, "itemSpacing", VP("field/hint-gap"));
@@ -779,12 +796,13 @@ async function buildComponents(index) {
       ["paddingLeft", "paddingRight"].forEach((p) => bind(box, p, VP("field/padding-x")));
       ["paddingTop", "paddingBottom"].forEach((p) => bind(box, p, VP("field/padding-y")));
       radius(box, ALL, VP("field/radius")); fillP(box, "field/fill");
-      if (state === "error") { const v = T("background/status-negative-deep"); if (v) { box.strokes = [paint(v)]; box.strokeAlign = "INSIDE"; box.strokeWeight = 1.5; } }
+      errorStroke(box);
       const col = frame("text", "VERTICAL"); box.appendChild(col); col.layoutSizingHorizontal = "FILL"; col.layoutSizingVertical = "FILL";
       ["paddingLeft", "paddingRight"].forEach((p) => bind(col, p, VP("field/text-padding-x")));
       bind(col, "itemSpacing", VP("field/label-gap"));
       const raised = state !== "empty";
-      const label = text("Комментарий", raised ? 13 : 16, false, state === "error" ? "content/status-negative/primary" : (raised ? "content/neutral/secondary" : "content/neutral/tertiary"));
+      const label = text("Комментарий", raised ? 13 : 16, false, "content/neutral/secondary");
+      fillS(label, raised ? "field/label" : "field/placeholder");
       label.fontName = { family: "Inter", style: "Medium" }; label.name = "label";
       bind(label, "fontSize", VP(raised ? "field/label-size" : "field/value-size"));
       col.appendChild(label); label.layoutSizingHorizontal = "FILL";
@@ -792,18 +810,19 @@ async function buildComponents(index) {
       bind(value, "fontSize", VP("field/value-size"));
       col.appendChild(value); value.layoutSizingHorizontal = "FILL"; value.textAutoResize = "HEIGHT";
       if (state === "empty") value.visible = false;
-      if (state === "focus") value.characters = "|";
+      const caret = figma.createRectangle(); caret.name = "caret"; sz(caret, 2, 20); fill(caret, "content/neutral/primary");
+      col.appendChild(caret); bind(caret, "visible", S("focus"));
       const counter = text("54 / 500", 13, false, "content/neutral/tertiary"); counter.name = "counter"; counter.textAlignHorizontal = "RIGHT";
       bind(counter, "fontSize", VP("field/hint-size"));
       col.appendChild(counter); counter.layoutSizingHorizontal = "FILL";
-      const hint = text(state === "error" ? "Слишком длинный комментарий" : "Подсказка", 13, false, state === "error" ? "content/status-negative/primary" : "content/neutral/secondary");
+      const hint = text("Подсказка", 13, false, "content/neutral/secondary"); fillS(hint, "field/hint");
       hint.name = "hint"; bind(hint, "fontSize", VP("field/hint-size"));
       comp.appendChild(hint); hint.layoutSizingHorizontal = "FILL";
-      if (state === "disabled") bind(comp, "opacity", N("opacity/40"));
+      stateful(comp);
       comp.x = i * 400; parts.push({ label, value, counter, hint });
       return comp;
     });
-    const set = combine(comps, "Textarea", "Многострочное поле: та же анатомия, что Field — серая заливка, лейбл Medium, ошибка красной обводкой. Растёт по высоте от viewport/field/textarea-min-height. Счётчик символов справа внизу. Контракт: kb/components/textarea.json.");
+    const set = combine(comps, "Textarea", "Многострочное поле: та же анатомия, что Field — серая заливка, лейбл Medium. Вариант filled; focus, error, disabled — мод State. Растёт по высоте от viewport/field/textarea-min-height. Счётчик символов справа внизу. Контракт: kb/components/textarea.json.");
     const k = {
       label: set.addComponentProperty("label", "TEXT", "Комментарий"),
       value: set.addComponentProperty("value", "TEXT", "Позвоните за 10 минут до приезда, домофон не работает"),
@@ -819,7 +838,7 @@ async function buildComponents(index) {
     });
     const h = text("Textarea", 32, true, "content/neutral/primary"); h.y = cursorY; page.appendChild(h);
     set.x = 0; set.y = cursorY + 56; cursorY = set.y + set.height + 160;
-    say("✓ Textarea: 5 состояний");
+    say("✓ Textarea: filled false / true");
   } catch (e) { fail("Textarea", e); }
 
   // ---- Segmented control: серый трек, выбранный сегмент — белая плашка.
@@ -972,38 +991,45 @@ async function buildComponents(index) {
     section("Progress bar", set); say("✓ Progress bar");
   } catch (e) { fail("Progress bar", e); }
 
-  // ---- Code input: ячейка (state) + поле кода (length 4 / 6 × state)
+  // ---- Code input: ячейка (filled) + поле кода (length 4 / 6 × progress). Фокус и ошибка — мод State.
   try {
     const cellComps = [], digits = [];
-    ["empty", "active", "filled", "error"].forEach((state, ci) => {
-      const c = figma.createComponent(); c.name = `state=${state}`;
+    ["false", "true"].forEach((filled, ci) => {
+      const c = figma.createComponent(); c.name = `filled=${filled}`;
       c.layoutMode = "HORIZONTAL"; c.primaryAxisAlignItems = "CENTER"; c.counterAxisAlignItems = "CENTER";
       c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "FIXED"; sz(c, 48, 56);
       bind(c, "width", VP("code/cell-width")); bind(c, "height", VP("code/cell-height")); radius(c, ALL, VP("code/radius"));
-      fillP(c, "field/fill");
-      if (state === "error") { const v = T("background/status-negative-deep"); if (v) { c.strokes = [paint(v)]; c.strokeAlign = "INSIDE"; c.strokeWeight = 1.5; } }
-      if (state === "active") { const caret = figma.createRectangle(); caret.name = "caret"; sz(caret, 2, 24); fill(caret, "content/neutral/primary"); c.appendChild(caret); }
-      else { const d = text(state === "empty" ? "" : "7", 24, true, state === "error" ? "content/status-negative/primary" : "content/neutral/primary"); d.name = "digit"; bind(d, "fontSize", VP("code/font-size")); c.appendChild(d); if (state !== "empty") digits.push(d); }
+      fillP(c, "field/fill"); errorStroke(c);
+      if (filled === "true") {
+        const d = text("7", 24, true, "content/neutral/primary"); fillS(d, "field/digit"); d.name = "digit";
+        bind(d, "fontSize", VP("code/font-size")); c.appendChild(d); digits.push(d);
+      } else {
+        const caret = figma.createRectangle(); caret.name = "caret"; sz(caret, 2, 24); fill(caret, "content/neutral/primary");
+        c.appendChild(caret); bind(caret, "visible", S("focus"));
+      }
+      stateful(c);
       c.x = ci * 70; cellComps.push(c);
     });
-    const cellSet = combine(cellComps, "Code input/cell", "Ячейка кода: empty, active (курсор), filled, error (красная обводка).");
+    const cellSet = combine(cellComps, "Code input/cell", "Ячейка кода: filled = false / true. Курсор — мод State = focus, красная обводка и цифра — мод error.");
     const dk = cellSet.addComponentProperty("digit", "TEXT", "7");
     digits.forEach((d) => (d.componentPropertyReferences = { characters: dk }));
-    const cell = (st) => cellSet.children.find((c) => c.name === `state=${st}`);
+    const cell = (filled) => cellSet.children.find((c) => c.name === `filled=${filled}`);
     const comps = [];
-    [4, 6].forEach((len, r) => ["empty", "filling", "filled", "error"].forEach((state, ci) => {
-      const c = figma.createComponent(); c.name = `length=${len}, state=${state}`;
+    [4, 6].forEach((len, r) => ["empty", "filling", "filled"].forEach((progress, ci) => {
+      const c = figma.createComponent(); c.name = `length=${len}, progress=${progress}`;
       c.layoutMode = "HORIZONTAL"; c.primaryAxisSizingMode = "AUTO"; c.counterAxisSizingMode = "AUTO"; c.fills = [];
       bind(c, "itemSpacing", VP("code/gap"));
+      const done = progress === "empty" ? 0 : progress === "filling" ? 2 : len;
       for (let i = 0; i < len; i++) {
-        const st = state === "empty" ? (i === 0 ? "active" : "empty") : state === "filling" ? (i < 2 ? "filled" : i === 2 ? "active" : "empty") : state;
-        const inst = cell(st).createInstance(); c.appendChild(inst);
-        if (st === "filled" || st === "error") inst.setProperties({ [dk]: String((i * 3 + 4) % 10) });
+        const inst = cell(i < done ? "true" : "false").createInstance(); c.appendChild(inst);
+        if (i < done) inst.setProperties({ [dk]: String((i * 3 + 4) % 10) });
+        if (i === done) setState(inst, "focus"); // активная ячейка — следующая после заполненных
         try { inst.isExposedInstance = true; } catch (e) {}
       }
+      stateful(c);
       c.x = ci * 420; c.y = r * 80; comps.push(c);
     }));
-    const set = combine(comps, "Code input", "Ввод кода из СМС по ячейкам: length 4 / 6; state empty, filling, filled, error. Ячейки — preset/field/fill. Контракт: kb/components/code-input.json.");
+    const set = combine(comps, "Code input", "Ввод кода из СМС по ячейкам: length 4 / 6 × progress (empty, filling, filled). Активная ячейка — мод State = focus на ней. Ошибка — мод State = error на всём поле. Ячейки — preset/field/fill. Контракт: kb/components/code-input.json.");
     section("Code input", cellSet); section("", set); say("✓ Code input");
   } catch (e) { fail("Code input", e); }
 

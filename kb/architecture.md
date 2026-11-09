@@ -15,6 +15,7 @@ summary: Как устроен цвет кита — коллекции, тон�
 | numbers | 3 · Numbers | — | `opacity/0…90` — прозрачность в процентах. | — |
 | preset | 5 · Preset | default, overlay | Пресеты — адаптация компонентов к поверхности: default — на ground, overlay — на цветном фоне. Заливки полей, Textarea, Code input, чипсов, Segmented control. | theme |
 | skeleton | 6 · Skeleton | off, on | Скелетон загрузки: on — компоненты внутри фрейма показывают заглушки своей формы. | — |
+| state | 7 · State | default, hover, pressed, focus, error, disabled | Состояния компонентов. Мод на инстансе (или фрейме). Варианты описывают только значение (выбран, заполнен), состояние — всегда мод: state/overlay, state/opacity, state/focus, state/error, state/border*, state/field/*. | numbers, theme |
 | viewport | 4 · Viewport | s, m, l | Брейкпоинты: телефон (до 767), планшет (768–1279), десктоп (от 1280). Размеры экрана, отступы и поведение компонентов: `window/*`. Мод выбирается на фрейме. | — |
 
 - Палитра одна на бренд и общая для обеих тем. Тема ничего не хранит, только выбирает тоны.
@@ -42,7 +43,7 @@ summary: Как устроен цвет кита — коллекции, тон�
 Состояния: ховер и нажатие — соседний тон (pale → soft), затемнение — `ground/scrim` + `opacity/40…60`.
 
 ## Компоненты
-Контракты — `kb/components/<name>.json` (MCP `get_component`). В Figma их собирает плагин: Tessera Sync → «Обновить и пересобрать компоненты». Сейчас есть: `layout` (стартовый фрейм экрана), `icon` (библиотека Icon/*), `text` (семантический текст со вложенным Skeleton), `skeleton`, `button` (наборы Button/<группа>/<small|medium|large>, варианты scheme × contrast pale|deep × state), `rich-icon` (один компонент RichIcon: size × shape, без цветовых вариантов), `field` и поля той же анатомии (Field/password, number, search, select, phone, date), `textarea`, `switch`, `segmented-control`, `badge`, `tab-bar`, `divider`, `progress-bar`, `code-input`, `pagination`; скелетон — мод (`skeleton`), `checkbox`, `radio`, `chip`, `navbar` (Navbar/default и Navbar/large, варианты surface), `window`. Основные контролы (чекбокс, радио, чипс) во включённом состоянии — neutral-deep (чёрные).
+Контракты — `kb/components/<name>.json` (MCP `get_component`). В Figma их собирает плагин: Tessera Sync → «Обновить и пересобрать компоненты». Сейчас есть: `layout` (стартовый фрейм экрана), `icon` (библиотека Icon/*), `text` (семантический текст со вложенным Skeleton), `skeleton`, `button` (наборы Button/<группа>/<small|medium|large>, варианты scheme × contrast pale|deep; состояние — мод State), `rich-icon` (один компонент RichIcon: size × shape, без цветовых вариантов), `field` и поля той же анатомии (Field/password, number, search, select, phone, date), `textarea`, `switch`, `segmented-control`, `badge`, `tab-bar`, `divider`, `progress-bar`, `code-input`, `pagination`; скелетон — мод (`skeleton`), `checkbox`, `radio`, `chip`, `navbar` (Navbar/default и Navbar/large, варианты surface), `window`. Основные контролы (чекбокс, радио, чипс) во включённом состоянии — neutral-deep (чёрные).
 
 ## Правила
 1. Ссылки только вниз по таблице слоёв. Проверяет `tools/build.py`.
@@ -50,3 +51,8 @@ summary: Как устроен цвет кита — коллекции, тон�
 3. Палитра и мод бренда генерируются `tools/palette.py` из `brands/<id>.brand.json`.
 4. У каждого токена есть описание — оно уезжает в описание переменной Figma.
 5. Обязательный контраст — `color-model.json → pairs`; нарушение ломает сборку.
+
+
+## Состояния
+
+Состояния не размножают варианты. Компонент содержит все слои сразу (подсветка `state`, каретка, обводка ошибки), а их видимость и прозрачность привязаны к переменным коллекции «7 · State». Чтобы показать hover, ошибку или disabled — выберите инстанс и поставьте мод State. Вариант — только для значения: `checked`, `selected`, `filled`, `contrast`.

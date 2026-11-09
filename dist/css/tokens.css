@@ -1,4 +1,4 @@
-/* Tessera 0.7.0 — сгенерировано tools/build.py, не править */
+/* Tessera 0.8.0 — сгенерировано tools/build.py, не править */
 
 :root {
   --palette-common-white: #ffffff;
@@ -127,6 +127,7 @@
   --numbers-opacity-70: 0.7;
   --numbers-opacity-80: 0.8;
   --numbers-opacity-90: 0.9;
+  --numbers-opacity-100: 1.0;
   --viewport-screen-width: 390px;
   --viewport-screen-height: 844px;
   --viewport-window-padding: 16px;
@@ -754,4 +755,82 @@
 [data-skeleton="on"] {
   --skeleton-visible: 1;
   --skeleton-content: 0;
+}
+
+:root, [data-state="default"] {
+  --state-overlay: var(--numbers-opacity-0);
+  --state-opacity: var(--numbers-opacity-100);
+  --state-focus: 0;
+  --state-error: 0;
+  --state-field-label: var(--theme-content-neutral-secondary);
+  --state-field-placeholder: var(--theme-content-neutral-tertiary);
+  --state-field-hint: var(--theme-content-neutral-secondary);
+  --state-field-digit: var(--theme-content-neutral-primary);
+  --state-border: var(--theme-border-status-negative-deep);
+  --state-border-width: 0px;
+}
+
+[data-state="hover"] {
+  --state-overlay: var(--numbers-opacity-10);
+  --state-opacity: var(--numbers-opacity-100);
+  --state-focus: 0;
+  --state-error: 0;
+  --state-field-label: var(--theme-content-neutral-secondary);
+  --state-field-placeholder: var(--theme-content-neutral-tertiary);
+  --state-field-hint: var(--theme-content-neutral-secondary);
+  --state-field-digit: var(--theme-content-neutral-primary);
+  --state-border: var(--theme-border-status-negative-deep);
+  --state-border-width: 0px;
+}
+
+[data-state="pressed"] {
+  --state-overlay: var(--numbers-opacity-20);
+  --state-opacity: var(--numbers-opacity-100);
+  --state-focus: 0;
+  --state-error: 0;
+  --state-field-label: var(--theme-content-neutral-secondary);
+  --state-field-placeholder: var(--theme-content-neutral-tertiary);
+  --state-field-hint: var(--theme-content-neutral-secondary);
+  --state-field-digit: var(--theme-content-neutral-primary);
+  --state-border: var(--theme-border-status-negative-deep);
+  --state-border-width: 0px;
+}
+
+[data-state="focus"] {
+  --state-overlay: var(--numbers-opacity-0);
+  --state-opacity: var(--numbers-opacity-100);
+  --state-focus: 1;
+  --state-error: 0;
+  --state-field-label: var(--theme-content-neutral-secondary);
+  --state-field-placeholder: var(--theme-content-neutral-tertiary);
+  --state-field-hint: var(--theme-content-neutral-secondary);
+  --state-field-digit: var(--theme-content-neutral-primary);
+  --state-border: var(--theme-border-status-negative-deep);
+  --state-border-width: 0px;
+}
+
+[data-state="error"] {
+  --state-overlay: var(--numbers-opacity-0);
+  --state-opacity: var(--numbers-opacity-100);
+  --state-focus: 0;
+  --state-error: 1;
+  --state-field-label: var(--theme-content-status-negative-primary);
+  --state-field-placeholder: var(--theme-content-status-negative-primary);
+  --state-field-hint: var(--theme-content-status-negative-primary);
+  --state-field-digit: var(--theme-content-status-negative-primary);
+  --state-border: var(--theme-border-status-negative-deep);
+  --state-border-width: 1.5px;
+}
+
+[data-state="disabled"] {
+  --state-overlay: var(--numbers-opacity-0);
+  --state-opacity: var(--numbers-opacity-40);
+  --state-focus: 0;
+  --state-error: 0;
+  --state-field-label: var(--theme-content-neutral-secondary);
+  --state-field-placeholder: var(--theme-content-neutral-tertiary);
+  --state-field-hint: var(--theme-content-neutral-secondary);
+  --state-field-digit: var(--theme-content-neutral-primary);
+  --state-border: var(--theme-border-status-negative-deep);
+  --state-border-width: 0px;
 }

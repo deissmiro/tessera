@@ -1,6 +1,6 @@
 {
  "kit": "Tessera",
- "version": "0.7.0",
+ "version": "0.8.0",
  "collections": [
   {
    "name": "0 · Palette",
@@ -2545,7 +2545,7 @@
     {
      "name": "background/accent-uno-pale",
      "type": "COLOR",
-     "description": "Заливки элементов поверх земли · accent-uno · pale. Интерактивный акцент.",
+     "description": "Заливки элементов поверх земли · accent-uno · pale. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться.",
      "scopes": [
       "FRAME_FILL",
       "SHAPE_FILL"
@@ -2566,7 +2566,7 @@
     {
      "name": "background/accent-uno-soft",
      "type": "COLOR",
-     "description": "Заливки элементов поверх земли · accent-uno · soft. Интерактивный акцент.",
+     "description": "Заливки элементов поверх земли · accent-uno · soft. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться.",
      "scopes": [
       "FRAME_FILL",
       "SHAPE_FILL"
@@ -2587,7 +2587,7 @@
     {
      "name": "background/accent-uno-deep",
      "type": "COLOR",
-     "description": "Заливки элементов поверх земли · accent-uno · deep. Интерактивный акцент.",
+     "description": "Заливки элементов поверх земли · accent-uno · deep. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться.",
      "scopes": [
       "FRAME_FILL",
       "SHAPE_FILL"
@@ -2608,7 +2608,7 @@
     {
      "name": "background/accent-duo-pale",
      "type": "COLOR",
-     "description": "Заливки элементов поверх земли · accent-duo · pale. Интерактивный акцент.",
+     "description": "Заливки элементов поверх земли · accent-duo · pale. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться.",
      "scopes": [
       "FRAME_FILL",
       "SHAPE_FILL"
@@ -2629,7 +2629,7 @@
     {
      "name": "background/accent-duo-soft",
      "type": "COLOR",
-     "description": "Заливки элементов поверх земли · accent-duo · soft. Интерактивный акцент.",
+     "description": "Заливки элементов поверх земли · accent-duo · soft. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться.",
      "scopes": [
       "FRAME_FILL",
       "SHAPE_FILL"
@@ -2650,7 +2650,7 @@
     {
      "name": "background/accent-duo-deep",
      "type": "COLOR",
-     "description": "Заливки элементов поверх земли · accent-duo · deep. Интерактивный акцент.",
+     "description": "Заливки элементов поверх земли · accent-duo · deep. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться.",
      "scopes": [
       "FRAME_FILL",
       "SHAPE_FILL"
@@ -2797,7 +2797,7 @@
     {
      "name": "background/brand-uno-pale",
      "type": "COLOR",
-     "description": "Заливки элементов поверх земли · brand-uno · pale. Фирменные цвета для промо и айдентики, не для интерактива.",
+     "description": "Заливки элементов поверх земли · brand-uno · pale. Брендовое действие: главный CTA экрана — кнопка «Заказать», «Оплатить», ключевой путь.",
      "scopes": [
       "FRAME_FILL",
       "SHAPE_FILL"
@@ -2818,7 +2818,7 @@
     {
      "name": "background/brand-uno-soft",
      "type": "COLOR",
-     "description": "Заливки элементов поверх земли · brand-uno · soft. Фирменные цвета для промо и айдентики, не для интерактива.",
+     "description": "Заливки элементов поверх земли · brand-uno · soft. Брендовое действие: главный CTA экрана — кнопка «Заказать», «Оплатить», ключевой путь.",
      "scopes": [
       "FRAME_FILL",
       "SHAPE_FILL"
@@ -2839,7 +2839,7 @@
     {
      "name": "background/brand-uno-deep",
      "type": "COLOR",
-     "description": "Заливки элементов поверх земли · brand-uno · deep. Фирменные цвета для промо и айдентики, не для интерактива.",
+     "description": "Заливки элементов поверх земли · brand-uno · deep. Брендовое действие: главный CTA экрана — кнопка «Заказать», «Оплатить», ключевой путь.",
      "scopes": [
       "FRAME_FILL",
       "SHAPE_FILL"
@@ -2860,7 +2860,7 @@
     {
      "name": "background/brand-duo-pale",
      "type": "COLOR",
-     "description": "Заливки элементов поверх земли · brand-duo · pale. Фирменные цвета для промо и айдентики, не для интерактива.",
+     "description": "Заливки элементов поверх земли · brand-duo · pale. Брендовое действие: главный CTA экрана — кнопка «Заказать», «Оплатить», ключевой путь.",
      "scopes": [
       "FRAME_FILL",
       "SHAPE_FILL"
@@ -2881,7 +2881,7 @@
     {
      "name": "background/brand-duo-soft",
      "type": "COLOR",
-     "description": "Заливки элементов поверх земли · brand-duo · soft. Фирменные цвета для промо и айдентики, не для интерактива.",
+     "description": "Заливки элементов поверх земли · brand-duo · soft. Брендовое действие: главный CTA экрана — кнопка «Заказать», «Оплатить», ключевой путь.",
      "scopes": [
       "FRAME_FILL",
       "SHAPE_FILL"
@@ -2902,7 +2902,7 @@
     {
      "name": "background/brand-duo-deep",
      "type": "COLOR",
-     "description": "Заливки элементов поверх земли · brand-duo · deep. Фирменные цвета для промо и айдентики, не для интерактива.",
+     "description": "Заливки элементов поверх земли · brand-duo · deep. Брендовое действие: главный CTA экрана — кнопка «Заказать», «Оплатить», ключевой путь.",
      "scopes": [
       "FRAME_FILL",
       "SHAPE_FILL"
@@ -3070,7 +3070,7 @@
     {
      "name": "content/accent-uno/primary",
      "type": "COLOR",
-     "description": "Текст и иконки · accent-uno · primary. Интерактивный акцент.",
+     "description": "Текст и иконки · accent-uno · primary. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться.",
      "scopes": [
       "TEXT_FILL",
       "SHAPE_FILL"
@@ -3091,7 +3091,7 @@
     {
      "name": "content/accent-uno/secondary",
      "type": "COLOR",
-     "description": "Текст и иконки · accent-uno · secondary. Интерактивный акцент.",
+     "description": "Текст и иконки · accent-uno · secondary. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться.",
      "scopes": [
       "TEXT_FILL",
       "SHAPE_FILL"
@@ -3112,7 +3112,7 @@
     {
      "name": "content/accent-uno/on-deep",
      "type": "COLOR",
-     "description": "Текст и иконки · accent-uno · on-deep. Интерактивный акцент.",
+     "description": "Текст и иконки · accent-uno · on-deep. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться.",
      "scopes": [
       "TEXT_FILL",
       "SHAPE_FILL"
@@ -3133,7 +3133,7 @@
     {
      "name": "content/accent-duo/primary",
      "type": "COLOR",
-     "description": "Текст и иконки · accent-duo · primary. Интерактивный акцент.",
+     "description": "Текст и иконки · accent-duo · primary. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться.",
      "scopes": [
       "TEXT_FILL",
       "SHAPE_FILL"
@@ -3154,7 +3154,7 @@
     {
      "name": "content/accent-duo/secondary",
      "type": "COLOR",
-     "description": "Текст и иконки · accent-duo · secondary. Интерактивный акцент.",
+     "description": "Текст и иконки · accent-duo · secondary. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться.",
      "scopes": [
       "TEXT_FILL",
       "SHAPE_FILL"
@@ -3175,7 +3175,7 @@
     {
      "name": "content/accent-duo/on-deep",
      "type": "COLOR",
-     "description": "Текст и иконки · accent-duo · on-deep. Интерактивный акцент.",
+     "description": "Текст и иконки · accent-duo · on-deep. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться.",
      "scopes": [
       "TEXT_FILL",
       "SHAPE_FILL"
@@ -3322,7 +3322,7 @@
     {
      "name": "content/brand-uno/primary",
      "type": "COLOR",
-     "description": "Текст и иконки · brand-uno · primary. Фирменные цвета для промо и айдентики, не для интерактива.",
+     "description": "Текст и иконки · brand-uno · primary. Брендовое действие: главный CTA экрана — кнопка «Заказать», «Оплатить», ключевой путь.",
      "scopes": [
       "TEXT_FILL",
       "SHAPE_FILL"
@@ -3343,7 +3343,7 @@
     {
      "name": "content/brand-uno/secondary",
      "type": "COLOR",
-     "description": "Текст и иконки · brand-uno · secondary. Фирменные цвета для промо и айдентики, не для интерактива.",
+     "description": "Текст и иконки · brand-uno · secondary. Брендовое действие: главный CTA экрана — кнопка «Заказать», «Оплатить», ключевой путь.",
      "scopes": [
       "TEXT_FILL",
       "SHAPE_FILL"
@@ -3364,7 +3364,7 @@
     {
      "name": "content/brand-uno/on-deep",
      "type": "COLOR",
-     "description": "Текст и иконки · brand-uno · on-deep. Фирменные цвета для промо и айдентики, не для интерактива.",
+     "description": "Текст и иконки · brand-uno · on-deep. Брендовое действие: главный CTA экрана — кнопка «Заказать», «Оплатить», ключевой путь.",
      "scopes": [
       "TEXT_FILL",
       "SHAPE_FILL"
@@ -3385,7 +3385,7 @@
     {
      "name": "content/brand-duo/primary",
      "type": "COLOR",
-     "description": "Текст и иконки · brand-duo · primary. Фирменные цвета для промо и айдентики, не для интерактива.",
+     "description": "Текст и иконки · brand-duo · primary. Брендовое действие: главный CTA экрана — кнопка «Заказать», «Оплатить», ключевой путь.",
      "scopes": [
       "TEXT_FILL",
       "SHAPE_FILL"
@@ -3406,7 +3406,7 @@
     {
      "name": "content/brand-duo/secondary",
      "type": "COLOR",
-     "description": "Текст и иконки · brand-duo · secondary. Фирменные цвета для промо и айдентики, не для интерактива.",
+     "description": "Текст и иконки · brand-duo · secondary. Брендовое действие: главный CTA экрана — кнопка «Заказать», «Оплатить», ключевой путь.",
      "scopes": [
       "TEXT_FILL",
       "SHAPE_FILL"
@@ -3427,7 +3427,7 @@
     {
      "name": "content/brand-duo/on-deep",
      "type": "COLOR",
-     "description": "Текст и иконки · brand-duo · on-deep. Фирменные цвета для промо и айдентики, не для интерактива.",
+     "description": "Текст и иконки · brand-duo · on-deep. Брендовое действие: главный CTA экрана — кнопка «Заказать», «Оплатить», ключевой путь.",
      "scopes": [
       "TEXT_FILL",
       "SHAPE_FILL"
@@ -3613,7 +3613,7 @@
     {
      "name": "border/accent-uno/pale",
      "type": "COLOR",
-     "description": "Обводки и разделители · accent-uno · pale. Интерактивный акцент.",
+     "description": "Обводки и разделители · accent-uno · pale. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться.",
      "scopes": [
       "STROKE_COLOR"
      ],
@@ -3633,7 +3633,7 @@
     {
      "name": "border/accent-uno/soft",
      "type": "COLOR",
-     "description": "Обводки и разделители · accent-uno · soft. Интерактивный акцент.",
+     "description": "Обводки и разделители · accent-uno · soft. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться.",
      "scopes": [
       "STROKE_COLOR"
      ],
@@ -3653,7 +3653,7 @@
     {
      "name": "border/accent-uno/deep",
      "type": "COLOR",
-     "description": "Обводки и разделители · accent-uno · deep. Интерактивный акцент.",
+     "description": "Обводки и разделители · accent-uno · deep. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться.",
      "scopes": [
       "STROKE_COLOR"
      ],
@@ -3673,7 +3673,7 @@
     {
      "name": "border/accent-duo/pale",
      "type": "COLOR",
-     "description": "Обводки и разделители · accent-duo · pale. Интерактивный акцент.",
+     "description": "Обводки и разделители · accent-duo · pale. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться.",
      "scopes": [
       "STROKE_COLOR"
      ],
@@ -3693,7 +3693,7 @@
     {
      "name": "border/accent-duo/soft",
      "type": "COLOR",
-     "description": "Обводки и разделители · accent-duo · soft. Интерактивный акцент.",
+     "description": "Обводки и разделители · accent-duo · soft. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться.",
      "scopes": [
       "STROKE_COLOR"
      ],
@@ -3713,7 +3713,7 @@
     {
      "name": "border/accent-duo/deep",
      "type": "COLOR",
-     "description": "Обводки и разделители · accent-duo · deep. Интерактивный акцент.",
+     "description": "Обводки и разделители · accent-duo · deep. Внимание: маркетинговая коммуникация — промо, акции, бейджи «новое», всё, что должно выделиться.",
      "scopes": [
       "STROKE_COLOR"
      ],
@@ -4067,6 +4067,21 @@
      },
      "valuesByMode": {
       "default": 90
+     }
+    },
+    {
+     "name": "opacity/100",
+     "type": "FLOAT",
+     "description": "Непрозрачность 100% — слой виден полностью.",
+     "scopes": [
+      "OPACITY"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--numbers-opacity-100)"
+     },
+     "valuesByMode": {
+      "default": 100
      }
     }
    ]
@@ -6125,6 +6140,300 @@
      "valuesByMode": {
       "off": true,
       "on": false
+     }
+    }
+   ]
+  },
+  {
+   "name": "7 · State",
+   "description": "Состояния компонентов: default, hover, pressed, focus, error, disabled. Мод ставится на инстанс или фрейм — варианты под состояния не нужны. Ссылается на Numbers и Theme.",
+   "modes": [
+    "default",
+    "hover",
+    "pressed",
+    "focus",
+    "error",
+    "disabled"
+   ],
+   "variables": [
+    {
+     "name": "overlay",
+     "type": "FLOAT",
+     "description": "Прозрачность слоя-подсветки state поверх контрола: hover 10%, pressed 20%, в остальных модах 0.",
+     "scopes": [
+      "OPACITY"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--state-overlay)"
+     },
+     "valuesByMode": {
+      "default": {
+       "$alias": "3 · Numbers::opacity/0"
+      },
+      "hover": {
+       "$alias": "3 · Numbers::opacity/10"
+      },
+      "pressed": {
+       "$alias": "3 · Numbers::opacity/20"
+      },
+      "focus": {
+       "$alias": "3 · Numbers::opacity/0"
+      },
+      "error": {
+       "$alias": "3 · Numbers::opacity/0"
+      },
+      "disabled": {
+       "$alias": "3 · Numbers::opacity/0"
+      }
+     }
+    },
+    {
+     "name": "opacity",
+     "type": "FLOAT",
+     "description": "Прозрачность всего компонента: disabled — 40%, остальные — 100%.",
+     "scopes": [
+      "OPACITY"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--state-opacity)"
+     },
+     "valuesByMode": {
+      "default": {
+       "$alias": "3 · Numbers::opacity/100"
+      },
+      "hover": {
+       "$alias": "3 · Numbers::opacity/100"
+      },
+      "pressed": {
+       "$alias": "3 · Numbers::opacity/100"
+      },
+      "focus": {
+       "$alias": "3 · Numbers::opacity/100"
+      },
+      "error": {
+       "$alias": "3 · Numbers::opacity/100"
+      },
+      "disabled": {
+       "$alias": "3 · Numbers::opacity/40"
+      }
+     }
+    },
+    {
+     "name": "focus",
+     "type": "BOOLEAN",
+     "description": "Фокус: показывает каретку в полях и активную ячейку кода.",
+     "scopes": [],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--state-focus)"
+     },
+     "valuesByMode": {
+      "default": false,
+      "hover": false,
+      "pressed": false,
+      "focus": true,
+      "error": false,
+      "disabled": false
+     }
+    },
+    {
+     "name": "error",
+     "type": "BOOLEAN",
+     "description": "Ошибка: показывает красную обводку у полей и ячеек кода.",
+     "scopes": [],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--state-error)"
+     },
+     "valuesByMode": {
+      "default": false,
+      "hover": false,
+      "pressed": false,
+      "focus": false,
+      "error": true,
+      "disabled": false
+     }
+    },
+    {
+     "name": "field/label",
+     "type": "COLOR",
+     "description": "Поднятый лейбл заполненного поля. В error — красный.",
+     "scopes": [
+      "TEXT_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--state-field-label)"
+     },
+     "valuesByMode": {
+      "default": {
+       "$alias": "2 · Theme::content/neutral/secondary"
+      },
+      "hover": {
+       "$alias": "2 · Theme::content/neutral/secondary"
+      },
+      "pressed": {
+       "$alias": "2 · Theme::content/neutral/secondary"
+      },
+      "focus": {
+       "$alias": "2 · Theme::content/neutral/secondary"
+      },
+      "error": {
+       "$alias": "2 · Theme::content/status-negative/primary"
+      },
+      "disabled": {
+       "$alias": "2 · Theme::content/neutral/secondary"
+      }
+     }
+    },
+    {
+     "name": "field/placeholder",
+     "type": "COLOR",
+     "description": "Лейбл пустого поля (стоит на месте значения). В error — красный.",
+     "scopes": [
+      "TEXT_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--state-field-placeholder)"
+     },
+     "valuesByMode": {
+      "default": {
+       "$alias": "2 · Theme::content/neutral/tertiary"
+      },
+      "hover": {
+       "$alias": "2 · Theme::content/neutral/tertiary"
+      },
+      "pressed": {
+       "$alias": "2 · Theme::content/neutral/tertiary"
+      },
+      "focus": {
+       "$alias": "2 · Theme::content/neutral/tertiary"
+      },
+      "error": {
+       "$alias": "2 · Theme::content/status-negative/primary"
+      },
+      "disabled": {
+       "$alias": "2 · Theme::content/neutral/tertiary"
+      }
+     }
+    },
+    {
+     "name": "field/hint",
+     "type": "COLOR",
+     "description": "Подсказка под полем. В error — красная.",
+     "scopes": [
+      "TEXT_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--state-field-hint)"
+     },
+     "valuesByMode": {
+      "default": {
+       "$alias": "2 · Theme::content/neutral/secondary"
+      },
+      "hover": {
+       "$alias": "2 · Theme::content/neutral/secondary"
+      },
+      "pressed": {
+       "$alias": "2 · Theme::content/neutral/secondary"
+      },
+      "focus": {
+       "$alias": "2 · Theme::content/neutral/secondary"
+      },
+      "error": {
+       "$alias": "2 · Theme::content/status-negative/primary"
+      },
+      "disabled": {
+       "$alias": "2 · Theme::content/neutral/secondary"
+      }
+     }
+    },
+    {
+     "name": "field/digit",
+     "type": "COLOR",
+     "description": "Цифра в ячейке кода. В error — красная.",
+     "scopes": [
+      "TEXT_FILL"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--state-field-digit)"
+     },
+     "valuesByMode": {
+      "default": {
+       "$alias": "2 · Theme::content/neutral/primary"
+      },
+      "hover": {
+       "$alias": "2 · Theme::content/neutral/primary"
+      },
+      "pressed": {
+       "$alias": "2 · Theme::content/neutral/primary"
+      },
+      "focus": {
+       "$alias": "2 · Theme::content/neutral/primary"
+      },
+      "error": {
+       "$alias": "2 · Theme::content/status-negative/primary"
+      },
+      "disabled": {
+       "$alias": "2 · Theme::content/neutral/primary"
+      }
+     }
+    },
+    {
+     "name": "border",
+     "type": "COLOR",
+     "description": "Цвет обводки ошибки. Слой обводки виден только в моде error (state/error).",
+     "scopes": [
+      "STROKE_COLOR"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--state-border)"
+     },
+     "valuesByMode": {
+      "default": {
+       "$alias": "2 · Theme::border/status-negative/deep"
+      },
+      "hover": {
+       "$alias": "2 · Theme::border/status-negative/deep"
+      },
+      "pressed": {
+       "$alias": "2 · Theme::border/status-negative/deep"
+      },
+      "focus": {
+       "$alias": "2 · Theme::border/status-negative/deep"
+      },
+      "error": {
+       "$alias": "2 · Theme::border/status-negative/deep"
+      },
+      "disabled": {
+       "$alias": "2 · Theme::border/status-negative/deep"
+      }
+     }
+    },
+    {
+     "name": "border-width",
+     "type": "FLOAT",
+     "description": "Толщина обводки ошибки: 1.5 в моде error, 0 в остальных.",
+     "scopes": [
+      "STROKE_FLOAT"
+     ],
+     "hiddenFromPublishing": false,
+     "codeSyntax": {
+      "WEB": "var(--state-border-width)"
+     },
+     "valuesByMode": {
+      "default": 0,
+      "hover": 0,
+      "pressed": 0,
+      "focus": 0,
+      "error": 1.5,
+      "disabled": 0
      }
     }
    ]
