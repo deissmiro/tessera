@@ -1,6 +1,6 @@
 {
   "name": "tab-bar",
   "figmaName": "Tab bar",
-  "summary": "Плавающая круглая капсула: белая (ground/ground-2), полное скругление, тень, отступ от краёв viewport/tabbar/margin. Tab bar/item: активный — в серой капсуле background/neutral-soft, остальные — content/neutral/tertiary; слот icon, label, badge. Tab bar: items 3/4/5.",
-  "layout": "viewport/tabbar/*, viewport/screen/width"
+  "summary": "Нижняя навигация на всю ширину экрана: белая (ground/ground-2) с линией сверху (border/neutral/pale). Tab bar/item: слот icon + label, активный — content/neutral/primary, остальные — content/neutral/tertiary, badge-точка. Tab bar: items 3/4/5.",
+  "layout": "viewport/tabbar/*, ширина viewport/screen/width"
 }

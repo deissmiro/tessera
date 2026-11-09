@@ -1,6 +1,0 @@
-{
-  "name": "spinner",
-  "figmaName": "Spinner",
-  "summary": "Тонкая дуга 270° со скруглёнными концами, без трека. size small 16 / medium 24 / large 40, толщина viewport/spinner/stroke-*; tone neutral | on-deep.",
-  "layout": "viewport/spinner/*"
-}

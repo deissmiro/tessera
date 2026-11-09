@@ -1,25 +1,13 @@
 {
   "name": "layout",
   "figmaName": "Layout",
-  "summary": "Стартовый фрейм экрана, с которого начинается проектирование. Сверху вниз: Native/Status bar, header (Navbar/default), слот content (тянется), Tab bar, Native/Keyboard (по умолчанию выключена), Native/Home indicator.",
+  "summary": "Стартовый фрейм экрана, с которого начинается проектирование: header (Navbar/default), слот content (тянется), Tab bar.",
   "props": {
-    "statusBar": {
-      "kind": "boolean",
-      "default": true
-    },
     "header": {
       "kind": "boolean",
       "default": true
     },
     "tabBar": {
-      "kind": "boolean",
-      "default": true
-    },
-    "keyboard": {
-      "kind": "boolean",
-      "default": false
-    },
-    "homeIndicator": {
       "kind": "boolean",
       "default": true
     }
@@ -30,5 +18,5 @@
       "description": "Контент экрана: отступы 16 по бокам, шаг 16."
     }
   },
-  "modes": "Размер — Viewport (s / m / l), нативные части — Platform (ios / ios-glass / android), цвета — Brand и Theme, поверхность компонентов — Preset, загрузка — Skeleton. Всё ставится модами на Layout или выше."
+  "modes": "Размер — Viewport (s / m / l), цвета — Brand и Theme, поверхность компонентов — Preset, загрузка — Skeleton."
 }

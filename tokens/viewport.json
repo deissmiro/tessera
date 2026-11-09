@@ -780,11 +780,11 @@
       "height": {
         "$type": "number",
         "$modes": {
-          "s": 64,
-          "m": 64,
+          "s": 56,
+          "m": 56,
           "l": 64
         },
-        "$description": "Высота плавающей панели."
+        "$description": "Высота панели."
       },
       "icon": {
         "$type": "number",
@@ -812,138 +812,6 @@
           "l": 2
         },
         "$description": "Шаг иконка — подпись."
-      },
-      "margin": {
-        "$type": "number",
-        "$modes": {
-          "s": 12,
-          "m": 12,
-          "l": 12
-        },
-        "$description": "Отступ панели от краёв экрана."
-      },
-      "inset": {
-        "$type": "number",
-        "$modes": {
-          "s": 6,
-          "m": 6,
-          "l": 6
-        },
-        "$description": "Внутренний отступ капсулы."
-      },
-      "item-padding-y": {
-        "$type": "number",
-        "$modes": {
-          "s": 6,
-          "m": 6,
-          "l": 6
-        },
-        "$description": "Вертикальный отступ таба."
-      }
-    },
-    "snackbar": {
-      "$description": "Снэкбар.",
-      "padding-x": {
-        "$type": "number",
-        "$modes": {
-          "s": 16,
-          "m": 16,
-          "l": 16
-        },
-        "$description": "Отступ."
-      },
-      "padding-y": {
-        "$type": "number",
-        "$modes": {
-          "s": 14,
-          "m": 14,
-          "l": 14
-        },
-        "$description": "Вертикальный отступ."
-      },
-      "radius": {
-        "$type": "number",
-        "$modes": {
-          "s": 20,
-          "m": 20,
-          "l": 20
-        },
-        "$description": "Скругление."
-      },
-      "gap": {
-        "$type": "number",
-        "$modes": {
-          "s": 12,
-          "m": 12,
-          "l": 12
-        },
-        "$description": "Шаг между частями."
-      },
-      "width": {
-        "$type": "number",
-        "$modes": {
-          "s": 343,
-          "m": 400,
-          "l": 400
-        },
-        "$description": "Ширина."
-      }
-    },
-    "spinner": {
-      "$description": "Спиннер.",
-      "s": {
-        "$type": "number",
-        "$modes": {
-          "s": 16,
-          "m": 16,
-          "l": 16
-        },
-        "$description": "Размер S."
-      },
-      "m": {
-        "$type": "number",
-        "$modes": {
-          "s": 24,
-          "m": 24,
-          "l": 24
-        },
-        "$description": "Размер M."
-      },
-      "l": {
-        "$type": "number",
-        "$modes": {
-          "s": 40,
-          "m": 40,
-          "l": 40
-        },
-        "$description": "Размер L."
-      },
-      "stroke-s": {
-        "$type": "number",
-        "$modes": {
-          "s": 2,
-          "m": 2,
-          "l": 2
-        },
-        "$description": "Толщина дуги S."
-      },
-      "stroke-m": {
-        "$type": "number",
-        "$modes": {
-          "s": 2.5,
-          "m": 2.5,
-          "l": 2.5
-        },
-        "$description": "Толщина дуги M."
-      },
-      "stroke-l": {
-        "$type": "number",
-        "$modes": {
-          "s": 3.5,
-          "m": 3.5,
-          "l": 3.5
-        },
-        "$description": "Толщина дуги L."
       }
     },
     "progress": {

@@ -188,13 +188,22 @@ async function buildComponents(index) {
   var T = (n) => V("Theme", n), VP = (n) => V("Viewport", n), N = (n) => V("Numbers", n);
   var bind = (node, field, v) => { if (v) node.setBoundVariable(field, v); };
   var paint = (v) => figma.variables.setBoundVariableForPaint({ type: "SOLID", color: { r: 0.5, g: 0.5, b: 0.5 } }, "color", v);
+  // resize() в Figma сбрасывает hug в fixed — sz() меняет размер и возвращает режимы обратно.
+  var sz = (n, w, h) => {
+    const p = n.primaryAxisSizingMode, cx = n.counterAxisSizingMode;
+    const lh = n.parent && n.parent.layoutMode && n.parent.layoutMode !== "NONE" ? n.layoutSizingHorizontal : null;
+    const lv = n.parent && n.parent.layoutMode && n.parent.layoutMode !== "NONE" ? n.layoutSizingVertical : null;
+    n.resize(w, h);
+    if (p !== undefined && n.layoutMode && n.layoutMode !== "NONE") { n.primaryAxisSizingMode = p; n.counterAxisSizingMode = cx; }
+    try { if (lh && lh !== "FIXED") n.layoutSizingHorizontal = lh; if (lv && lv !== "FIXED") n.layoutSizingVertical = lv; } catch (e) {}
+  };
   var fill = (node, themeName) => { const v = T(themeName); if (v) node.fills = [paint(v)]; };
   var PR = (n) => V("Preset", n);
   var SKV = () => V("Skeleton", "visible");
   // Скелетон: серый слой поверх всего компонента; виден, когда на фрейме мод Skeleton = on.
   var skeletonOverlay = (node) => {
     const r = figma.createRectangle(); r.name = "skeleton"; fill(r, "background/neutral-soft");
-    node.appendChild(r); r.layoutPositioning = "ABSOLUTE"; r.x = 0; r.y = 0; r.resize(Math.max(node.width, 1), Math.max(node.height, 1));
+    node.appendChild(r); r.layoutPositioning = "ABSOLUTE"; r.x = 0; r.y = 0; sz(r, Math.max(node.width, 1), Math.max(node.height, 1));
     r.constraints = { horizontal: "STRETCH", vertical: "STRETCH" }; node.clipsContent = true;
     const v = SKV(); if (v) r.setBoundVariable("visible", v); else r.visible = false;
     return r;
@@ -244,7 +253,7 @@ async function buildComponents(index) {
   var stateLayer = (comp, state, colorName) => {
     if (!stateOpacity[state]) return;
     const r = figma.createRectangle(); r.name = "state"; fill(r, colorName);
-    comp.appendChild(r); r.layoutPositioning = "ABSOLUTE"; r.x = 0; r.y = 0; r.resize(comp.width, comp.height);
+    comp.appendChild(r); r.layoutPositioning = "ABSOLUTE"; r.x = 0; r.y = 0; sz(r, comp.width, comp.height);
     r.constraints = { horizontal: "STRETCH", vertical: "STRETCH" };
     bind(r, "opacity", N(stateOpacity[state]));
   };
@@ -284,7 +293,7 @@ async function buildComponents(index) {
     const iconHeader = text("Icon", 32, true, "content/neutral/primary"); iconHeader.y = cursorY; page.appendChild(iconHeader);
     let ix = 0;
     for (const [name, d] of Object.entries(ICON_PATHS)) {
-      const c = figma.createComponent(); c.name = `Icon/${name}`; c.resize(24, 24); c.fills = [];
+      const c = figma.createComponent(); c.name = `Icon/${name}`; sz(c, 24, 24); c.fills = [];
       const g = figma.createVector(); g.name = "glyph"; g.vectorPaths = [{ windingRule: "NONE", data: d }];
       g.fills = []; const v = T("content/neutral/primary"); if (v) g.strokes = [paint(v)];
       g.strokeWeight = 2; g.strokeCap = "ROUND"; g.strokeJoin = "ROUND";
@@ -316,11 +325,11 @@ async function buildComponents(index) {
   try {
     const comps = [];
     [["line", 240, 20], ["rect", 120, 80], ["circle", 40, 40]].forEach(([shape, w, h], ci) => {
-      const c = figma.createComponent(); c.name = `shape=${shape}`; c.resize(w, h); c.fills = [];
+      const c = figma.createComponent(); c.name = `shape=${shape}`; sz(c, w, h); c.fills = [];
       const r = figma.createRectangle(); r.name = "fill"; fill(r, "background/neutral-soft");
       c.appendChild(r);
-      if (shape === "line") { r.resize(w, h * 0.6); r.x = 0; r.y = h * 0.2; r.cornerRadius = 6; r.constraints = { horizontal: "STRETCH", vertical: "SCALE" }; }
-      else { r.resize(w, h); r.x = 0; r.y = 0; r.cornerRadius = shape === "circle" ? 999 : 12; r.constraints = { horizontal: "STRETCH", vertical: "STRETCH" }; }
+      if (shape === "line") { sz(r, w, h * 0.6); r.x = 0; r.y = h * 0.2; r.cornerRadius = 6; r.constraints = { horizontal: "STRETCH", vertical: "SCALE" }; }
+      else { sz(r, w, h); r.x = 0; r.y = 0; r.cornerRadius = shape === "circle" ? 999 : 12; r.constraints = { horizontal: "STRETCH", vertical: "STRETCH" }; }
       c.x = ci * 280; comps.push(c);
     });
     skeletonSet = combine(comps, "Skeleton", "Заглушка загрузки: line — полоса по высоте строки (60% высоты, вложена в Text), rect, circle. Цвет background/neutral-soft. Обычно показывается модом коллекции «6 · Skeleton». Контракт: kb/components/skeleton.json.");
@@ -340,7 +349,7 @@ async function buildComponents(index) {
     const SKC = V("Skeleton", "content"), SKV2 = V("Skeleton", "visible");
     STYLES.forEach(([st, weight], r) => TONES.forEach((tone, ci) => {
       const c = figma.createComponent(); c.name = `style=${st}, tone=${tone}`;
-      c.layoutMode = "VERTICAL"; c.primaryAxisSizingMode = "AUTO"; c.counterAxisSizingMode = "FIXED"; c.resize(320, 20); c.fills = [];
+      c.layoutMode = "VERTICAL"; c.primaryAxisSizingMode = "AUTO"; c.counterAxisSizingMode = "FIXED"; sz(c, 320, 20); c.fills = [];
       const t = figma.createText(); t.fontName = { family: "Inter", style: weight };
       t.characters = st.startsWith("body") || st === "caption" ? "Семантический текст: стиль и тон берутся из токенов" : "Заголовок";
       t.name = "text"; fill(t, `content/neutral/${tone}`);
@@ -392,7 +401,7 @@ async function buildComponents(index) {
             b.layoutMode = "HORIZONTAL"; b.primaryAxisSizingMode = "AUTO"; b.counterAxisSizingMode = "FIXED";
             b.primaryAxisAlignItems = "CENTER"; b.counterAxisAlignItems = "CENTER"; b.clipsContent = true;
             fill(b, g === "inverse" ? "background/inverse" : g === "static" ? `background/${m}` : `background/${m}-${c}`);
-            b.resize(120, 44); bind(b, "height", VP(`control/${size}/height`));
+            sz(b, 120, 44); bind(b, "height", VP(`control/${size}/height`));
             ["paddingLeft", "paddingRight"].forEach((p) => bind(b, p, VP(`control/${size}/padding-x`)));
             bind(b, "itemSpacing", VP(`control/${size}/gap`));
             radius(b, ALL, VP(`control/${size}/radius`));
@@ -458,15 +467,15 @@ async function buildComponents(index) {
     comp.layoutMode = "HORIZONTAL"; comp.primaryAxisSizingMode = "AUTO"; comp.counterAxisSizingMode = "AUTO";
     comp.counterAxisAlignItems = "CENTER"; comp.fills = [];
     const hit = frame("hit", "HORIZONTAL"); hit.primaryAxisAlignItems = "CENTER"; hit.counterAxisAlignItems = "CENTER";
-    hit.primaryAxisSizingMode = "FIXED"; hit.counterAxisSizingMode = "FIXED"; hit.resize(36, 36);
+    hit.primaryAxisSizingMode = "FIXED"; hit.counterAxisSizingMode = "FIXED"; sz(hit, 36, 36);
     comp.appendChild(hit);
     if (stateOpacity[state]) {
       const halo = figma.createEllipse(); halo.name = "state"; fill(halo, "content/neutral/primary");
-      hit.appendChild(halo); halo.layoutPositioning = "ABSOLUTE"; halo.resize(36, 36); halo.x = 0; halo.y = 0;
+      hit.appendChild(halo); halo.layoutPositioning = "ABSOLUTE"; sz(halo, 36, 36); halo.x = 0; halo.y = 0;
       bind(halo, "opacity", N(stateOpacity[state]));
     }
     const on = value !== "false";
-    const box = figma.createFrame(); box.name = "box"; box.resize(24, 24);
+    const box = figma.createFrame(); box.name = "box"; sz(box, 24, 24);
     bind(box, "width", VP("control/selector/size")); bind(box, "height", VP("control/selector/size"));
     if (kind === "checkbox") radius(box, ALL, VP("control/selector/checkbox-radius")); else box.cornerRadius = 999;
     // Мягкий стиль: без обводок. Выключен — серая заливка, включён — чёрный.
@@ -479,6 +488,7 @@ async function buildComponents(index) {
       if (v) { box.strokes = [paint(v)]; box.strokeAlign = "INSIDE"; bind(box, "strokeWeight", VP("control/selector/ring")); }
     }
     hit.appendChild(box);
+    box.effects = [{ type: "INNER_SHADOW", color: { r: 0, g: 0, b: 0, a: 0.12 }, offset: { x: 0, y: 1 }, radius: 2, spread: 0, visible: true, blendMode: "NORMAL" }];
     if (kind === "checkbox" && value === "true") {
       const mark = figma.createVector(); mark.name = "check";
       mark.vectorPaths = [{ windingRule: "NONE", data: "M 6.5 12.5 L 10.5 16.5 L 17.5 8" }];
@@ -487,7 +497,7 @@ async function buildComponents(index) {
       box.appendChild(mark); mark.constraints = { horizontal: "SCALE", vertical: "SCALE" };
     }
     if (kind === "checkbox" && value === "indeterminate") {
-      const dash = figma.createRectangle(); dash.name = "dash"; dash.resize(12, 2.5); dash.x = 6; dash.y = 10.75; dash.cornerRadius = 1.25;
+      const dash = figma.createRectangle(); dash.name = "dash"; sz(dash, 12, 2.5); dash.x = 6; dash.y = 10.75; dash.cornerRadius = 1.25;
       fill(dash, "content/neutral/on-deep"); box.appendChild(dash); dash.constraints = { horizontal: "SCALE", vertical: "SCALE" };
     }
     if (state === "disabled") bind(comp, "opacity", N("opacity/40"));
@@ -513,7 +523,7 @@ async function buildComponents(index) {
     const ch = figma.createComponent(); ch.name = `selected=${sel}, state=${state}`;
     ch.layoutMode = "HORIZONTAL"; ch.primaryAxisSizingMode = "AUTO"; ch.counterAxisSizingMode = "FIXED";
     ch.primaryAxisAlignItems = "CENTER"; ch.counterAxisAlignItems = "CENTER"; ch.clipsContent = true;
-    ch.resize(80, 36); bind(ch, "height", VP("control/chip/height"));
+    sz(ch, 80, 36); bind(ch, "height", VP("control/chip/height"));
     ["paddingLeft", "paddingRight"].forEach((p) => bind(ch, p, VP("control/chip/padding-x")));
     bind(ch, "itemSpacing", VP("control/m/gap")); radius(ch, ALL, VP("control/chip/radius"));
     const on = sel === "true";
@@ -544,11 +554,11 @@ async function buildComponents(index) {
   try {
   // ---- RichIcon: набор на смысл × размер, варианты contrast × shape
   var glyph = (sizeVar, colorName) => {
-    const box = figma.createFrame(); box.name = "icon"; box.fills = []; box.resize(20, 20);
+    const box = figma.createFrame(); box.name = "icon"; box.fills = []; sz(box, 20, 20);
     bind(box, "width", VP(sizeVar)); bind(box, "height", VP(sizeVar));
     const v = figma.createVector(); v.name = "glyph";
     v.vectorPaths = [{ windingRule: "NONZERO", data: "M 12 3 L 14 10 L 21 12 L 14 14 L 12 21 L 10 14 L 3 12 L 10 10 Z" }];
-    v.resize(20, 20); fill(v, colorName); box.appendChild(v);
+    sz(v, 20, 20); fill(v, colorName); box.appendChild(v);
     v.x = 0; v.y = 0; v.constraints = { horizontal: "SCALE", vertical: "SCALE" };
     return box;
   };
@@ -560,7 +570,7 @@ async function buildComponents(index) {
     const comp = figma.createComponent(); comp.name = `size=${SIZES[size]}, shape=${shape}`;
     comp.layoutMode = "HORIZONTAL"; comp.primaryAxisSizingMode = "FIXED"; comp.counterAxisSizingMode = "FIXED";
     comp.primaryAxisAlignItems = "CENTER"; comp.counterAxisAlignItems = "CENTER"; comp.clipsContent = true;
-    comp.resize(40, 40);
+    sz(comp, 40, 40);
     bind(comp, "width", VP(`rich-icon/${size}/size`)); bind(comp, "height", VP(`rich-icon/${size}/size`));
     fill(comp, "background/neutral-soft");
     if (shape === "circle") comp.cornerRadius = 999;
@@ -586,12 +596,12 @@ async function buildComponents(index) {
       const fg = surface === "transparent" ? "content/static-light" : "content/neutral/primary";
       const comp = figma.createComponent(); comp.name = `surface=${surface}`;
       comp.layoutMode = "VERTICAL"; comp.primaryAxisSizingMode = "AUTO"; comp.counterAxisSizingMode = "FIXED";
-      comp.resize(390, 56); bind(comp, "width", VP("screen/width"));
+      sz(comp, 390, 56); bind(comp, "width", VP("screen/width"));
       if (surface === "ground") fill(comp, "ground/ground-1");
       else if (surface === "island") fill(comp, "ground/ground-2");
       else comp.fills = [];
       const bar = frame("bar", "HORIZONTAL"); bar.counterAxisAlignItems = "CENTER";
-      bar.counterAxisSizingMode = "FIXED"; bar.resize(390, 56); bind(bar, "height", VP("navbar/height"));
+      bar.counterAxisSizingMode = "FIXED"; sz(bar, 390, 56); bind(bar, "height", VP("navbar/height"));
       ["paddingLeft", "paddingRight"].forEach((p) => bind(bar, p, VP("navbar/padding-x")));
       bind(bar, "itemSpacing", VP("navbar/gap"));
       comp.appendChild(bar); bar.layoutSizingHorizontal = "FILL";
@@ -613,7 +623,7 @@ async function buildComponents(index) {
         comp.appendChild(tb); tb.layoutSizingHorizontal = "FILL";
       }
       const div = figma.createRectangle(); div.name = "divider"; fill(div, "border/neutral/pale");
-      comp.appendChild(div); div.layoutPositioning = "ABSOLUTE"; div.resize(comp.width, 1); div.x = 0; div.y = comp.height - 1;
+      comp.appendChild(div); div.layoutPositioning = "ABSOLUTE"; sz(div, comp.width, 1); div.x = 0; div.y = comp.height - 1;
       div.constraints = { horizontal: "STRETCH", vertical: "MAX" };
       comp.x = 0; comp.y = r * (kind === "large" ? 180 : 110);
       comps.push(comp); dividers.push(div);
@@ -645,10 +655,10 @@ async function buildComponents(index) {
     const comps = FIELD_STATES.map((state, i) => {
       const comp = figma.createComponent(); comp.name = `state=${state}`;
       comp.layoutMode = "VERTICAL"; comp.primaryAxisSizingMode = "AUTO"; comp.counterAxisSizingMode = "FIXED";
-      comp.resize(343, 56); bind(comp, "width", VP("field/width")); comp.fills = [];
+      sz(comp, 343, 56); bind(comp, "width", VP("field/width")); comp.fills = [];
       bind(comp, "itemSpacing", VP("field/hint-gap"));
       const box = frame("field", "HORIZONTAL"); box.counterAxisAlignItems = "CENTER";
-      box.counterAxisSizingMode = "FIXED"; box.resize(343, 56);
+      box.counterAxisSizingMode = "FIXED"; sz(box, 343, 56);
       comp.appendChild(box); box.layoutSizingHorizontal = "FILL";
       bind(box, "height", VP("field/height"));
       ["paddingLeft", "paddingRight"].forEach((p) => bind(box, p, VP("field/padding-x")));
@@ -669,7 +679,7 @@ async function buildComponents(index) {
       col.appendChild(valueRow);
       const value = text(opt.value, 16, false, "content/neutral/primary"); value.name = "value";
       bind(value, "fontSize", VP("field/value-size")); valueRow.appendChild(value);
-      if (state === "focus") { const caret = figma.createRectangle(); caret.name = "caret"; caret.resize(2, 20); fill(caret, "content/neutral/primary"); valueRow.appendChild(caret); value.visible = false; }
+      if (state === "focus") { const caret = figma.createRectangle(); caret.name = "caret"; sz(caret, 2, 20); fill(caret, "content/neutral/primary"); valueRow.appendChild(caret); value.visible = false; }
       if (state === "empty") valueRow.visible = false;
       const trail = makeSlot(comp, "trailing", box);
       if (opt.trailing) trail.appendChild(opt.trailing());
@@ -734,16 +744,17 @@ async function buildComponents(index) {
       comp.counterAxisAlignItems = "CENTER"; comp.fills = [];
       const track = frame("track", "HORIZONTAL"); track.counterAxisAlignItems = "CENTER";
       track.primaryAxisAlignItems = on === "true" ? "MAX" : "MIN";
-      track.primaryAxisSizingMode = "FIXED"; track.counterAxisSizingMode = "FIXED"; track.resize(52, 32);
+      track.primaryAxisSizingMode = "FIXED"; track.counterAxisSizingMode = "FIXED"; sz(track, 52, 32);
       comp.appendChild(track);
       bind(track, "width", VP("control/switch/width")); bind(track, "height", VP("control/switch/height"));
       ["paddingLeft", "paddingRight", "paddingTop", "paddingBottom"].forEach((p) => bind(track, p, VP("control/switch/inset")));
       track.cornerRadius = 999;
       fill(track, on === "true" ? "background/neutral-deep" : "background/neutral-soft");
-      const knob = figma.createEllipse(); knob.name = "knob"; knob.resize(28, 28);
+      const knob = figma.createEllipse(); knob.name = "knob"; sz(knob, 28, 28);
       track.appendChild(knob);
       bind(knob, "width", VP("control/switch/knob")); bind(knob, "height", VP("control/switch/knob"));
       fill(knob, "ground/ground-2");
+      knob.effects = [{ type: "DROP_SHADOW", color: { r: 0, g: 0, b: 0, a: 0.15 }, offset: { x: 0, y: 2 }, radius: 4, spread: 0, visible: true, blendMode: "NORMAL" }];
       skeletonOverlay(track);
       if (state === "disabled") bind(comp, "opacity", N("opacity/40"));
       comp.x = ci * 80; comp.y = r * 56; swComps.push(comp);
@@ -760,7 +771,7 @@ async function buildComponents(index) {
     const comps = FIELD_STATES.map((state, i) => {
       const comp = figma.createComponent(); comp.name = `state=${state}`;
       comp.layoutMode = "VERTICAL"; comp.primaryAxisSizingMode = "AUTO"; comp.counterAxisSizingMode = "FIXED";
-      comp.resize(343, 120); bind(comp, "width", VP("field/width")); comp.fills = [];
+      sz(comp, 343, 120); bind(comp, "width", VP("field/width")); comp.fills = [];
       bind(comp, "itemSpacing", VP("field/hint-gap"));
       const box = frame("field", "VERTICAL"); box.primaryAxisSizingMode = "AUTO";
       comp.appendChild(box); box.layoutSizingHorizontal = "FILL";
@@ -817,7 +828,7 @@ async function buildComponents(index) {
     ["false", "true"].forEach((sel, i) => {
       const c = figma.createComponent(); c.name = `selected=${sel}`;
       c.layoutMode = "HORIZONTAL"; c.primaryAxisSizingMode = "AUTO"; c.counterAxisSizingMode = "FIXED";
-      c.primaryAxisAlignItems = "CENTER"; c.counterAxisAlignItems = "CENTER"; c.resize(100, 36);
+      c.primaryAxisAlignItems = "CENTER"; c.counterAxisAlignItems = "CENTER"; sz(c, 100, 36);
       ["paddingLeft", "paddingRight"].forEach((p) => bind(c, p, VP("segment/padding-x")));
       radius(c, ALL, VP("segment/item-radius"));
       if (sel === "true") fillP(c, "segment/selected"); else c.fills = [];
@@ -835,7 +846,7 @@ async function buildComponents(index) {
     [2, 3, 4].forEach((count, r) => {
       const c = figma.createComponent(); c.name = `items=${count}`;
       c.layoutMode = "HORIZONTAL"; c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "FIXED"; c.counterAxisAlignItems = "CENTER";
-      c.resize(343, 40); bind(c, "width", VP("segment/width")); bind(c, "height", VP("segment/height"));
+      sz(c, 343, 40); bind(c, "width", VP("segment/width")); bind(c, "height", VP("segment/height"));
       ["paddingLeft", "paddingRight", "paddingTop", "paddingBottom"].forEach((p) => bind(c, p, VP("segment/inset")));
       radius(c, ALL, VP("segment/radius")); fillP(c, "segment/track");
       c.clipsContent = true;
@@ -856,7 +867,7 @@ async function buildComponents(index) {
     say("✓ Segmented control: items 2 / 3 / 4");
   } catch (e) { fail("Segmented control", e); }
 
-  // ================= Пакет: Badge, Tab bar, Divider, Snackbar, Spinner, Progress, Code input, Pagination =================
+  // ================= Пакет: Badge, Tab bar, Divider, Progress, Code input, Pagination =================
   var section = (title, set) => { const h = text(title, 32, true, "content/neutral/primary"); h.y = cursorY; page.appendChild(h); set.x = 0; set.y = cursorY + 56; cursorY = set.y + set.height + 160; };
   var shadow = (node) => { node.effects = [{ type: "DROP_SHADOW", color: { r: 0, g: 0, b: 0, a: 0.12 }, offset: { x: 0, y: 8 }, radius: 24, spread: 0, visible: true, blendMode: "NORMAL" }]; };
 
@@ -869,10 +880,10 @@ async function buildComponents(index) {
       c.layoutMode = "HORIZONTAL"; c.primaryAxisAlignItems = "CENTER"; c.counterAxisAlignItems = "CENTER"; c.cornerRadius = 999;
       fill(c, `background/${m}-deep`);
       if (type === "dot") {
-        c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "FIXED"; c.resize(8, 8);
+        c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "FIXED"; sz(c, 8, 8);
         bind(c, "width", VP("badge/dot")); bind(c, "height", VP("badge/dot"));
       } else {
-        c.primaryAxisSizingMode = "AUTO"; c.counterAxisSizingMode = "FIXED"; c.resize(20, 20);
+        c.primaryAxisSizingMode = "AUTO"; c.counterAxisSizingMode = "FIXED"; sz(c, 20, 20);
         bind(c, "height", VP("badge/height")); bind(c, "minWidth", VP("badge/height"));
         ["paddingLeft", "paddingRight"].forEach((p) => bind(c, p, VP("badge/padding-x")));
         const l = text("3", 12, true, `content/${m}/on-deep`); l.name = "count"; bind(l, "fontSize", VP("badge/font-size")); c.appendChild(l); labels.push(l);
@@ -885,25 +896,23 @@ async function buildComponents(index) {
     section("Badge", set); say("✓ Badge");
   } catch (e) { fail("Badge", e); }
 
-  // ---- Tab bar: плавающая круглая капсула. Tab bar/item (active) + Tab bar (items 3/4/5)
+  // ---- Tab bar: обычная нижняя панель на всю ширину. Tab bar/item (active) + Tab bar (items 3/4/5)
   try {
     const itemComps = [], itemLabels = [], itemBadges = [];
     ["false", "true"].forEach((act, ci) => {
       const c = figma.createComponent(); c.name = `active=${act}`;
       c.layoutMode = "VERTICAL"; c.primaryAxisAlignItems = "CENTER"; c.counterAxisAlignItems = "CENTER";
-      c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "FIXED"; c.resize(72, 52); c.cornerRadius = 999;
-      ["paddingTop", "paddingBottom"].forEach((p) => bind(c, p, VP("tabbar/item-padding-y")));
+      sz(c, 78, 56); c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "FIXED"; c.fills = [];
       bind(c, "itemSpacing", VP("tabbar/gap"));
-      if (act === "true") fill(c, "background/neutral-soft"); else c.fills = [];
       const color = act === "true" ? "content/neutral/primary" : "content/neutral/tertiary";
       const slot = makeSlot(c, "icon", c);
-      slot.appendChild(glyph("tabbar/icon", color));
-      const badge = figma.createEllipse(); badge.name = "badge"; badge.resize(8, 8); fill(badge, "background/status-negative-deep");
-      c.appendChild(badge); badge.layoutPositioning = "ABSOLUTE"; badge.x = 42; badge.y = 6;
+      slot.appendChild(icon("home", color, 24));
+      const badge = figma.createEllipse(); badge.name = "badge"; sz(badge, 8, 8); fill(badge, "background/status-negative-deep");
+      c.appendChild(badge); badge.layoutPositioning = "ABSOLUTE"; badge.x = 46; badge.y = 6;
       const l = text("Главная", 11, true, color); l.name = "label"; bind(l, "fontSize", VP("tabbar/label-size")); c.appendChild(l);
       c.x = ci * 100; itemComps.push(c); itemLabels.push(l); itemBadges.push(badge);
     });
-    const itemSet = combine(itemComps, "Tab bar/item", "Таб плавающей панели: иконка (слот) + подпись. Активный — в серой капсуле background/neutral-soft, остальные — content/neutral/tertiary. badge — точка.");
+    const itemSet = combine(itemComps, "Tab bar/item", "Таб нижней навигации: иконка (слот) + подпись. Активный — content/neutral/primary, остальные — content/neutral/tertiary. badge — точка.");
     const lk = itemSet.addComponentProperty("label", "TEXT", "Главная");
     const bk = itemSet.addComponentProperty("badge", "BOOLEAN", false);
     itemLabels.forEach((l) => (l.componentPropertyReferences = { characters: lk }));
@@ -913,24 +922,20 @@ async function buildComponents(index) {
     const comps = [];
     [3, 4, 5].forEach((count, r) => {
       const c = figma.createComponent(); c.name = `items=${count}`;
-      c.layoutMode = "HORIZONTAL"; c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "AUTO"; c.fills = [];
-      c.resize(390, 80); bind(c, "width", VP("screen/width"));
-      ["paddingLeft", "paddingRight", "paddingBottom"].forEach((p) => bind(c, p, VP("tabbar/margin")));
-      const capsule = frame("capsule", "HORIZONTAL"); capsule.counterAxisAlignItems = "CENTER"; capsule.cornerRadius = 999;
-      capsule.counterAxisSizingMode = "FIXED"; capsule.resize(360, 64);
-      c.appendChild(capsule); capsule.layoutSizingHorizontal = "FILL";
-      bind(capsule, "height", VP("tabbar/height"));
-      ["paddingLeft", "paddingRight", "paddingTop", "paddingBottom"].forEach((p) => bind(capsule, p, VP("tabbar/inset")));
-      fill(capsule, "ground/ground-2"); shadow(capsule);
+      c.layoutMode = "HORIZONTAL"; c.counterAxisAlignItems = "CENTER";
+      sz(c, 390, 56); c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "FIXED";
+      bind(c, "width", VP("screen/width")); bind(c, "height", VP("tabbar/height"));
+      fill(c, "ground/ground-2");
+      const v = T("border/neutral/pale"); if (v) { c.strokes = [paint(v)]; c.strokeAlign = "INSIDE"; c.strokeTopWeight = 1; c.strokeBottomWeight = 0; c.strokeLeftWeight = 0; c.strokeRightWeight = 0; }
       for (let i = 0; i < count; i++) {
-        const inst = (i === 0 ? on : off).createInstance(); capsule.appendChild(inst);
+        const inst = (i === 0 ? on : off).createInstance(); c.appendChild(inst);
         inst.layoutSizingHorizontal = "FILL"; inst.layoutSizingVertical = "FILL";
         inst.setProperties({ [lk]: names[i] });
         try { inst.isExposedInstance = true; } catch (e) {}
       }
-      c.y = r * 100; comps.push(c);
+      c.y = r * 80; comps.push(c);
     });
-    const set = combine(comps, "Tab bar", "Нижняя навигация — плавающая круглая капсула с тенью, отступ от краёв viewport/tabbar/margin. items 3 / 4 / 5. Активный таб — свойство active у вложенных табов. Контракт: kb/components/tab-bar.json.");
+    const set = combine(comps, "Tab bar", "Нижняя навигация на всю ширину экрана: белая (ground/ground-2) с линией сверху. items 3 / 4 / 5. Активный таб — свойство active у вложенных табов. Контракт: kb/components/tab-bar.json.");
     section("Tab bar", itemSet); section("", set); say("✓ Tab bar");
   } catch (e) { fail("Tab bar", e); }
 
@@ -940,9 +945,9 @@ async function buildComponents(index) {
     const comps = [];
     [["line", "border/neutral/pale", "divider/line", false], ["inset", "border/neutral/pale", "divider/line", true], ["section", "ground/ground-1", "divider/section", false]].forEach(([type, color, h, inset], r) => {
       const c = figma.createComponent(); c.name = `type=${type}`;
-      c.layoutMode = "HORIZONTAL"; c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "AUTO"; c.resize(375, 1); c.fills = [];
+      c.layoutMode = "HORIZONTAL"; c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "AUTO"; sz(c, 375, 1); c.fills = [];
       if (inset) bind(c, "paddingLeft", VP("divider/inset"));
-      const line = figma.createRectangle(); line.name = "line"; fill(line, color); line.resize(375, 1); c.appendChild(line);
+      const line = figma.createRectangle(); line.name = "line"; fill(line, color); sz(line, 375, 1); c.appendChild(line);
       line.layoutSizingHorizontal = "FILL"; bind(line, "height", VP(h));
       c.y = r * 30; comps.push(c);
     });
@@ -950,78 +955,16 @@ async function buildComponents(index) {
     section("Divider", set); say("✓ Divider");
   } catch (e) { fail("Divider", e); }
 
-  // ---- Snackbar: тёмная плашка с крупным скруглением, заголовок + описание, действие, закрыть
-  try {
-    const comps = [], parts = [];
-    [["default", null], ["success", "status-positive"], ["error", "status-negative"]].forEach(([tone, m], r) => {
-      const c = figma.createComponent(); c.name = `tone=${tone}`;
-      c.layoutMode = "HORIZONTAL"; c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "AUTO"; c.counterAxisAlignItems = "CENTER";
-      c.resize(343, 60); bind(c, "width", VP("snackbar/width"));
-      ["paddingLeft", "paddingRight"].forEach((p) => bind(c, p, VP("snackbar/padding-x")));
-      ["paddingTop", "paddingBottom"].forEach((p) => bind(c, p, VP("snackbar/padding-y")));
-      bind(c, "itemSpacing", VP("snackbar/gap")); radius(c, ALL, VP("snackbar/radius"));
-      fill(c, "background/inverse"); shadow(c);
-      const lead = makeSlot(c, "icon", c);
-      if (m) {
-        const b = frame("status", "HORIZONTAL"); b.primaryAxisAlignItems = "CENTER"; b.counterAxisAlignItems = "CENTER";
-        b.primaryAxisSizingMode = "FIXED"; b.counterAxisSizingMode = "FIXED"; b.resize(28, 28); b.cornerRadius = 999; fill(b, `background/${m}-deep`);
-        b.appendChild(icon(tone === "success" ? "check" : "alert", `content/${m}/on-deep`)); lead.appendChild(b);
-      } else lead.appendChild(icon("info", "content/inverse/primary"));
-      const col = frame("text", "VERTICAL"); col.itemSpacing = 2; c.appendChild(col); col.layoutSizingHorizontal = "FILL";
-      const title = text(tone === "error" ? "Не удалось оформить заказ" : tone === "success" ? "Заказ оформлен" : "Добавлено в корзину", 15, true, "content/inverse/primary");
-      title.name = "title"; col.appendChild(title); title.layoutSizingHorizontal = "FILL"; title.textAutoResize = "HEIGHT";
-      const desc = text(tone === "error" ? "Проверьте соединение и попробуйте ещё раз" : "Курьер приедет через 25–35 минут", 13, false, "content/inverse/secondary");
-      desc.name = "description"; col.appendChild(desc); desc.layoutSizingHorizontal = "FILL"; desc.textAutoResize = "HEIGHT";
-      let act;
-      try { act = buttonInstance("static-light", "deep", "s", "Отменить"); }
-      catch (e) { act = frame("action", "HORIZONTAL"); act.appendChild(text("Отменить", 14, true, "content/inverse/primary")); }
-      act.name = "action"; c.appendChild(act);
-      const close = icon("clear", "content/inverse/secondary"); close.name = "close"; c.appendChild(close);
-      c.y = r * 100; comps.push(c); parts.push({ lead, title, desc, act, close });
-    });
-    const set = combine(comps, "Snackbar", "Снэкбар: тёмная плашка background/inverse, скругление 20, тень. Заголовок + описание, кнопка действия (белая) и закрыть. tone: default (иконка), success, error (значок в цветном круге). Контракт: kb/components/snackbar.json.");
-    const k = { title: set.addComponentProperty("title", "TEXT", "Добавлено в корзину"), desc: set.addComponentProperty("description", "TEXT", "Курьер приедет через 25–35 минут"),
-      hasDesc: set.addComponentProperty("hasDescription", "BOOLEAN", true), hasAct: set.addComponentProperty("hasAction", "BOOLEAN", true),
-      hasClose: set.addComponentProperty("hasClose", "BOOLEAN", false), hasIcon: set.addComponentProperty("hasIcon", "BOOLEAN", true) };
-    parts.forEach(({ lead, title, desc, act, close }) => {
-      title.componentPropertyReferences = { characters: k.title };
-      desc.componentPropertyReferences = { characters: k.desc, visible: k.hasDesc };
-      act.componentPropertyReferences = { visible: k.hasAct }; close.componentPropertyReferences = { visible: k.hasClose };
-      try { lead.componentPropertyReferences = { visible: k.hasIcon }; } catch (e) {}
-    });
-    section("Snackbar", set); say("✓ Snackbar");
-  } catch (e) { fail("Snackbar", e); }
-
-  // ---- Spinner: тонкая дуга 270° со скруглёнными концами, без трека
-  try {
-    const comps = [];
-    [["neutral", "content/neutral/primary"], ["on-deep", "content/neutral/on-deep"]].forEach(([tone, color], r) => ["s", "m", "l"].forEach((size, ci) => {
-      const c = figma.createComponent(); c.name = `size=${SIZES[size]}, tone=${tone}`; c.resize(24, 24);
-      bind(c, "width", VP(`spinner/${size}`)); bind(c, "height", VP(`spinner/${size}`));
-      if (tone === "on-deep") fill(c, "background/neutral-deep"); else c.fills = [];
-      const arc = figma.createVector(); arc.name = "arc";
-      arc.vectorPaths = [{ windingRule: "NONE", data: "M 12 2 C 17.52 2 22 6.48 22 12 C 22 17.52 17.52 22 12 22 C 6.48 22 2 17.52 2 12" }];
-      arc.fills = []; const v = T(color); if (v) arc.strokes = [paint(v)];
-      arc.strokeCap = "ROUND"; c.appendChild(arc); arc.x = 2; arc.y = 2;
-      bind(arc, "strokeWeight", VP(`spinner/stroke-${size}`));
-      arc.constraints = { horizontal: "SCALE", vertical: "SCALE" };
-      c.x = ci * 64; c.y = r * 64; comps.push(c);
-    }));
-    const set = combine(comps, "Spinner", "Спиннер: тонкая дуга 270° со скруглёнными концами, без трека. size small 16 / medium 24 / large 40, tone neutral | on-deep. В коде — вращение. Контракт: kb/components/spinner.json.");
-    section("Spinner", set); say("✓ Spinner");
-  } catch (e) { fail("Spinner", e); }
-
-
   // ---- Progress bar: value 0 / 25 / 50 / 75 / 100
   try {
     const comps = [];
     [0, 25, 50, 75, 100].forEach((val, r) => {
       const c = figma.createComponent(); c.name = `value=${val}`;
-      c.layoutMode = "HORIZONTAL"; c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "FIXED"; c.resize(343, 4);
+      c.layoutMode = "HORIZONTAL"; c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "FIXED"; sz(c, 343, 4);
       bind(c, "width", VP("progress/width")); bind(c, "height", VP("progress/height")); c.cornerRadius = 999; c.clipsContent = true;
       fill(c, "background/neutral-soft");
       const bar = figma.createRectangle(); bar.name = "value"; fill(bar, "background/neutral-deep"); bar.cornerRadius = 999;
-      c.appendChild(bar); bar.layoutPositioning = "ABSOLUTE"; bar.x = 0; bar.y = 0; bar.resize(Math.max(343 * val / 100, 0.01), 4);
+      c.appendChild(bar); bar.layoutPositioning = "ABSOLUTE"; bar.x = 0; bar.y = 0; sz(bar, Math.max(343 * val / 100, 0.01), 4);
       bar.constraints = { horizontal: "SCALE", vertical: "STRETCH" }; if (val === 0) bar.visible = false;
       c.y = r * 24; comps.push(c);
     });
@@ -1035,11 +978,11 @@ async function buildComponents(index) {
     ["empty", "active", "filled", "error"].forEach((state, ci) => {
       const c = figma.createComponent(); c.name = `state=${state}`;
       c.layoutMode = "HORIZONTAL"; c.primaryAxisAlignItems = "CENTER"; c.counterAxisAlignItems = "CENTER";
-      c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "FIXED"; c.resize(48, 56);
+      c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "FIXED"; sz(c, 48, 56);
       bind(c, "width", VP("code/cell-width")); bind(c, "height", VP("code/cell-height")); radius(c, ALL, VP("code/radius"));
       fillP(c, "field/fill");
       if (state === "error") { const v = T("background/status-negative-deep"); if (v) { c.strokes = [paint(v)]; c.strokeAlign = "INSIDE"; c.strokeWeight = 1.5; } }
-      if (state === "active") { const caret = figma.createRectangle(); caret.name = "caret"; caret.resize(2, 24); fill(caret, "content/neutral/primary"); c.appendChild(caret); }
+      if (state === "active") { const caret = figma.createRectangle(); caret.name = "caret"; sz(caret, 2, 24); fill(caret, "content/neutral/primary"); c.appendChild(caret); }
       else { const d = text(state === "empty" ? "" : "7", 24, true, state === "error" ? "content/status-negative/primary" : "content/neutral/primary"); d.name = "digit"; bind(d, "fontSize", VP("code/font-size")); c.appendChild(d); if (state !== "empty") digits.push(d); }
       c.x = ci * 70; cellComps.push(c);
     });
@@ -1068,7 +1011,7 @@ async function buildComponents(index) {
   try {
     const dotComps = [];
     ["false", "true"].forEach((act, ci) => {
-      const c = figma.createComponent(); c.name = `active=${act}`; c.cornerRadius = 999; c.resize(6, 6);
+      const c = figma.createComponent(); c.name = `active=${act}`; c.cornerRadius = 999; sz(c, 6, 6);
       bind(c, "height", VP("pagination/dot")); bind(c, "width", VP(act === "true" ? "pagination/active-width" : "pagination/dot"));
       fill(c, act === "true" ? "background/neutral-deep" : "border/neutral/soft");
       c.x = ci * 40; dotComps.push(c);
@@ -1088,140 +1031,31 @@ async function buildComponents(index) {
   } catch (e) { fail("Pagination", e); }
 
 
-  // ================= Native: статус-бар, домашний индикатор, клавиатура. Перестраиваются модом Platform =================
-  var PL = (n) => V("Platform", n);
-  var showIf = (node, varName) => { const v = PL(varName); if (v) node.setBoundVariable("visible", v); };
-  var nativeSets = {};
-  // Статус-бар: tone dark (тёмный контент на светлом) / light (светлый контент на тёмном)
-  try {
-    const comps = [];
-    ["dark", "light"].forEach((tone, r) => {
-      const fg = tone === "dark" ? "content/static-dark" : "content/static-light";
-      const c = figma.createComponent(); c.name = `content=${tone}`;
-      c.layoutMode = "HORIZONTAL"; c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "FIXED"; c.counterAxisAlignItems = "CENTER";
-      c.primaryAxisAlignItems = "SPACE_BETWEEN"; c.resize(390, 54); c.fills = [];
-      bind(c, "width", VP("screen/width")); bind(c, "height", PL("status-bar/height"));
-      ["paddingLeft", "paddingRight"].forEach((p) => bind(c, p, PL("status-bar/padding-x")));
-      const time = text("9:41", 17, true, fg); time.name = "time"; bind(time, "fontSize", PL("status-bar/font-size")); c.appendChild(time);
-      // iOS: остров по центру (абсолютно), Android: камера-точка
-      const island = figma.createRectangle(); island.name = "island"; island.resize(124, 36); island.cornerRadius = 999; fill(island, "background/static-dark");
-      c.appendChild(island); island.layoutPositioning = "ABSOLUTE"; island.x = 133; island.y = 11; island.constraints = { horizontal: "CENTER", vertical: "TOP" }; showIf(island, "is-ios");
-      const cam = figma.createEllipse(); cam.name = "camera"; cam.resize(12, 12); fill(cam, "background/static-dark");
-      c.appendChild(cam); cam.layoutPositioning = "ABSOLUTE"; cam.x = 189; cam.y = 12; cam.constraints = { horizontal: "CENTER", vertical: "TOP" }; showIf(cam, "is-android");
-      const icons = frame("icons", "HORIZONTAL"); icons.itemSpacing = 6; icons.counterAxisAlignItems = "CENTER"; c.appendChild(icons);
-      // сеть, wi-fi, батарея — простые формы
-      const bars = frame("signal", "HORIZONTAL"); bars.itemSpacing = 2; bars.counterAxisAlignItems = "MAX";
-      for (const h of [4, 6, 8, 10]) { const b = figma.createRectangle(); b.resize(3, h); b.cornerRadius = 1; fill(b, fg); bars.appendChild(b); }
-      icons.appendChild(bars);
-      const wifi = figma.createVector(); wifi.name = "wifi"; wifi.vectorPaths = [{ windingRule: "NONE", data: "M 1 4 C 5 0 11 0 15 4 M 4 7 C 6.5 4.8 9.5 4.8 12 7 M 7 10 C 7.6 9.4 8.4 9.4 9 10" }];
-      wifi.fills = []; const fv = T(fg); if (fv) wifi.strokes = [paint(fv)]; wifi.strokeWeight = 1.8; wifi.strokeCap = "ROUND"; icons.appendChild(wifi);
-      const bat = frame("battery", "HORIZONTAL"); bat.paddingLeft = bat.paddingRight = bat.paddingTop = bat.paddingBottom = 2;
-      bat.cornerRadius = 4; if (fv) { bat.strokes = [paint(fv)]; bat.strokeWeight = 1; bat.strokeAlign = "INSIDE"; }
-      const lvl = figma.createRectangle(); lvl.resize(18, 8); lvl.cornerRadius = 2; fill(lvl, fg); bat.appendChild(lvl); icons.appendChild(bat);
-      c.y = r * 80; comps.push(c);
-    });
-    const set = combine(comps, "Native/Status bar", "Статус-бар. Платформа — мод «7 · Platform»: iOS — Dynamic Island по центру, высота 54; Android — точка камеры, высота 36. content: dark (тёмный контент на светлом фоне) / light. Контракт: kb/components/native.json.");
-    nativeSets.status = set;
-    const h = text("Native", 32, true, "content/neutral/primary"); h.y = cursorY; page.appendChild(h);
-    set.x = 0; set.y = cursorY + 56; cursorY = set.y + set.height + 80;
-    say("✓ Native/Status bar");
-  } catch (e) { fail("Native/Status bar", e); }
-
-  // Домашний индикатор (iOS) / навигационная полоса жестов (Android)
-  try {
-    const comps = [];
-    ["dark", "light"].forEach((tone, r) => {
-      const c = figma.createComponent(); c.name = `content=${tone}`;
-      c.layoutMode = "HORIZONTAL"; c.primaryAxisAlignItems = "CENTER"; c.counterAxisAlignItems = "CENTER";
-      c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "FIXED"; c.resize(390, 34); c.fills = [];
-      bind(c, "width", VP("screen/width")); bind(c, "height", PL("home-indicator/height"));
-      const bar = figma.createRectangle(); bar.name = "indicator"; bar.cornerRadius = 999; bar.resize(134, 5);
-      fill(bar, tone === "dark" ? "content/static-dark" : "content/static-light"); c.appendChild(bar);
-      bind(bar, "width", PL("home-indicator/width")); bind(bar, "height", PL("home-indicator/thickness"));
-      c.y = r * 60; comps.push(c);
-    });
-    const set = combine(comps, "Native/Home indicator", "Домашний индикатор iOS / полоса жестов Android: размеры из «7 · Platform». content: dark / light.");
-    nativeSets.home = set;
-    set.x = 0; set.y = cursorY; cursorY = set.y + set.height + 80;
-    say("✓ Native/Home indicator");
-  } catch (e) { fail("Native/Home indicator", e); }
-
-  // Клавиатура: ЙЦУКЕН. iOS / Liquid Glass / Android — от мода Platform.
-  try {
-    const c = figma.createComponent(); c.name = "Native/Keyboard";
-    c.layoutMode = "VERTICAL"; c.primaryAxisSizingMode = "AUTO"; c.counterAxisSizingMode = "FIXED"; c.resize(390, 260); c.fills = []; c.clipsContent = true;
-    bind(c, "width", VP("screen/width"));
-    ["paddingLeft", "paddingRight"].forEach((p) => bind(c, p, PL("keyboard/padding-x")));
-    bind(c, "paddingTop", PL("keyboard/padding-top")); bind(c, "paddingBottom", PL("keyboard/padding-bottom"));
-    bind(c, "itemSpacing", PL("keyboard/row-gap"));
-    bind(c, "topLeftRadius", PL("keyboard/radius")); bind(c, "topRightRadius", PL("keyboard/radius"));
-    // подложка: отдельный слой, чтобы у Liquid Glass она была полупрозрачной с размытием, а клавиши — нет
-    const bg = figma.createRectangle(); bg.name = "background"; c.appendChild(bg);
-    bg.layoutPositioning = "ABSOLUTE"; bg.x = 0; bg.y = 0; bg.resize(390, 260); bg.constraints = { horizontal: "STRETCH", vertical: "STRETCH" };
-    { const v = PL("keyboard/background"); if (v) bg.fills = [paint(v)]; }
-    bind(bg, "opacity", PL("keyboard/bg-opacity"));
-    bg.effects = [{ type: "BACKGROUND_BLUR", radius: 24, visible: true }];
-    const rim = figma.createRectangle(); rim.name = "glass-rim"; c.appendChild(rim);
-    rim.layoutPositioning = "ABSOLUTE"; rim.x = 0; rim.y = 0; rim.resize(390, 260); rim.constraints = { horizontal: "STRETCH", vertical: "STRETCH" };
-    rim.fills = []; { const v = T("border/static-light"); if (v) { rim.strokes = [paint(v)]; rim.strokeWeight = 1; rim.strokeAlign = "INSIDE"; } }
-    bind(rim, "topLeftRadius", PL("keyboard/radius")); bind(rim, "topRightRadius", PL("keyboard/radius")); showIf(rim, "glass");
-    const key = (label, opt = {}) => {
-      const k = frame(`key ${label}`, "HORIZONTAL"); k.primaryAxisAlignItems = "CENTER"; k.counterAxisAlignItems = "CENTER";
-      k.counterAxisSizingMode = "FIXED"; k.resize(32, 42);
-      { const v = PL(opt.special ? "keyboard/key-special" : "keyboard/key"); if (v) k.fills = [paint(v)]; }
-      bind(k, "height", PL("keyboard/key-height")); radius(k, ALL, PL("keyboard/key-radius"));
-      if (opt.icon) k.appendChild(icon(opt.icon, "content/neutral/primary"));
-      else { const t = text(label, opt.small ? 16 : 22, false, "content/neutral/primary"); if (!opt.small) bind(t, "fontSize", PL("keyboard/font-size")); k.appendChild(t); }
-      return k;
-    };
-    const row = (keys, opt = {}) => {
-      const r = frame("row", "HORIZONTAL"); bind(r, "itemSpacing", PL("keyboard/key-gap"));
-      if (opt.inset) { r.paddingLeft = r.paddingRight = opt.inset; }
-      c.appendChild(r); r.layoutSizingHorizontal = "FILL";
-      for (const k of keys) { const node = typeof k === "string" ? key(k) : key(k.l, k); r.appendChild(node); node.layoutSizingHorizontal = "FILL"; if (k.grow) node.layoutGrow = k.grow; }
-      return r;
-    };
-    row("ЙЦУКЕНГШЩЗХ".split(""));
-    row("ФЫВАПРОЛДЖЭ".split(""));
-    row([{ l: "shift", icon: "chevron-up", special: true, grow: 1.4 }, ..."ЯЧСМИТЬБЮ".split(""), { l: "delete", icon: "close", special: true, grow: 1.4 }]);
-    row([{ l: "123", small: true, special: true, grow: 1.3 }, { l: "🌐", icon: "home", special: true }, { l: "пробел", small: true, grow: 5 }, { l: "Ввод", small: true, special: true, grow: 2 }]);
-    c.description = "Клавиатура ЙЦУКЕН. Мод «7 · Platform»: ios — плоская подложка, клавиши со скруглением 5; ios-glass — Liquid Glass: скруглённый верх, полупрозрачная подложка с размытием и светлой кромкой, клавиши скругление 10; android — клавиши выше, скругление 6. Цвета — из Theme, работают в светлой и тёмной теме. Контракт: kb/components/native.json.";
-    nativeSets.keyboard = c;
-    c.x = 0; c.y = cursorY; cursorY = c.y + c.height + 160;
-    say("✓ Native/Keyboard");
-  } catch (e) { fail("Native/Keyboard", e); }
-
   // ================= Layout: стартовый фрейм экрана =================
   try {
     const c = figma.createComponent(); c.name = "Layout";
-    c.layoutMode = "VERTICAL"; c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "FIXED"; c.resize(390, 844); c.clipsContent = true;
+    c.layoutMode = "VERTICAL"; c.primaryAxisSizingMode = "FIXED"; c.counterAxisSizingMode = "FIXED"; sz(c, 390, 844); c.clipsContent = true;
     bind(c, "width", VP("screen/width")); bind(c, "height", VP("screen/height"));
     fill(c, "ground/ground-1");
     const parts = {};
-    if (nativeSets.status) { const i = nativeSets.status.children.find((x) => x.name === "content=dark").createInstance(); c.appendChild(i); i.layoutSizingHorizontal = "FILL"; parts.status = i; }
     const navSet = page.children.find((n) => n.name === "Navbar/default" && n.type === "COMPONENT_SET");
     if (navSet) { const i = navSet.children.find((x) => x.name === "surface=ground").createInstance(); c.appendChild(i); i.layoutSizingHorizontal = "FILL"; parts.header = i; }
     const content = makeSlot(c, "content", c); content.layoutMode = "VERTICAL"; content.itemSpacing = 16;
     content.layoutSizingHorizontal = "FILL"; content.layoutSizingVertical = "FILL";
     content.paddingLeft = content.paddingRight = 16; content.paddingTop = 8;
-    const ph = figma.createRectangle(); ph.name = "placeholder"; ph.resize(358, 200); ph.cornerRadius = 20; fill(ph, "ground/ground-2");
+    const ph = figma.createRectangle(); ph.name = "placeholder"; sz(ph, 358, 200); ph.cornerRadius = 20; fill(ph, "ground/ground-2");
     content.appendChild(ph); ph.layoutSizingHorizontal = "FILL";
     const tbSet = page.children.find((n) => n.name === "Tab bar" && n.type === "COMPONENT_SET");
     if (tbSet) { const i = tbSet.children.find((x) => x.name === "items=4").createInstance(); c.appendChild(i); i.layoutSizingHorizontal = "FILL"; parts.tabbar = i; }
-    if (nativeSets.keyboard) { const i = nativeSets.keyboard.createInstance(); c.appendChild(i); i.layoutSizingHorizontal = "FILL"; parts.keyboard = i; }
-    if (nativeSets.home) { const i = nativeSets.home.children.find((x) => x.name === "content=dark").createInstance(); c.appendChild(i); i.layoutSizingHorizontal = "FILL"; parts.home = i; }
     const k = {
-      status: c.addComponentProperty("statusBar", "BOOLEAN", true),
       header: c.addComponentProperty("header", "BOOLEAN", true),
       tabbar: c.addComponentProperty("tabBar", "BOOLEAN", true),
-      keyboard: c.addComponentProperty("keyboard", "BOOLEAN", false),
-      home: c.addComponentProperty("homeIndicator", "BOOLEAN", true),
     };
     for (const [nm, node] of Object.entries(parts)) { try { node.componentPropertyReferences = { visible: k[nm] }; } catch (e) {} }
-    c.description = "Стартовый фрейм экрана: статус-бар, header (Navbar), слот content, Tab bar, клавиатура (выключена), домашний индикатор. Размер — экран брейкпоинта (Viewport), вид нативных частей — мод «7 · Platform» (ios / ios-glass / android), тема и бренд — как у всего кита. Части включаются свойствами. Контракт: kb/components/layout.json.";
+    c.description = "Стартовый фрейм экрана: header (Navbar), слот content, Tab bar. Размер — экран брейкпоинта (Viewport), тема, бренд, пресет, скелетон — модами. header и tabBar включаются свойствами. Контракт: kb/components/layout.json.";
     const h = text("Layout", 32, true, "content/neutral/primary"); h.y = cursorY; page.appendChild(h);
     c.x = 0; c.y = cursorY + 56; cursorY = c.y + c.height + 160;
-    say("✓ Layout: status bar, header, content, tab bar, keyboard, home indicator");
+    say("✓ Layout: header, content, tab bar");
   } catch (e) { fail("Layout", e); }
   // ================= /Поля ввода =================
   } catch (e) { fail("Поля", e); }
@@ -1245,7 +1079,7 @@ async function buildComponents(index) {
     }
     if (type === "bottom-sheet" || type === "adaptive") {
       const gw = frame("grabber", "HORIZONTAL"); gw.primaryAxisAlignItems = "CENTER";
-      const g = figma.createRectangle(); g.name = "handle"; g.resize(36, 4); g.cornerRadius = 2; fill(g, "border/neutral/soft");
+      const g = figma.createRectangle(); g.name = "handle"; sz(g, 36, 4); g.cornerRadius = 2; fill(g, "border/neutral/soft");
       gw.appendChild(g); panel.appendChild(gw); gw.layoutSizingHorizontal = "FILL";
       if (type === "adaptive") bind(gw, "visible", VP("window/adaptive/grabber"));
     }
@@ -1285,7 +1119,7 @@ async function buildComponents(index) {
         b = frame(`button · ${label}`, "HORIZONTAL"); b.primaryAxisAlignItems = "CENTER"; b.counterAxisAlignItems = "CENTER"; b.cornerRadius = 14;
         fill(b, c === "deep" ? `background/${m}-deep` : `background/${m}-pale`);
         b.appendChild(text(label, 16, true, c === "deep" ? `content/${m}/on-deep` : `content/${m}/primary`));
-        b.counterAxisSizingMode = "FIXED"; b.resize(100, 56);
+        b.counterAxisSizingMode = "FIXED"; sz(b, 100, 56);
       }
       footer.appendChild(b); b.layoutSizingHorizontal = "FILL";
     }
@@ -1299,7 +1133,7 @@ async function buildComponents(index) {
     root.layoutMode = type === "side-sheet" ? "HORIZONTAL" : "VERTICAL";
     root.primaryAxisSizingMode = "FIXED"; root.counterAxisSizingMode = "FIXED";
     root.counterAxisAlignItems = "CENTER"; root.clipsContent = true;
-    root.resize(390, 844);
+    sz(root, 390, 844);
     bind(root, "width", VP("screen/width")); bind(root, "height", VP("screen/height"));
     const margin = type === "dialog" ? VP("window/margin") : type === "adaptive" ? VP("window/adaptive/margin") : null;
     if (margin) pad(root, margin);
@@ -1309,7 +1143,7 @@ async function buildComponents(index) {
     const blocker = figma.createRectangle(); blocker.name = "blocker"; blocker.fills = [];
     for (const layer of [scrim, blocker]) {
       root.appendChild(layer); layer.layoutPositioning = "ABSOLUTE";
-      layer.x = 0; layer.y = 0; layer.resize(390, 844); layer.constraints = { horizontal: "STRETCH", vertical: "STRETCH" };
+      layer.x = 0; layer.y = 0; sz(layer, 390, 844); layer.constraints = { horizontal: "STRETCH", vertical: "STRETCH" };
     }
 
     const before = frame("spacer-before"); before.layoutMode = "VERTICAL"; root.appendChild(before);
@@ -1319,7 +1153,7 @@ async function buildComponents(index) {
     if (type === "side-sheet") {
       before.layoutSizingHorizontal = "FILL"; before.layoutSizingVertical = "FILL";
       after.remove();
-      panel.layoutSizingVertical = "FILL"; panel.layoutSizingHorizontal = "FIXED"; panel.resize(390, panel.height);
+      panel.layoutSizingVertical = "FILL"; panel.layoutSizingHorizontal = "FIXED"; sz(panel, 390, panel.height);
       bind(panel, "width", VP("window/side-width"));
     } else {
       before.layoutSizingVertical = "FILL"; after.layoutSizingVertical = "FILL";

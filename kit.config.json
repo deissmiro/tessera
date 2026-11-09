@@ -51,13 +51,6 @@
       "axis": "skeleton",
       "files": "tokens/skeleton.json",
       "description": "Скелетон: off — контент, on — заглушки загрузки. Мод на фрейме перестраивает все компоненты внутри."
-    },
-    {
-      "id": "platform",
-      "collection": "7 · Platform",
-      "axis": "platform",
-      "files": "tokens/platform.json",
-      "description": "Платформа: ios, ios-glass (Liquid Glass), android. Нативные компоненты (статус-бар, домашний индикатор, клавиатура) и Layout перестраиваются от мода на фрейме."
     }
   ],
   "axes": {
@@ -105,15 +98,6 @@
       ],
       "default": "off",
       "description": "Состояние загрузки."
-    },
-    "platform": {
-      "modes": [
-        "ios",
-        "ios-glass",
-        "android"
-      ],
-      "default": "ios",
-      "description": "Платформа и версия дизайна iOS."
     }
   },
   "references": {
@@ -129,10 +113,7 @@
     "preset": [
       "theme"
     ],
-    "skeleton": [],
-    "platform": [
-      "theme"
-    ]
+    "skeleton": []
   },
   "contrast": {
     "pairs": "kb/contrast-pairs.json"
